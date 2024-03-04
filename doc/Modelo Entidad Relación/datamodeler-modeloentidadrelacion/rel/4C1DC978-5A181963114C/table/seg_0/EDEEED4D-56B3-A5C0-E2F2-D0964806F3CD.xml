@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EDEEED4D-56B3-A5C0-E2F2-D0964806F3CD" name="Relation_9">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Evento_Nombre" id="EA05CBB4-902A-5104-F1FB-648AAEE4AC24">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="533DAD7B-FA88-339D-2123-02F03B1B54DD" referredColumn="488D6BCA-BE24-3802-F9D6-7686CB1C852B"/>
+</associations>
+</Column>
+<Column name="Solicitud_de_Servicio_Solicitud_de_Servicio_ID" id="1E8827F6-AAD8-870D-3BF6-CC962D104381">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="409DF234-4FD5-5832-4098-15EBFAF81052" referredColumn="CCC85089-8983-F269-D50A-049735F69C13"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="55B3CFB0-851D-1127-4CD2-6B1D35E5287C" name="Relation_9_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EA05CBB4-902A-5104-F1FB-648AAEE4AC24"/>
+<colUsage columnID="1E8827F6-AAD8-870D-3BF6-CC962D104381"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7B563142-E34B-B174-571F-CA3A58D989BF" name="Relation_9_Evento_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>DCA8C6BE-FE22-519D-667B-5D1D68B5813D</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EA05CBB4-902A-5104-F1FB-648AAEE4AC24"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1786A785-B952-CC6A-0724-1A13239B00A9" name="Relation_9_Solicitud_de_Servicio_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>DCA8C6BE-FE22-519D-667B-5D1D68B5813D</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1E8827F6-AAD8-870D-3BF6-CC962D104381"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

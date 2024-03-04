@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="498669A3-9FCC-5B26-BFFB-072A14D20CDB" name="Relation_13">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Evento_Nombre" id="0DBE8B7D-A5BB-859A-5373-5923E663C9EB">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A8FCDD21-572F-71B4-AB93-BD3873BE4D8B" referredColumn="488D6BCA-BE24-3802-F9D6-7686CB1C852B"/>
+</associations>
+</Column>
+<Column name="Actividad_Actividad_ID" id="96BF33F8-7D6F-3F10-6C15-3B01EFDBD681">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B1E87537-CF26-9FAD-DC19-545E8F8A6435" referredColumn="3E121212-E0AE-7535-B6C3-A2DF34D33F1E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="60B64055-E150-C29B-91C9-469CE9B9A729" name="Relation_13_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0DBE8B7D-A5BB-859A-5373-5923E663C9EB"/>
+<colUsage columnID="96BF33F8-7D6F-3F10-6C15-3B01EFDBD681"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="47C1B1B0-F068-64A5-D928-5C35D693AC4D" name="Relation_13_Evento_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>173056BB-3B30-4C9B-1411-D17BDDB531F7</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0DBE8B7D-A5BB-859A-5373-5923E663C9EB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5EAEB3D0-C4BF-206C-FFF9-EB1252A9BFFE" name="Relation_13_Actividad_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>173056BB-3B30-4C9B-1411-D17BDDB531F7</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="96BF33F8-7D6F-3F10-6C15-3B01EFDBD681"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
