@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="81F2AC42-36EA-2A2B-39A4-09B701339B4C" name="Malla_Curricular">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>1DD387E7-D2A7-F1A4-546D-D3864AC4743A</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Nombre" id="5F5524B4-D884-60B3-6AD0-113936D5A935">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>01D1296F-B058-42FD-DEC9-372DC1EDD6BA</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descripción" id="82521BC2-82D2-E5A6-3680-E6860D131681">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>E6882D39-B7FB-53C2-F02D-770421AFB9D3</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Programas_de_Posgrado" id="69246561-D6D6-F768-B493-0FB3A82FB2FA">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>D3908B70-C988-AF44-F8DB-2C1AA46CF663</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Módulos_de_Posgrado" id="1D224B25-9C16-B6CB-D2DC-381F55DAD1D9">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>7DDCE634-0F54-9CE2-5E8C-A7B222A6BD3C</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Requisitos" id="2B00B01E-909D-B909-847B-2354123E72DA">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>54BD898C-1899-FA0C-189C-F3CCAC42D0D0</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Módulo_de_Posgrado_Código" id="C24FB669-6F35-CEEC-65E3-92F6393C9CC8">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>215D16CE-1856-2CA2-5212-22FE27389B18</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="85D26203-D695-D89B-7FEA-E17CF659A3FB" referredColumn="0C77CDD3-532C-AE63-616A-194C0D396FDC"/>
+</associations>
+</Column>
+<Column name="Malla_Curricular_ID" id="1D444F26-BA0B-1108-2517-82924357C7A3">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="68FE81C8-D21F-BB10-5DEC-2503C84D59F9" name="Malla_Curricular_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="1D444F26-BA0B-1108-2517-82924357C7A3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="48E2DC5F-A4C9-4C3A-2AF2-177B9EF77AE0" name="Malla_Curricular_Módulo_de_Posgrado_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>D308E15F-58D4-5665-2984-7AAB2346C201</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C24FB669-6F35-CEEC-65E3-92F6393C9CC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

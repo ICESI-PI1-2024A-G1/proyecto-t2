@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="datamodeler-modeloentidadrelacion" id="261D36C5-15DB-D8B0-9560-7FBDF636D139" version="3.5">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 01:45:13 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>261D36C5-15DB-D8B0-9560-7FBDF636D139</designId>
+</OSDM_Design>

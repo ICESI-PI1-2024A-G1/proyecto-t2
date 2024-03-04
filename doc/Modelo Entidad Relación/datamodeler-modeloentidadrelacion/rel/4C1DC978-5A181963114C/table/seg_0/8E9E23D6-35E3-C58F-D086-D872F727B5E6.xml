@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8E9E23D6-35E3-C58F-D086-D872F727B5E6" name="Materia">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>66809086-742B-1A14-21C0-D6CB25A4B406</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Nombre" id="64AE3405-C5E5-E2C0-99A3-CC29E87A41DB">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>2627CEC3-E2FA-82F4-8DF1-9CE6DA271228</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Código" id="CB9C2E57-4A42-1AD4-0E0D-D5AB123260A8">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>2C7682D7-A497-6C73-787D-B26BFE23369D</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descripción" id="33C56F66-1ADA-0DF1-C884-FBF58662D447">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>E17E45E0-D2B5-7273-BA57-22A53FF2AD26</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Créditos" id="32EB2FDC-6071-DD37-BC22-9C1ED7812327">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>1BC1D3C0-2A9A-D331-E8A0-A98E4AE5600D</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Syllabus" id="6EDC609E-BE87-C010-2D64-41FF523D230B">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>4726EE07-7DD6-DD56-B0A2-88D42EE486A1</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT010</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Programa_de_Posgrado" id="4E4E3F46-7696-2379-1E3A-3F1F59396971">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>281EDF9E-99C2-F451-63CB-D1D83252EA9C</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E31B9AD0-5B1B-D7D2-9632-AAD88159D219" name="Materia_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>FC2BF558-2180-C05F-FD87-3A06FA7B48A3</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CB9C2E57-4A42-1AD4-0E0D-D5AB123260A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8E6A9265-2EB8-9BF9-100E-4B735CFAE6AF" name="Relation_4">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Malla_Curricular_Malla_Curricular_ID" id="624624BA-5263-B90F-C685-0234E97807FF">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="88DCA2CB-16DE-F8C7-1C9C-B577EB01FD8D" referredColumn="1D444F26-BA0B-1108-2517-82924357C7A3"/>
+</associations>
+</Column>
+<Column name="Materia_Código" id="47301098-9414-26C0-ADF2-4236F4C1BBFF">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C22D5DB4-F922-6242-EA94-13E09263097E" referredColumn="CB9C2E57-4A42-1AD4-0E0D-D5AB123260A8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="308E3B6F-B89F-F305-3C5C-FB2DEB954F72" name="Relation_4_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="624624BA-5263-B90F-C685-0234E97807FF"/>
+<colUsage columnID="47301098-9414-26C0-ADF2-4236F4C1BBFF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8AB259C2-7CDE-60DD-2AE4-B925FAFB59E2" name="Relation_4_Malla_Curricular_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>AC1BD834-33A5-31C6-F131-699E2B4A0D79</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="624624BA-5263-B90F-C685-0234E97807FF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9BAD14D0-D851-E456-C8F3-1CB8FDCDFABC" name="Relation_4_Materia_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>AC1BD834-33A5-31C6-F131-699E2B4A0D79</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="47301098-9414-26C0-ADF2-4236F4C1BBFF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

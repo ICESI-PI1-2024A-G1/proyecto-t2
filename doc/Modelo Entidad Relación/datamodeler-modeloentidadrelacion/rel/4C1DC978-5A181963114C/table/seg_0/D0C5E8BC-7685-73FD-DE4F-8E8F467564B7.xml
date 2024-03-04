@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D0C5E8BC-7685-73FD-DE4F-8E8F467564B7" name="Relation_14">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Actividad_Actividad_ID" id="33E13DB2-7FCB-3CEF-3556-ECF5B952142C">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2670592F-5EC7-68A5-6A7A-6AE691F02A4B" referredColumn="3E121212-E0AE-7535-B6C3-A2DF34D33F1E"/>
+</associations>
+</Column>
+<Column name="Espacio_Nombre" id="AA21A789-4CD4-258D-802F-064BD4B864DC">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="306BFC13-2168-B4D4-7443-A0A8DC378CF0" referredColumn="856DCBE4-A2AC-7C8E-3E59-DD133CBA9A6B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0FF8EA9F-0999-420B-DA0E-6DD5E0F9D2BE" name="Relation_14_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="33E13DB2-7FCB-3CEF-3556-ECF5B952142C"/>
+<colUsage columnID="AA21A789-4CD4-258D-802F-064BD4B864DC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EC66721B-D4AF-8AC9-D985-C4360B85FCE7" name="Relation_14_Actividad_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>45778B6C-3D15-3185-5525-6D60AC78CFDB</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="33E13DB2-7FCB-3CEF-3556-ECF5B952142C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="35F93A13-861C-3C2C-1CC9-6FE3AD7A5CC9" name="Relation_14_Espacio_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-03-04 02:11:37 UTC</createdTime>
+<generatorID>45778B6C-3D15-3185-5525-6D60AC78CFDB</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AA21A789-4CD4-258D-802F-064BD4B864DC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
