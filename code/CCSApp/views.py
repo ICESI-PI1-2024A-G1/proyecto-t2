@@ -4,8 +4,6 @@ from django.http import HttpResponse
 
 
 # Create your views here.
-<<<<<<< Updated upstream
-=======
 def malla_curricular(request):
     return render(request, 'np_malla_curricular.html')
 
@@ -20,7 +18,6 @@ def empezar_pogra(request):
 
 def log_in(request):
     return render(request, 'log_in.html')
->>>>>>> Stashed changes
 
 def index(request):
     return render(request, 'index.html')
