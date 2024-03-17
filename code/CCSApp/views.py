@@ -1,9 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-
-
 # Create your views here.
+
+def servicios_asignacion(request):
+    return render(request, 'servicios_asignacion.html')
+
+def asignar_horario(request):
+    return render(request, 'asignar_horario.html')
+
 def malla_curricular(request):
     return render(request, 'np_malla_curricular.html')
 
