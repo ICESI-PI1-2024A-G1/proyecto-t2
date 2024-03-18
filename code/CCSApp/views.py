@@ -39,7 +39,7 @@ def register_us(request):
         Usuario.objects.create(nombre=request.POST['nombre'], codigo=request.POST['codigo'], 
         rol=request.POST['rol'], departamento=request.POST['departamento'],
         correo_electronico=request.POST['nombre'], telefono=request.POST['telefono'])
-        return redirect('/index')
+        return redirect('/')
 
 
 def index(request):
@@ -47,3 +47,6 @@ def index(request):
 
 def home(request):
     return render(request, 'home.html')
+
+def asignar_espacios(request):
+    return render(request, 'asignar_espacios.html')

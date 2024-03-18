@@ -9,5 +9,6 @@ urlpatterns = [
     path('gestion/', views.gestion),
     path('gestion/nuevoprograma/', views.nuevo_programa),
     path('gestion/nuevoprograma/mallacurricular/', views.malla_curricular),
-    path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias)
+    path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
+    path('serviciosdeasignacion/', views.asignar_espacios)
 ]
