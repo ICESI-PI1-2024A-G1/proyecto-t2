@@ -108,7 +108,6 @@ class Usuario(models.Model):
     departamento = models.CharField(max_length=500, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
     telefono = models.IntegerField( null = False, blank = False)
-    programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
     def  __str__(self):
         return self.codigo 
 
