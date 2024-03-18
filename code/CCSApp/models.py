@@ -5,24 +5,6 @@ fecha_inicio_por_defecto = date(2024, 3, 15)
 fecha_finalizacion_por_defecto = date(2025, 3, 14)
 
 # Create your models here.
-
-class Horario(models.Model):
-    MODALIDAD_CHOICES = [
-        ('presencial', 'Presencial'),
-        ('virtual', 'Virtual'),
-        ('mixta', 'Mixta'),
-    ]
-
-    fecha_hora = models.DateTimeField()
-    profesor = models.ForeignKey('Profesor', on_delete=models.CASCADE)
-    materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
-    modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)
-    enlace_virtual = models.URLField(blank=True, null=True)
-    salon_presencial = models.CharField(max_length=50, blank=True, null=True)
-
-    def __str__(self):
-        return f'{self.fecha_hora} - {self.profesor} - {self.materia} ({self.modalidad})'
-
 class Facultad(models.Model):
     nombre = models.CharField(max_length = 255, null = False, blank = False, primary_key=True)
     descripcion = models.TextField(null=False, blank=False)
