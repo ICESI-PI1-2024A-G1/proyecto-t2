@@ -24,3 +24,9 @@ def index(request):
 
 def home(request):
     return render(request, 'home.html')
+
+def editar_programa(request):
+    return render(request, 'editar_programa.html')
+
+def eliminar_programa(request):
+    return render(request,'eliminar_programa.html')
