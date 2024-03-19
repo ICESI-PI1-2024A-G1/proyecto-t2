@@ -1,37 +1,11 @@
 {% extends 'base.html' %}
 
-{% extends 'base.html' %}
-
 {% block content %}
-<div>
-    <h2>Creemos un nuevo programa</h2>
-    <h4>Nombre de programa</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Costo de matricula</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Facultad</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Duracion</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Modalidad</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Tipo</h4>
-    <button>Maestria</button>    <button>Pregrado</button>
-    <h2>Director de Programa</h2>
-    <h4>Numero de contacto</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Correo electronico</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Descripcion del cargo</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Foto de perfil</h4>
-    <input type="text" name = 'Ej: text'>
-    
-    <button href= "gestion/nuevoprograma/mallacurricular/">Guardar y Continuar</button>
-    
-    <a href= "/gestion"><button>Cancelar</button></a>
-    
-    
-</div>
-
+<form method="POST">
+{% csrf_token %}
+    {{nuevoPrograma}}
+    <button>
+        registrar
+    </button>
+</form>
 {% endblock %}

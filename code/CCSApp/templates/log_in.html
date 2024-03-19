@@ -2,23 +2,21 @@
 
 
 {% block content %}
-<div>
-    <h1>¡Bienvenido al CCSA! </h1>
-    <h4>Nombre de Usuario</h4>
-    <input type="text" name="Username">
-    <h4>Contraseña</h4>
-    <input type="text" name="Password">
-    <br>
-    <a href="/index">
-        <button>Ingresar</button>
-    </a>
 
-    <a href="/register_us">
-        <button>registrarse</button>
-    </a>
-    
+<body>
+    <h2>Iniciar Sesión</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+    {% if form.errors %}
+       <p>{{ form.non_field_errors }}</p>
+    {% endif %}
+</body>
 
     
-</div>
+
+
 
 {% endblock %}
