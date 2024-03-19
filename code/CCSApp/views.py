@@ -58,17 +58,17 @@ def log_in(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            nombre = form.cleaned_data['nombre']
             codigo = form.cleaned_data['codigo']
-            
-            user = Usuario.objects.filter(nombre=nombre, codigo=codigo).first()
-            if user is not None:
-                login(request, user)
-                
-                return redirect('/index')
-            else:
-          
-                form.add_error(None, "Nombre de usuario o código incorrecto.")
+            correo_electronico = form.cleaned_data['correo_electronico']
+            try:
+                usuario = Usuario.objects.get(codigo=codigo, correo_electronico=correo_electronico)
+                # Autenticación exitosa, puedes redirigir a una página de inicio o hacer cualquier otra cosa que necesites.
+                # Por ejemplo:
+                # return redirect('inicio')  # Cambia 'inicio' con el nombre de tu URL de inicio.
+                return render(request, 'index.html', {'usuario': usuario})
+            except Usuario.DoesNotExist:
+                # Si no se encuentra el usuario, puedes mostrar un mensaje de error o redirigir de nuevo al formulario de inicio de sesión.
+                form.add_error(None, 'Código o correo electrónico incorrecto')
     else:
         form = LoginForm()
     return render(request, 'log_in.html', {'form': form})
@@ -82,7 +82,7 @@ def register_us(request):
     else:
         Usuario.objects.create(nombre=request.POST['nombre'], codigo=request.POST['codigo'], 
         rol=request.POST['rol'], departamento=request.POST['departamento'],
-        correo_electronico=request.POST['nombre'], telefono=request.POST['telefono'])
+        correo_electronico=request.POST['correo_electronico'], telefono=request.POST['telefono'])
         return redirect('/')
 
 

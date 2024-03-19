@@ -21,8 +21,8 @@ class NewUsuary(forms.Form):
     telefono = forms.IntegerField(label= "telefono")
 
 class LoginForm(forms.Form):
-    nombre = forms.CharField(label="Nombre de usuario", max_length=150)
-    codigo = forms.CharField(label="Código", max_length=100, widget=forms.PasswordInput)
+    codigo = forms.CharField(max_length=10)
+    correo_electronico = forms.EmailField()
 
 class CrearProgramaAcademico(forms.Form):
     name = forms.CharField(label="Nombre", max_length=255)

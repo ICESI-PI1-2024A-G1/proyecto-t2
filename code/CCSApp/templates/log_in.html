@@ -3,17 +3,26 @@
 
 {% block content %}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+</head>
 <body>
     <h2>Iniciar Sesión</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        {% if form.non_field_errors %}
+            <div class="error">{{ form.non_field_errors }}</div>
+        {% endif %}
         <button type="submit">Iniciar Sesión</button>
     </form>
-    {% if form.errors %}
-       <p>{{ form.non_field_errors }}</p>
-    {% endif %}
+    <a href="/register_us"><button> Registrar </button></a>
 </body>
+</html
 
     
 
