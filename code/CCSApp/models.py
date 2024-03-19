@@ -42,23 +42,13 @@ class Programa_de_posgrado(models.Model):
     def  __str__(self):
         return self.codigo
     
-class Modulo_de_posgrado(models.Model):
-    nombre = models.CharField(max_length =255, null = False, blank = False)
-    codigo = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
-    decripcion = models.TextField(null=False, blank=False)
-    requisitos_previos = models.TextField(null=False, blank=False)
-    creditos = models.IntegerField(default = 1, null = False, blank = False)
-    syllabus = models.TextField(null=False, blank=False)
-    programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
-
-    def  __str__(self):
-        return self.codigo    
+   
 
 class Malla_curricular(models.Model):
     nombre = models.CharField(max_length =255, primary_key=True, null = False, blank = False)
     decripcion = models.TextField(null=False, blank=False)
     requisitos_previos = models.TextField(null=False, blank=False)
-    malla_curricular = models.ForeignKey(Modulo_de_posgrado, on_delete=models.CASCADE, default = '')
+    programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
     
     def  __str__(self):
             return self.nombre

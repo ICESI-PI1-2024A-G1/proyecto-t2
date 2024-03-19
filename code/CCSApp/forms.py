@@ -41,3 +41,10 @@ class CrearProgramaAcademico(forms.Form):
         ('Virtual', 'Virtual'),
     ]
     modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDADES_CHOICES, help_text="Seleccione la modalidad del programa.")
+
+class MallaCurricularForm(forms.Form):
+    nombre = forms.CharField(label="Nombre", max_length=255)
+    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea())
+    requisitos_previos = forms.CharField(label="Requisitos Previos", widget=forms.Textarea())
+    programa_de_posgrado = forms.ModelChoiceField(label="Programa de Posgrado", queryset=Programa_de_posgrado.objects.all())
+
