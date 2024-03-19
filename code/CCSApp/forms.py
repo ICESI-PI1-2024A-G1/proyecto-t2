@@ -1,4 +1,5 @@
 from django import forms
+from .models import *
 
 class NewHorario(forms.Form):
     fecha_hora = forms.DateTimeField(label="Fecha y Hora", widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
@@ -23,18 +24,20 @@ class NewUsuary(forms.Form):
 class LoginForm(forms.Form):
     codigo = forms.CharField(max_length=10)
     correo_electronico = forms.EmailField()
+    
+
 
 class CrearProgramaAcademico(forms.Form):
-    name = forms.CharField(label="Nombre", max_length=255)
-    codigo = forms.CharField(label="Código", max_length=100)
-    descripcion = forms.CharField(label="Descripción", widget=forms.TextInput())
-    fecha_inicio = forms.DateField(label="Fecha de inicio")
-    fecha_finalizacion = forms.DateField(label="Fecha de finalización")
-    value = forms.DecimalField(label="Valor", max_digits=10)
-    duracion = forms.CharField(label="Duración")
-    facultad= forms.CharField(label="facultad")
+    name = forms.CharField(label="Nombre", max_length=255, help_text="Ingrese el nombre del programa.")
+    codigo = forms.CharField(label="Código", max_length=100, help_text="Ingrese el código del programa.")
+    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción del programa.")
+    fecha_inicio = forms.DateField(label="Fecha de inicio", help_text="Ingrese la fecha de inicio del programa.")
+    fecha_finalizacion = forms.DateField(label="Fecha de finalización", help_text="Ingrese la fecha de finalización del programa.")
+    value = forms.DecimalField(label="Valor", max_digits=10, help_text="Ingrese el valor del programa.")
+    duracion = forms.CharField(label="Duración", help_text="Ingrese la duración del programa.")
+    facultad= forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
     MODALIDADES_CHOICES = [
         ('Presencial', 'Presencial'),
         ('Virtual', 'Virtual'),
     ]
-    modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDADES_CHOICES)
+    modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDADES_CHOICES, help_text="Seleccione la modalidad del programa.")

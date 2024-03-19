@@ -21,7 +21,7 @@ def asignar_horario(request):
                                               modalidad=modalidad, enlace_virtual=enlace_virtual,
                                               salon_presencial=salon_presencial)
             # Redirigir a la página de éxito o a donde sea necesario
-            return redirect('/servicios_asignacion')  # Cambia esta URL por la adecuada
+            return redirect('/servicios_asignacion')  
     else:
         form = NewHorario()
 
@@ -36,19 +36,25 @@ def malla_curricular(request):
     return render(request, 'np_malla_curricular.html')
 
 def nuevo_programa(request):
-    if request.method =='GET':
-        return render(request, 'nuevo_programa.html',{
-            'nuevoPrograma' : CrearProgramaAcademico()            
-        })
-        
+    if request.method == 'POST':
+        form = CrearProgramaAcademico(request.POST)
+        if form.is_valid():
+            # Procesar los datos del formulario y guardar el programa académico
+            programa_academico = Programa_de_posgrado(
+                name=form.cleaned_data['name'],
+                codigo=form.cleaned_data['codigo'],
+                descripcion=form.cleaned_data['descripcion'],
+                fecha_inicio=form.cleaned_data['fecha_inicio'],
+                fecha_finalizacion=form.cleaned_data['fecha_finalizacion'],
+                value=form.cleaned_data['value'],
+                duracion=form.cleaned_data['duracion'],
+                facultad=form.cleaned_data['facultad'],
+                modalidad=form.cleaned_data['modalidad'])
+            programa_academico.save()
+            return redirect('/gestion/nuevoprograma/mallacurricular')  # Redirigir a alguna vista después de guardar el formulario
     else:
-        Programa_de_posgrado.objects.create(name=request.POST['name'], codigo=request.POST['codigo'],
-                                            descripcion=request.POST['descripcion'], fecha_inicio=request.POST['fecha_inicio'],
-                                            fecha_finalizacion=request.POST['fecha_finalizacion'], value=request.POST['value'],
-                                            duracion=request.POST['duracion'], facultad = request.POST['facultad'], modalidad=request.POST['modalidad'])
-        return redirect('/gestion/nuevoprograma/mallacurricular')
-def gestion(request):
-    return render(request, 'gestion.html')
+        form = CrearProgramaAcademico()
+    return render(request, 'nuevo_programa.html', {'form': form})
 
 def empezar_pogra(request):
     return render(request, 'empezar_progra.html')
@@ -85,6 +91,9 @@ def register_us(request):
         correo_electronico=request.POST['correo_electronico'], telefono=request.POST['telefono'])
         return redirect('/')
 
+
+def gestion(request):
+    return render(request, 'gestion.html')
 
 def index(request):
     return render(request, 'index.html')

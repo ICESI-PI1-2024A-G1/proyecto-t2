@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="POST">
-{% csrf_token %}
-    {{nuevoPrograma}}
-    <button>
-        registrar
-    </button>
-</form>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Programa Académico</title>
+</head>
+<body>
+    <h1>Crear Programa Académico</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="/gestion"> <button> Cancelar </button></a>
+</body>
+</html>
 {% endblock %}
