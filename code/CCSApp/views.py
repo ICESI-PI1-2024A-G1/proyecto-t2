@@ -30,6 +30,9 @@ def asignar_horario(request):
 def modificar_horarios(request):
     return render(request, 'modificar_horarios.html')
 
+def consultar_horarios(request):
+    return render(request, 'consultar_horarios.html')
+
 def servicios_asignacion(request):
     return render(request, 'servicios_asignacion.html')
 

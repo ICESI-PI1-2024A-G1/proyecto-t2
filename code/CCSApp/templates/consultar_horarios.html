@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultar Horarios</title>
+</head>
+<body>
+    <h1>Consultar Horarios</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="/servicios_asignacion"><button>Volver</button></a>
+</body>
+</html>
