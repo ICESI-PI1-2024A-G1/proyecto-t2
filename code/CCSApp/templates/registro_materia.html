@@ -13,61 +13,14 @@
         <H1>CCSA</H1>
         <H3>Centro Compartido de Servicios Academicos</H3>
 
-    </head>
-
-    <body>
-        <nav>
-            <h2>Registro de Materias</h2>
-
-            <form action="" method="post">
-
-                <ul>
-                    <li>
-                        <label for="Name Materia">Nombre de la Materia</label>
-                        <br>
-                        <br>
-                        <input type="text" id="name" name="name_course" placeholder="Escriba el nombre de la materia" style="width : 245px;">
-                    </li>
-                    <br>
-                    <li>
-                        <label for="Cod Materia">Codigo de la Materia</label>
-                        <br>
-                        <br>
-                        <input type="text" id="cod" name="cod_course" placeholder="Escriba el codigo de la materia" style="width : 245px;">
-                    </li>
-                    <br>
-                    <li>
-                        <label for="Creditos Materia">Creditos Academicos</label>
-                        <br>
-                        <br>
-                        <input type="text" id="cred_Materia" name="cred" placeholder="Escriba la cantidad de creditos para la materia" style="width : 245px;">
-                    </li>
-                    <br>
-                    <li>
-                        <label for="Descripcion">Descripcion</label>
-                        <br><br>
-                        <input type="text" id="descp" name="descrip_Materia" placeholder="Escriba una breve descripcion para la materia" style="width : 245px;">
-                    </li>
-                    <br>
-                    <li>
-                        <label for="syllabus">Syllabus</label>
-                        <br><br>
-                        <input type="text" id="syll" name="syll_materia" placeholder="Ej: Text" style="width : 245px;">
-                    </li>
-                    <br>
-                    <li>
-                        <label for="nrc">NRC</label>
-                        <br><br>
-                        <input type="text" id="nrc" class="icon_conteiner" name="nrc_materia" placeholder="Ej: Text" style="width : 245px;">
-                    </li>
-                    <br>
-                    <input type="submit" name="save" value="Guardar">
-                    <input type="button" name="close" value="Visualizar">
-                </ul>
-
+        <body>
+            <h1>Crear Nueva materia</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Guardar</button>
             </form>
-
-        </nav>
+        </body>
 
         <h4>Universidad Icesi</h4>
         <h4>Todos los derechos reservados</h4>

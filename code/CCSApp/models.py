@@ -46,20 +46,18 @@ class Programa_de_posgrado(models.Model):
 
 class Malla_curricular(models.Model):
     nombre = models.CharField(max_length =255, primary_key=True, null = False, blank = False)
-    decripcion = models.TextField(null=False, blank=False)
+    descripcion = models.TextField(null=False, blank=False)
     requisitos_previos = models.TextField(null=False, blank=False)
     programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
-    
     def  __str__(self):
             return self.nombre
     
 class Materia(models.Model):
     nombre = models.CharField(max_length =255, null = False, blank = False)
     codigo = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
-    decripcion = models.TextField(null=False, blank=False)
+    descripcion = models.TextField(null=False, blank=False)
     creditos = models.IntegerField(default = 1, null = False, blank = False)
     syllabus = models.TextField(null=False, blank=False)
-    malla_curricuala = models.ForeignKey(Malla_curricular, on_delete=models.CASCADE, default = '', null = False, blank = False)
     def  __str__(self):
         return self.codigo
 
