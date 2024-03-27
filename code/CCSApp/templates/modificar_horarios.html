@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Asignar Horario</title>
+    <title>Modificacion de horarios</title>
 </head>
 <body>
-    <h1>Asignar Horario</h1>
+    <h1>Modificacion de horarios</h1>
     <form method="POST">
         {% csrf_token %}
-        {{formNewHorario}}
+        {{form}}
         <button type="submit">Guardar</button>
     </form>
     <a href="/servicios_asignacion"><button>Volver</button></a>

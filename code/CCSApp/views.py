@@ -25,10 +25,14 @@ def asignar_horario(request):
     else:
         form = NewHorario()
 
-    return render(request, 'asignar_horario.html', {'form': form})
+    return render(request, 'asignar_horario.html', {'formNewHorario': form})
+
+def modificar_horarios(request):
+    return render(request, 'modificar_horarios.html')
 
 def servicios_asignacion(request):
     return render(request, 'servicios_asignacion.html')
+
 def registro_materias(request):
     return render(request, 'registro_materia.html')
 
