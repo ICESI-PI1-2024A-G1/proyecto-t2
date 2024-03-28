@@ -78,7 +78,8 @@ class CrearMallaCurricular(forms.Form):
 
 class CrearMateria(forms.Form):
     nombre = forms.CharField(label="Nombre", max_length=255)
-    codigo = forms.CharField(label="Código", max_length=100, help_text="Ingrese el código de la materia.")    
-    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción de la materia")
-    creditos = forms.DecimalField(label="Creditos", max_digits=10, help_text="Ingrese el numero de creditos")
+    codigo = forms.CharField(label="Código", max_length=100)    
+    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea())
+    creditos = forms.DecimalField(label="Creditos", max_digits=10)
     syllabus = forms.CharField(label="Syllabus", max_length=255)
+    

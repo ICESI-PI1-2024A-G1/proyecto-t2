@@ -16,4 +16,5 @@ urlpatterns = [
     path('servicios_asignacion/', views.servicios_asignacion),
 
     path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
+    path('gestion/nuevoprograma/mallacurricular/registroMateria/', views.registrar_materia_malla),
 ]

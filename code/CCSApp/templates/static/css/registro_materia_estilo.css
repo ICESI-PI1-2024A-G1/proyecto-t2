@@ -1,0 +1,122 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+form li + li {
+    margin-top: 1em;
+}
+
+label {
+/* Tamaño y alineación uniforme */
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+}
+
+input,
+textarea {
+    /* Para asegurarse de que todos los campos de texto tienen la misma configuración de letra
+        Por defecto, las áreas de texto tienen un tipo de letra monoespaciada */
+    font: 1em sans-serif;
+
+    /* Tamaño uniforme del campo de texto */
+    width: 300px;
+    box-sizing: border-box;
+
+    /* Hacer coincidir los bordes del campo del formulario */
+    border: 1px solid #999;
+}
+
+input:focus,
+textarea:focus {
+    /* Destacado adicional para elementos que tienen el cursor */
+    border-color: #000;
+}
+
+textarea {
+    /* Alinear los campos de texto multilínea con sus etiquetas */
+    vertical-align: top;
+
+    /* Proporcionar espacio para escribir texto */
+    height: 5em;
+}
+
+button {
+    /* Este margen adicional representa aproximadamente el mismo espacio que el espacio
+        entre las etiquetas y sus campos de texto */
+    margin-left: 0.5em;
+}
+
+
+.button {
+    /* Alinear los botones con los campos de texto */
+    padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
+}
+
+.form-1 {
+    /* Centrar el formulario en la página */
+    margin: 0 auto;
+    width: 400px;
+    /* Esquema del formulario */
+    padding: 1em;
+    border-radius: 1em;
+
+}
+
+.btn-1{
+    font-size: 1rem;
+    /* text-transform: lowercase; */
+    font-weight: 500;
+    color: #000;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
+    padding: 7px 20px;
+    background-color: #28C985;
+    border-radius: 2rem;
+    /* border: #ccc; */
+}
+
+.buttondiv{
+    display: flex;
+    justify-content: center;
+}
+
+.boton-2{
+    background-image: url();
+    background-repeat:no-repeat;
+    height:60px;
+    width:70px;
+    background-size: 50px 50px;
+    background-position:center;
+}
+
+.bloq-mid{
+    display: block;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.intermed {
+    position: relative;
+    top: 20px; /* Ajusta este valor según lo que necesites */
+    margin-left: 20px; /* Ajusta este valor según lo que necesites */
+    margin-bottom: 25px;
+    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
+    width: 300px;
+    height: 30px;
+}
+
+
+.bloq-sup{
+    display: flex;
+}
+
+.bloq-sup_secd{
+    margin-top: auto;
+}
+
