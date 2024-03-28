@@ -58,22 +58,6 @@ def registrar_materia_malla(request):
             'form': CrearMateria,
             'error': 'Please provide valid data'
             })
-        
-def registro_materias(request):
-    if request.method == 'POST':
-        form = CrearMateria(request.POST)
-        if form.is_valid():
-            materia = Materia(
-                nombre=form.cleaned_data['nombre'],
-                codigo=form.cleaned_data['codigo'],
-                descripcion=form.cleaned_data['descripcion'],
-                creditos=form.cleaned_data['creditos'],
-                syllabus=form.cleaned_data['syllabus'],)
-            materia.save()
-            return redirect('/index') 
-    else:
-        form = CrearMateria()
-    return render(request, 'registro_materia.html', {'form' : form})
 
 def malla_curricular(request):
     if request.method == 'POST':
@@ -159,3 +143,8 @@ def home(request):
 
 def asignar_espacios(request):
     return render(request, 'asignar_espacios.html')
+
+def registrar_profesor(request):
+    return render(request, 'registro_profesores.html', {
+        'form': RegistrarProfesor
+    })

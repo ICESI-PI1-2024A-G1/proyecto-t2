@@ -82,4 +82,12 @@ class CrearMateria(forms.Form):
     descripcion = forms.CharField(label="Descripción", widget=forms.Textarea())
     creditos = forms.DecimalField(label="Creditos", max_digits=10)
     syllabus = forms.CharField(label="Syllabus", max_length=255)
+
+class RegistrarProfesor(forms.Form):
+    nombre = forms.CharField(label="Nombre", max_length=255)
+    codigo = forms.CharField(label="Identificacion del profesor", max_length=100)
+    especializacion = forms.CharField(label="Especializacion", max_length=255)
+    correo = forms.CharField(label="Carta de presentacion", max_length=255)
+    telefono = forms.IntegerField(label="Numero de contacto")
+    materias = forms.CharField(label="Materia Asignada", max_length=255)
     
