@@ -5,6 +5,23 @@ fecha_inicio_por_defecto = date(2024, 3, 15)
 fecha_finalizacion_por_defecto = date(2025, 3, 14)
 
 # Create your models here.
+
+class Horario(models.Model):
+    MODALIDAD_CHOICES = [
+        ('presencial', 'Presencial'),
+        ('virtual', 'Virtual'),
+        ('mixta', 'Mixta'),
+    ]
+
+    fecha_hora = models.DateTimeField()
+    profesor = models.ForeignKey('Profesor', on_delete=models.CASCADE)
+    materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
+    modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)
+    enlace_virtual = models.URLField(blank=True, null=True)
+    salon_presencial = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.fecha_hora} - {self.profesor} - {self.materia} ({self.modalidad})'
 class Facultad(models.Model):
     nombre = models.CharField(max_length = 255, null = False, blank = False, primary_key=True)
     descripcion = models.TextField(null=False, blank=False)
@@ -25,23 +42,13 @@ class Programa_de_posgrado(models.Model):
     def  __str__(self):
         return self.codigo
     
-class Modulo_de_posgrado(models.Model):
-    nombre = models.CharField(max_length =255, null = False, blank = False)
-    codigo = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
-    decripcion = models.TextField(null=False, blank=False)
-    requisitos_previos = models.TextField(null=False, blank=False)
-    creditos = models.IntegerField(default = 1, null = False, blank = False)
-    syllabus = models.TextField(null=False, blank=False)
-    programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
-
-    def  __str__(self):
-        return self.codigo    
+   
 
 class Malla_curricular(models.Model):
     nombre = models.CharField(max_length =255, primary_key=True, null = False, blank = False)
     decripcion = models.TextField(null=False, blank=False)
     requisitos_previos = models.TextField(null=False, blank=False)
-    malla_curricular = models.ForeignKey(Modulo_de_posgrado, on_delete=models.CASCADE, default = '')
+    programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
     
     def  __str__(self):
             return self.nombre
@@ -108,7 +115,6 @@ class Usuario(models.Model):
     departamento = models.CharField(max_length=500, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
     telefono = models.IntegerField( null = False, blank = False)
-    programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
     def  __str__(self):
         return self.codigo 
 

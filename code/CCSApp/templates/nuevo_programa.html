@@ -1,34 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-    <h2>Creemos un nuevo programa</h2>
-    <h4>Nombre de programa</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Costo de matricula</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Facultad</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Duracion</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Modalidad</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Tipo</h4>
-    <button>Maestria</button>    <button>Pregrado</button>
-    <h2>Director de Programa</h2>
-    <h4>Numero de contacto</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Correo electronico</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Descripcion del cargo</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Foto de perfil</h4>
-    <input type="text" name = 'Ej: text'>
-    <br>
-    <button>Continuar</button>
-    <button>Cancelar</button>
-    
-    
-</div>
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Programa Académico</title>
+</head>
+<body>
+    <h1>Crear Programa Académico</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="/gestion"> <button> Cancelar </button></a>
+</body>
+</html>
 {% endblock %}
