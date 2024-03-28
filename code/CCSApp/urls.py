@@ -14,6 +14,8 @@ urlpatterns = [
     path('modificar_horarios/', views.modificar_horarios, name='modificar_horarios'),
     path('consultar_horarios/', views.consultar_horarios, name='consultar_horarios'),
     path('servicios_asignacion/', views.servicios_asignacion),
-
     path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
+    path('lista/', views.lista_programas, name='lista_programas'),
+    path('editar/<str:codigo>/', views.editar_programa, name='editar_programa')
+    
 ]

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import *
@@ -137,3 +137,17 @@ def home(request):
 
 def asignar_espacios(request):
     return render(request, 'asignar_espacios.html')
+
+def lista_programas(request):
+    programas = Programa_de_posgrado.objects.all()
+    return render(request, 'lista_programas.html', {'programas': programas})
+
+def editar_programa(request, codigo):  
+    programa = get_object_or_404(Programa_de_posgrado, codigo=codigo)  
+    form = EditarProgramaForm(request.POST, instance=programa)
+    if form.is_valid():
+        form.save()
+        return redirect('lista_programas')  
+    else:
+        form = EditarProgramaForm(instance=programa)
+    return render(request, 'editar_programa.html', {'form': form})

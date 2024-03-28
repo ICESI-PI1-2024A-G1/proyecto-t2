@@ -82,3 +82,11 @@ class CrearMateria(forms.Form):
     descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción de la materia")
     creditos = forms.DecimalField(label="Creditos", max_digits=10, help_text="Ingrese el numero de creditos")
     syllabus = forms.CharField(label="Syllabus", max_length=255)
+    
+class BuscarProgramaForm(forms.Form):
+    codigo = forms.CharField(label="Código del Programa", max_length=100)
+
+class EditarProgramaForm(forms.ModelForm):
+    class Meta:
+        model = Programa_de_posgrado
+        fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion', 'value', 'duracion', 'facultad', 'modalidad']
