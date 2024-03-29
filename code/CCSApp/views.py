@@ -46,12 +46,11 @@ def nuevo_programa(request):
                 descripcion=form.cleaned_data['descripcion'],
                 fecha_inicio=form.cleaned_data['fecha_inicio'],
                 fecha_finalizacion=form.cleaned_data['fecha_finalizacion'],
-                value=form.cleaned_data['value'],
                 duracion=form.cleaned_data['duracion'],
                 facultad=form.cleaned_data['facultad'],
                 modalidad=form.cleaned_data['modalidad'])
             programa_academico.save()
-            return redirect('/gestion/nuevoprograma/mallacurricular')  # Redirigir a alguna vista después de guardar el formulario
+            return redirect('/gestion/nuevoprograma/director_programa')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearProgramaAcademico()
     return render(request, 'nuevo_programa.html', {'form': form})
@@ -103,3 +102,23 @@ def home(request):
 
 def asignar_espacios(request):
     return render(request, 'asignar_espacios.html')
+
+def director_programa(request):
+    if request.method == 'POST':
+        form = DirectorDePrograma(request.POST)
+        if form.is_valid():
+            # Procesar los datos del formulario y guardar el programa académico
+            director_programa = Director_de_programa(
+                nombre=form.cleaned_data['nombre'],
+                numero=form.cleaned_data['numero'],
+                correo=form.cleaned_data['correo'],
+                descripcion_cargo=form.cleaned_data['descripcion_cargo'],
+                foto_de_perfil=form.cleaned_data['foto_de_perfil'])
+            director_programa.save()
+            return redirect('/gestion/nuevoprograma/mallaCurricular')  # Redirigir a alguna vista después de guardar el formulario
+    else:
+        form = CrearProgramaAcademico()
+    return render(request,  'director_programa.html',{'form': form})
+
+
+    

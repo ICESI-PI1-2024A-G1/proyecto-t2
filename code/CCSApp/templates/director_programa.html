@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
 {% block content %}
 <!DOCTYPE html>
@@ -6,17 +6,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Programa Académico</title>
+    <title>Crear Director de Programa/title>
 </head>
 <body>
-    <h1>Crear Programa Académico</h1>
-    <form method="post">
+    <h1>Crear Director de Programa</h1>
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <a href="/gestion/nuevoprograma/director_programa"></a>
+        <a href="gestion/"></a>
         <button type="submit">Guardar</button>
     </form>
     <a href="/gestion"> <button> Cancelar </button></a>
 </body>
 </html>
+
 {% endblock %}

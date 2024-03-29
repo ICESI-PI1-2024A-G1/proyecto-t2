@@ -22,6 +22,7 @@ class Horario(models.Model):
 
     def __str__(self):
         return f'{self.fecha_hora} - {self.profesor} - {self.materia} ({self.modalidad})'
+    
 class Facultad(models.Model):
     nombre = models.CharField(max_length = 255, null = False, blank = False, primary_key=True)
     descripcion = models.TextField(null=False, blank=False)
@@ -35,15 +36,13 @@ class Programa_de_posgrado(models.Model):
     descripcion = models.TextField(null=False, blank=False)
     fecha_inicio = models.DateField(default = fecha_inicio_por_defecto, null = False, blank = False)
     fecha_finalizacion = models.DateField(default = fecha_finalizacion_por_defecto, null = False, blank = False)
-    value = models.DecimalField(max_digits = 10, decimal_places =2, default = 2000000, null = False, blank = False)
+    
     duracion = models.PositiveIntegerField(default = 1, null = False, blank = False)
     facultad= models.ForeignKey(Facultad, on_delete = models.CASCADE, default = '', null = False, blank = False)
-    modalidad = models.CharField(max_length = 20, choices = [('Presencial', 'Presencial'), ('Virtual', 'Virtual')], default = 'Presencial', null = False, blank = False)
+    modalidad = models.CharField(max_length = 20, choices = [('Presencial', 'Presencial'), ('Virtual', 'Virtual'), ('Mixta', 'Mixta')], default = 'Presencial', null = False, blank = False)
     def  __str__(self):
         return self.codigo
     
-   
-
 class Malla_curricular(models.Model):
     nombre = models.CharField(max_length =255, primary_key=True, null = False, blank = False)
     decripcion = models.TextField(null=False, blank=False)
@@ -140,7 +139,20 @@ class Solicitud_de_servicio(models.Model):
     def  __str__(self):
         return self.nombre_solicitud
  
+class Semestre(models.Model):
+    nombre = models.CharField(max_length=255, null=False, blank=False)
+    activo = models.BooleanField(default=True)
+    carreras = models.ForeignKey(Programa_de_posgrado, on_delete = models.CASCADE, default = '', null = False, blank = False)
 
+    def __str__(self):
+        return self.nombre
+
+class Director_de_programa(models.Model):
+     nombre = models.CharField(max_length =255, null = False, blank = False)
+     numero = models.IntegerField(null = False, blank = False)
+     correo = models.CharField(max_length=500, null = False, blank = False)
+     descripcion = models.TextField(null=False, blank=False) #(?) Es realmente necesario?
+     foto_de_perfil = models.ImageField(upload_to= 'fotosdirectores/')
 
     
    
