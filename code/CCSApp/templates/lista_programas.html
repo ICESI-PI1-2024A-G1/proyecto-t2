@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Programas Académicos</title>
+</head>
+<body>
+    <h1>Lista de Programas Académicos</h1>
+    <ul>
+        {% for programa in programas %}
+            <li><a href="{% url 'editar_programa' programa.codigo %}">{{ programa.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+{% endblock %}

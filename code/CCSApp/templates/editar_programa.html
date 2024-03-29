@@ -2,24 +2,20 @@
 
 {% block content %}
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Nueva malla curricular</title>
+    <title>Editar Programa Académico</title>
 </head>
 <body>
-    <h1>Crear Nueva malla curricular</h1>
-    <form method="POST">
+    <h1>Editar Programa Académico</h1>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <button type="submit">Guardar Cambios</button>
     </form>
 </body>
-
-    <a href="/gestion/nuevoprograma/"><button>Atras</button></a>
-    
-    
-</div>
+</html>
 
 {% endblock %}
