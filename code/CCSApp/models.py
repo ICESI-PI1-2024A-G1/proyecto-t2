@@ -13,6 +13,7 @@ class Horario(models.Model):
         ('mixta', 'Mixta'),
     ]
 
+    id = models.AutoField(primary_key=True)
     fecha_hora = models.DateTimeField()
     profesor = models.ForeignKey('Profesor', on_delete=models.CASCADE)
     materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
