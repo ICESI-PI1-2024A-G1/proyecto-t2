@@ -1,27 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Programa Académico</title>
+</head>
+<body>
+    <h1>Editar Programa Académico</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Cambios</button>
+    </form>
+</body>
+</html>
 
-<div>
-    <h3>Maestria UX ACTIVO<button>🖉</button></h3>
-    <h4>Modalidad: Presencial <button>🖉</button></h4>
-  
-    <h4>Tipo: Maestria <button>🖉</button></h4>
-    <h4>Director de programa: Norha Villegas <button>🖉</button></h4>
-
-    <h4>Valor del semestre: $10.500.000 <button>🖉</button></h4>
-    <h4>Duracion: 3 años (año y medio) <button>🖉</button></h4>
-    <h4>Malla curricular
-        <button>
-            Descargar 🖉
-        </button>
-    </h4>
-   
-    <br>
-    <button>Guardar Cambios</button>
-    <button>Atras</button>
-    
-    
-</div>
-
-{% endblock%}
+{% endblock %}

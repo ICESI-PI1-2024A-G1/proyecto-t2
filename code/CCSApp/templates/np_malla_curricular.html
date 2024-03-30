@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-    <h2>Malla Curricular</h2>
-    <h4>Nombre de curso</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Numero de Creditos</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Modalidad</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Descripcion del curso</h4>
-    <input type="text" name = 'Ej: text'>
-    <h4>Semestre</h4>
-    <input type="text" name = 'Ej: text'>
-    <button>Agregar</button>    
-    <button>Editar</button>
-    
-    <br>
-    <a href="/gestion/nuevoprograma/mallacurricular/registroMaterias/"><button>Finalizar</button></a>
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nueva malla curricular</title>
+</head>
+<body>
+    <h1>Crear Nueva malla curricular</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+
     <a href="/gestion/nuevoprograma/"><button>Atras</button></a>
     
     
