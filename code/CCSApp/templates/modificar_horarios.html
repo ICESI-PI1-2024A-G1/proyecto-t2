@@ -11,7 +11,7 @@
     <h1>Modificacion de horarios</h1>
     <form method="POST">
         {% csrf_token %}
-        {{form}}
+        {{formModificarHorarios}}
         <button type="submit">Guardar</button>
     </form>
     <a href="/servicios_asignacion"><button>Volver</button></a>

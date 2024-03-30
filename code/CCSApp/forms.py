@@ -41,6 +41,21 @@ class NewHorario(forms.Form):
             raise forms.ValidationError("Debe proporcionar un enlace virtual para la modalidad virtual.")
 
         return cleaned_data
+    
+class ModificarHorarioForm(forms.Form):
+    horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar")
+    fecha_hora = forms.DateTimeField(label="Nueva Fecha y Hora", widget=forms.DateTimeInput(attrs={'type': 'date'}))
+    profesor = forms.CharField(label="Nuevo Profesor", max_length=100)
+    materia = forms.CharField(label="Nueva Materia", max_length=255)
+    
+    MODALIDAD_CHOICES = [
+        ('presencial', 'Presencial'),
+        ('virtual', 'Virtual'),
+        ('mixta', 'Mixta'),
+    ]
+    modalidad = forms.ChoiceField(label="Nueva Modalidad", choices=MODALIDAD_CHOICES)
+    enlace_virtual = forms.URLField(label="Nuevo Enlace Virtual", required=False)
+    salon_presencial = forms.CharField(label="Nuevo Salon Presencial", max_length=50, required=False)
 
 class NewUsuary(forms.Form):
     nombre = forms.CharField(label= "nombre", max_length =255)
