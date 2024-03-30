@@ -12,6 +12,6 @@ urlpatterns = [
     path('gestion/nuevoprograma/mallacurricular/', views.malla_curricular),
     path('gestion/editarprograma/', views.editar_programa),
     path('gestion/eliminarprograma/', views.eliminar_programa),
-
     path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
+    path('index/nuevosemestre/', views.nuevo_semestre),
 ]

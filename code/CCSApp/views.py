@@ -106,3 +106,6 @@ def editar_programa(request):
 
 def eliminar_programa(request):
     return render(request,'eliminar_programa.html')
+
+def nuevo_semestre(request):
+    return render(request, 'nuevo_semestre.html')
