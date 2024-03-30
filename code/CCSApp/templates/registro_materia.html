@@ -1,40 +1,35 @@
 {% load static %}
 <html>
     <head>
-        <title>
-            Registrar Materias de la Malla Curricular
-        </title>
+        <title>Registrar Materias de la Malla Curricular</title>
         <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
         <div class="bloq-sup">
-            <form method="get"> 
-
-                <input class="boton-2" name="boton1" type="image">
-    
+            <form method="get">
+                <div class="bloq-sup_secd">
+                    <button class="boton-2" name="boton1" type="button"> <img src="/CCSApp/templates/static/Images/retorno.png" height ="55" width="55"/> </button>
+                    <div class="titulo">
+                        <h1>CCSA</h1>
+                        <div class="descripcion">
+                            <h3>Centro Compartido de Servicios Académicos</h3>
+                        </div>
+                    </div>
+                    {{error}}
+                </div>
             </form>
-
-            <div class="bloq-sup_secd">
-                <H1>CCSA</H1>
-        
-                {{error}}
-        
-                <H3>Centro Compartido de Servicios Academicos</H3>
-            </div>
         </div>
         <div class="bloq-mid">
-            <body>
-                <div class="intermed">
-                    <h1>Crear Nueva materia</h1>
-                </div>
-                <div class="intermed-bloq">
-                    <form method="POST" class="form-1">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="buttondiv">
-                            <button type="submit" class="btn-1">Guardar</button>
-                        </div>
-                    </form>
-                </div>
-            </body>
+            <div class="intermed">
+                <h1>Crear Nueva Materia</h1>
+            </div>
+            <div class="intermed-bloq">
+                <form method="POST" class="form-1">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="buttondiv">
+                        <button type="submit" class="btn-1">Guardar</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="bloq-inf">
             <h4>Universidad Icesi</h4>
@@ -42,5 +37,4 @@
             <h4>Derechos de Autor</h4>
         </div>
     </head>
-
 </html>

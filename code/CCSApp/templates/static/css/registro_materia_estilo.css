@@ -83,15 +83,6 @@ button {
     justify-content: center;
 }
 
-.boton-2{
-    background-image: url();
-    background-repeat:no-repeat;
-    height:60px;
-    width:70px;
-    background-size: 50px 50px;
-    background-position:center;
-}
-
 .bloq-mid{
     display: block;
     justify-content: center;
@@ -104,19 +95,64 @@ button {
 .intermed {
     position: relative;
     top: 20px; /* Ajusta este valor según lo que necesites */
-    margin-left: 20px; /* Ajusta este valor según lo que necesites */
+    margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 300px;
+    width: 400px;
     height: 30px;
 }
 
 
 .bloq-sup{
-    display: flex;
+    /* display: flex;
+    align-items: center; */
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 13%;
+    top: 0;
+    background-color: #f2f2f2;
 }
 
-.bloq-sup_secd{
-    margin-top: auto;
+.bloq-inf {
+    position: fixed;
+    bottom: 0;
+    left: 0px; /* Asegúrate de agregar las unidades de medida (px en este caso) */
+    width: 100%;
+    height: 17%;
+    background-color: #f2f2f2; /* Color de fondo opcional */
+    text-align: center;
+    padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
 }
+
+.bloq-sup_secd {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    margin-top: -25px;
+    margin-left: 5px;
+
+}
+
+.boton-2 {
+    margin-right: 10px; /* Ajusta el margen según sea necesario */
+    background-image: url("/CCSApp/templates/static/Images/retorno.png");
+    background-size: cover; /* Ajusta el tamaño de la imagen según sea necesario */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+    border: none; /* Quita el borde del botón */
+    width: 55px; /* Ajusta el ancho del botón según sea necesario */
+    height: 55px; /* Ajusta la altura del botón según sea necesario */
+}
+
+.titulo {
+    margin-right: 10px; /* Ajusta el margen según sea necesario */
+    line-height: 62px; 
+}
+
+.descripcion {
+    margin-left: 5px;
+    line-height: 0px;  /* Ajusta el margen según sea necesario */
+}
+
+
 
