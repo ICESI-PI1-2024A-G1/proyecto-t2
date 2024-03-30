@@ -2,7 +2,7 @@ from django import forms
 from .models import *
 
 class NewHorario(forms.Form):
-    fecha_hora = forms.DateTimeField(label="Fecha y Hora", widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
+    fecha_hora = forms.DateTimeField(label="Fecha y Hora", widget=forms.DateTimeInput(attrs={'type': 'date'}))
     profesor = forms.CharField(label="Profesor", max_length=100)
     materia = forms.CharField(label="Materia", max_length=255)
     
