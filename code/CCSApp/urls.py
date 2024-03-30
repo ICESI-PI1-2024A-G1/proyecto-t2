@@ -12,6 +12,7 @@ urlpatterns = [
     path('gestion/nuevoprograma/director_programa/', views.director_programa),
     path('gestion/nuevoprograma/mallacurricular/', views.malla_curricular),
     path('gestion/nuevoprograma/operacion_exitosa/', views.operacionexitosanp),
+    path('eliminar_programa_inactivo/', views.eliminar_programa_inactivo),
     path('asignar_horario/', views.asignar_horario, name='asignar_horario'),
     path('modificar_horarios/', views.modificar_horarios, name='modificar_horarios'),
     path('consultar_horarios/', views.consultar_horarios, name='consultar_horarios'),

@@ -36,9 +36,14 @@ class Programa_de_posgrado(models.Model):
     descripcion = models.TextField(null=False, blank=False)
     fecha_inicio = models.DateField(default = fecha_inicio_por_defecto, null = False, blank = False)
     fecha_finalizacion = models.DateField(default = fecha_finalizacion_por_defecto, null = False, blank = False)
-    
+    ESTADO_CHOICES = [
+        ("Activo","Activo"),
+        ("Inactivo","Inactivo")
+    ]
+    estado = models.CharField(max_length = 50, choices = ESTADO_CHOICES, default  = 'Activo', null = False, blank = False)
     duracion = models.PositiveIntegerField(default = 1, null = False, blank = False)
     facultad= models.ForeignKey(Facultad, on_delete = models.CASCADE, default = '', null = False, blank = False)
+    
     modalidad = models.CharField(max_length = 20, choices = [('Presencial', 'Presencial'), ('Virtual', 'Virtual'), ('Mixta', 'Mixta')], default = 'Presencial', null = False, blank = False)
     def  __str__(self):
         return self.codigo
@@ -139,7 +144,7 @@ class Solicitud_de_servicio(models.Model):
  
 class Semestre(models.Model):
     nombre = models.CharField(max_length=255, null=False, blank=False)
-    activo = models.BooleanField(default=True)
+    activo = models.BooleanField(default=True)  # Cambiar a charfield
     carreras = models.ForeignKey(Programa_de_posgrado, on_delete = models.CASCADE, default = '', null = False, blank = False)
 
     def __str__(self):
