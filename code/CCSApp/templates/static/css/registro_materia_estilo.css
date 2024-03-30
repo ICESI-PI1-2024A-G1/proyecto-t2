@@ -154,5 +154,9 @@ button {
     line-height: 0px;  /* Ajusta el margen según sea necesario */
 }
 
+.error-message {
+    text-align: center;
+    margin-top: 40px; /* Ajusta este valor según sea necesario */
+}
 
 

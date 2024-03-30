@@ -36,6 +36,8 @@ def consultar_horarios(request):
 def servicios_asignacion(request):
     return render(request, 'servicios_asignacion.html')
 
+from .models import Materia  # Asegúrate de importar el modelo Materia
+
 def registrar_materia_malla(request):
     if request.method == "GET":
         return render(request, 'registro_materia.html', {
@@ -45,18 +47,30 @@ def registrar_materia_malla(request):
         try:
             form = CrearMateria(request.POST)
             if form.is_valid():
-                materia = Materia(
-                    nombre=form.cleaned_data['nombre'],
-                    codigo=form.cleaned_data['codigo'],
-                    descripcion=form.cleaned_data['descripcion'],
-                    creditos=form.cleaned_data['creditos'],
-                    syllabus=form.cleaned_data['syllabus'],)
-                materia.save()
-                return redirect('/index')
+                codigo_materia = form.cleaned_data['codigo']
+                # Verificar si ya existe una materia con el mismo código
+                if Materia.objects.filter(codigo=codigo_materia).exists():
+                    # Si existe, puedes manejar la situación como desees,
+                    # por ejemplo, mostrando un mensaje de error
+                    return render(request, 'registro_materia.html', {
+                        'form': CrearMateria,
+                        'error': 'La materia ya existe en la base de datos.'
+                    })
+                else:
+                    # Si no existe, crear la nueva materia
+                    materia = Materia(
+                        nombre=form.cleaned_data['nombre'],
+                        codigo=codigo_materia,
+                        descripcion=form.cleaned_data['descripcion'],
+                        creditos=form.cleaned_data['creditos'],
+                        syllabus=form.cleaned_data['syllabus']
+                    )
+                    materia.save()
+                    return redirect('/index')
         except ValueError:
             return render(request, 'registro_materia.html', {
-            'form': CrearMateria,
-            'error': 'Please provide valid data'
+                'form': CrearMateria,
+                'error': 'Por favor, proporcione datos válidos.'
             })
 
 def malla_curricular(request):
