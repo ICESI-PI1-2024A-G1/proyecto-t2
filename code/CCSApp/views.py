@@ -107,5 +107,24 @@ def editar_programa(request):
 def eliminar_programa(request):
     return render(request,'eliminar_programa.html')
 
+
 def nuevo_semestre(request):
-    return render(request, 'nuevo_semestre.html')
+    if request.method == 'POST':
+        form = CrearProgramaAcademico(request.POST)
+        if form.is_valid():
+            # Procesar los datos del formulario y guardar el programa académico
+            programa_academico = Programa_de_posgrado(
+                name=form.cleaned_data['name'],
+                codigo=form.cleaned_data['codigo'],
+                descripcion=form.cleaned_data['descripcion'],
+                fecha_inicio=form.cleaned_data['fecha_inicio'],
+                fecha_finalizacion=form.cleaned_data['fecha_finalizacion'],
+                value=form.cleaned_data['value'],
+                duracion=form.cleaned_data['duracion'],
+                facultad=form.cleaned_data['facultad'],
+                modalidad=form.cleaned_data['modalidad'])
+            programa_academico.save()
+            return redirect('/gestion/nuevoprograma/mallacurricular')  # Redirigir a alguna vista después de guardar el formulario
+    else:
+        form = CrearProgramaAcademico()
+    return render(request, 'nuevo_programa.html', {'form': form})
