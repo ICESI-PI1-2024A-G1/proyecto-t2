@@ -89,7 +89,9 @@ button {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -57%);
+    /* background-color: #28C985;
+    width: 50%; */
 }
 
 .intermed {
@@ -157,6 +159,15 @@ button {
 .error-message {
     text-align: center;
     margin-top: 40px; /* Ajusta este valor según sea necesario */
+}
+
+.form-control {
+    width: 72%; /* O el ancho deseado */
+    padding: 8px; /* Ajusta el relleno según sea necesario */
+    margin-bottom: 10px; /* Espacio entre los campos del formulario */
+    border: 1px solid #ccc; /* Borde de los campos del formulario */
+    border-radius: 4px; /* Esquinas redondeadas */
+    box-sizing: border-box; /* Hace que el padding y el borde se incluyan en el ancho */
 }
 
 

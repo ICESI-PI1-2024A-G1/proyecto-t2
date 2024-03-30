@@ -77,17 +77,19 @@ class CrearMallaCurricular(forms.Form):
     programa_de_posgrado = forms.ModelChoiceField(label="Programa de posgrado", queryset=Programa_de_posgrado.objects.all(), help_text="Seleccione el programa de posgrado al que pertenece la malla.")
 
 class CrearMateria(forms.Form):
-    nombre = forms.CharField(label="Nombre", max_length=255)
-    codigo = forms.CharField(label="Código", max_length=100)    
-    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea())
-    creditos = forms.DecimalField(label="Creditos", max_digits=10)
-    syllabus = forms.CharField(label="Syllabus", max_length=255)
+    nombre = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    codigo = forms.CharField(label="Código", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(attrs={'class': 'form-control'}))
+    creditos = forms.DecimalField(label="Creditos", max_digits=10, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    syllabus = forms.CharField(label="Syllabus", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
 
 class RegistrarProfesor(forms.Form):
-    nombre = forms.CharField(label="Nombre", max_length=255)
-    codigo = forms.CharField(label="Identificacion del profesor", max_length=100)
-    especializacion = forms.CharField(label="Especializacion", max_length=255)
-    correo = forms.CharField(label="Carta de presentacion", max_length=255)
-    telefono = forms.IntegerField(label="Numero de contacto")
-    materias = forms.CharField(label="Materia Asignada", max_length=255)
+    nombre = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    codigo = forms.CharField(label="Identificación del profesor", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    especializacion = forms.CharField(label="Especialización", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    correo = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    materias = forms.CharField(label="Materia Asignada", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
     
