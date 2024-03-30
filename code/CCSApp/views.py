@@ -80,12 +80,11 @@ def nuevo_programa(request):
                 descripcion=form.cleaned_data['descripcion'],
                 fecha_inicio=form.cleaned_data['fecha_inicio'],
                 fecha_finalizacion=form.cleaned_data['fecha_finalizacion'],
-                value=form.cleaned_data['value'],
                 duracion=form.cleaned_data['duracion'],
                 facultad=form.cleaned_data['facultad'],
                 modalidad=form.cleaned_data['modalidad'])
             programa_academico.save()
-            return redirect('/gestion/nuevoprograma/mallacurricular')  # Redirigir a alguna vista después de guardar el formulario
+            return redirect('/gestion/nuevoprograma/director_programa')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearProgramaAcademico()
     return render(request, 'nuevo_programa.html', {'form': form})
@@ -151,3 +150,34 @@ def editar_programa(request, codigo):
     else:
         form = EditarProgramaForm(instance=programa)
     return render(request, 'editar_programa.html', {'form': form})
+
+def director_programa(request):
+    if request.method == 'POST':
+        form = DirectorDePrograma(request.POST, request.FILES)
+        if form.is_valid():
+            # Procesar los datos del formulario y guardar el programa académico
+            director_programa = Director_de_programa(
+                nombre=form.cleaned_data['nombre'],
+                numero=form.cleaned_data['numero'],
+                correo=form.cleaned_data['correo'],
+                descripcion_cargo=form.cleaned_data['descripcion_cargo'],
+                foto_de_perfil=form.cleaned_data['foto_de_perfil'])
+
+            # Guardar la foto
+            with open(director_programa.foto_de_perfil.path, 'wb+') as f:
+                for chunk in director_programa.foto_de_perfil.chunks():
+                    f.write(chunk)
+
+            director_programa.save()
+            return redirect('/gestion/nuevoprograma/mallacurricular')  # Redirigir a alguna vista después de guardar el formulario
+        else:
+            form = DirectorDePrograma(request.POST)
+    else:
+        form = DirectorDePrograma()
+    return render(request, 'director_programa.html', {'form': form})
+
+def operacionexitosanp(request):
+    return render(request, 'operacion_exitosa_np.html')
+
+
+    
