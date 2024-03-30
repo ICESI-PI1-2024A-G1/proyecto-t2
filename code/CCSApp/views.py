@@ -179,5 +179,16 @@ def director_programa(request):
 def operacionexitosanp(request):
     return render(request, 'operacion_exitosa_np.html')
 
+def eliminarprograma(request):
+    return render(request, 'eliminar_programa.html')
 
+def edit_programacion(request, codigo):  
+    programa = get_object_or_404(Programa_de_posgrado, codigo=codigo)  
+    form = EditarProgramaForm(request.POST, instance=programa)
+    if form.is_valid():
+        form.save()
+        return redirect('lista_programas')  
+    else:
+        form = EditarProgramaForm(instance=programa)
+    return render(request, 'edit_programacion_semestral.html', {'form': form})
     
