@@ -149,7 +149,7 @@ class Director_de_programa(models.Model):
      nombre = models.CharField(max_length =255, null = False, blank = False)
      numero = models.IntegerField(null = False, blank = False)
      correo = models.CharField(max_length=500, null = False, blank = False)
-     descripcion = models.TextField(null=False, blank=False) #(?) Es realmente necesario?
+     descripcion_cargo = models.TextField(null=False, blank=False) #(?) Es realmente necesario?
      foto_de_perfil = models.ImageField(upload_to= 'fotosdirectores/')
 
     

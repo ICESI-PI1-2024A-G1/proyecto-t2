@@ -5,18 +5,18 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Director de Programa/title>
+    <title>Crear Director de Programa</title>
 </head>
 <body>
     <h1>Crear Director de Programa</h1>
-    <form method="post" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <a href="/gestion"></a>
+        {{ form }}
         <button type="submit">Guardar</button>
     </form>
-    <a href="/gestion"> <button> Cancelar </button></a>
+    <a href="/gestion/nuevo_programa">
+        <button>Cancelar</button>
+    </a>
 </body>
 </html>
 

@@ -88,7 +88,8 @@ class BuscarProgramaForm(forms.Form):
 class EditarProgramaForm(forms.ModelForm):
     class Meta:
         model = Programa_de_posgrado
-        fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion', 'value', 'duracion', 'facultad', 'modalidad']
+        fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion', 'duracion', 'facultad', 'modalidad']
+        
 class DirectorDePrograma(forms.Form):
     nombre = forms.CharField(label = 'Nombre', max_length= 255)
     numero = forms.IntegerField(label = "Numero celular de contacto")
