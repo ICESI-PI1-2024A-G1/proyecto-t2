@@ -19,6 +19,11 @@
         <div class="bloq-mid">
             <div class="intermed">
                 <h1>Registro de Profesor</h1>
+                {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
             </div>
             <div class="intermed-bloq">
                 <form method="POST" class="form-1">
@@ -29,11 +34,6 @@
                     </div>
                 </form>
             </div>
-            {% if error %}
-            <div class="error-message">
-                {{ error }}
-            </div>
-            {% endif %}
         </div>
         <div class="bloq-inf">
             <h4>Universidad Icesi</h4>

@@ -67,7 +67,7 @@ class Profesor(models.Model):
     especializacion = models.CharField(max_length=255, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
     telefono = models.IntegerField(null = False, blank = False)
-    materias = models.ForeignKey(Materia, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    materias = models.ForeignKey('Materia', on_delete=models.CASCADE, default = '', null = False, blank = False)
     def  __str__(self):
         return self.codigo
  

@@ -113,7 +113,6 @@ def nuevo_programa(request):
 def empezar_pogra(request):
     return render(request, 'empezar_progra.html')
         
-
 def log_in(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -159,6 +158,42 @@ def asignar_espacios(request):
     return render(request, 'asignar_espacios.html')
 
 def registrar_profesor(request):
+    if request.method == "POST":
+        form = RegistrarProfesor(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            codigo = form.cleaned_data['codigo']
+            especializacion = form.cleaned_data['especializacion']
+            correo_electronico = form.cleaned_data['correo']  # Cambiado a 'correo_electronico'
+            telefono = form.cleaned_data['telefono']
+            materia_nombre = form.cleaned_data['materias']  
+            
+            if Profesor.objects.filter(codigo=codigo).exists():
+                return render(request, 'registro_profesores.html', {
+                    'form': form,
+                    'error': 'El profesor ya existe en la base de datos.'
+                })
+            else:
+                materia_existente = Materia.objects.filter(codigo=materia_nombre).first()
+                if not materia_existente:
+                    return render(request, 'registro_profesores.html', {
+                        'form': form,
+                        'error': 'La materia asignada no existe en la base de datos.'
+                    })
+                
+                profesor = Profesor(
+                    nombre=nombre,
+                    codigo=codigo,
+                    especializacion=especializacion,
+                    correo_electronico=correo_electronico,  # Cambiado a 'correo_electronico'
+                    telefono=telefono,
+                    materias=materia_existente  
+                )
+                profesor.save()
+                return redirect('/index')
+    else:
+        form = RegistrarProfesor()
+    
     return render(request, 'registro_profesores.html', {
-        'form': RegistrarProfesor
+        'form': form
     })

@@ -83,13 +83,12 @@ class CrearMateria(forms.Form):
     creditos = forms.DecimalField(label="Creditos", max_digits=10, widget=forms.NumberInput(attrs={'class': 'form-control'}))
     syllabus = forms.CharField(label="Syllabus", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
-
 class RegistrarProfesor(forms.Form):
     nombre = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     codigo = forms.CharField(label="Identificación del profesor", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     especializacion = forms.CharField(label="Especialización", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     correo = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
     telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    materias = forms.CharField(label="Materia Asignada", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    materias = forms.ModelChoiceField(label="Materia Asignada", queryset=Materia.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
 
     
