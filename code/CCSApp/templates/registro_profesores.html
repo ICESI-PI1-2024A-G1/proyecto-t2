@@ -1,7 +1,7 @@
 {% load static %}
 <html>
     <head>
-        <title>Registrar Materias de la Malla Curricular</title>
+        <title>Registrar Profesores Activos</title>
         <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
         <div class="bloq-sup">
             <form method="get">
@@ -18,7 +18,12 @@
         </div>
         <div class="bloq-mid">
             <div class="intermed">
-                <h1>Crear Nueva Materia</h1>
+                <h1>Registro de Profesor</h1>
+                {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
             </div>
             <div class="intermed-bloq">
                 <form method="POST" class="form-1">
@@ -29,11 +34,6 @@
                     </div>
                 </form>
             </div>
-            {% if error %}
-            <div class="error-message">
-                {{ error }}
-            </div>
-            {% endif %}
         </div>
         <div class="bloq-inf">
             <h4>Universidad Icesi</h4>
