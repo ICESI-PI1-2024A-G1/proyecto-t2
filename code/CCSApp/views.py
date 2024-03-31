@@ -94,6 +94,7 @@ def nuevo_programa(request):
                 descripcion=form.cleaned_data['descripcion'],
                 fecha_inicio=form.cleaned_data['fecha_inicio'],
                 fecha_finalizacion=form.cleaned_data['fecha_finalizacion'],
+                estado = form.cleaned_data['estado'],
                 duracion=form.cleaned_data['duracion'],
                 facultad=form.cleaned_data['facultad'],
                 modalidad=form.cleaned_data['modalidad'])
@@ -193,8 +194,9 @@ def director_programa(request):
 def operacionexitosanp(request):
     return render(request, 'operacion_exitosa_np.html')
 
-def eliminarprograma(request):
-    return render(request, 'eliminar_programa.html')
+def eliminar_programa_inactivo(request):
+    return render(request, 'eliminar_programa_inactivo.html')
+
 
 def edit_programacion(request, codigo):  
     programa = get_object_or_404(Programa_de_posgrado, codigo=codigo)  

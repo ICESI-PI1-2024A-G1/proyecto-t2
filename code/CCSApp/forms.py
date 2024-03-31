@@ -75,6 +75,11 @@ class CrearProgramaAcademico(forms.Form):
     descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción del programa.")
     fecha_inicio = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     fecha_finalizacion = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    ESTADO_CHOICES = [
+        ("Activo","Activo"),
+        ("Inactivo","Inactivo")
+    ]
+    estado = forms.ChoiceField(label = "estado", choices= ESTADO_CHOICES, help_text= 'Seleccione el estado del programa' )
     duracion = forms.CharField(label="Duración", help_text="Ingrese la duración del programa.")
     facultad= forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
     MODALIDADES_CHOICES = [
@@ -103,7 +108,11 @@ class BuscarProgramaForm(forms.Form):
 class EditarProgramaForm(forms.ModelForm):
     class Meta:
         model = Programa_de_posgrado
-        fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion', 'duracion', 'facultad', 'modalidad']
+        fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion','estado', 'duracion', 'facultad', 'modalidad']
+        widgets = {
+            'estado': forms.Select(choices=Programa_de_posgrado.ESTADO_CHOICES),
+        }
+
         
 class DirectorDePrograma(forms.Form):
     nombre = forms.CharField(label = 'Nombre', max_length= 255)
