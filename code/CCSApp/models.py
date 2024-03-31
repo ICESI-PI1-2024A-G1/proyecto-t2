@@ -32,7 +32,7 @@ class Facultad(models.Model):
         return self.nombre
 
 class Programa_de_posgrado(models.Model):
-    name = models.CharField(max_length =255, null = False, blank = False)
+    name = models.CharField(max_length =255, unique= True,null = False, blank = False)
     codigo = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
     descripcion = models.TextField(null=False, blank=False)
     fecha_inicio = models.DateField(default = fecha_inicio_por_defecto, null = False, blank = False)
@@ -47,7 +47,8 @@ class Programa_de_posgrado(models.Model):
     
     modalidad = models.CharField(max_length = 20, choices = [('Presencial', 'Presencial'), ('Virtual', 'Virtual'), ('Mixta', 'Mixta')], default = 'Presencial', null = False, blank = False)
     def  __str__(self):
-        return self.codigo
+        return self.name
+    
     
 class Malla_curricular(models.Model):
     nombre = models.CharField(max_length =255, primary_key=True, null = False, blank = False)

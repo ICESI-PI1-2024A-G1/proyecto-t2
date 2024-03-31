@@ -1,26 +1,37 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-<div>
-    <h2>Selecciona un semestre</h2>
-    <ul>
-    {% for semestre in semestres %}
-        <li><a href="{% url 'materias' programa_posgrado.id semestre.id %}">{{ semestre.nombre }}</a></li>
-    {% endfor %}
-    </ul>
-    
-    <h2>Selecciona un programa de posgrado</h2>
-    <ul>
-    {% for programa_posgrado in programas_posgrado %}
-        <li><a href="{% url 'materias' programa_posgrado.id %}">{{ programa_posgrado.nombre }}</a></li>
-    {% endfor %}
-    </ul>
-    <br>
-    <a href="/index/nuevosemestre/"><button>Continuar</button></a>
-    <a href="/index"><button>Cancelar</button></a>
-    
-    
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empezar Programación</title>
+</head>
+<body>
+
+    <h1>Lista de Programas</h1>
+<ul>
+    <form method = "POST">
+        {% csrf_token %}
+        {{form.as_p}}
+       <button type="submit">Ver Materias</button>
+    </form>
+</ul>
+{% if programa %}
+    <h2>Programa Seleccionado: {{ programa.nombre }}</h2>
+    {% if materias %}
+      <h3>Materias del Programa:</h3>
+      <ul>
+        {% for materia in materias %}
+          <li>{{ materia.nombre }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No hay materias asociadas a este programa.</p>
+    {% endif %}
+  {% endif %}
+</body>
+</html>
 
 {% endblock %}

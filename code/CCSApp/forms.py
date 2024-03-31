@@ -120,3 +120,6 @@ class DirectorDePrograma(forms.Form):
     correo = forms.CharField(label = "Correo Electronico", max_length= 500)
     descripcion_cargo = forms.CharField(label= "Descripcion", widget= forms.Textarea())
     foto_de_perfil = forms.ImageField()
+
+class ProgramacionSemestral(forms.Form):    
+    Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa")

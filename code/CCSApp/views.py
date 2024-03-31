@@ -197,13 +197,27 @@ def eliminar_programa_inactivo(request):
 
 
 def empezar_progra(request):
-   # Obtener los dos últimos semestres activos
-    semestres = Semestre.objects.filter(activo=True).order_by('-id')[:2]
-    # Obtener todos los programas de posgrado activos
-    programas_posgrado = Programa_de_posgrado.objects.filter(activo=True)
-    context = {'semestres': semestres, 'programas_posgrado': programas_posgrado}
-    return render(request, 'empeazar_progra.html', context)
+    form = ProgramacionSemestral(request.POST or None)  # Maneja datos del POST
+    if form.is_valid():
+        programa = form.cleaned_data['Programa']
+        materias = Materia.objects.filter(codigo=programa)
+    else:
+        programa = None
+        materias = []
+    context = {'form': form, 'programa': programa, 'materias': materias}
+    return render(request, 'empezar_progra.html', context)
 
-def editar_programa(request):
+def materias(request):
+    programas = Programa_de_posgrado.objects.all()
+    materias = Materia.objects.all()
+    context = {'programas': programas, 'materias': materias}
+    return render(request, 'materias.html', context)
+
+def horarios(request, codigo_materia):
+    horarios = Horario.objects.filter(materia__codigo=codigo_materia)
+    context = {'horarios': horarios}
+    return render(request, 'lista_horarios.html', context)
+
+def editar_programacion(request):
     return render(request, 'edit_programa.html')
         
