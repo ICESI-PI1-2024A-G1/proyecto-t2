@@ -2,7 +2,7 @@ from django import forms
 from .models import *
 
 class NewHorario(forms.Form):
-    fecha_hora = forms.DateTimeField(label="Fecha y Hora", widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
+    fecha_hora = forms.DateTimeField(label="Fecha y Hora", widget=forms.DateTimeInput(attrs={'type': 'date'}))
     profesor = forms.CharField(label="Profesor", max_length=100)
     materia = forms.CharField(label="Materia", max_length=255)
     
@@ -41,6 +41,21 @@ class NewHorario(forms.Form):
             raise forms.ValidationError("Debe proporcionar un enlace virtual para la modalidad virtual.")
 
         return cleaned_data
+    
+class ModificarHorarioForm(forms.Form):
+    horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar")
+    fecha_hora = forms.DateTimeField(label="Nueva Fecha y Hora", widget=forms.DateTimeInput(attrs={'type': 'date'}))
+    profesor = forms.CharField(label="Nuevo Profesor", max_length=100)
+    materia = forms.CharField(label="Nueva Materia", max_length=255)
+    
+    MODALIDAD_CHOICES = [
+        ('presencial', 'Presencial'),
+        ('virtual', 'Virtual'),
+        ('mixta', 'Mixta'),
+    ]
+    modalidad = forms.ChoiceField(label="Nueva Modalidad", choices=MODALIDAD_CHOICES)
+    enlace_virtual = forms.URLField(label="Nuevo Enlace Virtual", required=False)
+    salon_presencial = forms.CharField(label="Nuevo Salon Presencial", max_length=50, required=False)
 
 class NewUsuary(forms.Form):
     nombre = forms.CharField(label= "nombre", max_length =255)
@@ -60,6 +75,11 @@ class CrearProgramaAcademico(forms.Form):
     descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción del programa.")
     fecha_inicio = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     fecha_finalizacion = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    ESTADO_CHOICES = [
+        ("Activo","Activo"),
+        ("Inactivo","Inactivo")
+    ]
+    estado = forms.ChoiceField(label = "estado", choices= ESTADO_CHOICES, help_text= 'Seleccione el estado del programa' )
     duracion = forms.CharField(label="Duración", help_text="Ingrese la duración del programa.")
     facultad= forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
     MODALIDADES_CHOICES = [
@@ -88,7 +108,11 @@ class BuscarProgramaForm(forms.Form):
 class EditarProgramaForm(forms.ModelForm):
     class Meta:
         model = Programa_de_posgrado
-        fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion', 'duracion', 'facultad', 'modalidad']
+        fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion','estado', 'duracion', 'facultad', 'modalidad']
+        widgets = {
+            'estado': forms.Select(choices=Programa_de_posgrado.ESTADO_CHOICES),
+        }
+
         
 class DirectorDePrograma(forms.Form):
     nombre = forms.CharField(label = 'Nombre', max_length= 255)

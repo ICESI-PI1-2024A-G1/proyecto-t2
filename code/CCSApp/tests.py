@@ -16,8 +16,6 @@ class NewHorarioFormTests(TestCase):
         form = NewHorario(data=form_data)
         self.assertFalse(form.is_valid())  # Debe ser inválido debido a la modalidad
 
-    # Agrega más pruebas según sea necesario para cubrir otros casos
-
     def test_empty_data(self):
         # Prueba con datos vacíos
         form = NewHorario(data={})
