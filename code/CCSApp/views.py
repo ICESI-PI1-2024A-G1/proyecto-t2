@@ -181,7 +181,14 @@ def operacionexitosanp(request):
     return render(request, 'operacion_exitosa_np.html')
 
 def eliminar_programa_inactivo(request):
-    return render(request, 'eliminar_programa_inactivo.html')
+    programas = Programa_de_posgrado.objects.all()
+    return render(request, 'eliminar_programa_inactivo.html', {'programas': programas})
+
+def delete_program(request, codigo):
+    programa = Programa_de_posgrado.objects.get(pk = codigo)
+    programa.delete()
+    return redirect('eliminar_programa')
+
 
 
     
