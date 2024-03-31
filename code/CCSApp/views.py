@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import *
 from .models import *
+import csv
 
 # Create your views here.
 
@@ -45,27 +46,48 @@ def modificar_horarios(request):
     return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
 
 def consultar_horarios(request):
-    return render(request, 'consultar_horarios.html')
+    horarios = Horario.objects.all()
+    return render(request, 'consultar_horarios.html', {'horarios': horarios})
 
 def servicios_asignacion(request):
     return render(request, 'servicios_asignacion.html')
 
-def registro_materias(request):
-    if request.method == 'POST':
-        form = CrearMateria(request.POST)
-        if form.is_valid():
-            # Procesar los datos del formulario y guardar el programa académico
-            materia = Materia(
-                nombre=form.cleaned_data['nombre'],
-                codigo=form.cleaned_data['codigo'],
-                descripcion=form.cleaned_data['descripcion'],
-                creditos=form.cleaned_data['creditos'],
-                syllabus=form.cleaned_data['syllabus'],)
-            materia.save()
-            return redirect('/index')  # Redirigir a alguna vista después de guardar el formulario
+from .models import Materia  # Asegúrate de importar el modelo Materia
+
+def registrar_materia_malla(request):
+    if request.method == "GET":
+        return render(request, 'registro_materia.html', {
+            'form': CrearMateria
+        })
     else:
-        form = CrearMateria()
-    return render(request, 'registro_materia.html', {'form' : form})
+        try:
+            form = CrearMateria(request.POST)
+            if form.is_valid():
+                codigo_materia = form.cleaned_data['codigo']
+                # Verificar si ya existe una materia con el mismo código
+                if Materia.objects.filter(codigo=codigo_materia).exists():
+                    # Si existe, puedes manejar la situación como desees,
+                    # por ejemplo, mostrando un mensaje de error
+                    return render(request, 'registro_materia.html', {
+                        'form': CrearMateria,
+                        'error': 'La materia ya existe en la base de datos.'
+                    })
+                else:
+                    # Si no existe, crear la nueva materia
+                    materia = Materia(
+                        nombre=form.cleaned_data['nombre'],
+                        codigo=codigo_materia,
+                        descripcion=form.cleaned_data['descripcion'],
+                        creditos=form.cleaned_data['creditos'],
+                        syllabus=form.cleaned_data['syllabus']
+                    )
+                    materia.save()
+                    return redirect('/index')
+        except ValueError:
+            return render(request, 'registro_materia.html', {
+                'form': CrearMateria,
+                'error': 'Por favor, proporcione datos válidos.'
+            })
 
 def malla_curricular(request):
     if request.method == 'POST':
@@ -104,8 +126,9 @@ def nuevo_programa(request):
         form = CrearProgramaAcademico()
     return render(request, 'nuevo_programa.html', {'form': form})
 
-
-
+def empezar_pogra(request):
+    return render(request, 'empezar_progra.html')
+        
 def log_in(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -150,6 +173,46 @@ def home(request):
 def asignar_espacios(request):
     return render(request, 'asignar_espacios.html')
 
+def registrar_profesor(request):
+    if request.method == "POST":
+        form = RegistrarProfesor(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            codigo = form.cleaned_data['codigo']
+            especializacion = form.cleaned_data['especializacion']
+            correo_electronico = form.cleaned_data['correo']  # Cambiado a 'correo_electronico'
+            telefono = form.cleaned_data['telefono']
+            materia_nombre = form.cleaned_data['materias']  
+            
+            if Profesor.objects.filter(codigo=codigo).exists():
+                return render(request, 'registro_profesores.html', {
+                    'form': form,
+                    'error': 'El profesor ya existe en la base de datos.'
+                })
+            else:
+                materia_existente = Materia.objects.filter(codigo=materia_nombre).first()
+                if not materia_existente:
+                    return render(request, 'registro_profesores.html', {
+                        'form': form,
+                        'error': 'La materia asignada no existe en la base de datos.'
+                    })
+                
+                profesor = Profesor(
+                    nombre=nombre,
+                    codigo=codigo,
+                    especializacion=especializacion,
+                    correo_electronico=correo_electronico,  # Cambiado a 'correo_electronico'
+                    telefono=telefono,
+                    materias=materia_existente  
+                )
+                profesor.save()
+                return redirect('/index')
+    else:
+        form = RegistrarProfesor()
+    
+    return render(request, 'registro_profesores.html', {
+        'form': form
+    })
 def lista_programas(request):
     programas = Programa_de_posgrado.objects.all()
     return render(request, 'lista_programas.html', {'programas': programas})
@@ -193,31 +256,46 @@ def operacionexitosanp(request):
     return render(request, 'operacion_exitosa_np.html')
 
 def eliminar_programa_inactivo(request):
-    return render(request, 'eliminar_programa_inactivo.html')
-
-
-def empezar_progra(request):
-    form = ProgramacionSemestral(request.POST or None)  # Maneja datos del POST
-    if form.is_valid():
-        programa = form.cleaned_data['Programa']
-        materias = Materia.objects.filter(codigo=programa)
-    else:
-        programa = None
-        materias = []
-    context = {'form': form, 'programa': programa, 'materias': materias}
-    return render(request, 'empezar_progra.html', context)
-
-def materias(request):
     programas = Programa_de_posgrado.objects.all()
-    materias = Materia.objects.all()
-    context = {'programas': programas, 'materias': materias}
-    return render(request, 'materias.html', context)
+    return render(request, 'eliminar_programa_inactivo.html', {'programas': programas})
 
-def horarios(request, codigo_materia):
-    horarios = Horario.objects.filter(materia__codigo=codigo_materia)
-    context = {'horarios': horarios}
-    return render(request, 'lista_horarios.html', context)
+def delete_program(request, codigo):
+    programa = Programa_de_posgrado.objects.get(pk = codigo)
+    programa.delete()
+    return redirect('eliminar_programa')
 
-def editar_programacion(request):
-    return render(request, 'edit_programa.html')
+def programs_csv(request):
+    response = HttpResponse(content_type = 'text/csv')
+    response['Content-Disposition'] = 'attachment; filename = programasdeposgrado.csv'
+
+    writer = csv.writer(response)
+    programas = Programa_de_posgrado.objects.all()
+
+    writer.writerow(['Nombre del Programa', 'Codigo del programa', 'Descripcion', 'Fecha de Inicio', 'Fecha finalizacion', 'Estado', 'Duracion (Años)', 'Facultad', 'Modalidad'])
+
+    for programa in programas:
+        writer.writerow([programa.name, programa.codigo, programa.descripcion, programa.fecha_inicio, programa.fecha_finalizacion, programa.estado, programa.duracion, programa.facultad])
+
         
+    return response
+
+def edit_programacion(request, codigo):  
+    programa = get_object_or_404(Programa_de_posgrado, codigo=codigo)  
+    form = EditarProgramaForm(request.POST, instance=programa)
+    if form.is_valid():
+        form.save()
+        return redirect('lista_programas')  
+    else:
+        form = EditarProgramaForm(instance=programa)
+    return render(request, 'edit_programacion_semestral.html', {'form': form})
+
+def crear_espacio(request):
+    if request.method == 'POST':
+        form = EspacioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/servicios_asignacion')  
+    else:
+        form = EspacioForm()
+    return render(request, 'crear_espacio.html', {'form': form})
+

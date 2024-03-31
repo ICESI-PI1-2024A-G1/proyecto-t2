@@ -19,7 +19,7 @@ class Horario(models.Model):
     materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
     modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)
     enlace_virtual = models.URLField(blank=True, null=True)
-    salon_presencial = models.CharField(max_length=50, blank=True, null=True)
+    salon_presencial = models.ForeignKey('Espacio', on_delete = models.CASCADE)
 
     def __str__(self):
         return f'{self.fecha_hora} - {self.profesor} - {self.materia} ({self.modalidad})'
@@ -41,7 +41,7 @@ class Programa_de_posgrado(models.Model):
         ("Activo","Activo"),
         ("Inactivo","Inactivo")
     ]
-    estado = models.CharField(max_length = 50, choices = ESTADO_CHOICES, default  = 'Activo', null = False, blank = False)
+    estado = models.CharField(max_length = 50, choices = ESTADO_CHOICES, default  = ' ', null = False, blank = False)
     duracion = models.PositiveIntegerField(default = 1, null = False, blank = False)
     facultad= models.ForeignKey(Facultad, on_delete = models.CASCADE, default = '', null = False, blank = False)
     
@@ -73,7 +73,7 @@ class Profesor(models.Model):
     especializacion = models.CharField(max_length=255, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
     telefono = models.IntegerField(null = False, blank = False)
-    materias = models.ForeignKey(Materia, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    materias = models.ForeignKey('Materia', on_delete=models.CASCADE, default = '', null = False, blank = False)
     def  __str__(self):
         return self.codigo
  
