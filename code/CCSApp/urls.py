@@ -20,7 +20,7 @@ urlpatterns = [
     path('gestion/nuevoprograma/mallacurricular/registroMateria/', views.registrar_materia_malla),
     path('gestion/nuevoprograma/registroProfesor/', views.registrar_profesor),
 
-    path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
+    #path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
     path('lista/', views.lista_programas, name='lista_programas'),
     path('editar/<str:codigo>/', views.editar_programa, name='editar_programa'),
     path('index/edit/<str:codigo>/', views.edit_programacion, name='editar_programacion'),
