@@ -143,6 +143,9 @@ class DirectorDePrograma(forms.Form):
     descripcion_cargo = forms.CharField(label= "Descripcion", widget= forms.Textarea())
     foto_de_perfil = forms.ImageField()
 
+class ProgramacionSemestral(forms.Form):    
+    Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa")
+    
 class EspacioForm(forms.ModelForm):
     class Meta:
         model = Espacio

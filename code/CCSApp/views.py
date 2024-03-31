@@ -126,9 +126,7 @@ def nuevo_programa(request):
         form = CrearProgramaAcademico()
     return render(request, 'nuevo_programa.html', {'form': form})
 
-def empezar_pogra(request):
-    return render(request, 'empezar_progra.html')
-        
+
 def log_in(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -279,14 +277,32 @@ def programs_csv(request):
         
     return response
 
-def edit_programacion(request, codigo):  
-    programa = get_object_or_404(Programa_de_posgrado, codigo=codigo)  
-    form = EditarProgramaForm(request.POST, instance=programa)
+def empezar_progra(request):
+    form = ProgramacionSemestral(request.POST or None)  # Maneja datos del POST
     if form.is_valid():
-        form.save()
-        return redirect('lista_programas')  
+        programa = form.cleaned_data['Programa']
+        materias = Materia.objects.filter(codigo=programa)
     else:
-        form = EditarProgramaForm(instance=programa)
+        programa = None
+        materias = []
+    context = {'form': form, 'programa': programa, 'materias': materias}
+    return render(request, 'empezar_progra.html', context)
+
+def materias(request):
+    programas = Programa_de_posgrado.objects.all()
+    materias = Materia.objects.all()
+    context = {'programas': programas, 'materias': materias}
+    return render(request, 'materias.html', context)
+
+def horarios(request, codigo_materia):
+    horarios = Horario.objects.filter(materia__codigo=codigo_materia)
+    context = {'horarios': horarios}
+    return render(request, 'lista_horarios.html', context)
+
+def editar_programacion(request):
+    return render(request, 'edit_programa.html')
+        
+    form = EditarProgramaForm(instance=programa)
     return render(request, 'edit_programacion_semestral.html', {'form': form})
 
 def crear_espacio(request):
