@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import *
 from .models import *
+import csv
 
 # Create your views here.
 
@@ -204,6 +205,20 @@ def delete_program(request, codigo):
     programa.delete()
     return redirect('eliminar_programa')
 
+def programs_csv(request):
+    response = HttpResponse(content_type = 'text/csv')
+    response['Content-Disposition'] = 'attachment; filename = programasdeposgrado.csv'
+
+    writer = csv.writer(response)
+    programas = Programa_de_posgrado.objects.all()
+
+    writer.writerow(['Nombre del Programa', 'Codigo del programa', 'Descripcion', 'Fecha de Inicio', 'Fecha finalizacion', 'Estado', 'Duracion (Años)', 'Facultad', 'Modalidad'])
+
+    for programa in programas:
+        writer.writerow([programa.name, programa.codigo, programa.descripcion, programa.fecha_inicio, programa.fecha_finalizacion, programa.estado, programa.duracion, programa.facultad])
+
+        
+    return response
 
 
 def edit_programacion(request, codigo):  
