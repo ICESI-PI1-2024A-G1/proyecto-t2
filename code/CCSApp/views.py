@@ -52,22 +52,42 @@ def consultar_horarios(request):
 def servicios_asignacion(request):
     return render(request, 'servicios_asignacion.html')
 
-def registro_materias(request):
-    if request.method == 'POST':
-        form = CrearMateria(request.POST)
-        if form.is_valid():
-            # Procesar los datos del formulario y guardar el programa académico
-            materia = Materia(
-                nombre=form.cleaned_data['nombre'],
-                codigo=form.cleaned_data['codigo'],
-                descripcion=form.cleaned_data['descripcion'],
-                creditos=form.cleaned_data['creditos'],
-                syllabus=form.cleaned_data['syllabus'],)
-            materia.save()
-            return redirect('/index')  # Redirigir a alguna vista después de guardar el formulario
+from .models import Materia  # Asegúrate de importar el modelo Materia
+
+def registrar_materia_malla(request):
+    if request.method == "GET":
+        return render(request, 'registro_materia.html', {
+            'form': CrearMateria
+        })
     else:
-        form = CrearMateria()
-    return render(request, 'registro_materia.html', {'form' : form})
+        try:
+            form = CrearMateria(request.POST)
+            if form.is_valid():
+                codigo_materia = form.cleaned_data['codigo']
+                # Verificar si ya existe una materia con el mismo código
+                if Materia.objects.filter(codigo=codigo_materia).exists():
+                    # Si existe, puedes manejar la situación como desees,
+                    # por ejemplo, mostrando un mensaje de error
+                    return render(request, 'registro_materia.html', {
+                        'form': CrearMateria,
+                        'error': 'La materia ya existe en la base de datos.'
+                    })
+                else:
+                    # Si no existe, crear la nueva materia
+                    materia = Materia(
+                        nombre=form.cleaned_data['nombre'],
+                        codigo=codigo_materia,
+                        descripcion=form.cleaned_data['descripcion'],
+                        creditos=form.cleaned_data['creditos'],
+                        syllabus=form.cleaned_data['syllabus']
+                    )
+                    materia.save()
+                    return redirect('/index')
+        except ValueError:
+            return render(request, 'registro_materia.html', {
+                'form': CrearMateria,
+                'error': 'Por favor, proporcione datos válidos.'
+            })
 
 def malla_curricular(request):
     if request.method == 'POST':
@@ -109,7 +129,6 @@ def nuevo_programa(request):
 def empezar_pogra(request):
     return render(request, 'empezar_progra.html')
         
-
 def log_in(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -154,6 +173,46 @@ def home(request):
 def asignar_espacios(request):
     return render(request, 'asignar_espacios.html')
 
+def registrar_profesor(request):
+    if request.method == "POST":
+        form = RegistrarProfesor(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            codigo = form.cleaned_data['codigo']
+            especializacion = form.cleaned_data['especializacion']
+            correo_electronico = form.cleaned_data['correo']  # Cambiado a 'correo_electronico'
+            telefono = form.cleaned_data['telefono']
+            materia_nombre = form.cleaned_data['materias']  
+            
+            if Profesor.objects.filter(codigo=codigo).exists():
+                return render(request, 'registro_profesores.html', {
+                    'form': form,
+                    'error': 'El profesor ya existe en la base de datos.'
+                })
+            else:
+                materia_existente = Materia.objects.filter(codigo=materia_nombre).first()
+                if not materia_existente:
+                    return render(request, 'registro_profesores.html', {
+                        'form': form,
+                        'error': 'La materia asignada no existe en la base de datos.'
+                    })
+                
+                profesor = Profesor(
+                    nombre=nombre,
+                    codigo=codigo,
+                    especializacion=especializacion,
+                    correo_electronico=correo_electronico,  # Cambiado a 'correo_electronico'
+                    telefono=telefono,
+                    materias=materia_existente  
+                )
+                profesor.save()
+                return redirect('/index')
+    else:
+        form = RegistrarProfesor()
+    
+    return render(request, 'registro_profesores.html', {
+        'form': form
+    })
 def lista_programas(request):
     programas = Programa_de_posgrado.objects.all()
     return render(request, 'lista_programas.html', {'programas': programas})
@@ -230,7 +289,6 @@ def edit_programacion(request, codigo):
     else:
         form = EditarProgramaForm(instance=programa)
     return render(request, 'edit_programacion_semestral.html', {'form': form})
-
 def crear_espacio(request):
     if request.method == 'POST':
         form = EspacioForm(request.POST)
