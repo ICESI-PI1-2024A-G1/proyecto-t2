@@ -1,0 +1,20 @@
+{$ extends 'base.html' $}
+
+{$ block content $}
+
+{$ for estado == 'Inactivo' in Programa_de_posgrado$}
+
+<h4>Programa_de_posgrado</h4>
+
+{$ endfor$}
+<a href="/gestion">
+    Volver
+</a>
+
+<a href="/gestion/nuevoprograma/operacion_exitosa">
+    <button>
+        Eliminar
+    </button>
+</a>
+
+{$ endblock $}
