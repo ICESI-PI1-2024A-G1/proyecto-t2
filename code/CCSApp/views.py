@@ -230,4 +230,14 @@ def edit_programacion(request, codigo):
     else:
         form = EditarProgramaForm(instance=programa)
     return render(request, 'edit_programacion_semestral.html', {'form': form})
-    
+
+def crear_espacio(request):
+    if request.method == 'POST':
+        form = EspacioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/servicios_asignacion')  
+    else:
+        form = EspacioForm()
+    return render(request, 'crear_espacio.html', {'form': form})
+

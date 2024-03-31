@@ -19,7 +19,7 @@ class Horario(models.Model):
     materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
     modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)
     enlace_virtual = models.URLField(blank=True, null=True)
-    salon_presencial = models.CharField(max_length=50, blank=True, null=True)
+    salon_presencial = models.ForeignKey('Espacio', on_delete = models.CASCADE)
 
     def __str__(self):
         return f'{self.fecha_hora} - {self.profesor} - {self.materia} ({self.modalidad})'

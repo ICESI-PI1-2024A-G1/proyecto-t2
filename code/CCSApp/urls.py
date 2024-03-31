@@ -22,5 +22,6 @@ urlpatterns = [
     path('editar/<str:codigo>/', views.editar_programa, name='editar_programa'),
     path('index/edit/<str:codigo>/', views.edit_programacion, name='editar_programacion'),
     path('delete_program/<str:codigo>',views.delete_program,name = 'delete-program'),
-    path('program_csv', views.programs_csv, name = 'program-csv')
+    path('program_csv', views.programs_csv, name = 'program-csv'),
+    path('crear_espacio/', views.crear_espacio, name="crear_espacio")
     ]

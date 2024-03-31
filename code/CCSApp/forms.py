@@ -13,7 +13,7 @@ class NewHorario(forms.Form):
     ]
     modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDAD_CHOICES)
     enlace_virtual = forms.URLField(label="Enlace Virtual", required=False)
-    salon_presencial = forms.CharField(label="Salon Presencial", max_length=50, required=False)
+    espacio = forms.CharField(label="Salon Presencial", max_length=50, required=False)
     
     def clean_profesor(self):
         profesor_nombre = self.cleaned_data.get('profesor')
@@ -26,6 +26,13 @@ class NewHorario(forms.Form):
         if not Materia.objects.filter(nombre=materia_nombre).exists():
             raise forms.ValidationError("La materia seleccionada no está registrada.")
         return materia_nombre
+    
+    def clean_espacio(self):
+        espacio_nombre = self.cleaned_data.get('espacio')
+        if not Materia.objects.filter(nombre=espacio_nombre).exists():
+            raise forms.ValidationError("El espacio seleccionada no está registrada.")
+        return espacio_nombre
+    
 
     def clean(self):
         cleaned_data = super().clean()
@@ -121,3 +128,23 @@ class DirectorDePrograma(forms.Form):
     descripcion_cargo = forms.CharField(label= "Descripcion", widget= forms.Textarea())
     foto_de_perfil = forms.ImageField()
 
+class EspacioForm(forms.ModelForm):
+    class Meta:
+        model = Espacio
+        fields = ['nombre', 'ubicacion', 'capacidad', 'disponibilidad', 'tipo']
+        labels = {
+            'nombre': 'Nombre',
+            'ubicacion': 'Ubicación',
+            'capacidad': 'Capacidad',
+            'disponibilidad': 'Disponibilidad',
+            'tipo': 'Tipo',
+        }
+        widgets = {
+            'disponibilidad': forms.Select(choices=[('Disponible', 'Disponible'), ('No Disponible', 'No Disponible')]),
+            'tipo': forms.Select(choices=[
+                ('salon', 'Salón'),
+                ('auditorio', 'Auditorio'),
+                ('coliseo', 'Coliseo'),
+                ('sala_computo', 'Sala de Computo')
+            ])
+        }
