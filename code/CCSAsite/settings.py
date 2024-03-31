@@ -127,3 +127,9 @@ MEDIA_ROOT = BASE_DIR/'media'
 MEDIA_URL  = '/media/'
 MAX_UPLOAD_SIZE = 10242880  # 10 MB
 
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 550
+EMAIL_HOST_USER = "modulolinksclasesvirtuales@gmail.com"
+EMAIL_HOST_PASSWORD = "hzqnwkaofalanzu"

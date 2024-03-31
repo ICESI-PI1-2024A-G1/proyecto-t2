@@ -89,9 +89,7 @@ def nuevo_programa(request):
         form = CrearProgramaAcademico()
     return render(request, 'nuevo_programa.html', {'form': form})
 
-def empezar_pogra(request):
-    return render(request, 'empezar_progra.html')
-        
+
 
 def log_in(request):
     if request.method == 'POST':
@@ -182,13 +180,14 @@ def operacionexitosanp(request):
 def eliminarprograma(request):
     return render(request, 'eliminar_programa.html')
 
-def edit_programacion(request, codigo):  
-    programa = get_object_or_404(Programa_de_posgrado, codigo=codigo)  
-    form = EditarProgramaForm(request.POST, instance=programa)
-    if form.is_valid():
-        form.save()
-        return redirect('lista_programas')  
-    else:
-        form = EditarProgramaForm(instance=programa)
-    return render(request, 'edit_programacion_semestral.html', {'form': form})
-    
+def empezar_progra(request):
+   # Obtener los dos últimos semestres activos
+    semestres = Semestre.objects.filter(activo=True).order_by('-id')[:2]
+    # Obtener todos los programas de posgrado activos
+    programas_posgrado = Programa_de_posgrado.objects.filter(activo=True)
+    context = {'semestres': semestres, 'programas_posgrado': programas_posgrado}
+    return render(request, 'empeazar_progra.html', context)
+
+def editar_programa(request):
+    return render(request, 'edit_programa.html')
+        

@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.log_in),
     path('register_us/', views.register_us),
     path('index/', views.index),
-    path('programacion/', views.empezar_pogra),
+    path('programacion/', views.empezar_progra),
     path('gestion/', views.gestion),
     path('gestion/nuevoprograma/', views.nuevo_programa),
     path('gestion/nuevoprograma/director_programa/', views.director_programa),
@@ -20,6 +20,6 @@ urlpatterns = [
     path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
     path('lista/', views.lista_programas, name='lista_programas'),
     path('editar/<str:codigo>/', views.editar_programa, name='editar_programa'),
-    path('index/edit/<str:codigo>/', views.edit_programacion, name='editar_programacion'),
+    #path('index/edit/<str:codigo>/', views.edit_programacion, name='editar_programacion'),
     
     ]

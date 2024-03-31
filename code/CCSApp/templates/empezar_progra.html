@@ -3,12 +3,19 @@
 
 {% block content %}
 <div>
-    <h2>Vamos a crear una nueva programacion semestral</h2>
-
-    <h4>Escoja el semestre academico activo</h4>
-    <input type="text" name="Escoja el semestre">
-    <h4>Escoja el programa de posgrado activo</h4>
-    <input type="text" name="Escoja el posgrado">
+    <h2>Selecciona un semestre</h2>
+    <ul>
+    {% for semestre in semestres %}
+        <li><a href="{% url 'materias' programa_posgrado.id semestre.id %}">{{ semestre.nombre }}</a></li>
+    {% endfor %}
+    </ul>
+    
+    <h2>Selecciona un programa de posgrado</h2>
+    <ul>
+    {% for programa_posgrado in programas_posgrado %}
+        <li><a href="{% url 'materias' programa_posgrado.id %}">{{ programa_posgrado.nombre }}</a></li>
+    {% endfor %}
+    </ul>
     <br>
     <a href="/index/nuevosemestre/"><button>Continuar</button></a>
     <a href="/index"><button>Cancelar</button></a>
