@@ -110,7 +110,7 @@ class EditarProgramaForm(forms.ModelForm):
         model = Programa_de_posgrado
         fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion','estado', 'duracion', 'facultad', 'modalidad']
         widgets = {
-            'estado': forms.Select(choices=Programa_de_posgrado.ESTADO_CHOICES),
+            'estado': forms.Select(choices=Programa_de_posgrado.estado),
         }
 
         
@@ -120,3 +120,4 @@ class DirectorDePrograma(forms.Form):
     correo = forms.CharField(label = "Correo Electronico", max_length= 500)
     descripcion_cargo = forms.CharField(label= "Descripcion", widget= forms.Textarea())
     foto_de_perfil = forms.ImageField()
+

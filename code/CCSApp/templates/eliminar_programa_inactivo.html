@@ -1,20 +1,23 @@
-{$ extends 'base.html' $}
+{% extends 'base.html' %}
 
-{$ block content $}
+{% block content %}
 
-{$ for estado == 'Inactivo' in Programa_de_posgrado$}
+{% for programa in programas %}
 
-<h4>Programa_de_posgrado</h4>
+<h4>{{programa.name}}</h4>
+<p>{{programa.facultad}}</p>
+<p>{{programa.codigo}}</p>
+<p>{{programa.estado}}</p>
 
-{$ endfor$}
+<a href="{% url 'delete-program' programa.codigo %}">
+<button>Eliminar</button>
+</a>
+
+{% endfor %}
+
+<br>
 <a href="/gestion">
     Volver
 </a>
 
-<a href="/gestion/nuevoprograma/operacion_exitosa">
-    <button>
-        Eliminar
-    </button>
-</a>
-
-{$ endblock $}
+{% endblock %}

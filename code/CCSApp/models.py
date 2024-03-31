@@ -41,7 +41,7 @@ class Programa_de_posgrado(models.Model):
         ("Activo","Activo"),
         ("Inactivo","Inactivo")
     ]
-    estado = models.CharField(max_length = 50, choices = ESTADO_CHOICES, default  = 'Activo', null = False, blank = False)
+    estado = models.CharField(max_length = 50, choices = ESTADO_CHOICES, default  = ' ', null = False, blank = False)
     duracion = models.PositiveIntegerField(default = 1, null = False, blank = False)
     facultad= models.ForeignKey(Facultad, on_delete = models.CASCADE, default = '', null = False, blank = False)
     
