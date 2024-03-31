@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import *
 from .models import *
+import csv
 
 # Create your views here.
 
@@ -20,7 +21,6 @@ def asignar_horario(request):
             horario = Horario.objects.create(fecha_hora=fecha_hora, profesor=profesor, materia=materia,
                                               modalidad=modalidad, enlace_virtual=enlace_virtual,
                                               salon_presencial=salon_presencial)
-            # Redirigir a la página de éxito o a donde sea necesario
             return redirect('/servicios_asignacion')  
     else:
         form = NewHorario()
@@ -28,10 +28,26 @@ def asignar_horario(request):
     return render(request, 'asignar_horario.html', {'formNewHorario': form})
 
 def modificar_horarios(request):
-    return render(request, 'modificar_horarios.html')
+    if request.method == 'POST':
+        form = ModificarHorarioForm(request.POST)
+        if form.is_valid():
+            horario_id = form.cleaned_data['horario_id']
+            horario = Horario.objects.get(pk=horario_id)
+            horario.fecha_hora = form.cleaned_data['fecha_hora']
+            horario.profesor = form.cleaned_data['profesor']
+            horario.materia = form.cleaned_data['materia']
+            horario.modalidad = form.cleaned_data['modalidad']
+            horario.enlace_virtual = form.cleaned_data['enlace_virtual']
+            horario.salon_presencial = form.cleaned_data['salon_presencial']
+            horario.save()
+            return redirect('/servicios_asignacion') 
+    else:
+        form = ModificarHorarioForm()
+    return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
 
 def consultar_horarios(request):
-    return render(request, 'consultar_horarios.html')
+    horarios = Horario.objects.all()
+    return render(request, 'consultar_horarios.html', {'horarios': horarios})
 
 def servicios_asignacion(request):
     return render(request, 'servicios_asignacion.html')
@@ -100,12 +116,12 @@ def nuevo_programa(request):
                 descripcion=form.cleaned_data['descripcion'],
                 fecha_inicio=form.cleaned_data['fecha_inicio'],
                 fecha_finalizacion=form.cleaned_data['fecha_finalizacion'],
-                value=form.cleaned_data['value'],
+                estado = form.cleaned_data['estado'],
                 duracion=form.cleaned_data['duracion'],
                 facultad=form.cleaned_data['facultad'],
                 modalidad=form.cleaned_data['modalidad'])
             programa_academico.save()
-            return redirect('/gestion/nuevoprograma/mallacurricular')  # Redirigir a alguna vista después de guardar el formulario
+            return redirect('/gestion/nuevoprograma/director_programa')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearProgramaAcademico()
     return render(request, 'nuevo_programa.html', {'form': form})
@@ -197,3 +213,80 @@ def registrar_profesor(request):
     return render(request, 'registro_profesores.html', {
         'form': form
     })
+def lista_programas(request):
+    programas = Programa_de_posgrado.objects.all()
+    return render(request, 'lista_programas.html', {'programas': programas})
+
+def editar_programa(request, codigo):  
+    programa = get_object_or_404(Programa_de_posgrado, codigo=codigo)  
+    form = EditarProgramaForm(request.POST, instance=programa)
+    if form.is_valid():
+        form.save()
+        return redirect('lista_programas')  
+    else:
+        form = EditarProgramaForm(instance=programa)
+    return render(request, 'editar_programa.html', {'form': form})
+
+def director_programa(request):
+    if request.method == 'POST':
+        form = DirectorDePrograma(request.POST, request.FILES)
+        if form.is_valid():
+            # Procesar los datos del formulario y guardar el programa académico
+            director_programa = Director_de_programa(
+                nombre=form.cleaned_data['nombre'],
+                numero=form.cleaned_data['numero'],
+                correo=form.cleaned_data['correo'],
+                descripcion_cargo=form.cleaned_data['descripcion_cargo'],
+                foto_de_perfil=form.cleaned_data['foto_de_perfil'])
+
+            # Guardar la foto
+            with open(director_programa.foto_de_perfil.path, 'wb+') as f:
+                for chunk in director_programa.foto_de_perfil.chunks():
+                    f.write(chunk)
+
+            director_programa.save()
+            return redirect('/gestion/nuevoprograma/mallacurricular')  # Redirigir a alguna vista después de guardar el formulario
+        else:
+            form = DirectorDePrograma(request.POST)
+    else:
+        form = DirectorDePrograma()
+    return render(request, 'director_programa.html', {'form': form})
+
+def operacionexitosanp(request):
+    return render(request, 'operacion_exitosa_np.html')
+
+def eliminar_programa_inactivo(request):
+    programas = Programa_de_posgrado.objects.all()
+    return render(request, 'eliminar_programa_inactivo.html', {'programas': programas})
+
+def delete_program(request, codigo):
+    programa = Programa_de_posgrado.objects.get(pk = codigo)
+    programa.delete()
+    return redirect('eliminar_programa')
+
+def programs_csv(request):
+    response = HttpResponse(content_type = 'text/csv')
+    response['Content-Disposition'] = 'attachment; filename = programasdeposgrado.csv'
+
+    writer = csv.writer(response)
+    programas = Programa_de_posgrado.objects.all()
+
+    writer.writerow(['Nombre del Programa', 'Codigo del programa', 'Descripcion', 'Fecha de Inicio', 'Fecha finalizacion', 'Estado', 'Duracion (Años)', 'Facultad', 'Modalidad'])
+
+    for programa in programas:
+        writer.writerow([programa.name, programa.codigo, programa.descripcion, programa.fecha_inicio, programa.fecha_finalizacion, programa.estado, programa.duracion, programa.facultad])
+
+        
+    return response
+
+
+def edit_programacion(request, codigo):  
+    programa = get_object_or_404(Programa_de_posgrado, codigo=codigo)  
+    form = EditarProgramaForm(request.POST, instance=programa)
+    if form.is_valid():
+        form.save()
+        return redirect('lista_programas')  
+    else:
+        form = EditarProgramaForm(instance=programa)
+    return render(request, 'edit_programacion_semestral.html', {'form': form})
+    

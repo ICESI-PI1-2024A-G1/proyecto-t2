@@ -13,6 +13,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <a href="/gestion/nuevoprograma/director_programa"></a>
         <button type="submit">Guardar</button>
     </form>
     <a href="/gestion"> <button> Cancelar </button></a>

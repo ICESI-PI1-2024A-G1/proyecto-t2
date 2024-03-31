@@ -1,16 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar Horarios</title>
 </head>
 <body>
-    <h1>Consultar Horarios</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">Guardar</button>
-    </form>
-    <a href="/servicios_asignacion"><button>Volver</button></a>
+    <h1>Horarios Registrados</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha y Hora</th>
+                <th>Profesor</th>
+                <th>Materia</th>
+                <th>Modalidad</th>
+                <th>Enlace Virtual</th>
+                <th>Salon Presencial</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for horario in horarios %}
+            <tr>
+                <td>{{ horario.id }}</td>
+                <td>{{ horario.fecha_hora }}</td>
+                <td>{{ horario.profesor }}</td>
+                <td>{{ horario.materia }}</td>
+                <td>{{ horario.modalidad }}</td>
+                <td>{{ horario.enlace_virtual }}</td>
+                <td>{{ horario.salon_presencial }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
+{% endblock %}

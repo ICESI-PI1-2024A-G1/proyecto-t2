@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vamos a crear una nueva programacion semestral </title>
+</head>
+<body>
+    <h1>Vamos a crear una nueva programacion semestral</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <h4>Escoja el semestre academico activo</h4>
+        <input type="text" name="Escoja el semestre">
+        <h4>Escoja el programa de posgrado activo</h4>
+        <input type="text" name="Escoja el posgrado">
+        <button type="submit">Continuar </button>
+    </form>
+    <a href="/index"> <button> Cancelar </button></a>
+</body>
+</html>
+{% endblock %}

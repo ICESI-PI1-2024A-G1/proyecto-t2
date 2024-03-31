@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -38,7 +41,8 @@
             <li><a href="/modificar_horarios">Modificar Horarios</a></li>
         </ul>
         <!-- Botón de Volver -->
-        <a href="#" onclick="history.back()">Volver</a>
+        <a href="/index">Volver</a>
     </div>
 </body>
 </html>
+{% endblock %}

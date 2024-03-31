@@ -1,0 +1,23 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Director de Programa</title>
+</head>
+<body>
+    <h1>Crear Director de Programa</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="/gestion/nuevo_programa">
+        <button>Cancelar</button>
+    </a>
+</body>
+</html>
+
+{% endblock %}
