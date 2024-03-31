@@ -21,4 +21,5 @@ urlpatterns = [
     path('lista/', views.lista_programas, name='lista_programas'),
     path('editar/<str:codigo>/', views.editar_programa, name='editar_programa'),
     path('delete_program/<str:codigo>',views.delete_program,name = 'delete-program'),
+    path('program_csv', views.programs_csv, name = 'program-csv')
     ]
