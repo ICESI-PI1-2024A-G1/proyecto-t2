@@ -45,7 +45,8 @@ def modificar_horarios(request):
     return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
 
 def consultar_horarios(request):
-    return render(request, 'consultar_horarios.html')
+    horarios = Horario.objects.all()
+    return render(request, 'consultar_horarios.html', {'horarios': horarios})
 
 def servicios_asignacion(request):
     return render(request, 'servicios_asignacion.html')
