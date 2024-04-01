@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.log_in),
     path('register_us/', views.register_us),
     path('index/', views.index),
-    path('programacion/', views.empezar_pogra),
+    path('programacion/', views.empezar_progra, name ="empezar_progra"),
     path('gestion/', views.gestion),
     path('gestion/nuevoprograma/', views.nuevo_programa),
     path('gestion/nuevoprograma/director_programa/', views.director_programa),
@@ -17,9 +17,16 @@ urlpatterns = [
     path('modificar_horarios/', views.modificar_horarios, name='modificar_horarios'),
     path('consultar_horarios/', views.consultar_horarios, name='consultar_horarios'),
     path('servicios_asignacion/', views.servicios_asignacion),
-    path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
+    path('gestion/nuevoprograma/mallacurricular/registroMateria/', views.registrar_materia_malla),
+    path('gestion/nuevoprograma/registroProfesor/', views.registrar_profesor),
+
+    #path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
     path('lista/', views.lista_programas, name='lista_programas'),
     path('editar/<str:codigo>/', views.editar_programa, name='editar_programa'),
+    path('programacion/materias/<int:programa_id>/', views.materias, name='materias'),
+    path('programacion/materias/<int:materia_id>/horarios/', views.horarios, name='horarios'),
+    
     path('delete_program/<str:codigo>',views.delete_program,name = 'delete-program'),
-    path('program_csv', views.programs_csv, name = 'program-csv')
+    path('program_csv', views.programs_csv, name = 'program-csv'),
+    path('crear_espacio/', views.crear_espacio, name="crear_espacio")
     ]
