@@ -299,11 +299,7 @@ def horarios(request, codigo_materia):
     context = {'horarios': horarios}
     return render(request, 'lista_horarios.html', context)
 
-def editar_programacion(request):
-    return render(request, 'edit_programa.html')
-        
-    form = EditarProgramaForm(instance=programa)
-    return render(request, 'edit_programacion_semestral.html', {'form': form})
+
 
 def crear_espacio(request):
     if request.method == 'POST':
