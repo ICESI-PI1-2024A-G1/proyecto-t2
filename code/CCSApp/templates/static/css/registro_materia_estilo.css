@@ -138,7 +138,6 @@ button {
 
 .boton-2 {
     margin-right: 10px; /* Ajusta el margen según sea necesario */
-    background-image: url("/CCSApp/templates/static/Images/retorno.png");
     background-size: cover; /* Ajusta el tamaño de la imagen según sea necesario */
     background-repeat: no-repeat; /* Evita la repetición de la imagen */
     border: none; /* Quita el borde del botón */

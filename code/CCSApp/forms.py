@@ -2,9 +2,10 @@ from django import forms
 from .models import *
 
 class NewHorario(forms.Form):
+    id = forms.CharField(label= "Id", max_length =255)
     fecha_hora = forms.DateTimeField(label="Fecha y Hora", widget=forms.DateTimeInput(attrs={'type': 'date'}))
-    profesor = forms.CharField(label="Profesor", max_length=100)
-    materia = forms.CharField(label="Materia", max_length=255)
+    profesor = forms.ModelChoiceField(label="Profesor",queryset=Profesor.objects.all(),empty_label=None)
+    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None)
     
     MODALIDAD_CHOICES = [
         ('presencial', 'Presencial'),
@@ -13,47 +14,13 @@ class NewHorario(forms.Form):
     ]
     modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDAD_CHOICES)
     enlace_virtual = forms.URLField(label="Enlace Virtual", required=False)
-    espacio = forms.CharField(label="Salon Presencial", max_length=50, required=False)
-    
-    def clean_profesor(self):
-        profesor_nombre = self.cleaned_data.get('profesor')
-        if not Profesor.objects.filter(nombre=profesor_nombre).exists():
-            raise forms.ValidationError("El profesor seleccionado no está registrado.")
-        return profesor_nombre
-
-    def clean_materia(self):
-        materia_nombre = self.cleaned_data.get('materia')
-        if not Materia.objects.filter(nombre=materia_nombre).exists():
-            raise forms.ValidationError("La materia seleccionada no está registrada.")
-        return materia_nombre
-    
-    def clean_espacio(self):
-        espacio_nombre = self.cleaned_data.get('espacio')
-        if not Materia.objects.filter(nombre=espacio_nombre).exists():
-            raise forms.ValidationError("El espacio seleccionada no está registrada.")
-        return espacio_nombre
-    
-
-    def clean(self):
-        cleaned_data = super().clean()
-        modalidad = cleaned_data.get('modalidad')
-        salon_presencial = cleaned_data.get('salon_presencial')
-        enlace_virtual = cleaned_data.get('enlace_virtual')
-
-        if modalidad == 'presencial' and not salon_presencial:
-            raise forms.ValidationError("Debe proporcionar un salón para la modalidad presencial.")
-        elif modalidad == 'mixta' and (not salon_presencial or not enlace_virtual):
-            raise forms.ValidationError("Debe proporcionar un salón y un enlace virtual para la modalidad mixta.")
-        elif modalidad == 'virtual' and not enlace_virtual:
-            raise forms.ValidationError("Debe proporcionar un enlace virtual para la modalidad virtual.")
-
-        return cleaned_data
+    espacio = forms.ModelChoiceField(label="Espacio", queryset=Espacio.objects.all(),empty_label=None)
     
 class ModificarHorarioForm(forms.Form):
     horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar")
     fecha_hora = forms.DateTimeField(label="Nueva Fecha y Hora", widget=forms.DateTimeInput(attrs={'type': 'date'}))
-    profesor = forms.CharField(label="Nuevo Profesor", max_length=100)
-    materia = forms.CharField(label="Nueva Materia", max_length=255)
+    profesor = forms.ModelChoiceField(label="Profesor",queryset=Profesor.objects.all(),empty_label=None)
+    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None)
     
     MODALIDAD_CHOICES = [
         ('presencial', 'Presencial'),
@@ -62,7 +29,9 @@ class ModificarHorarioForm(forms.Form):
     ]
     modalidad = forms.ChoiceField(label="Nueva Modalidad", choices=MODALIDAD_CHOICES)
     enlace_virtual = forms.URLField(label="Nuevo Enlace Virtual", required=False)
-    salon_presencial = forms.CharField(label="Nuevo Salon Presencial", max_length=50, required=False)
+    espacio = forms.CharField(label= "Espacio", max_length =255)
+
+    
 
 class NewUsuary(forms.Form):
     nombre = forms.CharField(label= "nombre", max_length =255)
@@ -116,13 +85,6 @@ class RegistrarProfesor(forms.Form):
     correo = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
     telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
     materias = forms.ModelChoiceField(label="Materia Asignada", queryset=Materia.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
-
-    
-    nombre = forms.CharField(label="Nombre", max_length=255)
-    codigo = forms.CharField(label="Código", max_length=100, help_text="Ingrese el código de la materia.")    
-    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción de la materia")
-    creditos = forms.DecimalField(label="Creditos", max_digits=10, help_text="Ingrese el numero de creditos")
-    syllabus = forms.CharField(label="Syllabus", max_length=255)
     
 class BuscarProgramaForm(forms.Form):
     codigo = forms.CharField(label="Código del Programa", max_length=100)

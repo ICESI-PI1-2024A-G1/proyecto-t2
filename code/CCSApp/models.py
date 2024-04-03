@@ -13,12 +13,11 @@ class Horario(models.Model):
         ('mixta', 'Mixta'),
     ]
 
-    id_horario = models.AutoField(primary_key=True)
-    fecha_inicio_horario = models.DateTimeField() #cambio
-    fecha_final_horario = models.DateTimeField() #cambio
-    profesor_asignado_horario = models.ForeignKey('Profesor', on_delete=models.CASCADE)
-    materia_horario = models.ForeignKey('Materia', on_delete=models.CASCADE)
-    modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES) #Modalidad amarrada a la propia modalidad del programa - LLAVE FORANEA
+    id = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
+    fecha_hora = models.DateTimeField()
+    profesor = models.ForeignKey('Profesor', on_delete=models.CASCADE)
+    materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
+    modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)
     enlace_virtual = models.URLField(blank=True, null=True)
     salon_presencial = models.CharField(max_length=50, blank=True, null=True)
 
