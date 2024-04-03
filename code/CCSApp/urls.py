@@ -19,8 +19,6 @@ urlpatterns = [
     path('servicios_asignacion/', views.servicios_asignacion),
     path('gestion/nuevoprograma/mallacurricular/registroMateria/', views.registrar_materia_malla),
     path('gestion/nuevoprograma/registroProfesor/', views.registrar_profesor),
-
-    #path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
     path('lista/', views.lista_programas, name='lista_programas'),
     path('editar/<str:codigo>/', views.editar_programa, name='editar_programa'),
     path('programacion/materias/<int:programa_id>/', views.materias, name='materias'),
