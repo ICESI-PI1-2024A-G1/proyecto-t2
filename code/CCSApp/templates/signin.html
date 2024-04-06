@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Signin</h1>
+
+    <p>
+        {{error}}
+    </p>
+
+    <form action="/signin/" method="POST">
+        {# crsf_token #}
+        {{form.as_p}}
+        <button>
+            Signin
+        </button>
+        
+
+    </form>
+    <a href="/signup">
+        <button>Registrarse</button>
+    </a>
+
+
+
+{% endblock %}

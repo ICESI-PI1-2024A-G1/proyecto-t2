@@ -92,9 +92,9 @@ class BuscarProgramaForm(forms.Form):
 class EditarProgramaForm(forms.ModelForm):
     class Meta:
         model = Programa_de_posgrado
-        fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion','estado', 'duracion', 'facultad', 'modalidad']
+        fields = ['nombre_programa', 'codigo_programa',  'fecha_inicio_programa','estado_programa', 'duracion_programa', 'facultad_programa', 'modalidad_programa']
         widgets = {
-            'estado': forms.Select(choices=Programa_de_posgrado.estado),
+            'estado_programa': forms.Select(choices=Programa_de_posgrado.estado_programa),
         }
 
         
@@ -111,7 +111,7 @@ class ProgramacionSemestral(forms.Form):
 class EspacioForm(forms.ModelForm):
     class Meta:
         model = Espacio
-        fields = ['nombre', 'ubicacion', 'capacidad', 'disponibilidad', 'tipo']
+        fields = ['espacio_codigo', 'capacidad_espacio', 'disponibilidad_espacio', 'tipo']
         labels = {
             'nombre': 'Nombre',
             'ubicacion': 'Ubicación',
@@ -120,7 +120,7 @@ class EspacioForm(forms.ModelForm):
             'tipo': 'Tipo',
         }
         widgets = {
-            'disponibilidad': forms.Select(choices=[('Disponible', 'Disponible'), ('No Disponible', 'No Disponible')]),
+            'disponibilidad_espacio': forms.Select(choices=[('Disponible', 'Disponible'), ('No Disponible', 'No Disponible')]),
             'tipo': forms.Select(choices=[
                 ('salon', 'Salón'),
                 ('auditorio', 'Auditorio'),
