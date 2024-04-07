@@ -1,7 +1,4 @@
-{% extends 'base2.html' %}
-
-
-{% block content %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,23 +6,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href='{% static "css/login.css" %}' type='text/css'>
 </head>
 <body>
-    <h2>Iniciar Sesión</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% if form.non_field_errors %}
-            <div class="error">{{ form.non_field_errors }}</div>
-        {% endif %}
-        <button type="submit">Iniciar Sesión</button>
-    </form>
-    <a href="/register_us"><button> Registrar </button></a>
+    <div class="bloq-sup">
+        <form method="get">
+            <div class="bloq-sup_secd">
+            <!-- <button class="boton-2" name="boton1" type="button" onclick="redirigirAHTML()">
+              <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+            </button> -->
+                <div class="titulo">
+                <h1>CCSA</h1>
+                    <div class="descripcion">
+                        <h3>Centro Compartido de Servicios Académicos</h3>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="bloq-mid">
+        <div class="intermed">
+            <h1>Iniciar Sesión</h1>
+        </div>
+            <div class="intermed-bloq">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="buttondiv button-container">
+                        <button type="submit" class="btn-1">Iniciar Sesión</button>
+                        <button type="button" class="btn-1" onclick="redirigirAHTML2()">Registrar</button>
+                    </div>                    
+                </form>
+            </div>
+        <!-- {% if error %}
+        <div class="error-message">
+          {{ error }}
+        </div>
+        {% endif %} -->
+    </div>
+    <div class="bloq-inf">
+        <h4>Universidad Icesi</h4>
+        <h4>Todos los derechos reservados</h4>
+        <h4>Derechos de Autor</h4>
+    </div>
+    <script>
+        // Función para redirigir a una página HTML específica
+        function redirigirAHTML2() {
+        window.location.href = '/register_us'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+    </script>
 </body>
 </html
-
-    
-
-
-
-{% endblock %}

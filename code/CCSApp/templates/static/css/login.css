@@ -75,8 +75,8 @@ button {
     padding: 7px 20px;
     background-color: #28C985;
     border-radius: 2rem;
-    border:0.7px solid #000000c8;
     /* border: #ccc; */
+    border:0.7px solid #000000c8;
 }
 
 .btn-1 {background-color: white; border: 2px solid #04AA6D;} 
@@ -85,7 +85,13 @@ button {
 .buttondiv{
     display: flex;
     justify-content: center;
+    right: 25%;
 }
+
+.button-container {
+    text-align: center;
+}
+
 
 .bloq-mid{
     display: block;
@@ -100,12 +106,13 @@ button {
 
 .intermed {
     position: relative;
-    top: 20px; /* Ajusta este valor según lo que necesites */
+    top: 3px; /* Ajusta este valor según lo que necesites */
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
     width: 400px;
-    height: 30px;
+    height: 20px;
+    left: 23%;
 }
 
 
@@ -150,8 +157,8 @@ button {
 }
 
 .titulo {
-    margin-right: 10px; /* Ajusta el margen según sea necesario */
-    line-height: 62px; 
+    margin-right: 20px; /* Ajusta el margen según sea necesario */
+    line-height: 62px;
 }
 
 .descripcion {
@@ -172,5 +179,3 @@ button {
     border-radius: 4px; /* Esquinas redondeadas */
     box-sizing: border-box; /* Hace que el padding y el borde se incluyan en el ancho */
 }
-
-

@@ -51,8 +51,9 @@ def consultar_horarios(request):
     return render(request, 'consultar_horarios.html', {'horarios': horarios})
 
 def servicios_asignacion(request):
-    return render(request, 'servicios_asignacion.html')
-
+    if request.method == "GET":
+        return render(request, 'servicios_asignacion.html')
+    
 from .models import Materia  # Asegúrate de importar el modelo Materia
 
 def registrar_materia_malla(request):
@@ -132,40 +133,69 @@ def log_in(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            codigo = form.cleaned_data['codigo']
-            correo_electronico = form.cleaned_data['correo_electronico']
+            cedula = form.cleaned_data['cedula']
+            clave = form.cleaned_data['password']
             try:
-                usuario = Usuario.objects.get(codigo=codigo, correo_electronico=correo_electronico)
+                usuario = Usuario.objects.get(cedula=cedula, password=clave)
                 # Autenticación exitosa, puedes redirigir a una página de inicio o hacer cualquier otra cosa que necesites.
                 # Por ejemplo:
                 # return redirect('inicio')  # Cambia 'inicio' con el nombre de tu URL de inicio.
-                return render(request, 'index.html', {'usuario': usuario})
+                return redirect(index)
             except Usuario.DoesNotExist:
                 # Si no se encuentra el usuario, puedes mostrar un mensaje de error o redirigir de nuevo al formulario de inicio de sesión.
-                form.add_error(None, 'Código o correo electrónico incorrecto')
+                form.add_error(None, 'Usuario o clave incorrecta, intente de nuevo')
     else:
         form = LoginForm()
     return render(request, 'log_in.html', {'form': form})
 
 def register_us(request):
-    if request.method =='GET':
-        return render(request, 'register_us.html',{
-        'form' : NewUsuary()    
-        
-    })
+    if request.method == 'POST':
+        form = NewUsuary(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            cedula = form.cleaned_data['cedula']
+            rol = form.cleaned_data['rol']
+            departamento = form.cleaned_data['departamento']
+            correo_electronico = form.cleaned_data['correo_electronico']
+            telefono = form.cleaned_data['telefono']
+            password = form.cleaned_data['password']
+            # hashed_password = make_password(password)
+            
+            # Verificar si ya existe un usuario con la cédula proporcionada
+            if Usuario.objects.filter(cedula=cedula).exists():
+                # Manejar el caso donde ya existe un usuario con la cédula proporcionada
+                # Por ejemplo, puedes agregar un mensaje de error al formulario.
+                return render(request, 'register_us.html', {
+                        'form': NewUsuary,
+                        'error': 'Ya existe un usuario con esta cédula.'
+                })
+            else:
+                # Crear un nuevo usuario con los datos proporcionados
+                Usuario.objects.create(
+                nombre=nombre,
+                cedula=cedula,
+                rol=rol,
+                departamento=departamento,
+                correo_electronico=correo_electronico,
+                telefono=telefono,
+                password=password
+            )
+            # Redirigir a la página principal después del registro exitoso
+            return redirect('/')
+        # Resto del código para manejar el caso cuando el formulario no es válido
+        # ...
     else:
-        Usuario.objects.create(nombre=request.POST['nombre'], codigo=request.POST['codigo'], 
-        rol=request.POST['rol'], departamento=request.POST['departamento'],
-        correo_electronico=request.POST['correo_electronico'], telefono=request.POST['telefono'])
-        return redirect('/')
+        form = NewUsuary()
+    return render(request, 'register_us.html', {'form': form})
 
 
 def gestion(request):
     return render(request, 'gestion.html')
 
 def index(request):
-    return render(request, 'index.html')
-
+    if request.method == "GET":
+        return render(request, 'index.html')
+    
 def home(request):
     return render(request, 'home.html')
 
@@ -179,9 +209,18 @@ def registrar_profesor(request):
             nombre = form.cleaned_data['nombre']
             codigo = form.cleaned_data['codigo']
             especializacion = form.cleaned_data['especializacion']
-            correo_electronico = form.cleaned_data['correo']  # Cambiado a 'correo_electronico'
+            correo_electronico = form.cleaned_data['correo']
             telefono = form.cleaned_data['telefono']
-            materia_nombre = form.cleaned_data['materias']  
+            materia_nombre = form.cleaned_data['materias']
+            
+            # Buscar la materia por su nombre para obtener el código correspondiente
+            materia_existente = Materia.objects.filter(codigo=materia_nombre).first()
+            
+            if not materia_existente:
+                return render(request, 'registro_profesores.html', {
+                    'form': form,
+                    'error': f'La materia "{materia_nombre}" asignada no existe en la base de datos.'
+                })
             
             if Profesor.objects.filter(codigo=codigo).exists():
                 return render(request, 'registro_profesores.html', {
@@ -189,20 +228,13 @@ def registrar_profesor(request):
                     'error': 'El profesor ya existe en la base de datos.'
                 })
             else:
-                materia_existente = Materia.objects.filter(codigo=materia_nombre).first()
-                if not materia_existente:
-                    return render(request, 'registro_profesores.html', {
-                        'form': form,
-                        'error': 'La materia asignada no existe en la base de datos.'
-                    })
-                
                 profesor = Profesor(
                     nombre=nombre,
                     codigo=codigo,
                     especializacion=especializacion,
-                    correo_electronico=correo_electronico,  # Cambiado a 'correo_electronico'
+                    correo_electronico=correo_electronico,
                     telefono=telefono,
-                    materias=materia_existente  
+                    materias=materia_existente
                 )
                 profesor.save()
                 return redirect('/index')
@@ -212,6 +244,9 @@ def registrar_profesor(request):
     return render(request, 'registro_profesores.html', {
         'form': form
     })
+
+
+
 def lista_programas(request):
     programas = Programa_de_posgrado.objects.all()
     return render(request, 'lista_programas.html', {'programas': programas})
@@ -221,7 +256,7 @@ def editar_programa(request, codigo):
     form = EditarProgramaForm(request.POST, instance=programa)
     if form.is_valid():
         form.save()
-        return redirect('lista_programas')  
+        return redirect('lista_programas.html')  
     else:
         form = EditarProgramaForm(instance=programa)
     return render(request, 'editar_programa.html', {'form': form})
