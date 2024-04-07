@@ -78,11 +78,17 @@ button {
     border:0.7px solid #000000c8;
 }
 
-.btn-1 {background-color: white; border: 2px solid #04AA6D;} 
-.btn-1:hover {background-color: #28C985; color: white;}
+.btn-1 {
+    background-color: white;
+    border: 2px solid #04AA6D;
+    transition: background-color 1s;
+}
 
-.btn-2 {background-color: white; border: 2px solid #04AA6D;} 
-.btn-2:hover {background-color: #28C985; color: white;}
+.btn-1:hover {
+    background-color: #28C985; 
+    color: white;
+    transition: background-color 1s;
+}
 
 .btn-2{
     font-size: 1rem;
@@ -97,8 +103,8 @@ button {
     /* border: #ccc; */
 }
 
-.btn-2 {background-color: white; border: 2px solid #04AA6D;} 
-.btn-2:hover {background-color: #28C985; color: white;}
+.btn-2 {background-color: white; border: 2px solid #04AA6D; transition: background-color 1s;} 
+.btn-2:hover {background-color: #28C985; color: white; transition: background-color 1s}
 
 .buttondiv{
     display: flex;
