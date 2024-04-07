@@ -115,23 +115,40 @@ class DirectorDePrograma(forms.Form):
 class ProgramacionSemestral(forms.Form):    
     Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa")
     
-class EspacioForm(forms.ModelForm):
+class EspacioForm(forms.Form):
+    nombre = forms.CharField(label = 'Nombre', max_length= 255)
+    edificio = forms.ModelChoiceField(queryset=Edificio.objects.all(), label='Edificio', empty_label="Seleccione el edificio")
+    capacidad = forms.IntegerField(label = "Capacidad")
+    DISPONIBILIDAD_CHOICES = [
+        ("Disponible","Disponible"),
+        ("No Disponible","No Disponible")
+    ]
+    disponibilidad = forms.ChoiceField(label="Modalidad", choices=DISPONIBILIDAD_CHOICES, help_text="Seleccione la disponibilidad del espacio.")
+    TIPOS_CHOICES = (
+        ('salon', 'salon'),
+        ('auditorio', 'auditorio'),
+        ('coliseo', 'coliseo'),
+        ('sala computo', 'sala computo')
+    )
+    tipo = forms.ChoiceField(label="Modalidad", choices=TIPOS_CHOICES, help_text="Seleccione el tipo de espacio.")
+    
+
+        
+class CrearEdificio(forms.ModelForm):
+    class Meta:
+        model = Edificio
+        fields = ['nombre_edificio', 'numero_espacios']
+        labels = {
+            'Nombre': 'nombre_edificio',
+            'numero': 'numero_espacios',
+            
+        }
+    
+class EditarEspacio(forms.ModelForm):
     class Meta:
         model = Espacio
-        fields = ['nombre', 'ubicacion', 'capacidad', 'disponibilidad', 'tipo']
-        labels = {
-            'nombre': 'Nombre',
-            'ubicacion': 'Ubicación',
-            'capacidad': 'Capacidad',
-            'disponibilidad': 'Disponibilidad',
-            'tipo': 'Tipo',
-        }
+        fields = ['nombre', 'edificio', 'capacidad', 'disponibilidad', 'tipo']
         widgets = {
-            'disponibilidad': forms.Select(choices=[('Disponible', 'Disponible'), ('No Disponible', 'No Disponible')]),
-            'tipo': forms.Select(choices=[
-                ('salon', 'Salón'),
-                ('auditorio', 'Auditorio'),
-                ('coliseo', 'Coliseo'),
-                ('sala_computo', 'Sala de Computo')
-            ])
+            'disponibilidad': forms.Select(choices=Espacio.capacidad),
+            'tipo': forms.Select(choices=Espacio.tipo)
         }

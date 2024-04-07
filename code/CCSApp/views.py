@@ -347,3 +347,50 @@ def crear_espacio(request):
         form = EspacioForm()
     return render(request, 'crear_espacio.html', {'form': form})
 
+def crear_espacio(request):
+    if request.method == 'POST':
+        form = EspacioForm(request.POST)
+        if form.is_valid():
+            # Procesar los datos del formulario y guardar el programa académico
+            espacio = Espacio(
+                nombre=form.cleaned_data['nombre'],
+                edificio=form.cleaned_data['edificio'],
+                capacidad=form.cleaned_data['capacidad'],
+                disponibilidad=form.cleaned_data['disponibilidad'],
+                tipo=form.cleaned_data['tipo'])
+            espacio.save()
+            return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
+    else:
+        form = EspacioForm()
+    return render(request, 'crear_espacio.html', {'form': form})
+
+
+def crear_edificio(request):
+    if request.method == 'POST':
+        form = CrearEdificio(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/index/servicios_asignacion')  
+    else:
+        form = CrearEdificio()
+    return render(request, 'crear_edificio.html', {'form': form})
+
+def lista_edificios(request):
+    edificios = Edificio.objects.all()
+    return render(request, 'lista_edificios.html', {'edificios': edificios})
+
+def lista_espacios(request, nombre_edificio):
+    edificio = get_object_or_404(Edificio, pk=nombre_edificio)
+    espacios = Espacio.objects.filter(edificio=edificio)
+    return render(request, 'lista_espacios.html', {'edificio': edificio, 'espacios': espacios})
+
+def editar_espacio(request, nombre):
+    espacio = get_object_or_404(Espacio, pk=nombre)
+    if request.method == 'POST':
+        form = EditarEspacio(request.POST, instance=espacio)
+        if form.is_valid():
+            form.save()
+            return redirect('/index/servicios_asignacion')  # Redirigir a la lista de edificios después de la edición
+    else:
+        form = EditarEspacio(instance=espacio)
+    return render(request, 'editar_espacio.html', {'form': form})

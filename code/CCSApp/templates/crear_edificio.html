@@ -7,14 +7,12 @@
     <title>Crear Espacio</title>
 </head>
 <body>
-    <h1>Crear Espacio</h1>
+    <h1>Crear Edificio</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Guardar</button>
         
     </form>
-    <a href="/crear_edificio"><button>Crear edificio</button></a>
 </body>
 </html>
-
