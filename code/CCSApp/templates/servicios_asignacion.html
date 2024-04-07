@@ -57,9 +57,9 @@
         <div class="intermed-bloq">
                 <button class="btn-1" type="button" onclick="redirigirAHTML1()">Registrar Materia</button>
                 <button class="btn-1" type="button" onclick="redirigirAHTML2()">Registrar Profesor</button>
-                <button class="btn-1" type="button">Asignar Horarios</button>
-                <button class="btn-1" type="button">Consultar Horarios</button>
-                <button class="btn-1" type="button">Modificar Horarios</button>
+                <button class="btn-1" type="button" onclick="redirigirAHTML3()">Asignar Horarios</button>
+                <button class="btn-1" type="button" onclick="redirigirAHTML4()">Consultar Horarios</button>
+                <button class="btn-1" type="button" onclick="redirigirAHTML5()">Modificar Horarios</button>
                 <a href="/crear_espacio"><button class="btn-1" type="button">Crear espacio</button></a>
                 <a href="/lista_edificios"><button class="btn-1" type="button">Editar espacio</button></a>
                 <button class="btn-1" type="button">Eliminar espacio</button>
@@ -106,6 +106,24 @@
         // Función para redirigir a una página HTML específica
         function redirigirAHTML2() {
           window.location.href = 'registroProfesor/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+      </script>
+      <script>
+        // Función para redirigir a una página HTML específica
+        function redirigirAHTML3() {
+          window.location.href = 'asignar_horario/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+      </script>
+      <script>
+        // Función para redirigir a una página HTML específica
+        function redirigirAHTML4() {
+          window.location.href = 'consultar_horarios/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+      </script>
+      <script>
+        // Función para redirigir a una página HTML específica
+        function redirigirAHTML5() {
+          window.location.href = 'modificar_horarios/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
         }
       </script>
 </body>
