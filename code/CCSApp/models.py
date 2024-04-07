@@ -121,13 +121,15 @@ class Espacio(models.Model):
             return self.espacio_codigo
     
 class Usuario(models.Model):
-    nombre_usuario = models.CharField(max_length =255, null = False, blank = False)
+    nombre = models.CharField(max_length =255, null = False, blank = False)
     cedula = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
-    rol = models.CharField(max_length=255,choices = [('Coordinador', 'Coordinador'),('Gestor', 'Gestor'), ('Director de programa', 'Director de programa'), ('Lider','Lider')], null = False, blank = False)
+    rol = models.CharField(max_length=255, null = False, blank = False)
+    departamento = models.CharField(max_length=500, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
     telefono = models.IntegerField( null = False, blank = False)
+    password = models.CharField(max_length= 30,default= 000000000, null= False, blank = False)
     def  __str__(self):
-        return self.cedula
+        return self.cedula 
 
 class Viaticos (models.Model):
     nombre_viatico = models.CharField(max_length =255, null = False, blank = False)
