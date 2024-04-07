@@ -81,8 +81,17 @@ button {
     border:0.7px solid #000000c8;
 }
 
-.btn-1 {background-color: white; border: 2px solid #04AA6D;} 
-.btn-1:hover {background-color: #28C985; color: white;}
+.btn-1 {
+    background-color: white;
+    border: 2px solid #04AA6D;
+    transition: background-color 1s;
+}
+
+.btn-1:hover {
+    background-color: #28C985; 
+    color: white;
+    transition: background-color 1s;
+}
 
 .buttondiv{
     display: flex;
@@ -166,7 +175,7 @@ button {
 }
 
 .titulo {
-    margin-right: 10px; /* Ajusta el margen según sea necesario */
+    margin-right: 10%; /* Ajusta el margen según sea necesario */
     line-height: 62px; 
 }
 
@@ -179,7 +188,7 @@ button {
     text-align: center;
     margin-top: 40px; /* Ajusta este valor según sea necesario */
 }
-
+ 
 .form-control {
     width: 72%; /* O el ancho deseado */
     padding: 8px; /* Ajusta el relleno según sea necesario */
