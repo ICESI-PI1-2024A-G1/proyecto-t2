@@ -18,6 +18,10 @@
         {% if form.non_field_errors %}
             <div class="error">{{ form.non_field_errors }}</div>
         {% endif %}
+        <div class ="auth_actions">
+            <input class = "btn btn--sub btn--lg" type="submit" value="log">
+            <a href="{% url 'reset_password' %}">Olvidaste contraseña?</a>
+        </div>
         <button type="submit">Iniciar Sesión</button>
     </form>
     <a href="/register_us"><button> Registrar </button></a>
