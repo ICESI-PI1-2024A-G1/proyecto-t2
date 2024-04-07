@@ -114,13 +114,14 @@ class Espacio(models.Model):
     
 class Usuario(models.Model):
     nombre = models.CharField(max_length =255, null = False, blank = False)
-    codigo = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
+    cedula = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
     rol = models.CharField(max_length=255, null = False, blank = False)
     departamento = models.CharField(max_length=500, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
     telefono = models.IntegerField( null = False, blank = False)
+    password = models.CharField(max_length= 30,default= 000000000, null= False, blank = False)
     def  __str__(self):
-        return self.codigo 
+        return self.cedula 
 
 class Viaticos (models.Model):
     nombre = models.CharField(max_length =255, null = False, blank = False)
