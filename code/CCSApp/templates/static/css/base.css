@@ -70,48 +70,90 @@ button {
     /* text-transform: lowercase; */
     font-weight: 500;
     color: #000;
-    border: none;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);;
     padding: 7px 20px;
     background-color: #28C985;
     border-radius: 2rem;
-    border:0.7px solid #000000c8;
     /* border: #ccc; */
+    border:0.7px solid #000000c8;
 }
 
 .btn-1 {background-color: white; border: 2px solid #04AA6D;} 
 .btn-1:hover {background-color: #28C985; color: white;}
 
+.btn-2 {background-color: white; border: 2px solid #04AA6D;} 
+.btn-2:hover {background-color: #28C985; color: white;}
+
+.btn-2{
+    font-size: 1rem;
+    /* text-transform: lowercase; */
+    font-weight: 500;
+    color: #000;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
+    padding: 7px 20px;
+    background-color: #28C985;
+    border-radius: 2rem;
+    /* border: #ccc; */
+}
+
+.btn-2 {background-color: white; border: 2px solid #04AA6D;} 
+.btn-2:hover {background-color: #28C985; color: white;}
+
 .buttondiv{
     display: flex;
     justify-content: center;
+    right: 25%;
 }
+
+.button-container {
+    text-align: center;
+}
+
 
 .bloq-mid{
     display: block;
     justify-content: center;
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 18%;
+    left: 52%;
+    width: 75%;
     transform: translate(-50%, -57%);
     /* background-color: #28C985;
     width: 50%; */
 }
 
+.bloq-mid-2{
+    display: block;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 18%;
+    transform: translate(-50%, -57%);
+    /* background-color: #28C985;
+    width: 50%; */
+    
+}
+
 .intermed {
     position: relative;
-    top: 20px; /* Ajusta este valor según lo que necesites */
+    top: 3px; /* Ajusta este valor según lo que necesites */
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
     width: 400px;
     height: 30px;
+    left: 23%;
 }
 
+.intermed-1 {
+    left: 25%;
+}
 
 .bloq-sup{
     /* display: flex;
-    align-items: center; */
+    align-items: center;
+    justify-content: center; */
     position: fixed;
     left: 0;
     width: 100%;
@@ -150,8 +192,8 @@ button {
 }
 
 .titulo {
-    margin-right: 10px; /* Ajusta el margen según sea necesario */
-    line-height: 62px; 
+    margin-right: 20px; /* Ajusta el margen según sea necesario */
+    line-height: 62px;
 }
 
 .descripcion {
@@ -173,4 +215,20 @@ button {
     box-sizing: border-box; /* Hace que el padding y el borde se incluyan en el ancho */
 }
 
+.photo{
+    width: 50%; /* Ancho del div */
+    height: 60%; /* Altura del div */
+    border: 0px solid #ccc; /* Borde del div */
+    overflow: hidden;
+    display: block;
+    justify-content: center;
+    position: fixed;
+    top: 58%;
+    left: 68%;
+    transform: translate(-50%, -57%);
+}
 
+.photo img {
+    width: 100%; /* Para que la imagen ocupe todo el ancho del div */
+    height: auto; /* Para mantener la proporción de la imagen */
+}

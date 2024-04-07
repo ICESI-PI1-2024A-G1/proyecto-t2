@@ -1,13 +1,14 @@
-{% extends 'base.html' %}
+{% load static %}
 
-{% block content %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios de Asignación</title>
-    <style>
+    <link rel="stylesheet" href='{% static "css/servicios_de_asignacion.css" %}' type='text/css'>
+
+    <!-- <style>
         body {
             font-family: Arial, sans-serif;
         }
@@ -29,10 +30,47 @@
         li {
             margin-bottom: 10px;
         }
-    </style>
+    </style> -->
 </head>
 <body>
-    <div class="container">
+    <div class="bloq-sup">
+        <form method="get">
+            <div class="bloq-sup_secd">
+                <div class="theboton">
+                    <button class="boton-2" name="boton1" type="button" onclick="redirigirAHTML()">
+                    <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+                    </button>
+                </div>
+                <div class="titulo">
+                <h1>CCSA</h1>
+                    <div class="descripcion">
+                        <h3>Centro Compartido de Servicios Académicos</h3>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="bloq-mid">
+        <div class="intermed">
+            <h1>Servicios<br>De Asignación</h1>
+        </div>
+        <div class="intermed-bloq">
+                <button class="btn-1" type="button" onclick="redirigirAHTML1()">Registrar Materia</button>
+                <button class="btn-1" type="button" onclick="redirigirAHTML2()">Registrar Profesor</button>
+                <button class="btn-1" type="button">Asignar Horarios</button>
+                <button class="btn-1" type="button">Consultar Horarios</button>
+                <button class="btn-1" type="button">Modificar Horarios</button>
+                <button class="btn-1" type="button">Crear espacio</button>
+                <button class="btn-1" type="button">Eliminar espacio</button>
+        </div>
+        <div class="intermed-bloq-down">
+            <button class="btn1 success" type="button" onclick="redirigirAHTML()">Volver</button>
+        </div>
+    </div>
+    <div class="photo">
+        <img src="/static/Images/servicios_asignacion.png" alt="Mi imagen">
+    </div>  
+    <!-- <div class="container">
         <h1>Servicios de Asignación</h1>
         <p>Selecciona una opción:</p>
         <ul>
@@ -45,8 +83,29 @@
             <li><a href="/eliminar_espacio/<str:nombre>">Eliminar espacio</a></li>
         </ul>
         <!-- Botón de Volver -->
-        <a href="/index">Volver</a>
+    </div> -->
+    <div class="bloq-inf">
+        <h4>Universidad Icesi</h4>
+        <h4>Todos los derechos reservados</h4>
+        <h4>Derechos de Autor</h4>
     </div>
+    <script>
+        // Función para redirigir a una página HTML específica
+        function redirigirAHTML() {
+          window.location.href = '/index'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+      </script>
+      <script>
+        // Función para redirigir a una página HTML específica
+        function redirigirAHTML1() {
+          window.location.href = 'registroMateria/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+      </script>
+      <script>
+        // Función para redirigir a una página HTML específica
+        function redirigirAHTML2() {
+          window.location.href = 'registroProfesor/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+      </script>
 </body>
 </html>
-{% endblock %}
