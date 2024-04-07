@@ -96,10 +96,16 @@ class Actividad(models.Model):
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE, default = '', null = False, blank = False)
     def  __str__(self):
             return self.nombre
+        
+class Edificio(models.Model):
+    nombre_edificio = models.CharField(max_length =255, null = False, blank = False, primary_key=True)  
+    numero_espacios= models.IntegerField(null = False, blank = False)
+    def __str__(self):
+          return self.nombre_edificio
     
 class Espacio(models.Model):
     nombre = models.CharField(max_length = 255, null = False, blank = False, primary_key = True)
-    ubicacion = models.CharField(max_length = 255, null = False, blank = False)
+    edificio = models.ForeignKey(Edificio, on_delete=models.CASCADE, default = '', null = False, blank = False)
     capacidad = models.IntegerField(default = 30, null = False, blank = False)
     disponibilidad = models.CharField(max_length = 20, choices = [('Disponible', 'Disponible'), ('No Diponible', 'No Diponible')], default = 'Disponible', null = False, blank = False)
     TIPOS_CHOICES = (
@@ -114,13 +120,14 @@ class Espacio(models.Model):
     
 class Usuario(models.Model):
     nombre = models.CharField(max_length =255, null = False, blank = False)
-    codigo = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
+    cedula = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
     rol = models.CharField(max_length=255, null = False, blank = False)
     departamento = models.CharField(max_length=500, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
     telefono = models.IntegerField( null = False, blank = False)
+    password = models.CharField(max_length= 30,default= 000000000, null= False, blank = False)
     def  __str__(self):
-        return self.codigo 
+        return self.cedula 
 
 class Viaticos (models.Model):
     nombre = models.CharField(max_length =255, null = False, blank = False)

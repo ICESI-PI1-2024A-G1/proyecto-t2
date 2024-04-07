@@ -1,20 +1,18 @@
-{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Programa Académico</title>
+    <title>Crear Espacio</title>
 </head>
 <body>
-    <h1>Editar Programa Académico</h1>
-    <form method="post">
+    <h1>Crear Edificio</h1>
+    <form method="POST">
         {% csrf_token %}
-        
         {{ form.as_p }}
-        <button type="submit">Guardar Cambios</button>
+        <button type="submit">Guardar</button>
+        
     </form>
 </body>
 </html>
-
-{% endblock %}

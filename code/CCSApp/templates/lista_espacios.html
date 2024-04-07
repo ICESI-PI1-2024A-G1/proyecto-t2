@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listar Espacios</title>
+</head>
+<body>
+    <h1>Espacios en {{ edificio.nombre }}</h1>
+    <ul>
+        {% for espacio in espacios %}
+            <li><a href="{% url 'editar_espacio' espacio.nombre %}">{{ espacio.nombre }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

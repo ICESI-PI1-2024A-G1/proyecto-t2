@@ -34,16 +34,17 @@ class ModificarHorarioForm(forms.Form):
     
 
 class NewUsuary(forms.Form):
-    nombre = forms.CharField(label= "nombre", max_length =255)
-    codigo = forms.CharField(label= "codigo", max_length = 100)
-    rol = forms.CharField(label= "rol", max_length=255)
-    departamento = forms.CharField(label= "departamento", max_length=500)
-    correo_electronico = forms.EmailField(label="correo electronico", max_length=500)
-    telefono = forms.IntegerField(label= "telefono")
+    nombre = forms.CharField(label= "nombre", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    cedula = forms.CharField(label= "cedula", max_length = 100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    rol = forms.CharField(label= "rol", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    departamento = forms.CharField(label= "departamento", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    correo_electronico = forms.EmailField(label="correo electronico", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    telefono = forms.IntegerField(label= "telefono", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label="password", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class LoginForm(forms.Form):
-    codigo = forms.CharField(max_length=10)
-    correo_electronico = forms.EmailField()
+    cedula = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class CrearProgramaAcademico(forms.Form):
     name = forms.CharField(label="Nombre", max_length=255, help_text="Ingrese el nombre del programa.")
@@ -84,7 +85,13 @@ class RegistrarProfesor(forms.Form):
     especializacion = forms.CharField(label="Especialización", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     correo = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
     telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    materias = forms.ModelChoiceField(label="Materia Asignada", queryset=Materia.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+
+    # Obtener una lista de tuplas (código_materia, nombre_materia)
+    materias_choices = [(m.codigo, m.nombre) for m in Materia.objects.all()]
+
+    # Campo de selección de materias
+    materias = forms.ChoiceField(label="Materia Asignada", choices=materias_choices, widget=forms.Select(attrs={'class': 'form-control'}))
+
     
 class BuscarProgramaForm(forms.Form):
     codigo = forms.CharField(label="Código del Programa", max_length=100)
@@ -108,23 +115,40 @@ class DirectorDePrograma(forms.Form):
 class ProgramacionSemestral(forms.Form):    
     Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa")
     
-class EspacioForm(forms.ModelForm):
+class EspacioForm(forms.Form):
+    nombre = forms.CharField(label = 'Nombre', max_length= 255)
+    edificio = forms.ModelChoiceField(queryset=Edificio.objects.all(), label='Edificio', empty_label="Seleccione el edificio")
+    capacidad = forms.IntegerField(label = "Capacidad")
+    DISPONIBILIDAD_CHOICES = [
+        ("Disponible","Disponible"),
+        ("No Disponible","No Disponible")
+    ]
+    disponibilidad = forms.ChoiceField(label="Modalidad", choices=DISPONIBILIDAD_CHOICES, help_text="Seleccione la disponibilidad del espacio.")
+    TIPOS_CHOICES = (
+        ('salon', 'salon'),
+        ('auditorio', 'auditorio'),
+        ('coliseo', 'coliseo'),
+        ('sala computo', 'sala computo')
+    )
+    tipo = forms.ChoiceField(label="Modalidad", choices=TIPOS_CHOICES, help_text="Seleccione el tipo de espacio.")
+    
+
+        
+class CrearEdificio(forms.ModelForm):
+    class Meta:
+        model = Edificio
+        fields = ['nombre_edificio', 'numero_espacios']
+        labels = {
+            'Nombre': 'nombre_edificio',
+            'numero': 'numero_espacios',
+            
+        }
+    
+class EditarEspacio(forms.ModelForm):
     class Meta:
         model = Espacio
-        fields = ['nombre', 'ubicacion', 'capacidad', 'disponibilidad', 'tipo']
-        labels = {
-            'nombre': 'Nombre',
-            'ubicacion': 'Ubicación',
-            'capacidad': 'Capacidad',
-            'disponibilidad': 'Disponibilidad',
-            'tipo': 'Tipo',
-        }
+        fields = ['nombre', 'edificio', 'capacidad', 'disponibilidad', 'tipo']
         widgets = {
-            'disponibilidad': forms.Select(choices=[('Disponible', 'Disponible'), ('No Disponible', 'No Disponible')]),
-            'tipo': forms.Select(choices=[
-                ('salon', 'Salón'),
-                ('auditorio', 'Auditorio'),
-                ('coliseo', 'Coliseo'),
-                ('sala_computo', 'Sala de Computo')
-            ])
+            'disponibilidad': forms.Select(choices=Espacio.capacidad),
+            'tipo': forms.Select(choices=Espacio.tipo)
         }

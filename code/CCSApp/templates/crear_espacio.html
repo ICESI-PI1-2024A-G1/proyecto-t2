@@ -1,7 +1,4 @@
-{% extends 'base.html' %}
 
-
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +12,9 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Guardar</button>
+        
     </form>
+    <a href="/crear_edificio"><button>Crear edificio</button></a>
 </body>
 </html>
 
-{% endblock %}

@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listar Edificios</title>
+</head>
+<body>
+    <h1>Edificios Disponibles</h1>
+    <ul>
+        {% for edificio in edificios %}
+            <li><a href="{% url 'lista_espacios' edificio.nombre_edificio %}">{{ edificio.nombre_edificio }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
