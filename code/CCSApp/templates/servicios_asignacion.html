@@ -1,7 +1,9 @@
 {% load static %}
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,25 +11,23 @@
     <link rel="stylesheet" href='{% static "css/servicios_de_asignacion.css" %}' type='text/css'>
 </head>
 <body>
-    <div id="page-container">
-        <div id="page1" class="fad-in">
-            <div class="bloq-sup">
-                <form method="get">
-                    <div class="bloq-sup_secd">
-                        <div class="theboton">
-                            <button class="boton-2" name="boton1" type="button" onclick="redirigirIndex()">
-                            <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
-                            </button>
-                        </div>
-                        <div class="titulo">
-                        <h1>CCSA</h1>
-                            <div class="descripcion">
-                                <h3>Centro Compartido de Servicios Académicos</h3>
-                            </div>
+    <div id="page1" class="fade-in">
+        <div class="bloq-sup">
+            <form method="get">
+                <div class="bloq-sup_secd">
+                    <div class="theboton">
+                        <button class="boton-2" name="boton1" type="button" onclick="redirigirIndex()">
+                        <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+                        </button>
+                    </div>
+                    <div class="titulo">
+                    <h1>CCSA</h1>
+                        <div class="descripcion">
+                            <h3>Centro Compartido de Servicios Académicos</h3>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
             <div class="bloq-mid">
                 <div class="intermed">
                     <h1>Servicios<br>De Asignación</h1>
@@ -45,46 +45,30 @@
                 <div class="intermed-bloq-down">
                     <button class="btn1 success" type="button" onclick="redirigirIndex()">Volver</button>
                 </div>
+                <div class="photo">
+                    <img src="/static/Images/servicios_asignacion.png" alt="Mi imagen">
+                </div> 
+                <div class="bloq-inf">
+                    <h4>Universidad Icesi</h4>
+                    <h4>Todos los derechos reservados</h4>
+                    <h4>Derechos de Autor</h4>
+                </div>
             </div>
-        </form>
-    </div>
-    <div class="bloq-mid">
-        <div class="intermed">
-            <h1>Servicios<br>De Asignación</h1>
         </div>
-        <div class="intermed-bloq">
-                <button class="btn-1" type="button" onclick="redirigirAHTML1()">Registrar Materia</button>
-                <button class="btn-1" type="button" onclick="redirigirAHTML2()">Registrar Profesor</button>
-                <button class="btn-1" type="button" onclick="redirigirAHTML3()">Asignar Horarios</button>
-                <button class="btn-1" type="button" onclick="redirigirAHTML4()">Consultar Horarios</button>
-                <button class="btn-1" type="button" onclick="redirigirAHTML5()">Modificar Horarios</button>
-                <a href="/crear_espacio"><button class="btn-1" type="button">Crear espacio</button></a>
-                <a href="/lista_edificios"><button class="btn-1" type="button">Editar espacio</button></a>
-                <button class="btn-1" type="button">Eliminar espacio</button>
-        </div>
-        <div class="intermed-bloq-down">
-            <button class="btn1 success" type="button" onclick="redirigirAHTML()">Volver</button>
-        </div>
-    </div>
-      <script src="{% static 'js/transiciones.js' %}"></script>
-      <script>
-        // Función para redirigir a una página HTML específica
-        function redirigirAHTML3() {
-          window.location.href = 'asignar_horario/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-        }
-      </script>
-      <script>
-        // Función para redirigir a una página HTML específica
-        function redirigirAHTML4() {
-          window.location.href = 'consultar_horarios/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-        }
-      </script>
-      <script>
-        // Función para redirigir a una página HTML específica
-        function redirigirAHTML5() {
-          window.location.href = 'modificar_horarios/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-        }
-      </script>
+    </div>    
+  <script>
+    // Función para redirigir a una página HTML específica
+    function redirigirAHTML() {
+      window.location.href = '/index'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+    }
+  </script>
+  <script>
+    // Función para redirigir a una página HTML específica
+    function redirigirAHTML2() {
+      window.location.href = 'editar/<str:codigo>/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+    }
+  </script>
+  <script src="{% static 'js/transiciones.js' %}"></script>
       <script>
         // Función para redirigir a una página HTML específica
         function redirigirAHTML3() {
