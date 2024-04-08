@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
   </head>
 <body>
+  <div id="page-container">
     <div id="page1" class="fade-in">
         <div class="bloq-sup">
             <form method="get">
@@ -34,10 +35,10 @@
                 <div class="intermed-bloq">
                         <button class="btn-1" type="button" onclick="redirigirRegistrarMateria()">Registrar Materia</button>
                         <button class="btn-1" type="button" onclick="redirigirRegistrarProfesor()">Registrar Profesor</button>
-                        <button class="btn-1" type="button" onclick="redirigirAHTML3()">Asignar Horarios</button>
-                        <button class="btn-1" type="button" onclick="redirigirAHTML4()">Consultar Horarios</button>
-                        <button class="btn-1" type="button" onclick="redirigirAHTML5()">Modificar Horarios</button>
-                        <button class="btn-1" type="button" onclick="redirigirAHTML6()">Crear Espacio</button>
+                        <button class="btn-1" type="button" onclick="redirigirAsignarHorario()">Asignar Horarios</button>
+                        <button class="btn-1" type="button" onclick="redirigirConsultarHorario()">Consultar Horarios</button>
+                        <button class="btn-1" type="button" onclick="redirigirModificarHorario()">Modificar Horarios</button>
+                        <button class="btn-1" type="button" onclick="redirigirCrearEspacio()">Crear Espacio</button>
                         <button class="btn-1" type="button" onclick="redirigirAHTML7()">Editar Espacio</button>
                         <button class="btn-1" type="button" onclick="redirigirAHTML8()">Eliminar Espacio</button>
                 </div>
@@ -54,7 +55,8 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
+  </div> 
   <script>
     // Función para redirigir a una página HTML específica
     function redirigirAHTML() {
@@ -68,30 +70,6 @@
     }
   </script>
   <script src="{% static 'js/transiciones.js' %}"></script>
-      <script>
-        // Función para redirigir a una página HTML específica
-        function redirigirAHTML3() {
-          window.location.href = 'asignar_horario/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-        }
-      </script>
-      <script>
-        // Función para redirigir a una página HTML específica
-        function redirigirAHTML4() {
-          window.location.href = 'consultar_horarios/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-        }
-      </script>
-      <script>
-        // Función para redirigir a una página HTML específica
-        function redirigirAHTML5() {
-          window.location.href = 'modificar_horarios/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-        }
-      </script>
-      <script>
-        // Función para redirigir a una página HTML específica
-        function redirigirAHTML6() {
-          window.location.href = 'crear_espacio/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-        }
-      </script>
       <script>
         // Función para redirigir a una página HTML específica
         function redirigirAHTML7() {
