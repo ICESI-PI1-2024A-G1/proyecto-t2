@@ -342,7 +342,7 @@ def crear_espacio(request):
         form = EspacioForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/servicios_asignacion')  
+            return redirect('/index/servicios_asignacion')  
     else:
         form = EspacioForm()
     return render(request, 'crear_espacio.html', {'form': form})
