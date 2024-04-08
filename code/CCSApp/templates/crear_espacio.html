@@ -1,20 +1,64 @@
-
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Espacio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Espacios</title>
+  <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
 </head>
+
 <body>
-    <h1>Crear Espacio</h1>
-    <form method="POST">
+  <div class="bloq-sup">
+    <form method="get">
+      <div class="bloq-sup_secd">
+        <button class="boton-2" name="boton1" type="button" onclick="redirigirAHTML()">
+          <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+        </button>
+        <div class="titulo">
+          <h1>CCSA</h1>
+          <div class="descripcion">
+            <h3>Centro Compartido de Servicios Académicos</h3>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="bloq-mid">
+    <div class="intermed">
+      <h1>Crear Nuevo Espacio</h1>
+    </div>
+    <div class="intermed-bloq">
+      <form method="POST" class="form-1">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
-        
-    </form>
-    <a href="/crear_edificio"><button>Crear edificio</button></a>
+        <div class="buttondiv">
+          <button type="submit" class="btn-1">Guardar</button>
+        </div>
+      </form>
+    </div>
+    {% if error %}
+    <div class="error-message">
+      {{ error }}
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="bloq-inf">
+    <h4>Universidad Icesi</h4>
+    <h4>Todos los derechos reservados</h4>
+    <h4>Derechos de Autor</h4>
+  </div>
+
+  <script>
+    // Función para redirigir a una página HTML específica
+    function redirigirAHTML() {
+      window.location.href = '/index/servicios_asignacion'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+    }
+  </script>
 </body>
+
 </html>
 

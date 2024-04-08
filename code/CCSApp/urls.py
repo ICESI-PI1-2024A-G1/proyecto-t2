@@ -28,10 +28,10 @@ urlpatterns = [
     
     path('delete_program/<str:codigo>',views.delete_program,name = 'delete-program'),
     path('program_csv', views.programs_csv, name = 'program-csv'),
-    path('crear_espacio/', views.crear_espacio, name="crear_espacio"),
+    path('index/servicios_asignacion/crear_espacio/', views.crear_espacio, name="crear_espacio"),
     path('crear_edificio/', views.crear_edificio, name="crear_edificio"),
     
-    path('lista_edificios/', views.lista_edificios, name='lista_edificios'),
-    path('lista_espacios/<str:nombre_edificio>/', views.lista_espacios, name='lista_espacios'),
-    path('editar_espacio/<str:nombre>/', views.editar_espacio, name='editar_espacio')
+    path('index/servicios_asignacion/lista_edificios/', views.lista_edificios, name='lista_edificios'),
+    path('index/servicios/asignacion/lista_espacios/<str:nombre_edificio>/', views.lista_espacios, name='lista_espacios'),
+    path('index/servicios_asignacion/editar_espacio/<str:nombre>/', views.editar_espacio, name='editar_espacio')
     ]

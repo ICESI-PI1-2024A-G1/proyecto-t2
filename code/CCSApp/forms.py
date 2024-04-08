@@ -116,21 +116,21 @@ class ProgramacionSemestral(forms.Form):
     Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa")
     
 class EspacioForm(forms.Form):
-    nombre = forms.CharField(label = 'Nombre', max_length= 255)
-    edificio = forms.ModelChoiceField(queryset=Edificio.objects.all(), label='Edificio', empty_label="Seleccione el edificio")
-    capacidad = forms.IntegerField(label = "Capacidad")
+    nombre = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    edificio = forms.ModelChoiceField(queryset=Edificio.objects.all(), label='Edificio', empty_label="Seleccione el edificio", widget=forms.Select(attrs={'class': 'form-control'}))
+    capacidad = forms.IntegerField(label = "Capacidad", widget=forms.TextInput(attrs={'class': 'form-control'}))
     DISPONIBILIDAD_CHOICES = [
         ("Disponible","Disponible"),
         ("No Disponible","No Disponible")
     ]
-    disponibilidad = forms.ChoiceField(label="Modalidad", choices=DISPONIBILIDAD_CHOICES, help_text="Seleccione la disponibilidad del espacio.")
+    disponibilidad = forms.ChoiceField(label="Modalidad", choices=DISPONIBILIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
     TIPOS_CHOICES = (
         ('salon', 'salon'),
         ('auditorio', 'auditorio'),
         ('coliseo', 'coliseo'),
         ('sala computo', 'sala computo')
     )
-    tipo = forms.ChoiceField(label="Modalidad", choices=TIPOS_CHOICES, help_text="Seleccione el tipo de espacio.")
+    tipo = forms.ChoiceField(label="Modalidad", choices=TIPOS_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
     
 
         
