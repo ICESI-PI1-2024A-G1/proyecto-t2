@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'CCSApp'
 ]
 
+MIGRATION_MODULES  = {
+    'CCSApp': 'CCSApp.migrations'
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

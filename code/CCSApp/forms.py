@@ -86,11 +86,11 @@ class RegistrarProfesor(forms.Form):
     correo = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
     telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
-    # Obtener una lista de tuplas (código_materia, nombre_materia)
-    materias_choices = [(m.codigo, m.nombre) for m in Materia.objects.all()]
+    materias = forms.ChoiceField(label="Materia Asignada", choices=[], widget=forms.Select(attrs={'class': 'form-control'}))
 
-    # Campo de selección de materias
-    materias = forms.ChoiceField(label="Materia Asignada", choices=materias_choices, widget=forms.Select(attrs={'class': 'form-control'}))
+    def _init_(self, *args, **kwargs):
+        super(RegistrarProfesor, self)._init_(*args, **kwargs)
+        self.fields['materias'].choices = [(m.codigo, m.nombre) for m in Materia.objects.all()]
 
     
 class BuscarProgramaForm(forms.Form):
@@ -99,7 +99,7 @@ class BuscarProgramaForm(forms.Form):
 class EditarProgramaForm(forms.ModelForm):
     class Meta:
         model = Programa_de_posgrado
-        fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion','estado', 'duracion', 'facultad', 'modalidad']
+        fields = ['nombre_programa', 'codigo', 'fecha_inicio', 'fecha_finalizacion','estado', 'duracion', 'facultad', 'modalidad']
         widgets = {
             'estado': forms.Select(choices=Programa_de_posgrado.estado),
         }
