@@ -79,6 +79,30 @@ button {
     }
 }
 
+.form-1 {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.form-1 th,
+.form-1 td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.form-1 th {
+    background-color: #f2f2f2;
+}
+
+.form-1 tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.form-1 tbody tr:hover {
+    background-color: #ddd;
+}
+
 .button {
     /* Alinear los botones con los campos de texto */
     padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
@@ -132,19 +156,20 @@ button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -57%);
-    /* background-color: #28C985;
-    width: 50%; */
+    /* background-color: #28C985; */
+    /* width: 50%; */
 }
 
 .intermed {
     position: relative;
-    top: 20px; /* Ajusta este valor según lo que necesites */
+    top: 20%; /* Ajusta este valor según lo que necesites */
+    left: 17%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 400px;
+    width: 55%;
     height: 30px;
-    
+    /* background-color: aqua; */
 }
 
 

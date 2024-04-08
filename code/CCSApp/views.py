@@ -245,8 +245,6 @@ def registrar_profesor(request):
         'form': form
     })
 
-
-
 def lista_programas(request):
     programas = Programa_de_posgrado.objects.all()
     return render(request, 'lista_programas.html', {'programas': programas})
