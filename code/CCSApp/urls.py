@@ -27,7 +27,7 @@ urlpatterns = [
     path('programacion/materias/<int:materia_id>/horarios/', views.horarios, name='horarios'),
     
     path('delete_program/<str:codigo>',views.delete_program,name = 'delete-program'),
-    path('program_csv', views.programs_csv, name = 'program-csv'),
+    path('index/program_csv/', views.programs_csv, name = 'program-csv'),
     path('index/servicios_asignacion/crear_espacio/', views.crear_espacio, name="crear_espacio"),
     path('crear_edificio/', views.crear_edificio, name="crear_edificio"),
     

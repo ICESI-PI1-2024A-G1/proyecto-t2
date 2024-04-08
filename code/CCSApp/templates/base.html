@@ -33,7 +33,7 @@
                 <button class="btn-1" type="button" onclick="redirigirGestion()">Gestion de Informacion</button>
                 <button class="btn-1" type="button" onclick="redirigirAHTML2()">Asignacion de Viaticos</button>
                 <button class="btn-1" type="button" onclick="redirigirServiciosAsignacion()">Servicios de Asignacion</button>
-                <button class="btn-1" type="button" onclick="redirigirAHTML()">Descargar CSV de programas</button>
+                <button class="btn-1" type="button" onclick="descargarCSV()">Descargar CSV de programas</button>
                 <!-- <nav>
                     <ul>
                         <li>
@@ -88,5 +88,11 @@
     </div>
 </div>    
     <script src="{% static 'js/transiciones.js' %}"></script>
+    <script>
+        // Función para redirigir a una página HTML específica
+        function descargarCSV() {
+          window.location.href = 'program_csv/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+    </script>
 </body>
 </html>
