@@ -99,9 +99,9 @@ class BuscarProgramaForm(forms.Form):
 class EditarProgramaForm(forms.ModelForm):
     class Meta:
         model = Programa_de_posgrado
-        fields = ['nombre_programa', 'codigo', 'fecha_inicio', 'fecha_finalizacion','estado', 'duracion', 'facultad', 'modalidad']
+        fields = ['nombre_programa', 'codigo_programa', 'fecha_inicio_programa','estado_programa', 'duracion_programa', 'facultad_programa', 'modalidad_programa']
         widgets = {
-            'estado': forms.Select(choices=Programa_de_posgrado.estado),
+            'estado': forms.Select(choices=Programa_de_posgrado.estado_programa),
         }
 
         
@@ -147,8 +147,8 @@ class CrearEdificio(forms.ModelForm):
 class EditarEspacio(forms.ModelForm):
     class Meta:
         model = Espacio
-        fields = ['nombre', 'edificio', 'capacidad', 'disponibilidad', 'tipo']
+        fields = ['espacio_codigo', 'edificio_espacio', 'capacidad_espacio', 'disponibilidad_espacio', 'tipo']
         widgets = {
-            'disponibilidad': forms.Select(choices=Espacio.capacidad),
+            'disponibilidad': forms.Select(choices=Espacio.capacidad_espacio),
             'tipo': forms.Select(choices=Espacio.tipo)
         }
