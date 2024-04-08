@@ -22,7 +22,7 @@ def asignar_horario(request):
             horario = Horario.objects.create(id = id, fecha_hora=fecha_hora, profesor=profesor, materia=materia,
                                               modalidad=modalidad, enlace_virtual=enlace_virtual,
                                               salon_presencial=salon_presencial)
-            return redirect('/servicios_asignacion')  
+            return redirect('/index/servicios_asignacion')  
     else:
         form = NewHorario()
 
@@ -41,7 +41,7 @@ def modificar_horarios(request):
             horario.enlace_virtual = form.cleaned_data['enlace_virtual']
             horario.salon_presencial = form.cleaned_data['espacio']
             horario.save()
-            return redirect('/servicios_asignacion') 
+            return redirect('/index/servicios_asignacion') 
     else:
         form = ModificarHorarioForm()
     return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
@@ -342,7 +342,7 @@ def crear_espacio(request):
         form = EspacioForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/servicios_asignacion')  
+            return redirect('/index/servicios_asignacion')  
     else:
         form = EspacioForm()
     return render(request, 'crear_espacio.html', {'form': form})

@@ -49,6 +49,35 @@ button {
     margin-left: 0.5em;
 }
 
+/* Animación de entrada */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animación de salida */
+.fade-out {
+    opacity: 1;
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
 
 .button {
     /* Alinear los botones con los campos de texto */
@@ -75,8 +104,8 @@ button {
     background-color: #28C985;
     border-radius: 1.5rem;
     width: 30%;
-    height: 30%;
-    margin: 5px;
+    height: 40%;
+    margin: 6px;
     /* border: #ccc; */
     border:0.7px solid #000000c8;
 }
@@ -102,11 +131,9 @@ button {
     background-color: #28C985;
     border-radius: 1.5rem;
     width: 95%;
-    height: 85%;
+    height: 100%;
     margin: 5px;
     /* border:0.7px solid #000000c8; */
-
-
     border: none; 
     color: black; 
     /* padding: 14px 28px;  */
@@ -126,11 +153,11 @@ button {
     display: block;
     justify-content: center;
     position: fixed;
-    top:50%;
+    top: 42%;
     left: 30%;
     transform: translate(-50%, -57%);
     width: 58%;
-    height: 50%;
+    height: 42%;
     /* background-color: #28C985; */
 }
 
@@ -161,14 +188,13 @@ button {
     display: block;
     justify-content: center;
     position: fixed;
-    top: 108%;
+    top: 128%;
     left: 42%;
     transform: translate(-50%, -57%);
     width: 15%;
     height: 17%;
     /* background-color: #28C985; */
 }
-
 
 .bloq-sup{
     /* display: flex;
@@ -183,10 +209,10 @@ button {
 
 .bloq-inf {
     position: fixed;
-    bottom: 0;
-    left: 0px; /* Asegúrate de agregar las unidades de medida (px en este caso) */
-    width: 100%;
-    height: 17%;
+    top: 156%;
+    left: 0%; /* Asegúrate de agregar las unidades de medida (px en este caso) */
+    width: 172%;
+    height: 40%;
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
@@ -211,7 +237,7 @@ button {
 }
 
 .titulo {
-    margin-right: 10px; /* Ajusta el margen según sea necesario */
+    margin-right: 10%; /* Ajusta el margen según sea necesario */
     line-height: 62px; 
 }
 
@@ -224,7 +250,7 @@ button {
     text-align: center;
     margin-top: 40px; /* Ajusta este valor según sea necesario */
 }
-
+ 
 .form-control {
     width: 72%; /* O el ancho deseado */
     padding: 8px; /* Ajusta el relleno según sea necesario */
@@ -235,19 +261,20 @@ button {
 }
 
 .photo{
-    width: 40%; /* Ancho del div */
-    height: 55%; /* Altura del div */
-    border: 0px solid #ccc; /* Borde del div */
+    width: 74%; /* Ancho del div */
+    height: 120%; /* Altura del div */
+    /* border: 0px solid #ccc; Borde del div */
+    border: 0px solid #000000;
     overflow: hidden;
     display: block;
     justify-content: center;
     position: fixed;
-    top: 52%;
-    left: 72%;
+    top: 78%;
+    left: 122%;
     transform: translate(-50%, -57%);
 }
 
 .photo img {
-    width: 100%; /* Para que la imagen ocupe todo el ancho del div */
+    width: 110%; /* Para que la imagen ocupe todo el ancho del div */
     height: auto; /* Para mantener la proporción de la imagen */
 }
