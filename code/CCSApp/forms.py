@@ -1,11 +1,17 @@
 from django import forms
 from .models import *
 
+
+class RegistrarHorario(forms.Form):
+    id_perido = forms.CharField(label = 'Id Periodo', max_length= 7, widget= forms.TextInput(attrs={'class': 'form-control'}))
+    fecha_inicio_periodo = forms.DateField(label = "Fecha de inicio", widget = forms.DateTimeInput(attrs= {'type ' : 'date'}))
+    fecha_final_periodo = forms.DateField(label = "Fecha de finalizacion", widget = forms.DateInput(attrs= {'type':'date'}))
+
+
 class NewHorario(forms.Form):
     id = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     fecha_hora = forms.DateTimeField(label="Fecha", widget=forms.DateTimeInput(attrs={'type': 'date'}))
-    profesor = forms.ModelChoiceField(label="Profesor",queryset=Profesor.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
-    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    
     
     MODALIDAD_CHOICES = [
         ('presencial', 'Presencial'),

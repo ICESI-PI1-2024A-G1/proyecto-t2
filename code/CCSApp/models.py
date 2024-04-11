@@ -4,6 +4,8 @@ from django.db import models
 fecha_inicio_por_defecto = date(2024, 3, 15)
 fecha_finalizacion_por_defecto = date(2025, 3, 14)
 
+#AL EDITAR SI VAN A PONER UNA LLAVE FORANEA ASEGURENSE QUE EL MODELO AL QUE VAN A REFERIRSE CON LA LLAVE ESTE ARRIBA DEL QUE ESTAN EDITANDO.
+
 
 class Periodo(models.Model):
     id_periodo = models.CharField(max_length= 10, unique= True, default= '', null= False, blank= False, primary_key= True)
@@ -21,7 +23,7 @@ class Horario(models.Model):
         ('mixta', 'Mixta'),
     ]
 
-    id = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
+    id_horario = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
     fecha_inicio_hora = models.DateTimeField(default= '')
     fecha_final_hora = models.DateTimeField()
     profesor = models.ForeignKey('Profesor', on_delete=models.CASCADE)
@@ -55,23 +57,32 @@ class Programa_de_posgrado(models.Model):
     modalidad_programa = models.CharField(max_length = 20, choices = [('Presencial', 'Presencial'), ('Virtual', 'Virtual'), ('Mixta', 'Mixta')], default = 'Presencial', null = False, blank = False) #cambio
     def  __str__(self):
         return self.nombre_programa
-    
-    
-class Malla_curricular(models.Model): #replantear
-    nombre_malla = models.CharField(max_length =255, primary_key=True, null = False, blank = False)
-    requisitos_previos = models.TextField(null=False, blank=False)
-    programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
-    def  __str__(self):
-            return self.nombre_malla
-    
+
 class Materia(models.Model):
     nombre_materia = models.CharField(max_length =255, null = False, blank = False)
     codigo_materia = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
     creditos_materia = models.IntegerField(default = 1, null = False, blank = False)
     syllabus = models.FileField(upload_to="syllabus/", blank=True, null=True)
-    nrc = models.IntegerField(null = False, blank = False, default= 00000)
     def  __str__(self):
         return self.codigo_materia
+       
+class Semestre(models.Model):
+    nombre_semestre = models.CharField(max_length=255, null=False, blank=False, primary_key= True)
+    estado_semestre = models.BooleanField(default=True)  # Cambiar a charfield
+    materias = models.ForeignKey(Materia, on_delete=models.CASCADE, default = '', null = False, blank = False)
+
+    def __str__(self):
+        return self.nombre_semestre   
+
+class Malla_curricular(models.Model): #replantear
+    nombre_malla = models.CharField(max_length =255, primary_key=True, null = False, blank = False)
+    requisitos_previos = models.TextField(null=False, blank=False)
+    programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    semestre = models.ForeignKey(Semestre, on_delete= models.CASCADE, default= '', null = False, blank = False)
+    def  __str__(self):
+            return self.nombre_malla
+    
+
 
 class Profesor(models.Model):
     nombre_profesor = models.CharField(max_length =255, null = False, blank = False)
@@ -79,7 +90,6 @@ class Profesor(models.Model):
     especializacion_profesor = models.CharField(max_length=255, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
     telefono = models.IntegerField(null = False, blank = False)
-    materias = models.ForeignKey(Materia, on_delete=models.CASCADE, default = '', null = False, blank = False) #necesita cambio
     def  __str__(self):
         return self.cedula_profesor
  
@@ -158,14 +168,7 @@ class Solicitud_de_servicio(models.Model):
     def  __str__(self):
         return self.nombre_solicitud
  
-class Semestre(models.Model):
-    nombre_semestre = models.CharField(max_length=255, null=False, blank=False)
-    estado_semestre = models.BooleanField(default=True)  # Cambiar a charfield
-    carreras = models.ForeignKey(Programa_de_posgrado, on_delete = models.CASCADE, default = '', null = False, blank = False)
-    materias = models.ForeignKey(Materia, on_delete=models.CASCADE, default = '', null = False, blank = False)
 
-    def __str__(self):
-        return self.nombre_semestre
 
 class Director_de_programa(models.Model):
      nombre_director= models.CharField(max_length =255, null = False, blank = False)
@@ -175,6 +178,14 @@ class Director_de_programa(models.Model):
 
      def __str__(self):
           return self.nombre_director
+     
+class Materia_profesor(models.Model):
+     id = models.CharField(max_length= 7, null = False, default= "0000000", blank= False, primary_key= True)
+     cedula_profesor = models.ForeignKey(Profesor, on_delete= models.CASCADE, default= '', null= False, blank = False)
+     id_nrc = models.CharField(max_length= 5, null = False, default = '00000', blank = False)
+
+     def __str__(self):
+          return self.id
 
     
    
