@@ -6,7 +6,6 @@ fecha_finalizacion_por_defecto = date(2025, 3, 14)
 
 #AL EDITAR SI VAN A PONER UNA LLAVE FORANEA ASEGURENSE QUE EL MODELO AL QUE VAN A REFERIRSE CON LA LLAVE ESTE ARRIBA DEL QUE ESTAN EDITANDO.
 
-
 class Periodo(models.Model):
     id_periodo = models.CharField(max_length= 10, unique= True, default= '', null= False, blank= False, primary_key= True)
     fecha_inicio_periodo = models.DateField()
@@ -26,7 +25,6 @@ class Horario(models.Model):
     id_horario = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
     fecha_inicio_hora = models.DateTimeField(default= '')
     fecha_final_hora = models.DateTimeField()
-    profesor = models.ForeignKey('Profesor', on_delete=models.CASCADE)
     materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
     modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)#
     enlace_virtual = models.URLField(blank=True, null=True)
@@ -65,6 +63,12 @@ class Materia(models.Model):
     syllabus = models.FileField(upload_to="syllabus/", blank=True, null=True)
     def  __str__(self):
         return self.codigo_materia
+    
+class Nrc(models.Model):
+     id_nrc = models.CharField(max_length= 5, unique= True, default= 00000, null = False)
+     periodo_nrc = models.ForeignKey(Periodo, on_delete= models.CASCADE)
+     grupo = models.PositiveIntegerField(default = 1, null = False, blank = False)
+     materia_nrc = models.ForeignKey(Materia, on_delete= models.CASCADE)
        
 class Semestre(models.Model):
     nombre_semestre = models.CharField(max_length=255, null=False, blank=False, primary_key= True)
