@@ -103,7 +103,7 @@ def malla_curricular(request):
                 requisitos_previos=form.cleaned_data['requisitos_previos'],
                 programa_de_posgrado=form.cleaned_data['programa_de_posgrado'],)
             malla_curricular.save()
-            return redirect('/gestion/nuevoprograma/mallacurricular/registroMaterias')  # Redirigir a alguna vista después de guardar el formulario
+            return redirect('/index/servicios_asignacion/registroMateria')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearMallaCurricular()
     return render(request, 'np_malla_curricular.html', {'form' : form})
