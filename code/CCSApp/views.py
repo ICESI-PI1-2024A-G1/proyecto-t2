@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 import csv
@@ -135,6 +136,7 @@ def log_in(request):
         if form.is_valid():
             cedula = form.cleaned_data['cedula']
             clave = form.cleaned_data['password']
+            user = authenticate(request, cedula=cedula, password=clave)
             try:
                 usuario = Usuario.objects.get(cedula=cedula, password=clave)
                 # Autenticación exitosa, puedes redirigir a una página de inicio o hacer cualquier otra cosa que necesites.
@@ -191,6 +193,7 @@ def register_us(request):
 
 def gestion(request):
     return render(request, 'gestion.html')
+
 
 def index(request):
     if request.method == "GET":
