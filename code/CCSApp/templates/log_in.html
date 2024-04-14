@@ -32,7 +32,7 @@
                     <h1>Iniciar Sesión</h1>
                 </div>
                     <div class="intermed-bloq">
-                        <form method="post">
+                        <form method="post" autocomplete="off">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <div class="buttondiv button-container">

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 import csv
@@ -102,7 +103,7 @@ def malla_curricular(request):
                 requisitos_previos=form.cleaned_data['requisitos_previos'],
                 programa_de_posgrado=form.cleaned_data['programa_de_posgrado'],)
             malla_curricular.save()
-            return redirect('/gestion/nuevoprograma/mallacurricular/registroMaterias')  # Redirigir a alguna vista después de guardar el formulario
+            return redirect('/index/servicios_asignacion/registroMateria')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearMallaCurricular()
     return render(request, 'np_malla_curricular.html', {'form' : form})
@@ -135,6 +136,7 @@ def log_in(request):
         if form.is_valid():
             cedula = form.cleaned_data['cedula']
             clave = form.cleaned_data['password']
+            user = authenticate(request, cedula=cedula, password=clave)
             try:
                 usuario = Usuario.objects.get(cedula=cedula, password=clave)
                 # Autenticación exitosa, puedes redirigir a una página de inicio o hacer cualquier otra cosa que necesites.
@@ -192,6 +194,7 @@ def register_us(request):
 def gestion(request):
     return render(request, 'gestion.html')
 
+
 def index(request):
     if request.method == "GET":
         return render(request, 'index.html')
@@ -244,8 +247,6 @@ def registrar_profesor(request):
     return render(request, 'registro_profesores.html', {
         'form': form
     })
-
-
 
 def lista_programas(request):
     programas = Programa_de_posgrado.objects.all()
