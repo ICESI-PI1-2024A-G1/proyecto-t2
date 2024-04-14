@@ -61,8 +61,10 @@ class Materia(models.Model):
     codigo_materia = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
     creditos_materia = models.IntegerField(default = 1, null = False, blank = False)
     syllabus = models.FileField(upload_to="syllabus/", blank=True, null=True)
+    departamento = models.CharField(max_length =255, null = False, blank = False, default= 'Universidad Icesi')
     def  __str__(self):
         return self.codigo_materia
+    
     
 class Nrc(models.Model):
      id_nrc = models.CharField(max_length= 5, unique= True, default= 00000, null = False)
