@@ -1,11 +1,17 @@
 from django import forms
 from .models import *
 
+
+class RegistrarHorario(forms.Form):
+    id_perido = forms.CharField(label = 'Id Periodo', max_length= 7, widget= forms.TextInput(attrs={'class': 'form-control'}))
+    fecha_inicio_periodo = forms.DateField(label = "Fecha de inicio", widget = forms.DateTimeInput(attrs= {'type ' : 'date'}))
+    fecha_final_periodo = forms.DateField(label = "Fecha de finalizacion", widget = forms.DateInput(attrs= {'type':'date'}))
+
+
 class NewHorario(forms.Form):
     id = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     fecha_hora = forms.DateTimeField(label="Fecha", widget=forms.DateTimeInput(attrs={'type': 'date'}))
-    profesor = forms.ModelChoiceField(label="Profesor",queryset=Profesor.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
-    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    
     
     MODALIDAD_CHOICES = [
         ('presencial', 'Presencial'),
@@ -86,11 +92,11 @@ class RegistrarProfesor(forms.Form):
     correo = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
     telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
-    # Obtener una lista de tuplas (código_materia, nombre_materia)
-    materias_choices = [(m.codigo, m.nombre) for m in Materia.objects.all()]
+    materias = forms.ChoiceField(label="Materia Asignada", choices=[], widget=forms.Select(attrs={'class': 'form-control'}))
 
-    # Campo de selección de materias
-    materias = forms.ChoiceField(label="Materia Asignada", choices=materias_choices, widget=forms.Select(attrs={'class': 'form-control'}))
+    def _init_(self, *args, **kwargs):
+        super(RegistrarProfesor, self)._init_(*args, **kwargs)
+        self.fields['materias'].choices = [(m.codigo, m.nombre) for m in Materia.objects.all()]
 
 class ProfesorSearchForm(forms.Form):
     nombre = forms.CharField(label='Nombre del Profesor', max_length=255)
@@ -106,9 +112,9 @@ class BuscarProgramaForm(forms.Form):
 class EditarProgramaForm(forms.ModelForm):
     class Meta:
         model = Programa_de_posgrado
-        fields = ['name', 'codigo', 'descripcion', 'fecha_inicio', 'fecha_finalizacion','estado', 'duracion', 'facultad', 'modalidad']
+        fields = ['nombre_programa', 'codigo_programa', 'fecha_inicio_programa','estado_programa', 'duracion_programa', 'facultad_programa', 'modalidad_programa']
         widgets = {
-            'estado': forms.Select(choices=Programa_de_posgrado.estado),
+            'estado': forms.Select(choices=Programa_de_posgrado.estado_programa),
         }
 
         
@@ -154,8 +160,8 @@ class CrearEdificio(forms.ModelForm):
 class EditarEspacio(forms.ModelForm):
     class Meta:
         model = Espacio
-        fields = ['nombre', 'edificio', 'capacidad', 'disponibilidad', 'tipo']
+        fields = ['espacio_codigo', 'edificio_espacio', 'capacidad_espacio', 'disponibilidad_espacio', 'tipo']
         widgets = {
-            'disponibilidad': forms.Select(choices=Espacio.capacidad),
+            'disponibilidad': forms.Select(choices=Espacio.capacidad_espacio),
             'tipo': forms.Select(choices=Espacio.tipo)
         }
