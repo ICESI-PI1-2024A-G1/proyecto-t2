@@ -248,6 +248,28 @@ def registrar_profesor(request):
         'form': form
     })
 
+def buscar_profesor(request):
+    if request.method == 'POST':
+        form = ProfesorSearchForm(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            profesores = Profesor.objects.filter(nombre__icontains=nombre)
+            return render(request, 'buscar_profesor.html', {'form': form, 'profesores': profesores})
+    else:
+        form = ProfesorSearchForm()
+    return render(request, 'buscar_profesor.html', {'form': form})
+
+def editar_profesor(request, codigo):
+    profesor = Profesor.objects.get(codigo=codigo)
+    if request.method == 'POST':
+        form = ProfesorEditForm(request.POST, instance=profesor)
+        if form.is_valid():
+            form.save()
+            return redirect('buscar_profesor')
+    else:
+        form = ProfesorEditForm(instance=profesor)
+    return render(request, 'editar_profesor.html', {'form': form})
+
 def lista_programas(request):
     programas = Programa_de_posgrado.objects.all()
     return render(request, 'lista_programas.html', {'programas': programas})

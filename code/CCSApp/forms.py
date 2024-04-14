@@ -92,6 +92,13 @@ class RegistrarProfesor(forms.Form):
     # Campo de selección de materias
     materias = forms.ChoiceField(label="Materia Asignada", choices=materias_choices, widget=forms.Select(attrs={'class': 'form-control'}))
 
+class ProfesorSearchForm(forms.Form):
+    nombre = forms.CharField(label='Nombre del Profesor', max_length=255)
+
+class ProfesorEditForm(forms.ModelForm):
+    class Meta:
+        model = Profesor
+        fields = ['nombre', 'especializacion', 'correo_electronico', 'telefono']
     
 class BuscarProgramaForm(forms.Form):
     codigo = forms.CharField(label="Código del Programa", max_length=100)
