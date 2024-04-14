@@ -104,7 +104,7 @@ class ProfesorSearchForm(forms.Form):
 class ProfesorEditForm(forms.ModelForm):
     class Meta:
         model = Profesor
-        fields = ['nombre', 'especializacion', 'correo_electronico', 'telefono']
+        fields = ['nombre_profesor', 'cedula_profesor', 'especializacion_profesor', 'correo_electronico', 'telefono']
     
 class BuscarProgramaForm(forms.Form):
     codigo = forms.CharField(label="Código del Programa", max_length=100)
