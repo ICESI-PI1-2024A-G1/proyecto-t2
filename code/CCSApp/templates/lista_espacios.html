@@ -8,7 +8,7 @@
     <h1>Espacios en {{ edificio.nombre }}</h1>
     <ul>
         {% for espacio in espacios %}
-            <li><a href="{% url 'editar_espacio' espacio.nombre %}">{{ espacio.nombre }}</a></li>
+            <li><a href="{% url 'editar_espacio' espacio.espacio_codigo %}">{{ espacio.espacio_codigo }}</a></li>
         {% endfor %}
     </ul>
 </body>

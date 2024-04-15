@@ -209,35 +209,24 @@ def registrar_profesor(request):
     if request.method == "POST":
         form = RegistrarProfesor(request.POST)
         if form.is_valid():
-            nombre = form.cleaned_data['nombre']
-            codigo = form.cleaned_data['codigo']
-            especializacion = form.cleaned_data['especializacion']
-            correo_electronico = form.cleaned_data['correo']
+            nombre_profesor = form.cleaned_data['nombre_profesor']
+            cedula_profesor = form.cleaned_data['cedula_profesor']
+            especializacion_profesor = form.cleaned_data['especializacion_profesor']
+            correo_electronico = form.cleaned_data['correo_electronico']
             telefono = form.cleaned_data['telefono']
-            materia_nombre = form.cleaned_data['materias']
             
-            # Buscar la materia por su nombre para obtener el código correspondiente
-            materia_existente = Materia.objects.filter(codigo=materia_nombre).first()
-            
-            if not materia_existente:
-                return render(request, 'registro_profesores.html', {
-                    'form': form,
-                    'error': f'La materia "{materia_nombre}" asignada no existe en la base de datos.'
-                })
-            
-            if Profesor.objects.filter(codigo=codigo).exists():
+            if Profesor.objects.filter(cedula_profesor=cedula_profesor).exists():
                 return render(request, 'registro_profesores.html', {
                     'form': form,
                     'error': 'El profesor ya existe en la base de datos.'
                 })
             else:
                 profesor = Profesor(
-                    nombre=nombre,
-                    codigo=codigo,
-                    especializacion=especializacion,
+                    nombre_profesor=nombre_profesor,
+                    cedula_profesor=cedula_profesor,
+                    especializacion_profesor=especializacion_profesor,
                     correo_electronico=correo_electronico,
                     telefono=telefono,
-                    materias=materia_existente
                 )
                 profesor.save()
                 return redirect('/index')
@@ -252,15 +241,15 @@ def buscar_profesor(request):
     if request.method == 'POST':
         form = ProfesorSearchForm(request.POST)
         if form.is_valid():
-            nombre = form.cleaned_data['nombre']
-            profesores = Profesor.objects.filter(nombre__icontains=nombre)
+            nombre_profesor = form.cleaned_data['nombre_profesor']
+            profesores = Profesor.objects.filter(nombre_profesor__icontains=nombre_profesor)
             return render(request, 'buscar_profesor.html', {'form': form, 'profesores': profesores})
     else:
         form = ProfesorSearchForm()
     return render(request, 'buscar_profesor.html', {'form': form})
 
-def editar_profesor(request, codigo):
-    profesor = Profesor.objects.get(codigo=codigo)
+def editar_profesor(request, nombre_profesor):
+    profesor = Profesor.objects.get(nombre_profesor=nombre_profesor)
     if request.method == 'POST':
         form = ProfesorEditForm(request.POST, instance=profesor)
         if form.is_valid():
@@ -376,10 +365,10 @@ def crear_espacio(request):
         if form.is_valid():
             # Procesar los datos del formulario y guardar el programa académico
             espacio = Espacio(
-                nombre=form.cleaned_data['nombre'],
-                edificio=form.cleaned_data['edificio'],
-                capacidad=form.cleaned_data['capacidad'],
-                disponibilidad=form.cleaned_data['disponibilidad'],
+                espacio_codigo=form.cleaned_data['espacio_codigo'],
+                capacidad_espacio=form.cleaned_data['capacidad_espacio'],
+                edificio_espacio=form.cleaned_data['edificio_espacio'],
+                disponibilidad_espacio=form.cleaned_data['disponibilidad_espacio'],
                 tipo=form.cleaned_data['tipo'])
             espacio.save()
             return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
@@ -404,11 +393,11 @@ def lista_edificios(request):
 
 def lista_espacios(request, nombre_edificio):
     edificio = get_object_or_404(Edificio, pk=nombre_edificio)
-    espacios = Espacio.objects.filter(edificio=edificio)
+    espacios = Espacio.objects.filter(edificio_espacio=edificio)
     return render(request, 'lista_espacios.html', {'edificio': edificio, 'espacios': espacios})
 
-def editar_espacio(request, nombre):
-    espacio = get_object_or_404(Espacio, pk=nombre)
+def editar_espacio(request, espacio_codigo):
+    espacio = get_object_or_404(Espacio, pk=espacio_codigo)
     if request.method == 'POST':
         form = EditarEspacio(request.POST, instance=espacio)
         if form.is_valid():

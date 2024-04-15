@@ -47,7 +47,7 @@
             </form>
             <ul>
                 {% for profesor in profesores %}
-                <li><a href="{% url 'editar_profesor' profesor.codigo %}">{{ profesor.nombre }}</a></li>
+                <li><a href="{% url 'editar_profesor' profesor.nombre_profesor %}">{{ profesor.nombre_profesor }}</a></li>
                 {% endfor %}
             </ul>
         </div>
