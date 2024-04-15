@@ -1,16 +1,60 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-    <title>Editar Espacio</title>
-    <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Espacio</title>
+  <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
+  <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
 </head>
+
 <body>
-    <h1>Editar Espacio</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar Cambios</button>
-    </form>
+  <div id="page-container">
+    <div id="page1" class="fade-in">
+      <div class="bloq-sup">
+        <form method="get">
+          <div class="bloq-sup_secd">
+            <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeRegistro()">
+              <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+            </button>
+            <div class="titulo">
+              <h1>CCSA</h1>
+              <div class="descripcion">
+                <h3>Centro Compartido de Servicios Académicos</h3>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="bloq-mid">
+        <div class="intermed">
+            <h1>Editar Espacio</h1>
+          {% if error %}
+          <div class="error-message">
+            {{ error }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="intermed-bloq">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit", class = "btn-1">Guardar Cambios</button>
+            </form>
+        </div>
+      </div>
+
+      <div class="bloq-inf">
+        <h4>Universidad Icesi</h4>
+        <h4>Todos los derechos reservados</h4>
+        <h4>Derechos de Autor</h4>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/transiciones.js' %}"></script>
 </body>
 </html>
 
