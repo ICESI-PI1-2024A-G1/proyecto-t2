@@ -85,6 +85,14 @@ class CrearMateria(forms.Form):
     syllabus = forms.FileField(label='Selecciona un archivo')
     departamento = forms.CharField(label="Departamento", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
+class MateriaSearchForm(forms.Form):
+    nombre_materia = forms.CharField(label='Nombre de la Materia', max_length=255)
+    
+class MateriaEditForm(forms.ModelForm):
+    class Meta:
+        model = Materia
+        fields = ['nombre_materia', 'codigo_materia', 'creditos_materia', 'syllabus', 'departamento']
+
 class RegistrarProfesor(forms.Form):
     nombre_profesor = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     cedula_profesor = forms.CharField(label="Identificación del profesor", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))

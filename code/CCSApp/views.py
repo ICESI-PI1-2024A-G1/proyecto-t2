@@ -97,6 +97,28 @@ def registrar_materia_malla(request):
                 'error': 'Por favor, proporcione datos válidos.'
             })
 
+def buscar_materia(request):
+    if request.method == 'POST':
+        form = MateriaSearchForm(request.POST)
+        if form.is_valid():
+            nombre_materia = form.cleaned_data['nombre_materia']
+            materias = Materia.objects.filter(nombre_materia__icontains=nombre_materia)
+            return render(request, 'buscar_materia.html', {'form': form, 'materias': materias})
+    else:
+        form = MateriaSearchForm()
+    return render(request, 'buscar_materia.html', {'form': form})
+
+def editar_materia(request, nombre_materia):
+    materia = Materia.objects.get(nombre_materia=nombre_materia)
+    if request.method == 'POST':
+        form = MateriaEditForm(request.POST, instance=materia)
+        if form.is_valid():
+            form.save()
+            return redirect('buscar_materia')
+    else:
+        form = MateriaEditForm(instance=materia)
+    return render(request, 'editar_materia.html', {'form': form})
+
 def malla_curricular(request):
     if request.method == 'POST':
         form = CrearMallaCurricular(request.POST)
