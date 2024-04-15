@@ -18,9 +18,11 @@ urlpatterns = [
     path('index/servicios_asignacion/consultar_horarios/', views.consultar_horarios),
     path('index/servicios_asignacion/', views.servicios_asignacion),
     path('index/servicios_asignacion/registroMateria/', views.registrar_materia_malla),
+    path('index/servicios_asignacion/buscar_materia/', views.buscar_materia, name='buscar_materia'),
+    path('index/servicios_asignacion/editar/<str:nombre_materia>/', views.editar_materia, name='editar_materia'),
     path('index/servicios_asignacion/registroProfesor/', views.registrar_profesor),
     path('index/servicios_asignacion/buscar_profesor/', views.buscar_profesor, name='buscar_profesor'),
-    path('index/servicios_asignacion/editar/<str:codigo>/', views.editar_profesor, name='editar_profesor'),
+    path('index/servicios_asignacion/editar/<str:nombre_profesor>/', views.editar_profesor, name='editar_profesor'),
 
     #path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
     path('index/lista/', views.lista_programas, name='lista_programas'),
@@ -35,5 +37,5 @@ urlpatterns = [
     
     path('index/servicios_asignacion/lista_edificios/', views.lista_edificios, name='lista_edificios'),
     path('index/servicios/asignacion/lista_espacios/<str:nombre_edificio>/', views.lista_espacios, name='lista_espacios'),
-    path('index/servicios_asignacion/editar_espacio/<str:nombre>/', views.editar_espacio, name='editar_espacio')
+    path('index/servicios_asignacion/editar_espacio/<str:espacio_codigo>/', views.editar_espacio, name='editar_espacio')
     ]

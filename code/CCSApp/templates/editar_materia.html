@@ -31,7 +31,7 @@
 
       <div class="bloq-mid">
         <div class="intermed">
-          <h1>Registro de Profesor</h1>
+          <h1>Editar Materia</h1>
           {% if error %}
           <div class="error-message">
             {{ error }}
@@ -39,17 +39,11 @@
           {% endif %}
         </div>
         <div class="intermed-bloq">
-          <!-- buscar_profesor.html -->
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Buscar</button>
-            </form>
-            <ul>
-                {% for profesor in profesores %}
-                <li><a href="{% url 'editar_profesor' profesor.nombre_profesor %}">{{ profesor.nombre_profesor }}</a></li>
-                {% endfor %}
-            </ul>
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar Cambios</button>
+          </form>
         </div>
       </div>
 
@@ -63,3 +57,5 @@
   <script src="{% static 'js/transiciones.js' %}"></script>
 </body>
 </html>
+
+

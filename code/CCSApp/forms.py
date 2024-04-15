@@ -2,15 +2,22 @@ from django import forms
 from .models import *
 
 
-class RegistrarHorario(forms.Form):
+class RegistrarPeriodo(forms.Form):
     id_perido = forms.CharField(label = 'Id Periodo', max_length= 7, widget= forms.TextInput(attrs={'class': 'form-control'}))
     fecha_inicio_periodo = forms.DateField(label = "Fecha de inicio", widget = forms.DateTimeInput(attrs= {'type ' : 'date'}))
     fecha_final_periodo = forms.DateField(label = "Fecha de finalizacion", widget = forms.DateInput(attrs= {'type':'date'}))
 
 
 class NewHorario(forms.Form):
-    id = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    fecha_hora = forms.DateTimeField(label="Fecha", widget=forms.DateTimeInput(attrs={'type': 'date'}))
+    id_horario = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    fecha_inicio_hora = forms.DateTimeField(
+        label="Fecha Inicio",
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
+    )
+    fecha_final_hora = forms.DateTimeField(
+        label="Fecha Final",
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
+    )
     
     
     MODALIDAD_CHOICES = [
@@ -21,6 +28,7 @@ class NewHorario(forms.Form):
     modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
     enlace_virtual = forms.URLField(label="Enlace Virtual", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     espacio = forms.ModelChoiceField(label="Espacio", queryset=Espacio.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
     
 class ModificarHorarioForm(forms.Form):
     horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar", widget=forms.Select(attrs={'class': 'form-control'}))
@@ -79,27 +87,29 @@ class CrearMallaCurricular(forms.Form):
     programa_de_posgrado = forms.ModelChoiceField(label="Programa de posgrado", queryset=Programa_de_posgrado.objects.all(), help_text="Seleccione el programa de posgrado al que pertenece la malla.")
 
 class CrearMateria(forms.Form):
-    nombre = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    codigo = forms.CharField(label="Código", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(attrs={'class': 'form-control'}))
-    creditos = forms.DecimalField(label="Creditos", max_digits=10, widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    syllabus = forms.CharField(label="Syllabus", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    nombre_materia = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    codigo_materia = forms.CharField(label="Código", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    creditos_materia = forms.DecimalField(label="Creditos", max_digits=10, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    syllabus = forms.FileField(label='Selecciona un archivo')
+    departamento = forms.CharField(label="Departamento", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+class MateriaSearchForm(forms.Form):
+    nombre_materia = forms.CharField(label='Nombre de la Materia', max_length=255)
+    
+class MateriaEditForm(forms.ModelForm):
+    class Meta:
+        model = Materia
+        fields = ['nombre_materia', 'codigo_materia', 'creditos_materia', 'syllabus', 'departamento']
 
 class RegistrarProfesor(forms.Form):
-    nombre = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    codigo = forms.CharField(label="Identificación del profesor", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    especializacion = forms.CharField(label="Especialización", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    correo = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    nombre_profesor = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    cedula_profesor = forms.CharField(label="Identificación del profesor", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    especializacion_profesor = forms.CharField(label="Especialización", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    correo_electronico = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
     telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
-    materias = forms.ChoiceField(label="Materia Asignada", choices=[], widget=forms.Select(attrs={'class': 'form-control'}))
-
-    def _init_(self, *args, **kwargs):
-        super(RegistrarProfesor, self)._init_(*args, **kwargs)
-        self.fields['materias'].choices = [(m.codigo, m.nombre) for m in Materia.objects.all()]
-
 class ProfesorSearchForm(forms.Form):
-    nombre = forms.CharField(label='Nombre del Profesor', max_length=255)
+    nombre_profesor = forms.CharField(label='Nombre del Profesor', max_length=255)
 
 class ProfesorEditForm(forms.ModelForm):
     class Meta:
@@ -123,20 +133,20 @@ class DirectorDePrograma(forms.Form):
     numero = forms.IntegerField(label = "Numero celular de contacto")
     correo = forms.CharField(label = "Correo Electronico", max_length= 500)
     descripcion_cargo = forms.CharField(label= "Descripcion", widget= forms.Textarea())
-    foto_de_perfil = forms.ImageField()
+    foto_de_perfil = forms.ImageField
 
 class ProgramacionSemestral(forms.Form):    
     Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa")
     
 class EspacioForm(forms.Form):
-    nombre = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    edificio = forms.ModelChoiceField(queryset=Edificio.objects.all(), label='Edificio', empty_label="Seleccione el edificio", widget=forms.Select(attrs={'class': 'form-control'}))
-    capacidad = forms.IntegerField(label = "Capacidad", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    espacio_codigo = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    capacidad_espacio = forms.IntegerField(label = "Capacidad", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    edificio_espacio = forms.ModelChoiceField(queryset=Edificio.objects.all(), label='Edificio', empty_label="Seleccione el edificio", widget=forms.Select(attrs={'class': 'form-control'}))
     DISPONIBILIDAD_CHOICES = [
         ("Disponible","Disponible"),
         ("No Disponible","No Disponible")
     ]
-    disponibilidad = forms.ChoiceField(label="Modalidad", choices=DISPONIBILIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+    disponibilidad_espacio = forms.ChoiceField(label="Disponibilidad", choices=DISPONIBILIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
     TIPOS_CHOICES = (
         ('salon', 'salon'),
         ('auditorio', 'auditorio'),
@@ -160,8 +170,8 @@ class CrearEdificio(forms.ModelForm):
 class EditarEspacio(forms.ModelForm):
     class Meta:
         model = Espacio
-        fields = ['espacio_codigo', 'edificio_espacio', 'capacidad_espacio', 'disponibilidad_espacio', 'tipo']
+        fields = ['espacio_codigo', 'capacidad_espacio', 'edificio_espacio', 'disponibilidad_espacio', 'tipo']
         widgets = {
-            'disponibilidad': forms.Select(choices=Espacio.capacidad_espacio),
+            'disponibilidad_espacio': forms.Select(choices=Espacio.disponibilidad_espacio),
             'tipo': forms.Select(choices=Espacio.tipo)
         }

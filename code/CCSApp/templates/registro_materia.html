@@ -33,7 +33,7 @@
           <h1>Crear Nueva Materia</h1>
         </div>
         <div class="intermed-bloq">
-          <form method="POST" class="form-1">
+          <form method="POST" class="form-1" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <div class="buttondiv">
