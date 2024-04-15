@@ -11,19 +11,32 @@ import csv
 def asignar_horario(request):
     if request.method == 'POST':
         form = NewHorario(request.POST)
-        if form.is_valid():
-            # Guardar el objeto Horario en la base de datos
-            id = form.cleaned_data['id']
-            fecha_hora = form.cleaned_data['fecha_hora']
-            profesor = form.cleaned_data['profesor']
-            materia = form.cleaned_data['materia']
-            modalidad = form.cleaned_data['modalidad']
-            enlace_virtual = form.cleaned_data['enlace_virtual']
-            salon_presencial = form.cleaned_data['espacio']
-            horario = Horario.objects.create(id = id, fecha_hora=fecha_hora, profesor=profesor, materia=materia,
-                                              modalidad=modalidad, enlace_virtual=enlace_virtual,
-                                              salon_presencial=salon_presencial)
-            return redirect('/index/servicios_asignacion')  
+        try:
+            if form.is_valid():
+                id = form.cleaned_data['id']
+                fecha_i_hora = form.cleaned_data['fecha_i_hora']
+                fecha_f_hora = form.cleaned_data['fecha_f_hora']
+                modalidad = form.cleaned_data['modalidad']
+                enlace_virtual = form.cleaned_data['enlace_virtual']
+                salon_presencial = form.cleaned_data['espacio']
+                materia = form.cleaned_data['materia']
+
+                # Validación de la modalidad y ajuste de campos según corresponda
+                if modalidad == 'Presencial':
+                    enlace_virtual = None
+                elif modalidad == 'Virtual':
+                    salon_presencial = None
+                
+                horario = Horario.objects.create(id=id, fecha_i_hora=fecha_i_hora, fecha_f_hora=fecha_f_hora,
+                                                  materia=materia, modalidad=modalidad, enlace_virtual=enlace_virtual,
+                                                  salon_presencial=salon_presencial)
+                return redirect('/index/servicios_asignacion')
+        except Exception as e:
+            # Manejo de errores si ocurre algún problema al crear el objeto Horario
+            # Puedes personalizar este manejo de errores según tus necesidades
+            print(f"Error al crear el horario: {e}")
+            # Aquí puedes agregar un mensaje de error para mostrar al usuario si lo deseas
+            pass
     else:
         form = NewHorario()
 
@@ -35,8 +48,8 @@ def modificar_horarios(request):
         if form.is_valid():
             horario_id = form.cleaned_data['horario_id']
             horario = Horario.objects.get(pk=horario_id)
-            horario.fecha_hora = form.cleaned_data['fecha_hora']
-            horario.profesor = form.cleaned_data['profesor']
+            horario.fecha_inicio_hora = form.cleaned_data['fecha_i_hora']
+            horario.fecha_final_hora = form.cleaned_data['fecha_f_hora']
             horario.materia = form.cleaned_data['materia']
             horario.modalidad = form.cleaned_data['modalidad']
             horario.enlace_virtual = form.cleaned_data['enlace_virtual']

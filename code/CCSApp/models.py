@@ -31,7 +31,7 @@ class Horario(models.Model):
     salon_presencial = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.fecha_inicio_hora} - {self.fecha_final_hora} - {self.profesor} - {self.materia} ({self.modalidad})'
+        return self.id_horario
     
 class Facultad(models.Model):
     codigo_facultad = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True) #cambio
