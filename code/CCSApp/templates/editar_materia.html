@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de espacios</title>
+  <title>Registrar Profesores Activos</title>
   <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
   <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
 </head>
@@ -31,7 +31,7 @@
 
       <div class="bloq-mid">
         <div class="intermed">
-  
+          <h1>Editar Materia</h1>
           {% if error %}
           <div class="error-message">
             {{ error }}
@@ -39,12 +39,11 @@
           {% endif %}
         </div>
         <div class="intermed-bloq">
-            <h1>Espacios en {{ edificio.nombre }}</h1>
-            <ul>
-                {% for espacio in espacios %}
-                    <button class = "btn-1"><a href="{% url 'editar_espacio' espacio.espacio_codigo %}">{{ espacio.espacio_codigo }}</button></li>
-                {% endfor %}
-            </ul>
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar Cambios</button>
+          </form>
         </div>
       </div>
 
@@ -58,3 +57,5 @@
   <script src="{% static 'js/transiciones.js' %}"></script>
 </body>
 </html>
+
+

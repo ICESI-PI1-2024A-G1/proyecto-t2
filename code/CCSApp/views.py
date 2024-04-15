@@ -1,3 +1,4 @@
+from django.forms import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
@@ -77,11 +78,11 @@ def registrar_materia_malla(request):
         })
     else:
         try:
-            form = CrearMateria(request.POST)
+            form = CrearMateria(request.POST, request.FILES)
             if form.is_valid():
-                codigo_materia = form.cleaned_data['codigo']
+                codigo_materia = form.cleaned_data['codigo_materia']
                 # Verificar si ya existe una materia con el mismo código
-                if Materia.objects.filter(codigo=codigo_materia).exists():
+                if Materia.objects.filter(codigo_materia=codigo_materia).exists():
                     # Si existe, puedes manejar la situación como desees,
                     # por ejemplo, mostrando un mensaje de error
                     return render(request, 'registro_materia.html', {
@@ -89,13 +90,17 @@ def registrar_materia_malla(request):
                         'error': 'La materia ya existe en la base de datos.'
                     })
                 else:
+                    syllabus_file = form.cleaned_data['syllabus']
+                    if not syllabus_file.name.endswith('.pdf'):
+                        raise ValidationError('El archivo debe ser un PDF.')
+
                     # Si no existe, crear la nueva materia
                     materia = Materia(
-                        nombre=form.cleaned_data['nombre'],
-                        codigo=codigo_materia,
-                        descripcion=form.cleaned_data['descripcion'],
-                        creditos=form.cleaned_data['creditos'],
-                        syllabus=form.cleaned_data['syllabus']
+                        nombre_materia=form.cleaned_data['nombre_materia'],
+                        codigo_materia=codigo_materia,
+                        departamento=form.cleaned_data['departamento'],
+                        creditos_materia=form.cleaned_data['creditos_materia'],
+                        syllabus=syllabus_file
                     )
                     materia.save()
                     return redirect('/index')
@@ -104,6 +109,28 @@ def registrar_materia_malla(request):
                 'form': CrearMateria,
                 'error': 'Por favor, proporcione datos válidos.'
             })
+
+def buscar_materia(request):
+    if request.method == 'POST':
+        form = MateriaSearchForm(request.POST)
+        if form.is_valid():
+            nombre_materia = form.cleaned_data['nombre_materia']
+            materias = Materia.objects.filter(nombre_materia__icontains=nombre_materia)
+            return render(request, 'buscar_materia.html', {'form': form, 'materias': materias})
+    else:
+        form = MateriaSearchForm()
+    return render(request, 'buscar_materia.html', {'form': form})
+
+def editar_materia(request, nombre_materia):
+    materia = Materia.objects.get(nombre_materia=nombre_materia)
+    if request.method == 'POST':
+        form = MateriaEditForm(request.POST, instance=materia)
+        if form.is_valid():
+            form.save()
+            return redirect('buscar_materia')
+    else:
+        form = MateriaEditForm(instance=materia)
+    return render(request, 'editar_materia.html', {'form': form})
 
 def malla_curricular(request):
     if request.method == 'POST':
