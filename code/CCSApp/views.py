@@ -14,14 +14,14 @@ def asignar_horario(request):
         form = NewHorario(request.POST)
         if form.is_valid():
             # Guardar el objeto Horario en la base de datos
-            id = form.cleaned_data['id']
-            fecha_hora = form.cleaned_data['fecha_hora']
-            profesor = form.cleaned_data['profesor']
-            materia = form.cleaned_data['materia']
+            id_horario = form.cleaned_data['id_horario']
+            fecha_inicio_hora = form.cleaned_data['fecha_inicio_hora']
+            fecha_final_hora = form.cleaned_data['fecha_final_hora']
             modalidad = form.cleaned_data['modalidad']
             enlace_virtual = form.cleaned_data['enlace_virtual']
             salon_presencial = form.cleaned_data['espacio']
-            horario = Horario.objects.create(id = id, fecha_hora=fecha_hora, profesor=profesor, materia=materia,
+            materia = form.cleaned_data['materia']
+            horario = Horario.objects.create(id_horario = id_horario, fecha_inicio_hora=fecha_inicio_hora, fecha_final_hora = fecha_final_hora, materia=materia,
                                               modalidad=modalidad, enlace_virtual=enlace_virtual,
                                               salon_presencial=salon_presencial)
             return redirect('/index/servicios_asignacion')  
@@ -36,8 +36,8 @@ def modificar_horarios(request):
         if form.is_valid():
             horario_id = form.cleaned_data['horario_id']
             horario = Horario.objects.get(pk=horario_id)
-            horario.fecha_hora = form.cleaned_data['fecha_hora']
-            horario.profesor = form.cleaned_data['profesor']
+            horario.fecha_inicio_hora = form.cleaned_data['fecha_i_hora']
+            horario.fecha_final_hora = form.cleaned_data['fecha_f_hora']
             horario.materia = form.cleaned_data['materia']
             horario.modalidad = form.cleaned_data['modalidad']
             horario.enlace_virtual = form.cleaned_data['enlace_virtual']
