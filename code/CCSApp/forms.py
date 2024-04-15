@@ -9,12 +9,12 @@ class RegistrarPeriodo(forms.Form):
 
 
 class NewHorario(forms.Form):
-    id = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    fecha_i_hora = forms.DateTimeField(
+    id_horario = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    fecha_inicio_hora = forms.DateTimeField(
         label="Fecha Inicio",
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
     )
-    fecha_f_hora = forms.DateTimeField(
+    fecha_final_hora = forms.DateTimeField(
         label="Fecha Final",
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
     )
