@@ -61,24 +61,38 @@ class LoginForm(forms.Form):
     password = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class CrearProgramaAcademico(forms.Form):
-    name = forms.CharField(label="Nombre", max_length=255, help_text="Ingrese el nombre del programa.")
-    codigo = forms.CharField(label="Código", max_length=100, help_text="Ingrese el código del programa.")
-    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción del programa.")
-    fecha_inicio = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-    fecha_finalizacion = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    nombre_programa = forms.CharField(label="Nombre", max_length=255, help_text="Ingrese el nombre del programa.")
+    codigo_programa = forms.CharField(label="Código", max_length=100, help_text="Ingrese el código del programa.")
+    fecha_inicio_programa = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     ESTADO_CHOICES = [
         ("Activo","Activo"),
         ("Inactivo","Inactivo")
     ]
-    estado = forms.ChoiceField(label = "estado", choices= ESTADO_CHOICES, help_text= 'Seleccione el estado del programa' )
-    duracion = forms.CharField(label="Duración", help_text="Ingrese la duración del programa.")
-    facultad= forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
+    estado_programa = forms.ChoiceField(label = "Estado", choices= ESTADO_CHOICES, help_text= 'Seleccione el estado del programa' )
+    duracion_programa = forms.CharField(label="Duración", help_text="Ingrese la duración del programa en años")
+    # facultad= forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
+    facultad_programa = forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
     MODALIDADES_CHOICES = [
         ('Presencial', 'Presencial'),
         ('Virtual', 'Virtual'),
         ('Mixta', 'Mixta')
     ]
-    modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDADES_CHOICES, help_text="Seleccione la modalidad del programa.")
+    modalidad_programa = forms.ChoiceField(label="Modalidad", choices=MODALIDADES_CHOICES, help_text="Seleccione la modalidad del programa.")
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        # Get the selected faculty instance
+        selected_faculty = cleaned_data.get('facultad_programa')
+
+        # Validate the selected faculty
+        if not selected_faculty:
+            raise forms.ValidationError('Seleccione una facultad válida.')
+
+        # Update the cleaned data with the faculty instance
+        cleaned_data['facultad_programa'] = selected_faculty
+
+        return cleaned_data
 
 class CrearMallaCurricular(forms.Form):
     nombre = forms.CharField(label="Nombre", max_length=255)

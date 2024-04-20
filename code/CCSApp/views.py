@@ -141,15 +141,13 @@ def nuevo_programa(request):
         if form.is_valid():
             # Procesar los datos del formulario y guardar el programa académico
             programa_academico = Programa_de_posgrado(
-                name=form.cleaned_data['name'],
-                codigo=form.cleaned_data['codigo'],
-                descripcion=form.cleaned_data['descripcion'],
-                fecha_inicio=form.cleaned_data['fecha_inicio'],
-                fecha_finalizacion=form.cleaned_data['fecha_finalizacion'],
-                estado = form.cleaned_data['estado'],
-                duracion=form.cleaned_data['duracion'],
-                facultad=form.cleaned_data['facultad'],
-                modalidad=form.cleaned_data['modalidad'])
+                nombre_programa =form.cleaned_data['nombre_programa'],
+                codigo_programa=form.cleaned_data['codigo_programa'],
+                fecha_inicio_programa =form.cleaned_data['fecha_inicio_programa'],
+                estado_programa = form.cleaned_data['estado_programa'],
+                duracion_programa =form.cleaned_data['duracion_programa'],
+                facultad_programa =form.cleaned_data['facultad_programa'],
+                modalidad_programa =form.cleaned_data['modalidad_programa'])
             programa_academico.save()
             return redirect('/gestion/nuevoprograma/director_programa')  # Redirigir a alguna vista después de guardar el formulario
     else:
@@ -287,15 +285,15 @@ def editar_profesor(request, nombre_profesor):
     return render(request, 'editar_profesor.html', {'form': form})
 
 def lista_programas(request):
-    programas = Programa_de_posgrado.objects.all()
-    return render(request, 'lista_programas.html', {'programas': programas})
+    programas_de_posgrado = Programa_de_posgrado.objects.all()
+    return render(request, 'lista_programas_pos.html', {'programas': programas_de_posgrado})
 
 def editar_programa(request, codigo):  
     programa = get_object_or_404(Programa_de_posgrado, codigo=codigo)  
     form = EditarProgramaForm(request.POST, instance=programa)
     if form.is_valid():
         form.save()
-        return redirect('lista_programas.html')  
+        return redirect('lista_programas_pos.html')  
     else:
         form = EditarProgramaForm(instance=programa)
     return render(request, 'editar_programa.html', {'form': form})

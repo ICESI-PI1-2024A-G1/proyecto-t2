@@ -24,9 +24,9 @@ urlpatterns = [
     path('index/servicios_asignacion/buscar_profesor/', views.buscar_profesor, name='buscar_profesor'),
     path('index/servicios_asignacion/editar/<str:nombre_profesor>/', views.editar_profesor, name='editar_profesor'),
 
-    #path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
+    
     path('index/lista/', views.lista_programas, name='lista_programas'),
-    path('index/gestion/editar/<str:codigo>/', views.editar_programa, name='editar_programa'),
+    path('index/gestion/editar/<str:codigo_programa>/', views.editar_programa, name='editar_programa'),
     path('programacion/materias/<int:programa_id>/', views.materias, name='materias'),
     path('programacion/materias/<int:materia_id>/horarios/', views.horarios, name='horarios'),
     

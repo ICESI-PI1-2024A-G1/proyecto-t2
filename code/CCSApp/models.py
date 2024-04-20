@@ -38,7 +38,7 @@ class Facultad(models.Model):
     nombre_facultad = models.CharField(max_length = 255, null = False, blank = False, default = '') 
 
     def  __str__(self):
-        return self.codigo_facultad
+        return f"{self.codigo_facultad} - {self.nombre_facultad}"
 
 class Programa_de_posgrado(models.Model):
     nombre_programa = models.CharField(max_length =255, unique= True,null = False, blank = False) #cambio
