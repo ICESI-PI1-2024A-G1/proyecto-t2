@@ -36,8 +36,8 @@
                 <form method="get">
                     <div class="intermed-bloq-1">
                             <ul>
-                                {% for programa in programas %}
-                                    <li><a href="{% url 'editar_programa' programa_de_posgrado.codigo_programa %}">{{ programa.nombre_programa }}</a></li>
+                                {% for programas_de_posgrado in programas_de_posgrados %}
+                                    <li><a href="{% url 'editar_programa' programa_de_posgrado.codigo_programa %}">{{ programa_de_posgrado.codigo_programa }}</a></li>
                                 {% endfor %}
                             </ul>            
                     </div>

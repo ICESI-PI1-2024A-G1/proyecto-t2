@@ -288,8 +288,8 @@ def lista_programas(request):
     programas_de_posgrado = Programa_de_posgrado.objects.all()
     return render(request, 'lista_programas_pos.html', {'programas': programas_de_posgrado})
 
-def editar_programa(request, codigo):  
-    programa = get_object_or_404(Programa_de_posgrado, codigo=codigo)  
+def editar_programa(request, codigo_programa):  
+    programa = get_object_or_404(Programa_de_posgrado, codigo_programa=codigo_programa)  
     form = EditarProgramaForm(request.POST, instance=programa)
     if form.is_valid():
         form.save()
@@ -304,10 +304,9 @@ def director_programa(request):
         if form.is_valid():
             # Procesar los datos del formulario y guardar el programa académico
             director_programa = Director_de_programa(
-                nombre=form.cleaned_data['nombre'],
-                numero=form.cleaned_data['numero'],
-                correo=form.cleaned_data['correo'],
-                descripcion_cargo=form.cleaned_data['descripcion_cargo'],
+                nombre_director=form.cleaned_data['nombre_director'],
+                numero_director=form.cleaned_data['numero_director'],
+                correo_director=form.cleaned_data['correo_director'],
                 foto_de_perfil=form.cleaned_data['foto_de_perfil'])
 
             # Guardar la foto

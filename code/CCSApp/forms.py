@@ -95,8 +95,8 @@ class CrearProgramaAcademico(forms.Form):
         return cleaned_data
 
 class CrearMallaCurricular(forms.Form):
-    nombre = forms.CharField(label="Nombre", max_length=255)
-    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción de la malla curricular.")
+    nombre_malla = forms.CharField(label="Nombre", max_length=255)
+    requisitos_previos = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción de la malla curricular.")
     requisitos_previos = forms.CharField(label="Requisitos previos", widget=forms.Textarea(), help_text="Ingrese los requisitos previos a la malla curricular")
     programa_de_posgrado = forms.ModelChoiceField(label="Programa de posgrado", queryset=Programa_de_posgrado.objects.all(), help_text="Seleccione el programa de posgrado al que pertenece la malla.")
 
@@ -143,11 +143,10 @@ class EditarProgramaForm(forms.ModelForm):
 
         
 class DirectorDePrograma(forms.Form):
-    nombre = forms.CharField(label = 'Nombre', max_length= 255)
-    numero = forms.IntegerField(label = "Numero celular de contacto")
-    correo = forms.CharField(label = "Correo Electronico", max_length= 500)
-    descripcion_cargo = forms.CharField(label= "Descripcion", widget= forms.Textarea())
-    foto_de_perfil = forms.ImageField
+    nombre_director = forms.CharField(label = 'Nombre', max_length= 255)
+    numero_director = forms.IntegerField(label = "Numero celular de contacto")
+    correo_director = forms.CharField(label = "Correo Electronico", max_length= 500)
+    foto_de_perfil = forms.ImageField()
 
 class ProgramacionSemestral(forms.Form):    
     Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa")
