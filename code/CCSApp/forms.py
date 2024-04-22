@@ -94,7 +94,7 @@ class CrearMateria(forms.Form):
     departamento = forms.CharField(label="Departamento", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class MateriaSearchForm(forms.Form):
-    nombre_materia = forms.CharField(label='Nombre de la Materia', max_length=255)
+    nombre_materia = forms.CharField(label='Nombre de la Materia', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     
 class MateriaEditForm(forms.ModelForm):
     class Meta:
