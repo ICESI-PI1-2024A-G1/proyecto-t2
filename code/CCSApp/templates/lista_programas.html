@@ -32,15 +32,18 @@
             <div class="bloq-mid-2">
                 <div class="intermed">
                     <h1>Lista de Programas Académicos</h1>
-                </div>
+                </div>    
                 <form method="get">
                     <div class="intermed-bloq-1">
-                            <ul>
-                                {% for programa in programas %}
-                                    <li><a href="{% url 'editar_programa' programa_de_posgrado.codigo_programa %}">{{ programa.nombre_programa }}</a></li>
-                                {% endfor %}
-                            </ul>            
+                        <ul>
+                            {% for programa in programas %}
+                            <p> {{programa.nombre_programa}} </p> 
+                            <p> {{programa.codigo_programa}} </p>     
+                            <p> {{programa.estado_programa}} </p> 
+                            {% endfor %}
+                        </ul>            
                     </div>
+                </form>
             </div>
             <div class="bloq-inf">
                 <h4>Universidad Icesi</h4>

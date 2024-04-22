@@ -285,8 +285,8 @@ def editar_profesor(request, nombre_profesor):
     return render(request, 'editar_profesor.html', {'form': form})
 
 def lista_programas(request):
-    programas_de_posgrado = Programa_de_posgrado.objects.all()
-    return render(request, 'lista_programas_pos.html', {'programas': programas_de_posgrado})
+    programas = Programa_de_posgrado.objects.all()
+    return render(request, 'lista_programas.html', {'programas': programas})
 
 def editar_programa(request, codigo_programa):  
     programa = get_object_or_404(Programa_de_posgrado, codigo_programa=codigo_programa)  
