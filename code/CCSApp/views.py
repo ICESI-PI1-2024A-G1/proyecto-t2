@@ -20,8 +20,8 @@ def asignar_horario(request):
             modalidad = form.cleaned_data['modalidad']
             enlace_virtual = form.cleaned_data['enlace_virtual']
             salon_presencial = form.cleaned_data['espacio']
-            materia = form.cleaned_data['materia']
-            horario = Horario.objects.create(id_horario = id_horario, fecha_inicio_hora=fecha_inicio_hora, fecha_final_hora = fecha_final_hora, materia=materia,
+            nrc = form.cleaned_data['nrc']
+            horario = Horario.objects.create(id_horario = id_horario, fecha_inicio_hora=fecha_inicio_hora, fecha_final_hora = fecha_final_hora, nrc=nrc,
                                               modalidad=modalidad, enlace_virtual=enlace_virtual,
                                               salon_presencial=salon_presencial)
             return redirect('/index/servicios_asignacion')  
@@ -38,7 +38,7 @@ def modificar_horarios(request):
             horario = Horario.objects.get(pk=horario_id)
             horario.fecha_inicio_hora = form.cleaned_data['fecha_i_hora']
             horario.fecha_final_hora = form.cleaned_data['fecha_f_hora']
-            horario.materia = form.cleaned_data['materia']
+            horario.nrc = form.cleaned_data['nrc']
             horario.modalidad = form.cleaned_data['modalidad']
             horario.enlace_virtual = form.cleaned_data['enlace_virtual']
             horario.salon_presencial = form.cleaned_data['espacio']
