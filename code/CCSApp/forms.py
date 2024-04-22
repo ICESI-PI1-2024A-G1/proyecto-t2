@@ -28,13 +28,19 @@ class NewHorario(forms.Form):
     modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
     enlace_virtual = forms.URLField(label="Enlace Virtual", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     espacio = forms.ModelChoiceField(label="Espacio", queryset=Espacio.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
-    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    nrc = forms.ModelChoiceField(label="Nrc", queryset=Nrc.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
     
 class ModificarHorarioForm(forms.Form):
     horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar", widget=forms.Select(attrs={'class': 'form-control'}))
-    fecha_hora = forms.DateTimeField(label="Fecha", widget=forms.DateTimeInput(attrs={'type': 'date'}))
-    profesor = forms.ModelChoiceField(label="Profesor",queryset=Profesor.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
-    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    fecha_inicio_hora = forms.DateTimeField(
+        label="Fecha Inicio",
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
+    )
+    fecha_final_hora = forms.DateTimeField(
+        label="Fecha Final",
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
+    )
+    nrc = forms.ModelChoiceField(label="Nrc", queryset=Nrc.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
     
     MODALIDAD_CHOICES = [
         ('presencial', 'Presencial'),
