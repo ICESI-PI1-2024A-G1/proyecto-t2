@@ -102,7 +102,7 @@ def buscar_materia(request):
         form = MateriaSearchForm(request.POST)
         if form.is_valid():
             nombre_materia = form.cleaned_data['nombre_materia']
-            materias = Materia.objects.filter(nombre_materia__icontains=nombre_materia)
+            materias = Materia.objects.filter(nombre_materia__istartswith=nombre_materia)
             return render(request, 'buscar_materia.html', {'form': form, 'materias': materias})
     else:
         form = MateriaSearchForm()
