@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Horarios</title>
+</head>
+<body>
+    <h1>Lista de Horarios</h1>
+    <ul>
+        {% for horario in horarios %}
+            <li>
+                {{ horario.fecha_hora }} - {{ horario.profesor }} ({horario.modalidad})
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+{% endblock %}

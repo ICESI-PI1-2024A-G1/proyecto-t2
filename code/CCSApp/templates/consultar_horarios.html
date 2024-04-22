@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Horarios</title>
+  <link rel="stylesheet" href='{% static "css/consultar_horario.css" %}' type='text/css'>
+  <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
+</head>
+
+<body>
+  <div id="page-container">
+    <div id="page1" class="fade-in">
+      <div class="bloq-sup">
+        <form method="get">
+          <div class="bloq-sup_secd">
+            <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeConsultarHorarios()">
+              <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+            </button>
+            <div class="titulo">
+              <h1>CCSA</h1>
+              <div class="descripcion">
+                <h3>Centro Compartido de Servicios Académicos</h3>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="bloq-mid">
+        <div class="intermed">
+          <h1>Horarios Registrados</h1>
+        </div>
+        <table class="form-1">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fecha y Hora</th>
+              <th>Profesor</th>
+              <th>Materia</th>
+              <th>Modalidad</th>
+              <th>Enlace Virtual</th>
+              <th>Salon Presencial</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for horario in horarios %}
+            <tr>
+              <td>{{ horario.id }}</td>
+              <td>{{ horario.fecha_hora }}</td>
+              <td>{{ horario.profesor }}</td>
+              <td>{{ horario.materia }}</td>
+              <td>{{ horario.modalidad }}</td>
+              <td>{{ horario.enlace_virtual }}</td>
+              <td>{{ horario.salon_presencial }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bloq-inf">
+        <h4>Universidad Icesi</h4>
+        <h4>Todos los derechos reservados</h4>
+        <h4>Derechos de Autor</h4>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/transiciones.js' %}"></script>
+</body>
+
+</html>
+

@@ -1,20 +1,59 @@
-{% extends 'base2.html' %}
+{% load static %}
 
-
-{% block content %}
-<div>
-    <h1>¡Bienvenido al CCSA! </h1>
-    <h4>Nombre de Usuario</h4>
-    <input type="text" name="Username">
-    <h4>Contraseña</h4>
-    <input type="text" name="Password">
-    <br>
-    <a href="/index">
-        <button>Ingresar</button>
-    </a>
-    
-
-    
-</div>
-
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href='{% static "css/login.css" %}' type='text/css'>
+    <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
+</head>
+<body>
+    <div id="page-container">
+        <div id="page1" class="fade-in">
+            <div class="bloq-sup">
+                <form method="get">
+                    <div class="bloq-sup_secd">
+                    <!-- <button class="boton-2" name="boton1" type="button" onclick="redirigirAHTML()">
+                    <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+                    </button> -->
+                        <div class="titulo">
+                        <h1>CCSA</h1>
+                            <div class="descripcion">
+                                <h3>Centro Compartido de Servicios Académicos</h3>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="bloq-mid">
+                <div class="intermed">
+                    <h1>Iniciar Sesión</h1>
+                </div>
+                    <div class="intermed-bloq">
+                        <form method="post" autocomplete="off">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="buttondiv button-container">
+                                <button type="submit" class="btn-1">Iniciar Sesión</button>
+                                <button type="button" class="btn-1" onclick="redirigirRegistro()">Registrar</button>
+                            </div>                    
+                        </form>
+                    </div>
+                <!-- {% if error %}
+                <div class="error-message">
+                {{ error }}
+                </div>
+                {% endif %} -->
+            </div>
+            <div class="bloq-inf">
+                <h4>Universidad Icesi</h4>
+                <h4>Todos los derechos reservados</h4>
+                <h4>Derechos de Autor</h4>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/transiciones.js' %}"></script>
+</body>
+</html

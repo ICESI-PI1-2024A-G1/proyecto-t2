@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Programas Académicos</title>
+    <link rel="stylesheet" href='{% static "css/lista_programas.css" %}' type='text/css'>
+    <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
+</head>
+<body>
+    <div id="page-container">
+        <div id="page1" class="fade-in">
+            <div class="bloq-sup">
+                <form method="get">
+                    <div class="bloq-sup_secd">
+                        <div class="theboton">
+                            <button class="boton-2" name="boton1" type="button" onclick="redirigirIndex()">
+                            <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+                            </button>
+                        </div>
+                        <div class="titulo">
+                        <h1>CCSA</h1>
+                            <div class="descripcion">
+                                <h3>Centro Compartido de Servicios Académicos</h3>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="bloq-mid-2">
+                <div class="intermed">
+                    <h1>Lista de Programas Académicos</h1>
+                </div>
+                <form method="get">
+                    <div class="intermed-bloq-1">
+                        <!-- <form method="POST"> -->
+                            <!-- {% csrf_token %} -->
+                            <ul>
+                                {% for programa in programas %}
+                                    <li><a href="{% url 'editar_programa' programa.codigo %}">{{ programa.name }}</a></li>
+                                {% endfor %}
+                            </ul>            
+                        <!-- </form> -->
+                    </div>
+                </form>
+                
+                <!-- {% if error %}
+                <div class="error-message">
+                {{ error }}
+                </div>
+                {% endif %} -->
+            </div>
+            <!-- <h1>Lista de Programas Académicos</h1>
+            <ul>
+                {% for programa in programas %}
+                    <li><a href="{% url 'editar_programa' programa.codigo %}">{{ programa.name }}</a></li>
+                {% endfor %}
+            </ul> -->
+            <div class="bloq-inf">
+                <h4>Universidad Icesi</h4>
+                <h4>Todos los derechos reservados</h4>
+                <h4>Derechos de Autor</h4>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/transiciones.js' %}"></script>
+</body>
+</html>
