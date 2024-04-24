@@ -96,7 +96,7 @@ class CrearMateria(forms.Form):
     nombre_materia = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     codigo_materia = forms.CharField(label="Código", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     creditos_materia = forms.DecimalField(label="Creditos", max_digits=10, widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    syllabus = forms.FileField(label='Selecciona un archivo')
+    syllabus = forms.FileField(label='Selecciona un archivo', widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
     departamento = forms.CharField(label="Departamento", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class MateriaSearchForm(forms.Form):
@@ -106,6 +106,13 @@ class MateriaEditForm(forms.ModelForm):
     class Meta:
         model = Materia
         fields = ['nombre_materia', 'codigo_materia', 'creditos_materia', 'syllabus', 'departamento']
+        widgets = {
+            'nombre_materia': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'codigo_materia': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'syllabus': forms.FileInput(attrs={'class': 'form-control'}),
+            'creditos_materia': forms.NumberInput(attrs={'class': 'form-control spaced-input'}),
+            'departamento': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+        }
 
 class RegistrarProfesor(forms.Form):
     nombre_profesor = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
