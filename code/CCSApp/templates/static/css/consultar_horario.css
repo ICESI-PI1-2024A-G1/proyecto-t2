@@ -79,6 +79,31 @@ button {
     }
 }
 
+
+.div_boton_return{
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 5%;
+    height: 10%;
+    justify-content: center;
+    background-color: transparent;
+ }
+  
+ .div_CCSA{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 22%;
+    justify-content: center;
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+}
+
 .form-1 {
     width: 100%;
     border-collapse: collapse;
@@ -162,14 +187,16 @@ button {
 
 .intermed {
     position: relative;
-    top: 20%; /* Ajusta este valor según lo que necesites */
-    left: 17%;
+    top: 10%; /* Ajusta este valor según lo que necesites */
+    left: 4%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 55%;
-    height: 30px;
+    width: 90%;
+    height: 30%;
     /* background-color: aqua; */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
 
 
@@ -193,6 +220,8 @@ button {
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
 
 .bloq-sup_secd {
@@ -219,9 +248,11 @@ button {
 }
 
 .descripcion {
-    margin-left: 5px;
+    margin-left: 12px;
     line-height: 0px;  /* Ajusta el margen según sea necesario */
-}
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+ }
 
 .error-message {
     text-align: center;

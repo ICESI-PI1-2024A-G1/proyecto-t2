@@ -105,7 +105,6 @@ button {
     width: 22%;
     justify-content: center;
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
-
  }
 
 .form-1 {
@@ -147,6 +146,7 @@ button {
 .buttondiv{
     display: flex;
     justify-content: center;
+    margin-top: 4%;
 }
 
 .bloq-mid{
@@ -156,18 +156,30 @@ button {
     top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* background-color: #28C985; */
+    /* background-color: aqua; */
+    height: 60%;
     border: 2px solid #04AA6D;
     border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    height: 60%;
 }
+
+.intermed-bloq {
+    position: relative;
+    top:1%; /* Ajusta este valor según lo que necesites */
+    left: 0%;
+    margin-left: 0%; /* Ajusta este valor según lo que necesites */
+    margin-bottom: 0%;
+    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
+    width: 100%;
+    height: 80%;
+    /* background-color:#999 ; */
+} 
 
 .bloq-mid input{
     width: 65%;
     height: 5%;
     margin-left: 0%;
-    margin-top: 2%;
+    margin-top: 1%;
     margin-bottom: 1%;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -183,28 +195,26 @@ button {
 
 .intermed {
     position: relative;
-    top: 2%; /* Ajusta este valor según lo que necesites */
-    left: 8%;
-    margin-left: 25px; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 0%;
-    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 80%;
+    top: 0%; /* Ajusta este valor según lo que necesites */
+    margin-left: 14%; /* Ajusta este valor según lo que necesites */
+    margin-bottom: 0px;
+    width:80%;
     height: 10%;
+    /* background-color: #28C985; */
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
-    /* background-color:aqua ; */
 }
 
-.intermed-bloq {
-    position: relative;
-    top: 0%; /* Ajusta este valor según lo que necesites */
-    left: 0%;
-    margin-left: 0%; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 0%;
-    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 100%;
-    height: 82%;
-    /* background-color:#999 ;*/
-} 
+.intermed-bloq .form-control2{
+    width: 65%;
+    height: 50%;
+    background-color: transparent;
+    border: 2px solid #04AA6D;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 7px 20px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
 
 .intermed-bloq .form-control{
     width: 65%;
