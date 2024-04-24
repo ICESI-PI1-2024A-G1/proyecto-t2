@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrar Profesores Activos</title>
-  <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
+  <link rel="stylesheet" href='{% static "css/registrar_Profesor.css" %}' type='text/css'>
   <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
 </head>
 
@@ -16,11 +16,15 @@
       <div class="bloq-sup">
         <form method="get">
           <div class="bloq-sup_secd">
-            <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeRegistro()">
-              <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
-            </button>
+            <div class="div_boton_return">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeRegistro()">
+                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+              </button>
+            </div>
             <div class="titulo">
-              <h1>CCSA</h1>
+              <div class="div_CCSA">
+                <h1>CCSA</h1>
+              </div>
               <div class="descripcion">
                 <h3>Centro Compartido de Servicios Académicos</h3>
               </div>
@@ -28,7 +32,6 @@
           </div>
         </form>
       </div>
-
       <div class="bloq-mid">
         <div class="intermed">
           <h1>Registro de Profesor</h1>
@@ -48,7 +51,6 @@
           </form>
         </div>
       </div>
-
       <div class="bloq-inf">
         <h4>Universidad Icesi</h4>
         <h4>Todos los derechos reservados</h4>

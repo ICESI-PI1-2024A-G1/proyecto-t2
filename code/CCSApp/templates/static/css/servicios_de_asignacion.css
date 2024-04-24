@@ -94,18 +94,56 @@ button {
 
 }
 
+.div_boton_return{
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 5%;
+    height: 10%;
+    justify-content: center;
+    /* border-radius: 50%; */
+    /* border: 1px solid #000000c8; */
+    /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+    /* padding: 7px 20px; */
+    /* background-color: #28C985; */
+    /* border-radius: 2rem; */
+    /* border:0.7px solid #000000c8; */
+    /* border: #ccc; */
+    background-color: transparent;
+ }
+
+ .div_CCSA{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 22%;
+    justify-content: center;
+    /* border-radius: 50%; */
+    /* border: 1px solid #000000c8; */
+    /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+    /* padding: 7px 20px; */
+    /* background-color: #28C985; */
+    /* border-radius: 2rem; */
+    /* border:0.7px solid #000000c8; */
+    /* border: #ccc; */
+ }
+
 .btn-1{
     font-size: 1.04rem;
     /* text-transform: lowercase; */
     font-weight: 500;
     color: #000;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
-    padding: 18px 18px;
+    padding: 6px 18px;
     background-color: #28C985;
     border-radius: 1.5rem;
-    width: 30%;
-    height: 40%;
-    margin: 6px;
+    width: 31%;
+    height: 28%;
+    margin: 4px;
     /* border: #ccc; */
     border:0.7px solid #000000c8;
 }
@@ -129,7 +167,7 @@ button {
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
     padding: 18px 18px;
     background-color: #28C985;
-    border-radius: 1.5rem;
+    border-radius: 1.3rem;
     width: 95%;
     height: 100%;
     margin: 5px;
@@ -153,24 +191,27 @@ button {
     display: block;
     justify-content: center;
     position: fixed;
-    top: 42%;
-    left: 30%;
-    transform: translate(-50%, -57%);
-    width: 58%;
-    height: 42%;
+    top: 50%;
+    left: 26%;
+    transform: translate(-52%, -54%);
+    width: 50%;
+    height: 60%;
     /* background-color: #28C985; */
+    /* border: 2px solid #04AA6D;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
 }
 
 .intermed {
     position: relative;
-    top: 0px; /* Ajusta este valor según lo que necesites */
-    left: 10px;
+    top: 0%; /* Ajusta este valor según lo que necesites */
+    left: 0%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
     width: 40%;
-    height: 22%;
-    /* background-color: #28C985; */
+    height: 16%;
+    /* background-color:#999; */
 }
 
 .intermed-bloq{
@@ -179,20 +220,24 @@ button {
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 80%;
+    width: 90%;
     height: 55%;
     /* background-color: aqua; */
+    /* border: 2px solid #04AA6D;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
 }
 
 .intermed-bloq-down{
     display: block;
     justify-content: center;
     position: fixed;
-    top: 128%;
-    left: 42%;
-    transform: translate(-50%, -57%);
-    width: 15%;
-    height: 17%;
+    top: 88%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 12%;
+    text-align: center;
     /* background-color: #28C985; */
 }
 
@@ -205,14 +250,16 @@ button {
     height: 13%;
     top: 0;
     background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .bloq-inf {
     position: fixed;
-    top: 156%;
+    top: 82%;
     left: 0%; /* Asegúrate de agregar las unidades de medida (px en este caso) */
-    width: 172%;
-    height: 40%;
+    width: 100%;
+    height: 18%;
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
@@ -242,9 +289,9 @@ button {
 }
 
 .descripcion {
-    margin-left: 5px;
+    margin-left: 12px;
     line-height: 0px;  /* Ajusta el margen según sea necesario */
-}
+ }
 
 .error-message {
     text-align: center;
@@ -261,20 +308,19 @@ button {
 }
 
 .photo{
-    width: 74%; /* Ancho del div */
-    height: 120%; /* Altura del div */
-    /* border: 0px solid #ccc; Borde del div */
+    width: 46%; /* Ancho del div */
+    height: 52%; /* Altura del div */
     border: 0px solid #000000;
     overflow: hidden;
     display: block;
     justify-content: center;
     position: fixed;
-    top: 78%;
-    left: 122%;
+    top: 52%;
+    left: 72%;
     transform: translate(-50%, -57%);
 }
 
 .photo img {
-    width: 110%; /* Para que la imagen ocupe todo el ancho del div */
+    width: 100%; /* Para que la imagen ocupe todo el ancho del div */
     height: auto; /* Para mantener la proporción de la imagen */
 }

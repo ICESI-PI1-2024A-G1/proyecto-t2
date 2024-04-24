@@ -122,12 +122,19 @@ class RegistrarProfesor(forms.Form):
     telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
 class ProfesorSearchForm(forms.Form):
-    nombre_profesor = forms.CharField(label='Nombre del Profesor', max_length=255)
+    nombre_profesor = forms.CharField(label='Nombre del Profesor', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class ProfesorEditForm(forms.ModelForm):
     class Meta:
         model = Profesor
         fields = ['nombre_profesor', 'cedula_profesor', 'especializacion_profesor', 'correo_electronico', 'telefono']
+        widgets = {
+            'nombre_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'cedula_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'especializacion_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'correo_electronico': forms.EmailInput(attrs={'class': 'form-control spaced-input'}),
+            'telefono': forms.NumberInput(attrs={'class': 'form-control spaced-input'}),
+        }
     
 class BuscarProgramaForm(forms.Form):
     codigo = forms.CharField(label="Código del Programa", max_length=100)
