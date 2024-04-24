@@ -25,7 +25,7 @@ class Horario(models.Model):
     id_horario = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
     fecha_inicio_hora = models.DateTimeField(default= '')
     fecha_final_hora = models.DateTimeField()
-    materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
+    nrc = models.ForeignKey('Nrc', on_delete=models.CASCADE)
     modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)#
     enlace_virtual = models.URLField(blank=True, null=True)
     salon_presencial = models.CharField(max_length=50, blank=True, null=True)
