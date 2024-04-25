@@ -34,15 +34,20 @@
                     <h1>Lista de Programas Académicos</h1>
                 </div>    
                 <form method="get">
-                    <div class="intermed-bloq-1">
-                        <ul>
-                            {% for programa in programas %}
-                            <p> {{programa.nombre_programa}} </p> 
-                            <p> {{programa.codigo_programa}} </p>     
-                            <p> {{programa.estado_programa}} </p> 
-                            {% endfor %}
-                        </ul>            
-                    </div>
+                    {% for programa in programas %}
+                        <div class="intermed-bloq-1">
+                            <ul>
+                                <p> {{programa.nombre_programa}} </p> 
+                                <p> {{programa.codigo_programa}} </p>     
+                                <p> {{programa.estado_programa}} </p> 
+                                {% for director in directores %}
+                                <p> {{programa.director.nombre_director}}</p>
+                                <button>Editar</button>
+                                <button>Eliminar</button>
+
+                            </ul>            
+                        </div>
+                    {% endfor %}      
                 </form>
             </div>
             <div class="bloq-inf">

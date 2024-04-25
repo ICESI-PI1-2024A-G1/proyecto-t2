@@ -286,7 +286,8 @@ def editar_profesor(request, nombre_profesor):
 
 def lista_programas(request):
     programas = Programa_de_posgrado.objects.all()
-    return render(request, 'lista_programas.html', {'programas': programas})
+    directores = Director_de_programa.objects.all()
+    return render(request, 'lista_programas.html', {'programas': programas, 'directores': directores})
 
 def editar_programa(request, codigo_programa):  
     programa = get_object_or_404(Programa_de_posgrado, codigo_programa=codigo_programa)  
@@ -353,7 +354,7 @@ def empezar_progra(request):
     form = ProgramacionSemestral(request.POST or None)  # Maneja datos del POST
     if form.is_valid():
         programa = form.cleaned_data['Programa']
-        materias = Materia.objects.filter(codigo=programa)
+        materias = Materia.objects.filter(codigo_materia = programa)
     else:
         programa = None
         materias = []
@@ -372,6 +373,11 @@ def horarios(request, codigo_materia):
     return render(request, 'lista_horarios.html', context)
 
 
+def elegir_semestre(request):
+    semestre = Semestre.objects.all()
+    context = { 'semestres': semestre }
+
+    return render(request, "elegir_semestre.html", context)
 
 def crear_espacio(request):
     if request.method == 'POST':
