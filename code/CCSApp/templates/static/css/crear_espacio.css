@@ -147,6 +147,20 @@ button {
 .buttondiv{
     display: flex;
     justify-content: center;
+    /* background-color: aqua; */
+    width: 30%;
+    margin-left: 16%;
+}
+
+.buttondiv2{
+    display: flex;
+    justify-content: center;
+    /* background-color: #04AA6D; */
+    width: 35%;
+    margin-left: 36%;
+    top: 50%;
+    left: 50%;
+    transform: translate(30%, -143%);
 }
 
 .bloq-mid{
@@ -160,14 +174,13 @@ button {
     border: 2px solid #04AA6D;
     border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    height: 60%;
 }
 
 .bloq-mid input{
     width: 65%;
     height: 5%;
     margin-left: 0%;
-    margin-top: 2%;
+    margin-top: 1%;
     margin-bottom: 1%;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -183,28 +196,17 @@ button {
 
 .intermed {
     position: relative;
-    top: 2%; /* Ajusta este valor según lo que necesites */
-    left: 8%;
+    top: 20px; /* Ajusta este valor según lo que necesites */
+    left: 7%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 0%;
+    margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
     width: 80%;
-    height: 10%;
+    height: 30px;
+    /* background-color: #04AA6D; */
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
-    /* background-color:aqua ; */
-}
 
-.intermed-bloq {
-    position: relative;
-    top: 0%; /* Ajusta este valor según lo que necesites */
-    left: 0%;
-    margin-left: 0%; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 0%;
-    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 100%;
-    height: 82%;
-    /* background-color:#999 ;*/
-} 
+}
 
 .intermed-bloq .form-control{
     width: 65%;
@@ -287,5 +289,3 @@ button {
     border-radius: 4px; /* Esquinas redondeadas */
     box-sizing: border-box; /* Hace que el padding y el borde se incluyan en el ancho */
 }
-
-

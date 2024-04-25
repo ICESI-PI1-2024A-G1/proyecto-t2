@@ -196,14 +196,6 @@ td a {
    width: 5%;
    height: 10%;
    justify-content: center;
-   /* border-radius: 50%; */
-   /* border: 1px solid #000000c8; */
-   /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
-   /* padding: 7px 20px; */
-   /* background-color: #28C985; */
-   /* border-radius: 2rem; */
-   /* border:0.7px solid #000000c8; */
-   /* border: #ccc; */
    background-color: transparent;
 }
  
@@ -215,14 +207,8 @@ td a {
    /* background-color: #28C985; */
    width: 22%;
    justify-content: center;
-   /* border-radius: 50%; */
-   /* border: 1px solid #000000c8; */
-   /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
-   /* padding: 7px 20px; */
-   /* background-color: #28C985; */
-   /* border-radius: 2rem; */
-   /* border:0.7px solid #000000c8; */
-   /* border: #ccc; */
+   font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
  
  .bloq-mid{
@@ -286,9 +272,10 @@ td a {
     left: 25%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
-    width: 45%;
+    width: 50%;
     height: 15%;
     /* background-color:#28C985; */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
  }
  
  
@@ -335,7 +322,9 @@ td a {
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
- }
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+}
  
  
  .bloq-sup_secd {
@@ -369,6 +358,8 @@ td a {
  .descripcion {
    margin-left: 12px;
    line-height: 0px;  /* Ajusta el margen según sea necesario */
+   font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
  
  
