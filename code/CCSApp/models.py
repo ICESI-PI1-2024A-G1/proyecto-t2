@@ -193,5 +193,11 @@ class Materia_profesor(models.Model):
      def __str__(self):
           return self.id
 
+class Departamento(models.Model):
+     id_departamento = models.CharField(max_length= 3, null= False, default= "000", blank = False,primary_key=True)
+     nombre_departamento = models.CharField(max_length= 500, null= False, default= "", blank = False)
+
+     def  __str__ (self):
+          return f"{self.id_departamento} - {self.nombre_departamento}"
     
    
