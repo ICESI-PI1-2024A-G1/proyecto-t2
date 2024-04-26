@@ -6,6 +6,10 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 import csv
+from django.http import HttpResponse
+from openpyxl import Workbook
+from openpyxl.styles import PatternFill, Border, Side
+from openpyxl.utils import get_column_letter
 
 # Create your views here.
 
@@ -336,18 +340,60 @@ def delete_program(request, codigo):
     return redirect('eliminar_programa')
 
 def programs_csv(request):
-    response = HttpResponse(content_type = 'text/csv')
-    response['Content-Disposition'] = 'attachment; filename = programasdeposgrado.csv'
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=programasdeposgrado.xlsx'
 
-    writer = csv.writer(response)
-    programas = Programa_de_posgrado.objects.all()
+    # Crear un nuevo libro de trabajo
+    wb = Workbook()
+    # Seleccionar la hoja activa
+    ws = wb.active
 
-    writer.writerow(['Nombre del Programa', 'Codigo del programa', 'Descripcion', 'Fecha de Inicio', 'Fecha finalizacion', 'Estado', 'Duracion (Años)', 'Facultad', 'Modalidad'])
+    # Escribir el encabezado
+    headers = ['PROGRAMA', 'COD BANNER', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'TIPO DE CONTRATO', 'CIUDAD', 'EMAIL', 'TELEFONO', 'FECHA DE CLASE', 'HORARIO', 'ESTADO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
+    ws.append(headers)
 
-    for programa in programas:
-        writer.writerow([programa.name, programa.codigo, programa.descripcion, programa.fecha_inicio, programa.fecha_finalizacion, programa.estado, programa.duracion, programa.facultad])
+    # Iterar sobre los programas y escribir los datos en el archivo Excel
+    # programas = Programa_de_posgrado.objects.all()
+    # for programa in programas:
+    #     row_data = [programa.name, programa.codigo, programa.descripcion, programa.fecha_inicio, programa.fecha_finalizacion, programa.estado, programa.duracion, programa.facultad]
+    #     ws.append(row_data)
 
-        
+    # Aplicar color a las celdas de los encabezados
+    for cell in ws[1]:
+        cell.fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
+
+    # Obtener el índice de la columna "GRUPO" en la hoja de cálculo
+    grupo_index = headers.index('GRUPO') + 1
+
+    # Aplicar color verde a las celdas de la columna "GRUPO"
+    for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=grupo_index, max_col=grupo_index):
+        for cell in row:
+            cell.fill = PatternFill(start_color="00FF00", end_color="00FF00", fill_type="solid")
+
+    # Agregar bordes a todas las celdas
+    border = Border(left=Side(style='thin'), 
+                    right=Side(style='thin'), 
+                    top=Side(style='thin'), 
+                    bottom=Side(style='thin'))
+    for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=1, max_col=len(headers)):
+        for cell in row:
+            cell.border = border
+
+    # Ajustar el ancho de las columnas al contenido
+    for column in ws.columns:
+        max_length = 0
+        column_letter = get_column_letter(column[0].column)  # Obtener la letra de la columna
+        for cell in column:
+            try:
+                if len(str(cell.value)) > max_length:
+                    max_length = len(cell.value)
+            except:
+                pass
+        adjusted_width = (max_length + 2) * 1.2  # Multiplicar por 1.2 para dar un poco de espacio adicional
+        ws.column_dimensions[column_letter].width = adjusted_width
+
+    # Guardar el libro de trabajo en el flujo de respuesta
+    wb.save(response)
     return response
 
 def empezar_progra(request):
@@ -405,7 +451,6 @@ def crear_espacio(request):
     else:
         form = EspacioForm()
     return render(request, 'crear_espacio.html', {'form': form})
-
 
 def crear_edificio(request):
     if request.method == 'POST':

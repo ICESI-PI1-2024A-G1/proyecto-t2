@@ -263,7 +263,6 @@ button {
     margin-top: auto;
     margin-top: -25px;
     margin-left: 5px;
-
 }
 
 .boton-2 {
@@ -273,6 +272,7 @@ button {
     border: none; /* Quita el borde del botón */
     width: 55px; /* Ajusta el ancho del botón según sea necesario */
     height: 55px; /* Ajusta la altura del botón según sea necesario */
+    background-color: transparent;
 }
 
 .titulo {

@@ -15,13 +15,15 @@
         <div class="bloq-sup">
             <form method="get">
                 <div class="bloq-sup_secd">
-                    <div class="theboton">
+                    <div class="div_boton_return">
                         <button class="boton-2" name="boton1" type="button" onclick="redirigirIndex()">
-                        <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+                            <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
                         </button>
                     </div>
                     <div class="titulo">
-                    <h1>CCSA</h1>
+                        <div class="div_CCSA">
+                            <h1>CCSA</h1>
+                        </div>
                         <div class="descripcion">
                             <h3>Centro Compartido de Servicios Académicos</h3>
                         </div>
@@ -35,25 +37,6 @@
                 <button class="btn-1" type="button" onclick="redirigirAHTML2()">Asignacion de Viaticos</button>
                 <button class="btn-1" type="button" onclick="redirigirServiciosAsignacion()">Servicios de Asignacion</button>
                 <button class="btn-1" type="button" onclick="descargarCSV()">Descargar CSV de programas</button>
-                <!-- <nav>
-                    <ul>
-                        <li>
-                            <a href="/gestion">Gestion de Informacion</a>
-                        </li>
-                        <li>
-                            <a href="">Asignacion de Viaticos</a>
-                        <li><a href="/servicios_asignacion">Servicios de Asignacion</a></li> 
-                        </li>
-                        <li>
-                            <a href="{% url 'program-csv' %}">Descargar CSV de programas</a>
-                        </li>
-                    </ul>
-                </nav>  -->
-            <!-- {% if error %}
-            <div class="error-message">
-                {{ error }}
-            </div>
-            {% endif %} -->
             </div>
         </form>
         <div class="bloq-mid-2">

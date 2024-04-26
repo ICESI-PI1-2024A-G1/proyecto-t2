@@ -64,7 +64,8 @@ class NewUsuary(forms.Form):
 
 class LoginForm(forms.Form):
     cedula = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
 
 class CrearProgramaAcademico(forms.Form):
     nombre_programa = forms.CharField(label="Nombre", max_length=255, help_text="Ingrese el nombre del programa.")
@@ -169,7 +170,7 @@ class DirectorDePrograma(forms.Form):
     foto_de_perfil = forms.ImageField()
 
 class ProgramacionSemestral(forms.Form):    
-    Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa")
+    Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa", widget=forms.Select(attrs={'class': 'form-control'}))
     
 class EspacioForm(forms.Form):
     espacio_codigo = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))

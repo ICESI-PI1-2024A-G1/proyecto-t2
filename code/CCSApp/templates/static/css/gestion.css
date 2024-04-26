@@ -94,21 +94,45 @@ button {
 
 }
 
-.btn-1{
+.div_boton_return{
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 5%;
+    height: 10%;
+    justify-content: center;
+    background-color: transparent;
+ }
+
+ .div_CCSA{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 22%;
+    justify-content: center;
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+ }
+
+.btn-1 {
     font-size: 1.04rem;
-    /* text-transform: lowercase; */
     font-weight: 500;
     color: #000;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
-    padding: 18px 18px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     background-color: #28C985;
     border-radius: 1.5rem;
-    width: 30%;
-    height: 40%;
-    margin: 5px;
-    /* border: #ccc; */
-    border:0.7px solid #000000c8;
-}
+    width: 40%;
+    height: 28%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    margin-left: 6%;
+    border: 0.7px solid #000000c8;
+    cursor: pointer;
+    display: inline-block;
+ }
 
 .btn-1 {
     background-color: white;
@@ -122,6 +146,9 @@ button {
     transition: background-color 1s;
 }
 
+.success {background-color: white; border: 2px solid #04AA6D; transition: background-color 1s;} 
+.success:hover {background-color: #28C985; color: white; transition: background-color 1s;}
+
 .buttondiv{
     display: flex;
     justify-content: center;
@@ -131,24 +158,25 @@ button {
     display: block;
     justify-content: center;
     position: fixed;
-    top: 54%;
-    left: 30%;
-    transform: translate(-50%, -57%);
-    width: 58%;
-    height: 42%;
-    /* background-color: #28C985; */
+    top: 50%;
+    left: 26%;
+    transform: translate(-52%, -54%);
+    width: 50%;
+    height: 60%;
 }
 
 .intermed {
     position: relative;
-    top: 0px; /* Ajusta este valor según lo que necesites */
-    left: 10px;
+    top: 0%; /* Ajusta este valor según lo que necesites */
+    left: 5%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
     width: 40%;
-    height: 22%;
-    /* background-color: #28C985; */
+    height: 16%;
+    /* background-color:#999; */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
 
 .intermed-bloq{
@@ -158,10 +186,24 @@ button {
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
     width: 80%;
-    height: 55%;
+    height: 70%;
     /* background-color: aqua; */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
 
+.intermed-bloq-down{
+    display: block;
+    justify-content: center;
+    position: fixed;
+    top: 88%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 12%;
+    text-align: center;
+    /* background-color: #28C985; */
+}
 
 .bloq-sup{
     /* display: flex;
@@ -172,14 +214,16 @@ button {
     height: 13%;
     top: 0;
     background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .bloq-inf {
     position: fixed;
-    bottom: 0;
-    left: 0px; /* Asegúrate de agregar las unidades de medida (px en este caso) */
+    top: 82%;
+    left: 0%; /* Asegúrate de agregar las unidades de medida (px en este caso) */
     width: 100%;
-    height: 17%;
+    height: 18%;
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
@@ -193,7 +237,6 @@ button {
     margin-top: auto;
     margin-top: -25px;
     margin-left: 5px;
-
 }
 
 .boton-2 {
@@ -203,6 +246,7 @@ button {
     border: none; /* Quita el borde del botón */
     width: 55px; /* Ajusta el ancho del botón según sea necesario */
     height: 55px; /* Ajusta la altura del botón según sea necesario */
+    background-color: transparent;
 }
 
 .titulo {
@@ -211,9 +255,11 @@ button {
 }
 
 .descripcion {
-    margin-left: 5px;
+    margin-left: 12px;
     line-height: 0px;  /* Ajusta el margen según sea necesario */
-}
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+ }
 
 .error-message {
     text-align: center;
@@ -230,9 +276,9 @@ button {
 }
 
 .photo{
-    width: 40%; /* Ancho del div */
-    height: 55%; /* Altura del div */
-    border: 0px solid #ccc; /* Borde del div */
+    width: 46%; /* Ancho del div */
+    height: 52%; /* Altura del div */
+    border: 0px solid #000000;
     overflow: hidden;
     display: block;
     justify-content: center;
