@@ -240,6 +240,7 @@ button {
     border: none; /* Quita el borde del botón */
     width: 55px; /* Ajusta el ancho del botón según sea necesario */
     height: 55px; /* Ajusta la altura del botón según sea necesario */
+    background-color: transparent;
 }
 
 .titulo {
