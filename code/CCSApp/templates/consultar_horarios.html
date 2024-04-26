@@ -41,8 +41,10 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Fecha y Hora</th>
-              <th>NRC</th>
+              <th>Fecha inicio</th>
+              <th>Fecha final</th>
+              <th>Materia</th>
+              <th>Grupo</th>
               <th>Modalidad</th>
               <th>Enlace Virtual</th>
               <th>Salon Presencial</th>
@@ -51,9 +53,11 @@
           <tbody>
             {% for horario in horarios %}
             <tr>
-              <td>{{ horario.id }}</td>
-              <td>{{ horario.fecha_hora }}</td>
-              <td>{{ horario.nrc }}</td>
+              <td>{{ horario.id_horario }}</td>
+              <td>{{ horario.fecha_inicio_hora }}</td>
+              <td>{{ horario.fecha_final_hora }}</td>
+              <td>{{ horario.materia }}</td>
+              <td>{{ horario.grupo }}</td>
               <td>{{ horario.modalidad }}</td>
               <td>{{ horario.enlace_virtual }}</td>
               <td>{{ horario.salon_presencial }}</td>

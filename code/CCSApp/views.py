@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill, Border, Side
 from openpyxl.utils import get_column_letter
+from django.db.models import Q
 
 # Create your views here.
 
@@ -17,18 +18,35 @@ def asignar_horario(request):
     if request.method == 'POST':
         form = NewHorario(request.POST)
         if form.is_valid():
-            # Guardar el objeto Horario en la base de datos
             id_horario = form.cleaned_data['id_horario']
             fecha_inicio_hora = form.cleaned_data['fecha_inicio_hora']
             fecha_final_hora = form.cleaned_data['fecha_final_hora']
             modalidad = form.cleaned_data['modalidad']
             enlace_virtual = form.cleaned_data['enlace_virtual']
             salon_presencial = form.cleaned_data['espacio']
-            nrc = form.cleaned_data['nrc']
-            horario = Horario.objects.create(id_horario = id_horario, fecha_inicio_hora=fecha_inicio_hora, fecha_final_hora = fecha_final_hora, nrc=nrc,
+            materia = form.cleaned_data['materia']
+            grupo = form.cleaned_data['grupo']
+
+            # Verificar si hay algún horario existente que tenga conflicto con el nuevo horario
+            conflicto = Horario.objects.filter(
+                Q(salon_presencial=salon_presencial) &
+                (
+                    Q(fecha_inicio_hora__lte=fecha_inicio_hora, fecha_final_hora__gte=fecha_inicio_hora) |
+                    Q(fecha_inicio_hora__lte=fecha_final_hora, fecha_final_hora__gte=fecha_final_hora) |
+                    Q(fecha_inicio_hora__gte=fecha_inicio_hora, fecha_final_hora__lte=fecha_final_hora)
+                )
+            ).exists()
+
+            if not conflicto:
+                # No hay conflicto, guardar el nuevo horario en la base de datos
+                horario = Horario.objects.create(id_horario = id_horario, fecha_inicio_hora=fecha_inicio_hora, fecha_final_hora = fecha_final_hora, materia=materia,
                                               modalidad=modalidad, enlace_virtual=enlace_virtual,
-                                              salon_presencial=salon_presencial)
-            return redirect('/index/servicios_asignacion')  
+                                              salon_presencial=salon_presencial, grupo = grupo)
+                return redirect('/index/servicios_asignacion')
+            else:
+                # Hay conflicto, mostrar un mensaje de error o manejar la situación adecuadamente
+                form.add_error(None, "El horario se superpone con otro horario existente.")
+        # Si el formulario no es válido, se volverá a renderizar con los errores
     else:
         form = NewHorario()
 
@@ -42,8 +60,9 @@ def modificar_horarios(request):
             horario = Horario.objects.get(pk=horario_id)
             horario.fecha_inicio_hora = form.cleaned_data['fecha_i_hora']
             horario.fecha_final_hora = form.cleaned_data['fecha_f_hora']
-            horario.nrc = form.cleaned_data['nrc']
+            horario.materia = form.cleaned_data['materia']
             horario.modalidad = form.cleaned_data['modalidad']
+            horario.grupo = form.cleaned_data['grupo']
             horario.enlace_virtual = form.cleaned_data['enlace_virtual']
             horario.salon_presencial = form.cleaned_data['espacio']
             horario.save()
@@ -94,7 +113,7 @@ def registrar_materia_malla(request):
                         syllabus=syllabus_file
                     )
                     materia.save()
-                    return redirect('/index')
+                    return redirect('/index/servicios_asignacion')
         except ValueError:
             return render(request, 'registro_materia.html', {
                 'form': CrearMateria,

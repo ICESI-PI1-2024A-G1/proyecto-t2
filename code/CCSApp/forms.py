@@ -25,10 +25,18 @@ class NewHorario(forms.Form):
         ('virtual', 'Virtual'),
         ('mixta', 'Mixta'),
     ]
+
+    GRUPO = [
+        ('001', '001'),
+        ('002', '002'),
+        ('003', '003'),
+        ('004', '004')
+    ]
     modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control2'}))
     enlace_virtual = forms.URLField(label="Enlace Virtual", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     espacio = forms.ModelChoiceField(label="Espacio", queryset=Espacio.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
-    nrc = forms.ModelChoiceField(label="Nrc", queryset=Nrc.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
+    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
+    grupo = forms.ChoiceField(label="Grupo", choices=GRUPO, widget=forms.Select(attrs={'class': 'form-control2'}))
     
 class ModificarHorarioForm(forms.Form):
     horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar", widget=forms.Select(attrs={'class': 'form-control'}))
@@ -40,14 +48,22 @@ class ModificarHorarioForm(forms.Form):
         label="Fecha Final",
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
     )
-    nrc = forms.ModelChoiceField(label="Nrc", queryset=Nrc.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
+    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
     
     MODALIDAD_CHOICES = [
         ('presencial', 'Presencial'),
         ('virtual', 'Virtual'),
         ('mixta', 'Mixta'),
     ]
+
+    GRUPO = [
+        ('001', '001'),
+        ('002', '002'),
+        ('003', '003'),
+        ('004', '004')
+    ]
     modalidad = forms.ChoiceField(label="Nueva Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control2'}))
+    grupo = forms.ChoiceField(label="Nueva Grupo", choices=GRUPO, widget=forms.Select(attrs={'class': 'form-control2'}))
     enlace_virtual = forms.URLField(label="Nuevo Enlace Virtual", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     espacio = forms.CharField(label= "Espacio", max_length =255, widget=forms.Select(attrs={'class': 'form-control2'}))
 
