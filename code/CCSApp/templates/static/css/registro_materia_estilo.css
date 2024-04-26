@@ -84,6 +84,31 @@ button {
     padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
 }
 
+.div_boton_return{
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 5%;
+    height: 10%;
+    justify-content: center;
+    background-color: transparent;
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+ }
+  
+ .div_CCSA{
+    margin-left: 10px;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 22%;
+    justify-content: center;
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+ }
+
 .form-1 {
     /* Centrar el formulario en la página */
     margin: 0 auto;
@@ -129,24 +154,55 @@ button {
     display: block;
     justify-content: center;
     position: fixed;
-    top: 50%;
+    top: 48%;
     left: 50%;
-    transform: translate(-50%, -57%);
-    /* background-color: #28C985;
-    width: 50%; */
+    transform: translate(-50%, -50%);
+    /* background-color: #28C985; */
+    border: 2px solid #04AA6D;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bloq-mid input{
+    width: 65%;
+    height: 5%;
+    margin-left: 0%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.bloq-mid label {
+ width: 30%; /* Ancho de la etiqueta */
+ /* background-color: #04AA6D; */
+ text-align: left; /* Alineación del texto a la izquierda */
+ margin-left: 2.5%;
 }
 
 .intermed {
     position: relative;
     top: 20px; /* Ajusta este valor según lo que necesites */
+    left: 10%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 400px;
+    width: 80%;
     height: 30px;
-    
+    /* background-color: #04AA6D; */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
 }
 
+.intermed-bloq .form-control{
+    width: 65%;
+    height: 50%;
+    background-color: transparent;
+    border: 2px solid #04AA6D;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 7px 20px;
+}
 
 .bloq-sup{
     /* display: flex;
@@ -157,6 +213,9 @@ button {
     height: 13%;
     top: 0;
     background-color: #f2f2f2;
+    /* border: 2px solid #04AA6D; */
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .bloq-inf {
@@ -168,6 +227,8 @@ button {
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
 
 .bloq-sup_secd {
@@ -186,6 +247,7 @@ button {
     border: none; /* Quita el borde del botón */
     width: 55px; /* Ajusta el ancho del botón según sea necesario */
     height: 55px; /* Ajusta la altura del botón según sea necesario */
+    background-color: transparent;
 }
 
 .titulo {
@@ -194,9 +256,10 @@ button {
 }
 
 .descripcion {
-    margin-left: 5px;
+    margin-left: 12px;
     line-height: 0px;  /* Ajusta el margen según sea necesario */
-}
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+ }
 
 .error-message {
     text-align: center;

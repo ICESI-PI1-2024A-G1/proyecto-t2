@@ -12,11 +12,11 @@ class NewHorario(forms.Form):
     id_horario = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     fecha_inicio_hora = forms.DateTimeField(
         label="Fecha Inicio",
-        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
     )
     fecha_final_hora = forms.DateTimeField(
         label="Fecha Final",
-        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
     )
     
     
@@ -25,31 +25,31 @@ class NewHorario(forms.Form):
         ('virtual', 'Virtual'),
         ('mixta', 'Mixta'),
     ]
-    modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+    modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control2'}))
     enlace_virtual = forms.URLField(label="Enlace Virtual", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    espacio = forms.ModelChoiceField(label="Espacio", queryset=Espacio.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
-    nrc = forms.ModelChoiceField(label="Nrc", queryset=Nrc.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    espacio = forms.ModelChoiceField(label="Espacio", queryset=Espacio.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
+    nrc = forms.ModelChoiceField(label="Nrc", queryset=Nrc.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
     
 class ModificarHorarioForm(forms.Form):
     horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar", widget=forms.Select(attrs={'class': 'form-control'}))
     fecha_inicio_hora = forms.DateTimeField(
         label="Fecha Inicio",
-        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
     )
     fecha_final_hora = forms.DateTimeField(
         label="Fecha Final",
-        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
     )
-    nrc = forms.ModelChoiceField(label="Nrc", queryset=Nrc.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    nrc = forms.ModelChoiceField(label="Nrc", queryset=Nrc.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
     
     MODALIDAD_CHOICES = [
         ('presencial', 'Presencial'),
         ('virtual', 'Virtual'),
         ('mixta', 'Mixta'),
     ]
-    modalidad = forms.ChoiceField(label="Nueva Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+    modalidad = forms.ChoiceField(label="Nueva Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control2'}))
     enlace_virtual = forms.URLField(label="Nuevo Enlace Virtual", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    espacio = forms.CharField(label= "Espacio", max_length =255, widget=forms.Select(attrs={'class': 'form-control'}))
+    espacio = forms.CharField(label= "Espacio", max_length =255, widget=forms.Select(attrs={'class': 'form-control2'}))
 
     
 
@@ -110,7 +110,7 @@ class CrearMateria(forms.Form):
     nombre_materia = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     codigo_materia = forms.CharField(label="Código", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     creditos_materia = forms.DecimalField(label="Creditos", max_digits=10, widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    syllabus = forms.FileField(label='Selecciona un archivo')
+    syllabus = forms.FileField(label='Selecciona un archivo', widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
     departamento = forms.CharField(label="Departamento", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class MateriaSearchForm(forms.Form):
@@ -120,6 +120,13 @@ class MateriaEditForm(forms.ModelForm):
     class Meta:
         model = Materia
         fields = ['nombre_materia', 'codigo_materia', 'creditos_materia', 'syllabus', 'departamento']
+        widgets = {
+            'nombre_materia': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'codigo_materia': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'syllabus': forms.FileInput(attrs={'class': 'form-control'}),
+            'creditos_materia': forms.NumberInput(attrs={'class': 'form-control spaced-input'}),
+            'departamento': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+        }
 
 class RegistrarProfesor(forms.Form):
     nombre_profesor = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -129,12 +136,19 @@ class RegistrarProfesor(forms.Form):
     telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
 class ProfesorSearchForm(forms.Form):
-    nombre_profesor = forms.CharField(label='Nombre del Profesor', max_length=255)
+    nombre_profesor = forms.CharField(label='Nombre del Profesor', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class ProfesorEditForm(forms.ModelForm):
     class Meta:
         model = Profesor
         fields = ['nombre_profesor', 'cedula_profesor', 'especializacion_profesor', 'correo_electronico', 'telefono']
+        widgets = {
+            'nombre_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'cedula_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'especializacion_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'correo_electronico': forms.EmailInput(attrs={'class': 'form-control spaced-input'}),
+            'telefono': forms.NumberInput(attrs={'class': 'form-control spaced-input'}),
+        }
     
 class BuscarProgramaForm(forms.Form):
     codigo = forms.CharField(label="Código del Programa", max_length=100)
@@ -182,8 +196,11 @@ class CrearEdificio(forms.ModelForm):
         fields = ['nombre_edificio', 'numero_espacios']
         labels = {
             'Nombre': 'nombre_edificio',
-            'numero': 'numero_espacios',
-            
+            'numero': 'numero_espacios',   
+        }
+        widgets = {
+            'nombre_edificio': forms.TextInput(attrs={'class': 'form-control'}),
+            'numero_espacios': forms.NumberInput(attrs={'class': 'form-control'}),
         }
     
 class EditarEspacio(forms.ModelForm):

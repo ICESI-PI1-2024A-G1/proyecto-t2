@@ -210,6 +210,8 @@ button {
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
 
 .bloq-sup_secd {

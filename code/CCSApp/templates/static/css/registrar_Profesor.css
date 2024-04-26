@@ -84,16 +84,6 @@ button {
     padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
 }
 
-.form-1 {
-    /* Centrar el formulario en la página */
-    margin: 0 auto;
-    width: 400px;
-    /* Esquema del formulario */
-    padding: 1em;
-    border-radius: 1em;
-
-}
-
 .div_boton_return{
     margin-left: 0px;
     margin-top: 40px;
@@ -105,7 +95,7 @@ button {
     justify-content: center;
     background-color: transparent;
  }
-
+  
  .div_CCSA{
     margin-left: 10px;
     margin-top: 10px;
@@ -118,20 +108,28 @@ button {
 
  }
 
+.form-1 {
+    /* Centrar el formulario en la página */
+    margin: 0 auto;
+    width: 400px;
+    /* Esquema del formulario */
+    padding: 1em;
+    border-radius: 1em;
+
+}
+
 .btn-1{
-    font-size: 1.04rem;
+    font-size: 1rem;
     /* text-transform: lowercase; */
     font-weight: 500;
     color: #000;
+    border: none;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
-    padding: 6px 18px;
+    padding: 7px 20px;
     background-color: #28C985;
-    border-radius: 1.5rem;
-    width: 31%;
-    height: 28%;
-    margin: 4px;
-    /* border: #ccc; */
+    border-radius: 2rem;
     border:0.7px solid #000000c8;
+    /* border: #ccc; */
 }
 
 .btn-1 {
@@ -146,28 +144,6 @@ button {
     transition: background-color 1s;
 }
 
-.btn1{
-    font-size: 1.04rem;
-    font-weight: 500;
-    /* color: #000; */
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
-    padding: 18px 18px;
-    background-color: #28C985;
-    border-radius: 1.3rem;
-    width: 95%;
-    height: 100%;
-    margin: 5px;
-    /* border:0.7px solid #000000c8; */
-    border: none; 
-    color: black; 
-    /* padding: 14px 28px;  */
-    cursor: pointer; 
-    /* border-radius: 5px;  */
-}
-
-.success {background-color: white; border: 2px solid #04AA6D; transition: background-color 1s;} 
-.success:hover {background-color: #28C985; color: white; transition: background-color 1s;}
-
 .buttondiv{
     display: flex;
     justify-content: center;
@@ -177,58 +153,67 @@ button {
     display: block;
     justify-content: center;
     position: fixed;
-    top: 50%;
-    left: 26%;
-    transform: translate(-52%, -54%);
-    width: 50%;
-    height: 60%;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     /* background-color: #28C985; */
-    /* border: 2px solid #04AA6D;
+    border: 2px solid #04AA6D;
     border-radius: 10px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    height: 60%;
+}
+
+.bloq-mid input{
+    width: 65%;
+    height: 5%;
+    margin-left: 0%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.bloq-mid label {
+ width: 30%; /* Ancho de la etiqueta */
+ /* background-color: #04AA6D; */
+ text-align: left; /* Alineación del texto a la izquierda */
+ margin-left: 2.5%;
 }
 
 .intermed {
     position: relative;
-    top: 0%; /* Ajusta este valor según lo que necesites */
-    left: 0%;
+    top: 2%; /* Ajusta este valor según lo que necesites */
+    left: 8%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 25px;
+    margin-bottom: 0%;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 40%;
-    height: 16%;
-    /* background-color:#999; */
+    width: 80%;
+    height: 10%;
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
-
+    /* background-color:aqua ; */
 }
 
-.intermed-bloq{
+.intermed-bloq {
     position: relative;
     top: 0%; /* Ajusta este valor según lo que necesites */
-    margin-left: 25px; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 25px;
+    left: 0%;
+    margin-left: 0%; /* Ajusta este valor según lo que necesites */
+    margin-bottom: 0%;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 90%;
-    height: 55%;
-    /* background-color: aqua; */
-    /* border: 2px solid #04AA6D;
+    width: 100%;
+    height: 82%;
+    /* background-color:#999 ;*/
+} 
+
+.intermed-bloq .form-control{
+    width: 65%;
+    height: 50%;
+    background-color: transparent;
+    border: 2px solid #04AA6D;
     border-radius: 10px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
-    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
-
-}
-
-.intermed-bloq-down{
-    display: block;
-    justify-content: center;
-    position: fixed;
-    top: 88%;
-    left: 48%;
-    transform: translate(-50%, -50%);
-    width: 30%;
-    height: 12%;
-    text-align: center;
-    /* background-color: #28C985; */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 7px 20px;
 }
 
 .bloq-sup{
@@ -240,16 +225,17 @@ button {
     height: 13%;
     top: 0;
     background-color: #f2f2f2;
+    /* border: 2px solid #04AA6D; */
     border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .bloq-inf {
     position: fixed;
-    top: 82%;
-    left: 0%; /* Asegúrate de agregar las unidades de medida (px en este caso) */
+    bottom: 0;
+    left: 0px; /* Asegúrate de agregar las unidades de medida (px en este caso) */
     width: 100%;
-    height: 18%;
+    height: 17%;
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
@@ -273,10 +259,11 @@ button {
     border: none; /* Quita el borde del botón */
     width: 55px; /* Ajusta el ancho del botón según sea necesario */
     height: 55px; /* Ajusta la altura del botón según sea necesario */
+    background-color: transparent;
 }
 
 .titulo {
-    margin-right: 10%; /* Ajusta el margen según sea necesario */
+    margin-right: 10px; /* Ajusta el margen según sea necesario */
     line-height: 62px; 
 }
 
@@ -291,7 +278,7 @@ button {
     text-align: center;
     margin-top: 40px; /* Ajusta este valor según sea necesario */
 }
- 
+
 .form-control {
     width: 72%; /* O el ancho deseado */
     padding: 8px; /* Ajusta el relleno según sea necesario */
@@ -301,20 +288,4 @@ button {
     box-sizing: border-box; /* Hace que el padding y el borde se incluyan en el ancho */
 }
 
-.photo{
-    width: 46%; /* Ancho del div */
-    height: 52%; /* Altura del div */
-    border: 0px solid #000000;
-    overflow: hidden;
-    display: block;
-    justify-content: center;
-    position: fixed;
-    top: 52%;
-    left: 72%;
-    transform: translate(-50%, -57%);
-}
 
-.photo img {
-    width: 100%; /* Para que la imagen ocupe todo el ancho del div */
-    height: auto; /* Para mantener la proporción de la imagen */
-}

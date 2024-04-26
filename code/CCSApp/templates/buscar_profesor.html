@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrar Profesores Activos</title>
-  <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
+  <link rel="stylesheet" href='{% static "css/buscar_materia.css" %}' type='text/css'>
   <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
 </head>
 
@@ -16,11 +16,15 @@
       <div class="bloq-sup">
         <form method="get">
           <div class="bloq-sup_secd">
-            <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeRegistro()">
-              <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
-            </button>
+            <div class="div_boton_return">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeRegistro()">
+                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+              </button>
+            </div>
             <div class="titulo">
-              <h1>CCSA</h1>
+              <div class="div_CCSA">
+                <h1>CCSA</h1>
+              </div>
               <div class="descripcion">
                 <h3>Centro Compartido de Servicios Académicos</h3>
               </div>
@@ -28,10 +32,9 @@
           </div>
         </form>
       </div>
-
       <div class="bloq-mid">
         <div class="intermed">
-          <h1>Registro de Profesor</h1>
+          <h1>Buscar Profesor</h1>
           {% if error %}
           <div class="error-message">
             {{ error }}
@@ -43,13 +46,36 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Buscar</button>
+                <div class="boton-intermed">
+                  <button class = "btn-1" , type="submit">Buscar</button>
+                </div>
             </form>
-            <ul>
-                {% for profesor in profesores %}
-                <li><a href="{% url 'editar_profesor' profesor.nombre_profesor %}">{{ profesor.nombre_profesor }}</a></li>
-                {% endfor %}
-            </ul>
+            <div class="div_Table">
+              <div class="div_Table2">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Nombre del Profesor</th>
+                      <!-- Agrega más encabezados si es necesario -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for profesor in profesores %}
+                    <tr>
+                      <td>
+                        <a href="{% url 'editar_profesor' profesor.nombre_profesor %}">{{ profesor.nombre_profesor }}</a>
+                      </td>
+                      <!-- Puedes agregar más columnas si es necesario -->
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="2">No se encontraron materias.</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
         </div>
       </div>
 
