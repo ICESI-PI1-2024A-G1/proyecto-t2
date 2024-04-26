@@ -7,6 +7,7 @@ urlpatterns = [
     path('register_us/', views.register_us),
     path('index/', views.index, name='index'),  
     path('index/programacion/', views.empezar_progra, name ="empezar_progra"),
+    path('index/programacion/semestre', views.elegir_semestre, name = 'semestre'),
     path('index/gestion/', views.gestion),
     path('index/gestion/nuevoprograma/', views.nuevo_programa),
     path('gestion/nuevoprograma/director_programa/', views.director_programa),
@@ -24,9 +25,9 @@ urlpatterns = [
     path('index/servicios_asignacion/buscar_profesor/', views.buscar_profesor, name='buscar_profesor'),
     path('index/servicios_asignacion/buscar_profesor/editar/<str:nombre_profesor>/', views.editar_profesor, name='editar_profesor'),
 
-    #path('gestion/nuevoprograma/mallacurricular/registroMaterias/', views.registro_materias),
+    
     path('index/lista/', views.lista_programas, name='lista_programas'),
-    path('index/gestion/editar/<str:codigo>/', views.editar_programa, name='editar_programa'),
+    path('index/gestion/editar/<str:codigo_programa>/', views.editar_programa, name='editar_programa'),
     path('programacion/materias/<int:programa_id>/', views.materias, name='materias'),
     path('programacion/materias/<int:materia_id>/horarios/', views.horarios, name='horarios'),
     

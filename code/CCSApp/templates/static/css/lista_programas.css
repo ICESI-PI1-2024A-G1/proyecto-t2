@@ -169,6 +169,7 @@ button {
     transform: translate(-50%, -57%);
     /* background-color: #28C985;
     width: 50%; */
+    background-color: #28C985;
 }
 
 .intermed {
@@ -222,6 +223,19 @@ button {
 
 }
 
+.intermed-bloq-1 {
+    display: block;
+    justify-content: center;
+    position: fixed;
+    top: 18%;
+    left: 52%;
+    width: 75%;
+    transform: translate(-50%, -57%);
+    /* background-color: #28C985;
+    width: 50%; */ 
+    background-color: #999;
+}
+
 .boton-2 {
     margin-right: 10px; /* Ajusta el margen según sea necesario */
     background-size: cover; /* Ajusta el tamaño de la imagen según sea necesario */
@@ -272,3 +286,4 @@ button {
     width: 100%; /* Para que la imagen ocupe todo el ancho del div */
     height: auto; /* Para mantener la proporción de la imagen */
 }
+
