@@ -32,32 +32,24 @@
             <div class="bloq-mid-2">
                 <div class="intermed">
                     <h1>Lista de Programas Académicos</h1>
-                </div>
+                </div>    
                 <form method="get">
-                    <div class="intermed-bloq-1">
-                        <!-- <form method="POST"> -->
-                            <!-- {% csrf_token %} -->
+                    {% for programa in programas %}
+                        <div class="intermed-bloq-1">
                             <ul>
-                                {% for programa in programas %}
-                                    <li><a href="{% url 'editar_programa' programa.codigo %}">{{ programa.name }}</a></li>
-                                {% endfor %}
+                                <p> {{programa.nombre_programa}} </p> 
+                                <p> {{programa.codigo_programa}} </p>     
+                                <p> {{programa.estado_programa}} </p> 
+                                {% for director in directores %}
+                                <p> {{programa.director.nombre_director}}</p>
+                                <button>Editar</button>
+                                <button>Eliminar</button>
+
                             </ul>            
-                        <!-- </form> -->
-                    </div>
+                        </div>
+                    {% endfor %}      
                 </form>
-                
-                <!-- {% if error %}
-                <div class="error-message">
-                {{ error }}
-                </div>
-                {% endif %} -->
             </div>
-            <!-- <h1>Lista de Programas Académicos</h1>
-            <ul>
-                {% for programa in programas %}
-                    <li><a href="{% url 'editar_programa' programa.codigo %}">{{ programa.name }}</a></li>
-                {% endfor %}
-            </ul> -->
             <div class="bloq-inf">
                 <h4>Universidad Icesi</h4>
                 <h4>Todos los derechos reservados</h4>
