@@ -89,13 +89,57 @@ ul {
         opacity: 0;
     }
  }
+
+ /* Estilos para la tabla */
+table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px; /* Espacio entre la tabla y el formulario */
+ }
  
+ /* Estilos para los encabezados de la tabla */
+ th {
+   background-color: #f2f2f2;
+   border: 1px solid #dddddd;
+   padding: 8px;
+   text-align: left;
+ }
+ 
+ /* Estilos para las celdas de la tabla */
+ td {
+   border: 1px solid #dddddd;
+   padding: 8px;
+ }
+ 
+ /* Estilos para filas alternas */
+ tbody tr:nth-child(even) {
+   background-color: #f9f9f9;
+ }
+ 
+ /* Estilos para el mensaje de "No se encontraron materias" */
+ td[colspan="2"] {
+   text-align: center;
+   font-style: italic;
+   color: #999999;
+ }
+
+ /* Estilos para los enlaces dentro de las celdas */
+td a {
+   color:#04AA6D; /* Cambia el color del enlace */
+   text-decoration: none; /* Quita el subrayado */
+   font-weight: bold; /* Hace que el texto sea más grueso */
+ }
+ 
+ /* Estilos para los enlaces al pasar el ratón sobre ellos */
+ td a:hover {
+   text-decoration: underline; /* Subraya el enlace al pasar el ratón sobre él */
+ }
  
  .button {
     /* Alinear los botones con los campos de texto */
     padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
  }
- 
+
  
  .form-1 {
     /* Centrar el formulario en la página */
@@ -104,18 +148,23 @@ ul {
     /* Esquema del formulario */
     padding: 1em;
     border-radius: 1em;
+ 
+ 
  }
  
-.btn-1{
+ 
+ .btn-1{
     font-size: 1rem;
+    /* text-transform: lowercase; */
     font-weight: 500;
     color: #000;
     border: none;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
     padding: 7px 20px;
     background-color: #28C985;
     border-radius: 2rem;
     border:0.7px solid #000000c8;
+    /* border: #ccc; */
  }
  
  
@@ -137,79 +186,119 @@ ul {
     display: flex;
     justify-content: center;
  }
+
+ .div_boton_return{
+   margin-left: 0px;
+   margin-top: 40px;
+   margin-bottom: 5px;
+   margin-right: 10px;
+   /* background-color: #28C985; */
+   width: 5%;
+   height: 10%;
+   justify-content: center;
+   background-color: transparent;
+}
  
+.div_CCSA{
+   margin-left: 10px;
+   margin-top: 10px;
+   margin-bottom: 5px;
+   margin-right: 10px;
+   /* background-color: #28C985; */
+   width: 22%;
+   justify-content: center;
+   font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+}
  
  .bloq-mid{
     display: block;
     justify-content: center;
     position: fixed;
-    top: 52%;
-    left: 51%;
-    transform: translate(-50%, -57%);
+    top: 50%;
+    left: 25%;
+    transform: translate(-45%, -57%);
     /* background-color:#999; */
-    width: 50%;
-    height: 65%;
+    width: 40%;
+    height: 30%;
  }
 
-.bloq-mid input{
-      width: 60%;
-      height: 5%;
-      margin-left: 0%;
-      margin-top: 1%;
-      margin-bottom: 1%;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
+ .bloq-mid input{
+   width: 60%;
+   height: 5%;
+   margin-left: 0%;
+   margin-top: 1%;
+   margin-bottom: 1%;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   box-sizing: border-box;
 }
 
- .bloq-mid label {
-   width: 28%; /* Ancho de la etiqueta */
+.bloq-mid label {
+   width: 30%; /* Ancho de la etiqueta */
    /* background-color: #04AA6D; */
    text-align: left; /* Alineación del texto a la izquierda */
    margin-left: 2.5%;
 }
 
- .intermed {
-    position: relative;
-    top: 0%; /* Ajusta este valor según lo que necesites */
-    left: 30%;
-    margin-left: 25px; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 25px;
-    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 40%;
-    height: 5%;
-    /* background-color:#28C985; */
-    font-size: 0.75em;
- }
- 
- 
- .intermed-bloq {
-   /* background-color:aqua; */
-   width: 90%;
-   height: 70%;
-   justify-content: center;
-   margin-left: 5%; /* Ajusta este valor según lo que necesites */
-   margin-top: 3%;
+ .div_Table {
+   display: block;
+   position: fixed;
+   top: 0%;
+   left: 100%; /* Mueve el div hacia la izquierda un 20% del ancho de la pantalla */
+   transform: translate(10%, 0%);
+   /* background-color: #28C985; */
+   width: 100%;
+   height: 120%;
    border: 2px solid #04AA6D;
    border-radius: 10px;
    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-
-}
+ }
+ 
+ .div_Table2{
+   display: block;
+   position: fixed;
+   top: 10%;
+   left: 10%; /* Mueve el div hacia la izquierda un 20% del ancho de la pantalla */
+   transform: translate(0%, 0%);
+   /* background-color: aqua; */
+   width: 80%;
+   height: 80%;
+ }
+ 
+ .intermed {
+    position: relative;
+    top: 0%; /* Ajusta este valor según lo que necesites */
+    left: 25%;
+    margin-left: 25px; /* Ajusta este valor según lo que necesites */
+    margin-bottom: 25px;
+    width: 50%;
+    height: 15%;
+    /* background-color:#28C985; */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+ }
+ 
+ 
+ .intermed-bloq{
+   /* background-color:aqua; */
+   width:100%;
+   height: 60%;
+   justify-content: center;
+   border: 2px solid #04AA6D;
+   border-radius: 10px;
+   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+ }
+ 
  
  .boton-intermed{
     /* background-color: bisque; */
-    width: 32%;
+    width: 18%;
     top: 50%;
-    left: 20%;
-    transform: translate(100%, 150%);
+    left: 40%;
+    transform: translate(225%, 10%);
  }
-
- .spaced-input {
-    margin-left: 5%; /* Ajusta el valor según lo desees */
-    /* margin-top: 0.5%; */
-}
-
-
+ 
+ 
  .bloq-sup{
     /* display: flex;
     align-items: center; */
@@ -219,6 +308,8 @@ ul {
     height: 13%;
     top: 0;
     background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
  }
  
  
@@ -233,7 +324,7 @@ ul {
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
 
-   }
+}
  
  
  .bloq-sup_secd {
@@ -242,43 +333,8 @@ ul {
     margin-top: auto;
     margin-top: -25px;
     margin-left: 5px;
- }
-
- .div_boton_return{
-    margin-left: 0px;
-    margin-top: 40px;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    /* background-color: #28C985; */
-    width: 5%;
-    height: 10%;
-    justify-content: center;
-    /* border-radius: 50%; */
-    /* border: 1px solid #000000c8; */
-    /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
-    /* padding: 7px 20px; */
-    /* background-color: #28C985; */
-    /* border-radius: 2rem; */
-    /* border:0.7px solid #000000c8; */
-    /* border: #ccc; */
- }
-
- .div_CCSA{
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    /* background-color: #28C985; */
-    width: 22%;
-    justify-content: center;
-    /* border-radius: 50%; */
-    /* border: 1px solid #000000c8; */
-    /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
-    /* padding: 7px 20px; */
-    /* background-color: #28C985; */
-    /* border-radius: 2rem; */
-    /* border:0.7px solid #000000c8; */
-    /* border: #ccc; */
+ 
+ 
  }
  
  
@@ -292,17 +348,19 @@ ul {
     background-color: transparent;
  }
  
+ 
  .titulo {
     margin-right: 10px; /* Ajusta el margen según sea necesario */
     line-height: 62px;
-    /* background-color:antiquewhite; */
  }
  
  
  .descripcion {
-    margin-left: 12px;
-    line-height: 0px;  /* Ajusta el margen según sea necesario */
- }
+   margin-left: 12px;
+   line-height: 0px;  /* Ajusta el margen según sea necesario */
+   font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+}
  
  
  .error-message {
@@ -319,3 +377,11 @@ ul {
     border-radius: 4px; /* Esquinas redondeadas */
     box-sizing: border-box; /* Hace que el padding y el borde se incluyan en el ancho */
  }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

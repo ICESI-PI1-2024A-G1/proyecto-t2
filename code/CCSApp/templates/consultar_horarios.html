@@ -16,11 +16,15 @@
       <div class="bloq-sup">
         <form method="get">
           <div class="bloq-sup_secd">
-            <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeConsultarHorarios()">
-              <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
-            </button>
+            <div class="div_boton_return">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeConsultarHorarios()">
+                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+              </button>
+            </div>
             <div class="titulo">
-              <h1>CCSA</h1>
+              <div class="div_CCSA">
+                <h1>CCSA</h1>
+              </div>
               <div class="descripcion">
                 <h3>Centro Compartido de Servicios Académicos</h3>
               </div>
@@ -38,8 +42,7 @@
             <tr>
               <th>ID</th>
               <th>Fecha y Hora</th>
-              <th>Profesor</th>
-              <th>Materia</th>
+              <th>NRC</th>
               <th>Modalidad</th>
               <th>Enlace Virtual</th>
               <th>Salon Presencial</th>
@@ -50,8 +53,7 @@
             <tr>
               <td>{{ horario.id }}</td>
               <td>{{ horario.fecha_hora }}</td>
-              <td>{{ horario.profesor }}</td>
-              <td>{{ horario.materia }}</td>
+              <td>{{ horario.nrc }}</td>
               <td>{{ horario.modalidad }}</td>
               <td>{{ horario.enlace_virtual }}</td>
               <td>{{ horario.salon_presencial }}</td>

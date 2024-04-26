@@ -79,7 +79,28 @@ button {
     }
 }
 
-
+.div_boton_return{
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 5%;
+    height: 10%;
+    justify-content: center;
+    background-color: transparent;
+ }
+  
+ .div_CCSA{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 22%;
+    justify-content: center;
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+ }
 
 .button {
     /* Alinear los botones con los campos de texto */
@@ -101,7 +122,7 @@ button {
     /* text-transform: lowercase; */
     font-weight: 500;
     color: #000;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
     padding: 7px 20px;
     background-color: #28C985;
     border-radius: 2rem;
@@ -153,11 +174,10 @@ button {
     justify-content: center;
     position: fixed;
     top: 18%;
-    left: 52%;
-    width: 75%;
+    left: 50%;
+    width: 74%;
     transform: translate(-50%, -57%);
-    /* background-color: #28C985;
-    width: 50%; */
+    /* background-color: #28C985; */
 }
 
 .bloq-mid-2{
@@ -165,11 +185,11 @@ button {
     justify-content: center;
     position: fixed;
     top: 50%;
-    left: 18%;
-    transform: translate(-50%, -57%);
-    /* background-color: #28C985;
-    width: 50%; */
-    
+    left: 22%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 20%;
+    /* background-color: #999; */
 }
 
 .intermed {
@@ -184,7 +204,11 @@ button {
 }
 
 .intermed-1 {
-    left: 25%;
+    /* background-color: aqua; */
+    width: 50%;
+    margin-left: 5%;
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
 
 .bloq-sup{
@@ -208,6 +232,8 @@ button {
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
 
 .bloq-sup_secd {
@@ -226,6 +252,7 @@ button {
     border: none; /* Quita el borde del botón */
     width: 55px; /* Ajusta el ancho del botón según sea necesario */
     height: 55px; /* Ajusta la altura del botón según sea necesario */
+    background-color: transparent;
 }
 
 .titulo {
@@ -234,9 +261,11 @@ button {
 }
 
 .descripcion {
-    margin-left: 5px;
+    margin-left: 12px;
     line-height: 0px;  /* Ajusta el margen según sea necesario */
-}
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+ }
 
 .error-message {
     text-align: center;
@@ -253,16 +282,17 @@ button {
 }
 
 .photo{
-    width: 50%; /* Ancho del div */
-    height: 60%; /* Altura del div */
-    border: 0px solid #ccc; /* Borde del div */
+    width: 46%; /* Ancho del div */
+    height: 52%; /* Altura del div */
+    border: 0px solid #000000;
     overflow: hidden;
     display: block;
     justify-content: center;
     position: fixed;
-    top: 58%;
+    top: 52%;
     left: 68%;
-    transform: translate(-50%, -57%);
+    transform: translate(-50%, -50%);
+    
 }
 
 .photo img {
