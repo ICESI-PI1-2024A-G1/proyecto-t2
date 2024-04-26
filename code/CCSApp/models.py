@@ -87,7 +87,7 @@ class Semestre(models.Model):
     estado_semestre = models.CharField(max_length= 8, null= False, blank= False,  default= 'Activo', choices= [('activo', 'Activo'), ('inactivo', 'Inactivo')])  # Cambiar a charfield
     año = models.IntegerField(blank= False, null= False, default= "2024")
     periodo = models.IntegerField(choices=[(1, '1'), (2, '2')], default= "1")
-    #materias = models.ForeignKey(Materia, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    # materias = models.ForeignKey(Materia, on_delete=models.CASCADE, default = '', null = False, blank = False)
 
     def __str__(self):
         return f"{self.año}-{self.periodo}"
