@@ -22,10 +22,18 @@ class Horario(models.Model):
         ('mixta', 'Mixta'),
     ]
 
+    GRUPO = [
+        ('001', '001'),
+        ('002', '002'),
+        ('003', '003'),
+        ('004', '004')
+    ]
+
     id_horario = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
     fecha_inicio_hora = models.DateTimeField(default= '')
     fecha_final_hora = models.DateTimeField()
-    nrc = models.ForeignKey('Nrc', on_delete=models.CASCADE)
+    materia = models.ForeignKey('Materia', default = '', on_delete=models.CASCADE)
+    grupo = models.CharField(max_length=20, default = '', choices=GRUPO)#
     modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)#
     enlace_virtual = models.URLField(blank=True, null=True)
     salon_presencial = models.CharField(max_length=50, blank=True, null=True)
@@ -175,7 +183,6 @@ class Solicitud_de_servicio(models.Model):
     def  __str__(self):
         return self.nombre_solicitud
  
-
 
      
 class Materia_profesor(models.Model):
