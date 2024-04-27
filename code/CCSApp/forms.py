@@ -117,6 +117,30 @@ class CrearProgramaAcademico(forms.Form):
 
         return cleaned_data
 
+class CrearProgramacionAcademica(forms.Form):
+    programa_de_posgrado = forms.ModelChoiceField(label="Programa de posgrado", queryset= Programa_de_posgrado.objects.all(), help_text="Seleccione el programa")
+    semestre = forms.ModelChoiceField(label="Semestre", queryset= Semestre.objects.all(), help_text="Seleccione el programa")
+    departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), help_text="Seleccione el departamento")
+    num_creditos = forms.IntegerField(label = 'Numeros de creditos',help_text = "Escriba la cantidad de creditos totales que tendra el estudiante cuando curse esta programacion academica")
+    periodo = forms.ModelChoiceField(label="Periodo", queryset= Periodo.objects.all(), help_text="Seleccione el periodo al que pertenece la programacion academica")
+    materia = forms.ModelChoiceField(label="Materia", queryset= Materia.objects.all(), help_text="Seleccione las materias que desea asignar a la programacion academica")
+    horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), help_text="Seleccione el horario de las materias que desea asignar a la programacion academica")
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        # Get the selected faculty instance
+        selected_faculty = cleaned_data.get('facultad_programa')
+
+        # Validate the selected faculty
+        if not selected_faculty:
+            raise forms.ValidationError('Seleccione una facultad válida.')
+
+        # Update the cleaned data with the faculty instance
+        cleaned_data['facultad_programa'] = selected_faculty
+
+        return cleaned_data
+
 class CrearMallaCurricular(forms.Form):
     nombre_malla = forms.CharField(label="Nombre", max_length=255)
     requisitos_previos = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción de la malla curricular.")
@@ -228,3 +252,9 @@ class EditarEspacio(forms.ModelForm):
             'disponibilidad_espacio': forms.Select(choices=Espacio.disponibilidad_espacio),
             'tipo': forms.Select(choices=Espacio.tipo)
         }
+
+class BuscarProgramaEP(forms.Form):
+    programa_de_posgrado = forms.ModelChoiceField(label="Facultad", queryset= Programa_de_posgrado.objects.all())
+
+class BuscarSemestreEP(forms.Form):
+    semestre = forms.ModelChoiceField(label="Facultad", queryset= Semestre.objects.all(), help_text="Seleccione el semestre que desea crearle la programacion academica")

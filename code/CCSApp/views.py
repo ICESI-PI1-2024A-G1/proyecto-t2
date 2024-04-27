@@ -415,16 +415,8 @@ def programs_csv(request):
     wb.save(response)
     return response
 
-def empezar_progra(request):
-    form = ProgramacionSemestral(request.POST or None)  # Maneja datos del POST
-    if form.is_valid():
-        programa = form.cleaned_data['Programa']
-        materias = Materia.objects.filter(codigo_materia = programa)
-    else:
-        programa = None
-        materias = []
-    context = {'form': form, 'programa': programa, 'materias': materias}
-    return render(request, 'empezar_progra.html', context)
+
+
 
 def materias(request):
     programas = Programa_de_posgrado.objects.all()
@@ -500,3 +492,16 @@ def editar_espacio(request, espacio_codigo):
     else:
         form = EditarEspacio(instance=espacio)
     return render(request, 'editar_espacio.html', {'form': form})
+
+def crear_programacion_academica(request):
+    form = CrearProgramacionAcademica(request.POST or None)  # Maneja datos del POST
+    if form.is_valid():
+        programa_de_posgrado = form.cleaned_data['programa_de_posgrado']
+        semestres = Semestre.objects.filter(programa_semestre = programa_de_posgrado)
+    else:
+        programa_de_posgrado = None
+        semestres = []
+
+    context = {'form': form, 'programa_de_posgrado': programa_de_posgrado, 'semestres': semestres}
+    return render(request, 'programacion_academica.html', context)
+
