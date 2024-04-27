@@ -72,8 +72,34 @@ def modificar_horarios(request):
     return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
 
 def consultar_horarios(request):
+    # Obtener todos los horarios inicialmente
     horarios = Horario.objects.all()
-    return render(request, 'consultar_horarios.html', {'horarios': horarios})
+
+    # Obtener parámetros de filtro del formulario si están presentes en la solicitud GET
+    modalidad = request.GET.get('modalidad')
+    materia = request.GET.get('materia')
+    grupo = request.GET.get('grupo')
+    fecha_inicio_hora = request.GET.get('fecha_inicio')
+    fecha_final_hora = request.GET.get('fecha_final')
+
+    # Aplicar filtros según los parámetros proporcionados en el formulario
+    if modalidad:
+        horarios = horarios.filter(modalidad=modalidad)
+    if materia:
+        horarios = horarios.filter(materia=materia)
+    if grupo:
+        horarios = horarios.filter(grupo=grupo)
+    if fecha_inicio_hora:
+        horarios = horarios.filter(fecha_inicio_hora=fecha_inicio_hora)
+    if fecha_final_hora:
+        horarios = horarios.filter(fecha_final_hora=fecha_final_hora)
+
+    # Pasar los horarios filtrados al contexto para mostrar en la plantilla
+    context = {
+        'horarios': horarios
+    }
+
+    return render(request, 'consultar_horarios.html', context)
 
 def servicios_asignacion(request):
     if request.method == "GET":

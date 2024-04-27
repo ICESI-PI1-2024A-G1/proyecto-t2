@@ -33,9 +33,43 @@
         </form>
       </div>
 
+      <!-- Barra de filtro para buscar horarios -->
       <div class="bloq-mid">
         <div class="intermed">
           <h1>Horarios Registrados</h1>
+          
+          <!-- Formulario de filtro -->
+          <form method="get" class="filtro-form">
+
+            <label for="fecha_inicio_hora">Fecha de Inicio:</label>
+            <input type="datetime-local" name="fecha_inicio" id="fecha_inicio">
+
+            <label for="fecha_final_hora">Fecha Final:</label>
+            <input type="datetime-local" name="fecha_final" id="fecha_final">
+
+            <label for="modalidad">Modalidad:</label>
+            <select name="modalidad" id="modalidad">
+              <option value="">Seleccionar modalidad</option>
+              <option value="presencial">Presencial</option>
+              <option value="virtual">Virtual</option>
+              <option value="mixta">Mixta</option>
+            </select>
+
+            <label for="materia">Materia:</label>
+            <input type="text" name="materia" id="materia">
+
+            <label for="grupo">Grupo:</label>
+            <select name="grupo" id="grupo">
+              <option value="">Seleccionar grupo</option>
+              <option value="001">001</option>
+              <option value="002">002</option>
+              <option value="003">003</option>
+              <option value="004">004</option>
+            </select>
+          
+            <button type="submit">Buscar</button>
+          </form>
+          
         </div>
         <table class="form-1">
           <thead>
@@ -78,4 +112,3 @@
 </body>
 
 </html>
-
