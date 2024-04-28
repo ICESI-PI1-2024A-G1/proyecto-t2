@@ -494,14 +494,20 @@ def editar_espacio(request, espacio_codigo):
     return render(request, 'editar_espacio.html', {'form': form})
 
 def crear_programacion_academica(request):
-    form = CrearProgramacionAcademica(request.POST or None)  # Maneja datos del POST
+    form = ProgramacionAcademicaForm(request.POST or None)  # Maneja datos del POST
     if form.is_valid():
         programa_de_posgrado = form.cleaned_data['programa_de_posgrado']
         semestres = Semestre.objects.filter(programa_semestre = programa_de_posgrado)
+        departamento = form.cleaned_data['departamento']
     else:
         programa_de_posgrado = None
         semestres = []
+        departamento = None
 
-    context = {'form': form, 'programa_de_posgrado': programa_de_posgrado, 'semestres': semestres}
+    context = {'form': form, 
+               'programa_de_posgrado': programa_de_posgrado, 
+               'semestres': semestres,
+               'departamento': departamento}
+    
     return render(request, 'programacion_academica.html', context)
 
