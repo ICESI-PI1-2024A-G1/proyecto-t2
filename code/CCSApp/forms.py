@@ -250,12 +250,13 @@ class EventoForm(forms.Form):
         label="Fecha Final",
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
     )    
-    lugar_evento = models.ForeignKey(Espacio, on_delete=models.CASCADE, default = '', null = False, blank = False)
-    descripcion_evento = models.TextField(blank=True)
-    programa_de_posgrado_evento = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    lugar_evento = forms.ModelChoiceField(queryset=Espacio.objects.all(), label='Lugar', empty_label="Seleccione el Lugar del evento", widget=forms.Select(attrs={'class': 'form-control'}))
+    descripcion_evento = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción del evento")
+    programa_de_posgrado_evento = forms.ModelChoiceField(queryset=Programa_de_posgrado.objects.all(), label='Programa_de_posgrado', empty_label="Seleccione el programa de posgrado", widget=forms.Select(attrs={'class': 'form-control'}))
     
 class ActividadForm(forms.Form):
     nombre_actividad = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    duracion_en_horas = models.ForeignKey(Espacio, on_delete=models.CASCADE, default = '', null = False, blank = False)
-    orador_actividad = models.CharField(blank=True)
-    evento_actividad = models.ForeignKey(Evento, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    descripcion_actividad = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción de la actividad")
+    duracion_en_horas = forms.IntegerField(label='Duracion en horas', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    orador_actividad = forms.CharField(label = 'Nombre del orador', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    evento_actividad = forms.ModelChoiceField(queryset=Evento.objects.all(), label='Evento', empty_label="Seleccione el evento", widget=forms.Select(attrs={'class': 'form-control'}))
