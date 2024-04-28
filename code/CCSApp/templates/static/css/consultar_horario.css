@@ -170,7 +170,7 @@ button {
     margin-left:0%; /* Ajusta este valor según lo que necesites */
     margin-bottom: 2%;
     width: 80%;
-    height: 20%;
+    height: 30%;
     left: 10%;
     /* background-color:#999; */
 } 
@@ -222,7 +222,8 @@ button {
     border-radius: 2rem;
     border:0.7px solid #000000c8;
     width: 10%;
-    margin-left: 14%;
+    margin-left: 45%;
+    margin-top: 4px;
 }
 
 .btn-1 {
@@ -254,6 +255,7 @@ button {
     height: 66%;
     /* background-color: #28C985; */
 }
+
 .bloq-sup{
     /* display: flex;
     align-items: center; */
