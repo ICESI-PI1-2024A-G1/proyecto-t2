@@ -255,3 +255,24 @@ class EditarEspacio(forms.ModelForm):
             'disponibilidad_espacio': forms.Select(choices=Espacio.disponibilidad_espacio),
             'tipo': forms.Select(choices=Espacio.tipo)
         }
+    
+
+class EventoForm(forms.Form):
+    nombre_evento = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    fecha_inicio_evento = forms.DateTimeField(
+        label="Fecha Inicio",
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+    )
+    fecha_final_evento = forms.DateTimeField(
+        label="Fecha Final",
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+    )    
+    lugar_evento = models.ForeignKey(Espacio, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    descripcion_evento = models.TextField(blank=True)
+    programa_de_posgrado_evento = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    
+class ActividadForm(forms.Form):
+    nombre_actividad = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    duracion_en_horas = models.ForeignKey(Espacio, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    orador_actividad = models.CharField(blank=True)
+    evento_actividad = models.ForeignKey(Evento, on_delete=models.CASCADE, default = '', null = False, blank = False)

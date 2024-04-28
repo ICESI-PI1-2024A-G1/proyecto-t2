@@ -133,7 +133,6 @@ class Evento(models.Model):
     
 class Actividad(models.Model):
     nombre_actividad = models.CharField(max_length = 255, null = False, blank = False, primary_key = True)
-    tipo_actividad = models.CharField(max_length = 255, null = False, blank = False)
     descripcion_actividad = models.TextField(null = False, blank = False)
     duracion_en_horas= models.PositiveIntegerField(default = 1, null = False, blank = False)
     orador_actividad = models.CharField(max_length = 255, null = False, blank = False)

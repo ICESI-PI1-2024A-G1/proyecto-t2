@@ -72,8 +72,34 @@ def modificar_horarios(request):
     return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
 
 def consultar_horarios(request):
+    # Obtener todos los horarios inicialmente
     horarios = Horario.objects.all()
-    return render(request, 'consultar_horarios.html', {'horarios': horarios})
+
+    # Obtener parámetros de filtro del formulario si están presentes en la solicitud GET
+    modalidad = request.GET.get('modalidad')
+    materia = request.GET.get('materia')
+    grupo = request.GET.get('grupo')
+    fecha_inicio_hora = request.GET.get('fecha_inicio')
+    fecha_final_hora = request.GET.get('fecha_final')
+
+    # Aplicar filtros según los parámetros proporcionados en el formulario
+    if modalidad:
+        horarios = horarios.filter(modalidad=modalidad)
+    if materia:
+        horarios = horarios.filter(materia=materia)
+    if grupo:
+        horarios = horarios.filter(grupo=grupo)
+    if fecha_inicio_hora:
+        horarios = horarios.filter(fecha_inicio_hora=fecha_inicio_hora)
+    if fecha_final_hora:
+        horarios = horarios.filter(fecha_final_hora=fecha_final_hora)
+
+    # Pasar los horarios filtrados al contexto para mostrar en la plantilla
+    context = {
+        'horarios': horarios
+    }
+
+    return render(request, 'consultar_horarios.html', context)
 
 def servicios_asignacion(request):
     if request.method == "GET":
@@ -511,3 +537,36 @@ def crear_programacion_academica(request):
     
     return render(request, 'programacion_academica.html', context)
 
+def crear_evento(request):
+    if request.method == 'POST':
+        formEvent = EventoForm(request.POST)
+        if formEvent.is_valid():
+            # Procesar los datos del formulario y guardar el programa académico
+            evento = Evento(
+                nombre_evento=formEvent.cleaned_data['nombre_evento'],
+                fecha_inicio_evento=formEvent.cleaned_data['fecha_inicio_evento'],
+                fecha_finalizacion_evento=formEvent.cleaned_data['fecha_finalizacion_evento'],
+                lugar_evento=formEvent.cleaned_data['lugar_evento'],
+                descripcion_evento=formEvent.cleaned_data['descripcion_evento'],
+                programa_de_posgrado_evento=formEvent.cleaned_data['programa_de_posgrado_evento'])
+            evento.save()
+            return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
+    else:
+        formEvent = EventoForm()
+    return render(request, 'crear_evento.html', {'formEvent': formEvent})
+
+def crear_actividad(request):
+    if request.method == 'POST':
+        formActividad = ActividadForm(request.POST)
+        if formActividad.is_valid():
+            # Procesar los datos del formulario y guardar el programa académico
+            actividad = Actividad(
+                nombre_actividad=formActividad.cleaned_data['nombre_actividad'],
+                duracion_en_horas=formActividad.cleaned_data['duracion_en_horas'],
+                orador_actividad=formActividad.cleaned_data['orador_actividad'],
+                evento_actividad=formActividad.cleaned_data['evento_actividad'])
+            actividad.save()
+            return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
+    else:
+        formActividad = ActividadForm()
+    return render(request, 'crear_actividad.html', {'formActividad': formActividad})
