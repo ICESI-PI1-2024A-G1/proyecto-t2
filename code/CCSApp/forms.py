@@ -250,9 +250,9 @@ class EventoForm(forms.Form):
         label="Fecha Final",
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
     )    
-    lugar_evento = models.ForeignKey(Espacio, on_delete=models.CASCADE, default = '', null = False, blank = False)
-    descripcion_evento = models.TextField(blank=True)
-    programa_de_posgrado_evento = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    lugar_evento = forms.ModelChoiceField(label="Lugar", queryset=Espacio.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    descripcion_evento = forms.CharField(label="Descripción", widget=forms.Textarea(attrs={'class': 'form-control'}))
+    programa_de_posgrado_evento = forms.ModelChoiceField(label="Programa de Posgrado", queryset=Programa_de_posgrado.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
     
 class ActividadForm(forms.Form):
     nombre_actividad = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
