@@ -37,7 +37,7 @@
           <h1>Crear Nueva Materia</h1>
         </div>
         <div class="intermed-bloq">
-          <form method="POST" class="form-1" enctype="multipart/form-data">
+          <form method="POST" class="form-1" enctype="multipart/form-data" id="registro-materia-form">
             {% csrf_token %}
             {{ form.as_p }}
             <div class="buttondiv">
@@ -51,6 +51,15 @@
         </div>
         {% endif %}
       </div>
+      <div id="modal-confirmacion" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+          <p>La materia ha sido creada exitosamente.</p>
+        </div>
+      </div> 
+      <div id="mensaje-confirmacion" style="display: none;" class="mensaje-confirmacion">
+        La materia ha sido creada exitosamente.
+      </div>   
       <div class="bloq-inf">
         <h4>Universidad Icesi</h4>
         <h4>Todos los derechos reservados</h4>
@@ -59,6 +68,44 @@
     </div>
   </div>
   <script src="{% static 'js/transiciones.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('registro-materia-form');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevenir el envío del formulario por defecto
+        
+        // Verificar si hay un error
+        var errorDiv = document.querySelector('error-message');
+        if (!errorDiv) {
+          // No hay error, mostrar el cuadro emergente de confirmación
+          mostrarModal();
+  
+          // Opcional: puedes agregar un temporizador para ocultar el cuadro emergente después de un tiempo determinado
+          setTimeout(function() {
+            cerrarModal();
+          }, 3000); // 3000 milisegundos = 3 segundos
+  
+          // Envía el formulario después de un breve retraso (si es necesario)
+          setTimeout(function() {
+            form.submit();
+          }, 1000); // 1000 milisegundos = 1 segundo
+        }
+      });
+    });
+  </script>  
+  <script>
+    // Función para mostrar el cuadro emergente
+    function mostrarModal() {
+      var modal = document.getElementById("modal-confirmacion");
+      modal.style.display = "block";
+    }
+  
+    // Función para cerrar el cuadro emergente
+    function cerrarModal() {
+      var modal = document.getElementById("modal-confirmacion");
+      modal.style.display = "none";
+    }
+  </script>
 </body>
 
 </html>

@@ -42,11 +42,14 @@
             <div class="intermed-bloq">
               <form method="get" class="filtro-form">
   
-                <label for="fecha_inicio_hora">Fecha de Inicio:</label>
-                <input class="form-control" type="datetime-local" name="fecha_inicio" id="fecha_inicio">
+                <label for="fecha_inicio_horario">Fecha:</label>
+                <input class="form-control" type="date" name="fecha_inicio_horario" id="fecha_inicio_horario">
   
-                <label for="fecha_final_hora">Fecha Final:</label>
-                <input class="form-control" type="datetime-local" name="fecha_final" id="fecha_final">
+                <label for="hora_inicio_horario">Hora Inicio:</label>
+                <input class="form-control" type="time" name="hora_inicio_horario" id="hora_inicio_horario">
+
+                <label for="hora_final_horario">Hora Final:</label>
+                <input class="form-control" type="time" name="hora_final_horario" id="hora_final_horario">
   
                 <label for="modalidad">Modalidad:</label>
                 <select class="form-control" name="modalidad" id="modalidad">
@@ -76,8 +79,9 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Fecha inicio</th>
-                <th>Fecha final</th>
+                <th>Fecha</th>
+                <th>Hora inicio</th>
+                <th>Hora final</th>
                 <th>Materia</th>
                 <th>Grupo</th>
                 <th>Modalidad</th>
@@ -89,8 +93,9 @@
               {% for horario in horarios %}
               <tr>
                 <td>{{ horario.id_horario }}</td>
-                <td>{{ horario.fecha_inicio_hora }}</td>
-                <td>{{ horario.fecha_final_hora }}</td>
+                <td>{{ horario.fecha_inicio_horario }}</td>
+                <td>{{ horario.hora_inicio_horario }}</td>
+                <td>{{ horario.hora_final_horario }}</td>
                 <td>{{ horario.materia }}</td>
                 <td>{{ horario.grupo }}</td>
                 <td>{{ horario.modalidad }}</td>
