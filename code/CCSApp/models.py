@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import *
 from django.db import models
 
 fecha_inicio_por_defecto = date(2024, 3, 15)
@@ -22,10 +22,18 @@ class Horario(models.Model):
         ('mixta', 'Mixta'),
     ]
 
+    GRUPO = [
+        ('001', '001'),
+        ('002', '002'),
+        ('003', '003'),
+        ('004', '004')
+    ]
+
     id_horario = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
     fecha_inicio_hora = models.DateTimeField(default= '')
     fecha_final_hora = models.DateTimeField()
-    nrc = models.ForeignKey('Nrc', on_delete=models.CASCADE)
+    materia = models.ForeignKey('Materia', default = '', on_delete=models.CASCADE)
+    grupo = models.CharField(max_length=20, default = '', choices=GRUPO)#
     modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)#
     enlace_virtual = models.URLField(blank=True, null=True)
     salon_presencial = models.CharField(max_length=50, blank=True, null=True)
@@ -38,8 +46,17 @@ class Facultad(models.Model):
     nombre_facultad = models.CharField(max_length = 255, null = False, blank = False, default = '') 
 
     def  __str__(self):
-        return self.codigo_facultad
+        return f"{self.codigo_facultad} - {self.nombre_facultad}"
 
+class Director_de_programa(models.Model):
+     nombre_director= models.CharField(max_length =255, null = False, blank = False, primary_key= "")
+     numero_director = models.IntegerField(null = False, blank = False)
+     correo_director = models.CharField(max_length=500, null = False, blank = False)
+     foto_de_perfil = models.ImageField(upload_to= 'fotosdirectores/')
+
+     def __str__(self):
+          return self.nombre_director
+     
 class Programa_de_posgrado(models.Model):
     nombre_programa = models.CharField(max_length =255, unique= True,null = False, blank = False) #cambio
     codigo_programa = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True) # cambio
@@ -53,8 +70,9 @@ class Programa_de_posgrado(models.Model):
     facultad_programa = models.ForeignKey(Facultad, on_delete = models.CASCADE, default = '', null = False, blank = False) #cambio
     
     modalidad_programa = models.CharField(max_length = 20, choices = [('Presencial', 'Presencial'), ('Virtual', 'Virtual'), ('Mixta', 'Mixta')], default = 'Presencial', null = False, blank = False) #cambio
+    director_programa = models.ForeignKey(Director_de_programa, on_delete= models.CASCADE, default = "")
     def  __str__(self):
-        return self.nombre_programa
+        return f"{self.codigo_programa} - {self.nombre_programa}"
 
 class Materia(models.Model):
     nombre_materia = models.CharField(max_length =255, null = False, blank = False)
@@ -74,11 +92,13 @@ class Nrc(models.Model):
        
 class Semestre(models.Model):
     nombre_semestre = models.CharField(max_length=255, null=False, blank=False, primary_key= True)
-    estado_semestre = models.BooleanField(default=True)  # Cambiar a charfield
-    materias = models.ForeignKey(Materia, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    estado_semestre = models.CharField(max_length= 8, null= False, blank= False,  default= 'Activo', choices= [('activo', 'Activo'), ('inactivo', 'Inactivo')])  # Cambiar a charfield
+    año = models.IntegerField(blank= False, null= False, default= "2024")
+    periodo = models.IntegerField(choices=[(1, '1'), (2, '2')], default= "1")
+    # materias = models.ForeignKey(Materia, on_delete=models.CASCADE, default = '', null = False, blank = False)
 
     def __str__(self):
-        return self.nombre_semestre   
+        return f"{self.año}-{self.periodo}"
 
 class Malla_curricular(models.Model): #replantear
     nombre_malla = models.CharField(max_length =255, primary_key=True, null = False, blank = False)
@@ -111,7 +131,6 @@ class Evento(models.Model):
     
 class Actividad(models.Model):
     nombre_actividad = models.CharField(max_length = 255, null = False, blank = False, primary_key = True)
-    tipo_actividad = models.CharField(max_length = 255, null = False, blank = False)
     descripcion_actividad = models.TextField(null = False, blank = False)
     duracion_en_horas= models.PositiveIntegerField(default = 1, null = False, blank = False)
     orador_actividad = models.CharField(max_length = 255, null = False, blank = False)
@@ -151,17 +170,6 @@ class Usuario(models.Model):
     def  __str__(self):
         return self.cedula 
 
-class Viaticos (models.Model):
-    nombre_viatico = models.CharField(max_length =255, null = False, blank = False)
-    destino_del_viatico = models.CharField(max_length =255, null = False, blank = False)
-    fecha_inicio_viaje= models.DateField(null = False, blank = False, default = '')
-    fecha_final_viaje= models.DateField(null = False, blank = False)
-    costo_de_viaje = models.DecimalField(max_digits = 10, decimal_places =2, default = 2000000, null = False, blank = False)
-    invitados_viatico = models.IntegerField(default = 10, null = False, blank = False)
-    evento_viatico = models.ForeignKey(Evento, on_delete=models.CASCADE, default = '', null = False, blank = False)
-    estado_viatico = models.CharField(max_length=50, choices = [('En curso', 'En curso'), ('Aprobado', 'Aprobado'), ('Rechazado', 'Rechazado')], default = 'En curso', null = False, blank = False)
-    def  __str__(self):
-        return self.nombre_viatico
     
 class Solicitud_de_servicio(models.Model):
     nombre_solicitud = models.CharField(max_length =255, null = False, blank = False)
@@ -175,15 +183,6 @@ class Solicitud_de_servicio(models.Model):
         return self.nombre_solicitud
  
 
-
-class Director_de_programa(models.Model):
-     nombre_director= models.CharField(max_length =255, null = False, blank = False)
-     numero_director = models.IntegerField(null = False, blank = False)
-     correo_director = models.CharField(max_length=500, null = False, blank = False)
-     foto_de_perfil = models.ImageField(upload_to= 'fotosdirectores/')
-
-     def __str__(self):
-          return self.nombre_director
      
 class Materia_profesor(models.Model):
      id = models.CharField(max_length= 7, null = False, default= "0000000", blank= False, primary_key= True)
@@ -193,5 +192,11 @@ class Materia_profesor(models.Model):
      def __str__(self):
           return self.id
 
+class Departamento(models.Model):
+     id_departamento = models.CharField(max_length= 3, null= False, default= "000", blank = False,primary_key=True)
+     nombre_departamento = models.CharField(max_length= 500, null= False, default= "", blank = False)
+
+     def  __str__ (self):
+          return f"{self.id_departamento} - {self.nombre_departamento}"
     
    

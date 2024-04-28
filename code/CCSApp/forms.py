@@ -25,10 +25,18 @@ class NewHorario(forms.Form):
         ('virtual', 'Virtual'),
         ('mixta', 'Mixta'),
     ]
+
+    GRUPO = [
+        ('001', '001'),
+        ('002', '002'),
+        ('003', '003'),
+        ('004', '004')
+    ]
     modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control2'}))
     enlace_virtual = forms.URLField(label="Enlace Virtual", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     espacio = forms.ModelChoiceField(label="Espacio", queryset=Espacio.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
-    nrc = forms.ModelChoiceField(label="Nrc", queryset=Nrc.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
+    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
+    grupo = forms.ChoiceField(label="Grupo", choices=GRUPO, widget=forms.Select(attrs={'class': 'form-control2'}))
     
 class ModificarHorarioForm(forms.Form):
     horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar", widget=forms.Select(attrs={'class': 'form-control'}))
@@ -40,14 +48,22 @@ class ModificarHorarioForm(forms.Form):
         label="Fecha Final",
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
     )
-    nrc = forms.ModelChoiceField(label="Nrc", queryset=Nrc.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
+    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
     
     MODALIDAD_CHOICES = [
         ('presencial', 'Presencial'),
         ('virtual', 'Virtual'),
         ('mixta', 'Mixta'),
     ]
+
+    GRUPO = [
+        ('001', '001'),
+        ('002', '002'),
+        ('003', '003'),
+        ('004', '004')
+    ]
     modalidad = forms.ChoiceField(label="Nueva Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control2'}))
+    grupo = forms.ChoiceField(label="Nueva Grupo", choices=GRUPO, widget=forms.Select(attrs={'class': 'form-control2'}))
     enlace_virtual = forms.URLField(label="Nuevo Enlace Virtual", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     espacio = forms.CharField(label= "Espacio", max_length =255, widget=forms.Select(attrs={'class': 'form-control2'}))
 
@@ -68,28 +84,42 @@ class LoginForm(forms.Form):
 
 
 class CrearProgramaAcademico(forms.Form):
-    name = forms.CharField(label="Nombre", max_length=255, help_text="Ingrese el nombre del programa.")
-    codigo = forms.CharField(label="Código", max_length=100, help_text="Ingrese el código del programa.")
-    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción del programa.")
-    fecha_inicio = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-    fecha_finalizacion = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    nombre_programa = forms.CharField(label="Nombre", max_length=255, help_text="Ingrese el nombre del programa.")
+    codigo_programa = forms.CharField(label="Código", max_length=100, help_text="Ingrese el código del programa.")
+    fecha_inicio_programa = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     ESTADO_CHOICES = [
         ("Activo","Activo"),
         ("Inactivo","Inactivo")
     ]
-    estado = forms.ChoiceField(label = "estado", choices= ESTADO_CHOICES, help_text= 'Seleccione el estado del programa' )
-    duracion = forms.CharField(label="Duración", help_text="Ingrese la duración del programa.")
-    facultad= forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
+    estado_programa = forms.ChoiceField(label = "Estado", choices= ESTADO_CHOICES, help_text= 'Seleccione el estado del programa' )
+    duracion_programa = forms.CharField(label="Duración", help_text="Ingrese la duración del programa en años")
+    # facultad= forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
+    facultad_programa = forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
     MODALIDADES_CHOICES = [
         ('Presencial', 'Presencial'),
         ('Virtual', 'Virtual'),
         ('Mixta', 'Mixta')
     ]
-    modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDADES_CHOICES, help_text="Seleccione la modalidad del programa.")
+    modalidad_programa = forms.ChoiceField(label="Modalidad", choices=MODALIDADES_CHOICES, help_text="Seleccione la modalidad del programa.")
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        # Get the selected faculty instance
+        selected_faculty = cleaned_data.get('facultad_programa')
+
+        # Validate the selected faculty
+        if not selected_faculty:
+            raise forms.ValidationError('Seleccione una facultad válida.')
+
+        # Update the cleaned data with the faculty instance
+        cleaned_data['facultad_programa'] = selected_faculty
+
+        return cleaned_data
 
 class CrearMallaCurricular(forms.Form):
-    nombre = forms.CharField(label="Nombre", max_length=255)
-    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción de la malla curricular.")
+    nombre_malla = forms.CharField(label="Nombre", max_length=255)
+    requisitos_previos = forms.CharField(label="Descripción", widget=forms.Textarea(), help_text="Ingrese una descripción de la malla curricular.")
     requisitos_previos = forms.CharField(label="Requisitos previos", widget=forms.Textarea(), help_text="Ingrese los requisitos previos a la malla curricular")
     programa_de_posgrado = forms.ModelChoiceField(label="Programa de posgrado", queryset=Programa_de_posgrado.objects.all(), help_text="Seleccione el programa de posgrado al que pertenece la malla.")
 
@@ -150,11 +180,10 @@ class EditarProgramaForm(forms.ModelForm):
 
         
 class DirectorDePrograma(forms.Form):
-    nombre = forms.CharField(label = 'Nombre', max_length= 255)
-    numero = forms.IntegerField(label = "Numero celular de contacto")
-    correo = forms.CharField(label = "Correo Electronico", max_length= 500)
-    descripcion_cargo = forms.CharField(label= "Descripcion", widget= forms.Textarea())
-    foto_de_perfil = forms.ImageField
+    nombre_director = forms.CharField(label = 'Nombre', max_length= 255)
+    numero_director = forms.IntegerField(label = "Numero celular de contacto")
+    correo_director = forms.CharField(label = "Correo Electronico", max_length= 500)
+    foto_de_perfil = forms.ImageField()
 
 class ProgramacionSemestral(forms.Form):    
     Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa", widget=forms.Select(attrs={'class': 'form-control'}))
@@ -199,3 +228,24 @@ class EditarEspacio(forms.ModelForm):
             'disponibilidad_espacio': forms.Select(choices=Espacio.disponibilidad_espacio),
             'tipo': forms.Select(choices=Espacio.tipo)
         }
+    
+
+class EventoForm(forms.Form):
+    nombre_evento = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    fecha_inicio_evento = forms.DateTimeField(
+        label="Fecha Inicio",
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+    )
+    fecha_final_evento = forms.DateTimeField(
+        label="Fecha Final",
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+    )    
+    lugar_evento = models.ForeignKey(Espacio, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    descripcion_evento = models.TextField(blank=True)
+    programa_de_posgrado_evento = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    
+class ActividadForm(forms.Form):
+    nombre_actividad = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    duracion_en_horas = models.ForeignKey(Espacio, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    orador_actividad = models.CharField(blank=True)
+    evento_actividad = models.ForeignKey(Evento, on_delete=models.CASCADE, default = '', null = False, blank = False)
