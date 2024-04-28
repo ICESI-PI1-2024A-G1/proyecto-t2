@@ -117,7 +117,6 @@ def servicios_asignacion(request):
     if request.method == "GET":
         return render(request, 'servicios_asignacion.html')
     
-from .models import Materia  # Asegúrate de importar el modelo Materia
 
 def registrar_materia_malla(request):
     if request.method == "GET":
@@ -215,7 +214,6 @@ def nuevo_programa(request):
         form = CrearProgramaAcademico()
     return render(request, 'nuevo_programa.html', {'form': form})
 
-
 def log_in(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -276,15 +274,13 @@ def register_us(request):
         form = NewUsuary()
     return render(request, 'register_us.html', {'form': form})
 
-
 def gestion(request):
     return render(request, 'gestion.html')
-
 
 def index(request):
     if request.method == "GET":
         return render(request, 'index.html')
-    
+ 
 def home(request):
     return render(request, 'home.html')
 
@@ -453,9 +449,6 @@ def programs_csv(request):
     wb.save(response)
     return response
 
-
-
-
 def materias(request):
     programas = Programa_de_posgrado.objects.all()
     materias = Materia.objects.all()
@@ -466,7 +459,6 @@ def horarios(request, codigo_materia):
     horarios = Horario.objects.filter(materia__codigo=codigo_materia)
     context = {'horarios': horarios}
     return render(request, 'lista_horarios.html', context)
-
 
 def elegir_semestre(request):
     semestre = Semestre.objects.all()
@@ -535,16 +527,21 @@ def crear_programacion_academica(request):
     form = ProgramacionAcademicaForm(request.POST or None)  # Maneja datos del POST
     if form.is_valid():
         programa_de_posgrado = form.cleaned_data['programa_de_posgrado']
-        semestres = Semestre.objects.filter(programa_semestre = programa_de_posgrado)
+        semestre = Semestre.objects.filter(programa_semestre = programa_de_posgrado)
+        materias = Materia.objects.filter(nombre_semestre = semestre)
         departamento = form.cleaned_data['departamento']
+        
     else:
         programa_de_posgrado = None
-        semestres = []
+        semestre = []
+        materias = []
         departamento = None
+        
 
     context = {'form': form, 
                'programa_de_posgrado': programa_de_posgrado, 
-               'semestres': semestres,
+               'semestre': semestre,
+               'materias': materias,
                'departamento': departamento}
     
     return render(request, 'programacion_academica.html', context)

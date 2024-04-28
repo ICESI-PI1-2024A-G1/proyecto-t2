@@ -222,9 +222,6 @@ class DirectorDePrograma(forms.Form):
     correo_director = forms.CharField(label = "Correo Electronico", max_length= 500)
     foto_de_perfil = forms.ImageField()
 
-class ProgramacionSemestral(forms.Form):    
-    Programa = forms.ModelChoiceField(queryset= Programa_de_posgrado.objects.all(), label='Programa', empty_label="Seleccione un programa", widget=forms.Select(attrs={'class': 'form-control'}))
-    
 class EspacioForm(forms.Form):
     espacio_codigo = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     capacidad_espacio = forms.IntegerField(label = "Capacidad", widget=forms.TextInput(attrs={'class': 'form-control'}))
