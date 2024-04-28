@@ -34,73 +34,74 @@
       </div>
 
       <!-- Barra de filtro para buscar horarios -->
-      <div class="bloq-mid">
-        <div class="intermed">
-          <h1>Horarios Registrados</h1>
-          
-          <!-- Formulario de filtro -->
-          <form method="get" class="filtro-form">
-
-            <label for="fecha_inicio_hora">Fecha de Inicio:</label>
-            <input type="datetime-local" name="fecha_inicio" id="fecha_inicio">
-
-            <label for="fecha_final_hora">Fecha Final:</label>
-            <input type="datetime-local" name="fecha_final" id="fecha_final">
-
-            <label for="modalidad">Modalidad:</label>
-            <select name="modalidad" id="modalidad">
-              <option value="">Seleccionar modalidad</option>
-              <option value="presencial">Presencial</option>
-              <option value="virtual">Virtual</option>
-              <option value="mixta">Mixta</option>
-            </select>
-
-            <label for="materia">Materia:</label>
-            <input type="text" name="materia" id="materia">
-
-            <label for="grupo">Grupo:</label>
-            <select name="grupo" id="grupo">
-              <option value="">Seleccionar grupo</option>
-              <option value="001">001</option>
-              <option value="002">002</option>
-              <option value="003">003</option>
-              <option value="004">004</option>
-            </select>
-          
-            <button type="submit">Buscar</button>
-          </form>
-          
+      <div class="bloq-mid-wrapper">
+        <div class="bloq-mid">
+          <div class="intermed">
+            <h1>Horarios Registrados</h1>
+          </div>
+            <div class="intermed-bloq">
+              <form method="get" class="filtro-form">
+  
+                <label for="fecha_inicio_hora">Fecha de Inicio:</label>
+                <input class="form-control" type="datetime-local" name="fecha_inicio" id="fecha_inicio">
+  
+                <label for="fecha_final_hora">Fecha Final:</label>
+                <input class="form-control" type="datetime-local" name="fecha_final" id="fecha_final">
+  
+                <label for="modalidad">Modalidad:</label>
+                <select class="form-control" name="modalidad" id="modalidad">
+                  <option value="">Seleccionar modalidad</option>
+                  <option value="presencial">Presencial</option>
+                  <option value="virtual">Virtual</option>
+                  <option value="mixta">Mixta</option>
+                </select>
+  
+                <label for="materia">Materia:</label>
+                <input class="form-control" type="text" name="materia" id="materia">
+  
+                <label for="grupo">Grupo:</label>
+                <select class="form-control" name="grupo" id="grupo">
+                  <option value="">Seleccionar grupo</option>
+                  <option value="001">001</option>
+                  <option value="002">002</option>
+                  <option value="003">003</option>
+                  <option value="004">004</option>
+                </select>
+                
+                  <button type="submit" class="btn-1">Buscar</button>
+  
+              </form>
+            </div>
+          <table class="form-1">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Fecha inicio</th>
+                <th>Fecha final</th>
+                <th>Materia</th>
+                <th>Grupo</th>
+                <th>Modalidad</th>
+                <th>Enlace Virtual</th>
+                <th>Salon Presencial</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for horario in horarios %}
+              <tr>
+                <td>{{ horario.id_horario }}</td>
+                <td>{{ horario.fecha_inicio_hora }}</td>
+                <td>{{ horario.fecha_final_hora }}</td>
+                <td>{{ horario.materia }}</td>
+                <td>{{ horario.grupo }}</td>
+                <td>{{ horario.modalidad }}</td>
+                <td>{{ horario.enlace_virtual }}</td>
+                <td>{{ horario.salon_presencial }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
-        <table class="form-1">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Fecha inicio</th>
-              <th>Fecha final</th>
-              <th>Materia</th>
-              <th>Grupo</th>
-              <th>Modalidad</th>
-              <th>Enlace Virtual</th>
-              <th>Salon Presencial</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for horario in horarios %}
-            <tr>
-              <td>{{ horario.id_horario }}</td>
-              <td>{{ horario.fecha_inicio_hora }}</td>
-              <td>{{ horario.fecha_final_hora }}</td>
-              <td>{{ horario.materia }}</td>
-              <td>{{ horario.grupo }}</td>
-              <td>{{ horario.modalidad }}</td>
-              <td>{{ horario.enlace_virtual }}</td>
-              <td>{{ horario.salon_presencial }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
       </div>
-
       <div class="bloq-inf">
         <h4>Universidad Icesi</h4>
         <h4>Todos los derechos reservados</h4>
