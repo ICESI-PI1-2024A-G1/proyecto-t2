@@ -14,10 +14,6 @@ class NewHorario(forms.Form):
         label="Fecha Inicio",
         widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
     )
-    fecha_final_horario = forms.DateTimeField(
-        label="Fecha Final",
-        widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
-    )
 
     hora_inicio_horario = forms.TimeField(
         label="Hora Inicio",
@@ -50,10 +46,6 @@ class ModificarHorarioForm(forms.Form):
     horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar", widget=forms.Select(attrs={'class': 'form-control'}))
     fecha_inicio_horario = forms.DateTimeField(
         label="Fecha Inicio",
-        widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
-    )
-    fecha_final_horario = forms.DateTimeField(
-        label="Fecha Final",
         widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
     )
 

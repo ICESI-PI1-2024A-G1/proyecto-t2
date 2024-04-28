@@ -20,7 +20,6 @@ def asignar_horario(request):
         if form.is_valid():
             id_horario = form.cleaned_data['id_horario']
             fecha_inicio_horario = form.cleaned_data['fecha_inicio_horario']
-            fecha_final_horario = form.cleaned_data['fecha_final_horario']
             hora_inicio_horario = form.cleaned_data['hora_inicio_horario']
             hora_final_horario = form.cleaned_data['hora_final_horario']
             modalidad = form.cleaned_data['modalidad']
@@ -29,26 +28,32 @@ def asignar_horario(request):
             materia = form.cleaned_data['materia']
             grupo = form.cleaned_data['grupo']
 
-            # Verificar si hay algún horario existente que tenga conflicto con el nuevo horario
+            # Consulta para verificar conflictos
             conflicto = Horario.objects.filter(
-                Q(salon_presencial=salon_presencial) &
-                (
-                    Q(fecha_inicio__lte=fecha_inicio_horario, fecha_final_hora__gte=fecha_inicio_horario) |
-                    Q(fecha_inicio__lte=fecha_final_horario, fecha_final_hora__gte=fecha_final_horario) |
-                    Q(fecha_inicio__gte=fecha_inicio_horario, fecha_final_hora__lte=fecha_final_horario)
-                )
+                salon_presencial=salon_presencial,
+                fecha_inicio_horario=fecha_inicio_horario,  # Coincide en la misma fecha
+            ).exclude(
+                Q(hora_final_horario=hora_inicio_horario) |  # No se superpone antes
+                Q(hora_inicio_horario=hora_final_horario)    # No se superpone después
             ).exists()
 
             if not conflicto:
-                # No hay conflicto, guardar el nuevo horario en la base de datos
-                horario = Horario.objects.create(id_horario = id_horario, fecha_inicio_horario=fecha_inicio_horario, fecha_final_horario = fecha_final_horario, hora_inicio = hora_inicio_horario, hora_final = hora_final_horario, materia=materia,
-                                              modalidad=modalidad, enlace_virtual=enlace_virtual,
-                                              salon_presencial=salon_presencial, grupo = grupo)
+                # No hay conflicto, guardar el nuevo horario
+                Horario.objects.create(
+                    id_horario=id_horario,
+                    fecha_inicio_horario=fecha_inicio_horario,
+                    hora_inicio_horario=hora_inicio_horario,
+                    hora_final_horario=hora_final_horario,
+                    materia=materia,
+                    modalidad=modalidad,
+                    enlace_virtual=enlace_virtual,
+                    salon_presencial=salon_presencial,
+                    grupo=grupo
+                )
                 return redirect('/index/servicios_asignacion')
             else:
-                # Hay conflicto, mostrar un mensaje de error o manejar la situación adecuadamente
+                # Hay conflicto, mostrar un mensaje de error
                 form.add_error(None, "El horario se superpone con otro horario existente.")
-        # Si el formulario no es válido, se volverá a renderizar con los errores
     else:
         form = NewHorario()
 
@@ -61,7 +66,6 @@ def modificar_horarios(request):
             horario_id = form.cleaned_data['horario_id']
             horario = Horario.objects.get(pk=horario_id)
             horario.fecha_inicio_horario = form.cleaned_data['fecha_inicio']
-            horario.fecha_final_horario = form.cleaned_data['fecha_final']
             horario.hora_inicio_horario = form.cleaned_data['hora_inicio']
             horario.hora_final_horario = form.cleaned_data['hora_final']
             horario.materia = form.cleaned_data['materia']
@@ -83,10 +87,9 @@ def consultar_horarios(request):
     modalidad = request.GET.get('modalidad')
     materia = request.GET.get('materia')
     grupo = request.GET.get('grupo')
-    fecha_inicio_horario = request.GET.get('fecha_inicio')
-    fecha_final_horario = request.GET.get('fecha_final')
-    hora_inicio_horario = request.GET.get('hora_inicio')
-    hora_final_horario = request.GET.get('hora_final')
+    fecha_inicio_horario = request.GET.get('fecha_inicio_horario')
+    hora_inicio_horario = request.GET.get('hora_inicio_horario')
+    hora_final_horario = request.GET.get('hora_final_horario')
 
     # Aplicar filtros según los parámetros proporcionados en el formulario
     if modalidad:
@@ -96,13 +99,11 @@ def consultar_horarios(request):
     if grupo:
         horarios = horarios.filter(grupo=grupo)
     if fecha_inicio_horario:
-        horarios = horarios.filter(fecha_inicio_hora=fecha_inicio_horario)
-    if fecha_final_horario:
-        horarios = horarios.filter(fecha_final_hora=fecha_final_horario)
+        horarios = horarios.filter(fecha_inicio_horario = fecha_inicio_horario)
     if hora_inicio_horario:
-        horarios = horarios.filter(hora_inicio=hora_inicio_horario)
+        horarios = horarios.filter(hora_inicio_horario = hora_inicio_horario)
     if hora_final_horario:
-        horarios = horarios.filter(hora_final=hora_final_horario)
+        horarios = horarios.filter(hora_final_horario = hora_final_horario)
 
 
     # Pasar los horarios filtrados al contexto para mostrar en la plantilla

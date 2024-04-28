@@ -32,10 +32,9 @@ class Horario(models.Model):
 
     id_horario = models.CharField(max_length=10, unique=True, primary_key=True)
 
-    fecha_inicio_horario = models.DateField()
-    fecha_final_horario = models.DateField()
-    hora_inicio_horario = models.TimeField()
-    hora_final_horario = models.TimeField()
+    fecha_inicio_horario = models.DateField(default=fecha_inicio_por_defecto, null=False, blank=False)
+    hora_inicio_horario = models.TimeField(default=time(8, 0), null=False, blank=False)  
+    hora_final_horario = models.TimeField(default=time(10, 0), null=False, blank=False)  
 
     materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
     grupo = models.CharField(max_length=20, choices=GRUPO_CHOICES, default='')
