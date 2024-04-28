@@ -1,3 +1,4 @@
+import uuid
 from datetime import *
 from django.db import models
 import datetime
@@ -75,35 +76,46 @@ class Programa_de_posgrado(models.Model):
     
     modalidad_programa = models.CharField(max_length = 20, choices = [('Presencial', 'Presencial'), ('Virtual', 'Virtual'), ('Mixta', 'Mixta')], default = 'Presencial', null = False, blank = False) #cambio
     director_programa = models.ForeignKey(Director_de_programa, on_delete= models.CASCADE, default = "")
+
     def  __str__(self):
         return f"{self.codigo_programa} - {self.nombre_programa}"
 
-class Materia(models.Model):
-    nombre_materia = models.CharField(max_length =255, null = False, blank = False)
-    codigo_materia = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
-    creditos_materia = models.IntegerField(default = 1, null = False, blank = False)
-    syllabus = models.FileField(upload_to="syllabus/", blank=True, null=True)
-    departamento = models.CharField(max_length =255, null = False, blank = False, default= 'Universidad Icesi')
-    def  __str__(self):
-        return self.codigo_materia
-    
-    
-class Nrc(models.Model):
-     id_nrc = models.CharField(max_length= 5, unique= True, default= 00000, null = False)
-     periodo_nrc = models.ForeignKey(Periodo, on_delete= models.CASCADE)
-     grupo = models.PositiveIntegerField(default = 1, null = False, blank = False)
-     materia_nrc = models.ForeignKey(Materia, on_delete= models.CASCADE)
        
 class Semestre(models.Model):
     nombre_semestre = models.CharField(max_length=255, null=False, blank=False, primary_key= True)
     estado_semestre = models.CharField(max_length= 8, null= False, blank= False,  default= 'Activo', choices= [('activo', 'Activo'), ('inactivo', 'Inactivo')])  # Cambiar a charfield
     año = models.IntegerField(blank= False, null= False, default= "2024")
     periodo = models.IntegerField(choices=[(1, '1'), (2, '2')], default= "1")
-    # materias = models.ForeignKey(Materia, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    programa_semestre = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
 
     def __str__(self):
         return f"{self.año}-{self.periodo}"
 
+class Departamento(models.Model):
+     id_departamento = models.CharField(max_length= 3, null= False, default= "000", blank = False,primary_key=True)
+     nombre_departamento = models.CharField(max_length= 500, null= False, default= "", blank = False)
+
+     def  __str__ (self):
+          return f"{self.id_departamento} - {self.nombre_departamento}"
+
+class Materia(models.Model):
+    nombre_materia = models.CharField(max_length =255, null = False, blank = False)
+    codigo_materia = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
+    creditos_materia = models.IntegerField(default = 1, null = False, blank = False)
+    syllabus = models.FileField(upload_to="syllabus/", blank=True, null=True)
+    departamento = models.ForeignKey(Departamento, on_delete= models.CASCADE, default = '', null = False, blank = False)
+    semestre = models.ForeignKey(Semestre, on_delete= models.CASCADE, default = '', null = False, blank = False)
+
+
+    def  __str__(self):
+        return f'{self.codigo_materia} - {self.nombre_materia}'
+    
+class Nrc(models.Model):
+     id_nrc = models.CharField(max_length= 5, unique= True, default= 00000, null = False)
+     periodo_nrc = models.ForeignKey(Periodo, on_delete= models.CASCADE)
+     grupo = models.PositiveIntegerField(default = 1, null = False, blank = False)
+     materia_nrc = models.ForeignKey(Materia, on_delete= models.CASCADE)
+    
 class Malla_curricular(models.Model): #replantear
     nombre_malla = models.CharField(max_length =255, primary_key=True, null = False, blank = False)
     requisitos_previos = models.TextField(null=False, blank=False)
@@ -173,7 +185,6 @@ class Usuario(models.Model):
     password = models.CharField(max_length= 30,default= 000000000, null= False, blank = False)
     def  __str__(self):
         return self.cedula 
-
     
 class Solicitud_de_servicio(models.Model):
     nombre_solicitud = models.CharField(max_length =255, null = False, blank = False)
@@ -185,8 +196,6 @@ class Solicitud_de_servicio(models.Model):
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE, default = '', null = False, blank = False)
     def  __str__(self):
         return self.nombre_solicitud
- 
-
      
 class Materia_profesor(models.Model):
      id = models.CharField(max_length= 7, null = False, default= "0000000", blank= False, primary_key= True)
@@ -196,11 +205,21 @@ class Materia_profesor(models.Model):
      def __str__(self):
           return self.id
 
-class Departamento(models.Model):
-     id_departamento = models.CharField(max_length= 3, null= False, default= "000", blank = False,primary_key=True)
-     nombre_departamento = models.CharField(max_length= 500, null= False, default= "", blank = False)
+
+     
+class ProgramacionAcademica(models.Model):
+     id_programacionAcademica = models.CharField(max_length= 36, unique = True, null= False, default= " ", blank= False, primary_key= True)
+     programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete= models.CASCADE, default= '', null= False, blank = False)
+     departamento = models.ForeignKey(Departamento, on_delete= models.CASCADE,  null= False, blank= False, default = '')
+     num_creditos = models.IntegerField(null = False, blank= False, default= '')
+     periodo = models.ForeignKey(Periodo, on_delete= models.CASCADE,  null= False, blank= False, default = '')
+     materia = models.ManyToManyField(Materia)
+     horario = models.ManyToManyField(Horario)
+     # modalidad = models.CharField(max_length= 20, default = '', null = False, blank = False)
+     grupo = models.CharField(max_length= 20, default = '', null = False, blank = False)
+     docente = models.ForeignKey(Profesor, on_delete=models.CASCADE, default = '', null = False, blank = False)
+     semestre = models.ForeignKey(Semestre, on_delete=models.CASCADE, default = '', null = False, blank = False)
 
      def  __str__ (self):
-          return f"{self.id_departamento} - {self.nombre_departamento}"
-    
+          return f"Programacion Academica - {self.id_programacionAcademica}"
    

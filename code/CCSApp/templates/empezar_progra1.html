@@ -14,15 +14,11 @@
       <div class="bloq-sup">
         <form method="get">
           <div class="bloq-sup_secd">
-            <div class="div_boton_return">
-              <button class="boton-2" name="boton1" type="button" onclick="redirigirIndex()">
-                  <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
-              </button>
-            </div>
+            <button class="boton-2" name="boton1" type="button" onclick="redirigirIndexDesdeProgramacion()">
+              <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+            </button>
             <div class="titulo">
-              <div class="div_CCSA">
-                <h1>CCSA</h1>
-              </div>
+              <h1>CCSA</h1>
               <div class="descripcion">
                 <h3>Centro Compartido de Servicios Académicos</h3>
               </div>
@@ -39,8 +35,16 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div class="buttondiv">
-                <button type="submit" class="btn-1">Escoger Semestre</button>
+              <button type="submit" class="btn-1">Continuar</button>
             </div>
+          </form>
+        </div>
+        {% if error %}
+        <div class="error-message">
+          {{ error }}
+        </div>
+        {% endif %}
+      </div>
       <div class="bloq-inf">
         <h4>Universidad Icesi</h4>
         <h4>Todos los derechos reservados</h4>
