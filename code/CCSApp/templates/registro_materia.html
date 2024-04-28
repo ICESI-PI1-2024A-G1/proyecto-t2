@@ -46,7 +46,7 @@
           </form>
         </div>
         {% if error %}
-        <div class="error-message">
+        <div class="error-message" style="display: none;">
           {{ error }}
         </div>
         {% endif %}
@@ -54,12 +54,15 @@
       <div id="modal-confirmacion" class="modal">
         <div class="modal-contenido">
           <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
-          <p>La materia ha sido creada exitosamente.</p>
+          <p>Creando Materia...</p>
         </div>
       </div> 
-      <div id="mensaje-confirmacion" style="display: none;" class="mensaje-confirmacion">
-        La materia ha sido creada exitosamente.
-      </div>   
+      <div id="modal-error" class="modal" style="display: none;">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModalError()">&times;</span>
+          <p id="error-message-modal"></p>
+        </div>
+      </div>       
       <div class="bloq-inf">
         <h4>Universidad Icesi</h4>
         <h4>Todos los derechos reservados</h4>
@@ -68,44 +71,7 @@
     </div>
   </div>
   <script src="{% static 'js/transiciones.js' %}"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var form = document.getElementById('registro-materia-form');
-      form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevenir el envío del formulario por defecto
-        
-        // Verificar si hay un error
-        var errorDiv = document.querySelector('error-message');
-        if (!errorDiv) {
-          // No hay error, mostrar el cuadro emergente de confirmación
-          mostrarModal();
-  
-          // Opcional: puedes agregar un temporizador para ocultar el cuadro emergente después de un tiempo determinado
-          setTimeout(function() {
-            cerrarModal();
-          }, 3000); // 3000 milisegundos = 3 segundos
-  
-          // Envía el formulario después de un breve retraso (si es necesario)
-          setTimeout(function() {
-            form.submit();
-          }, 1000); // 1000 milisegundos = 1 segundo
-        }
-      });
-    });
-  </script>  
-  <script>
-    // Función para mostrar el cuadro emergente
-    function mostrarModal() {
-      var modal = document.getElementById("modal-confirmacion");
-      modal.style.display = "block";
-    }
-  
-    // Función para cerrar el cuadro emergente
-    function cerrarModal() {
-      var modal = document.getElementById("modal-confirmacion");
-      modal.style.display = "none";
-    }
-  </script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
