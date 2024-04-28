@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-
+from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'CCSApp'
 ]
+
+MIGRATION_MODULES  = {
+    'CCSApp': 'CCSApp.migrations'
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

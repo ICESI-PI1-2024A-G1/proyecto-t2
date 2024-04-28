@@ -1,44 +1,77 @@
 {% load static %}
-<html>
-    <head>
-        <title>Registrar Materias de la Malla Curricular</title>
-        <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
-        <div class="bloq-sup">
-            <form method="get">
-                <div class="bloq-sup_secd">
-                    <button class="boton-2" name="boton1" type="button"> <img src="/CCSApp/templates/static/Images/retorno.png" height ="55" width="55"/> </button>
-                    <div class="titulo">
-                        <h1>CCSA</h1>
-                        <div class="descripcion">
-                            <h3>Centro Compartido de Servicios Académicos</h3>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="bloq-mid">
-            <div class="intermed">
-                <h1>Crear Nueva Materia</h1>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Materias de la Malla Curricular</title>
+  <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
+  <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
+</head>
+
+<body>
+  <div id="page-container">
+    <div id="page1" class="fade-in">
+      <div class="bloq-sup">
+        <form method="get">
+          <div class="bloq-sup_secd">
+            <div class="div_boton_return">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeRegistro()">
+                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+              </button>
             </div>
-            <div class="intermed-bloq">
-                <form method="POST" class="form-1">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <div class="buttondiv">
-                        <button type="submit" class="btn-1">Guardar</button>
-                    </div>
-                </form>
+            <div class="titulo">
+              <div class="div_CCSA">
+                <h1>CCSA</h1>
+              </div>
+              <div class="descripcion">
+                <h3>Centro Compartido de Servicios Académicos</h3>
+              </div>
             </div>
-            {% if error %}
-            <div class="error-message">
-                {{ error }}
+          </div>
+        </form>
+      </div>
+      <div class="bloq-mid">
+        <div class="intermed">
+          <h1>Crear Nueva Materia</h1>
+        </div>
+        <div class="intermed-bloq">
+          <form method="POST" class="form-1" enctype="multipart/form-data" id="registro-materia-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="buttondiv">
+              <button type="submit" class="btn-1">Guardar</button>
             </div>
-            {% endif %}
+          </form>
         </div>
-        <div class="bloq-inf">
-            <h4>Universidad Icesi</h4>
-            <h4>Todos los derechos reservados</h4>
-            <h4>Derechos de Autor</h4>
+        {% if error %}
+        <div class="error-message" style="display: none;">
+          {{ error }}
         </div>
-    </head>
+        {% endif %}
+      </div>
+      <div id="modal-confirmacion" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+          <p>Creando Materia...</p>
+        </div>
+      </div> 
+      <div id="modal-error" class="modal" style="display: none;">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModalError()">&times;</span>
+          <p id="error-message-modal"></p>
+        </div>
+      </div>       
+      <div class="bloq-inf">
+        <h4>Universidad Icesi</h4>
+        <h4>Todos los derechos reservados</h4>
+        <h4>Derechos de Autor</h4>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/transiciones.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+
 </html>

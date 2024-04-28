@@ -1,25 +1,82 @@
+{% load static %}
 
-<h1>CCSA</h1>
-<h3>Centro Compartido de Servicios Academicos</h3>
-
-<nav>
-    <ul>
-        <li>
-            <a href="/gestion">Gestion de Informacion</a>
-        </li>
-        <li>
-            <a href="">Asignacion de Viaticos</a>
-        <li><a href="/servicios_asignacion">Servicios de Asignacion</a></li> 
-        </li>
-        <li>
-            <a href="{% url 'program-csv' %}">Descargar CSV de programas</a>
-        </li>
-    </ul>
-</nav>
-
-{% block  content %}
-{% endblock %}
-
-<h4>Universidad Icesi</h4>
-<h4>Todos los derechos reservados</h4>
-<h4>Derechos de Autor</h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCSA</title>
+    <link rel="stylesheet" href='{% static "css/base.css" %}' type='text/css'>
+    <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
+</head>
+<body>
+<div id="page-container">
+    <div id="page1" class="fade-in">
+        <div class="bloq-sup">
+            <form method="get">
+                <div class="bloq-sup_secd">
+                    <div class="div_boton_return">
+                        <button class="boton-2" name="boton1" type="button" onclick="redirigirIndex()">
+                            <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+                        </button>
+                    </div>
+                    <div class="titulo">
+                        <div class="div_CCSA">
+                            <h1>CCSA</h1>
+                        </div>
+                        <div class="descripcion">
+                            <h3>Centro Compartido de Servicios Académicos</h3>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <form method="get">
+            <div class="bloq-mid">
+                <button class="btn-1" type="button" onclick="redirigirGestion()">Gestion de Informacion</button>
+                <button class="btn-1" type="button" onclick="redirigirAHTML2()">Asignacion de Viaticos</button>
+                <button class="btn-1" type="button" onclick="redirigirServiciosAsignacion()">Servicios de Asignacion</button>
+                <button class="btn-1" type="button" onclick="descargarCSV()">Descargar CSV de programas</button>
+            </div>
+        </form>
+        <div class="bloq-mid-2">
+            <div class="intermed-1">
+                <h1>Programacion<br>Academica</h1>
+            </div>
+            <form method="get">
+                <div class="intermed-bloq-1">
+                    <!-- <form method="POST"> -->
+                        <!-- {% csrf_token %} -->
+                        <div>
+                            <button type="button" class="btn-1" onclick="redirigirEmpezarProgramacion()">Empezar Programacion</button>
+                            <button type="button" class="btn-2">Editar Programacion</button>
+                        </div>              
+                    <!-- </form> -->
+                </div>
+            </form>
+            
+            <!-- {% if error %}
+            <div class="error-message">
+            {{ error }}
+            </div>
+            {% endif %} -->
+        </div>
+        <div class="photo">
+            <img src="/static/Images/fondo.png" alt="Mi imagen">
+        </div>
+        <div class="bloq-inf">
+            <h4>Universidad Icesi</h4>
+            <h4>Todos los derechos reservados</h4>
+            <h4>Derechos de Autor</h4>
+        </div>
+    </div>
+</div>    
+    <script src="{% static 'js/transiciones.js' %}"></script>
+    <script>
+        // Función para redirigir a una página HTML específica
+        function descargarCSV() {
+          window.location.href = 'program_csv/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+    </script>
+</body>
+</html>

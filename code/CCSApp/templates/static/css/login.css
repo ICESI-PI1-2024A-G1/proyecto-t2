@@ -1,0 +1,240 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+form li + li {
+    margin-top: 1em;
+}
+
+label {
+/* Tamaño y alineación uniforme */
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+}
+
+input,
+textarea {
+    /* Para asegurarse de que todos los campos de texto tienen la misma configuración de letra
+        Por defecto, las áreas de texto tienen un tipo de letra monoespaciada */
+    font: 1em sans-serif;
+
+    /* Tamaño uniforme del campo de texto */
+    width: 300px;
+    box-sizing: border-box;
+
+    /* Hacer coincidir los bordes del campo del formulario */
+    border: 1px solid #999;
+}
+
+input:focus,
+textarea:focus {
+    /* Destacado adicional para elementos que tienen el cursor */
+    border-color: #000;
+}
+
+textarea {
+    /* Alinear los campos de texto multilínea con sus etiquetas */
+    vertical-align: top;
+
+    /* Proporcionar espacio para escribir texto */
+    height: 5em;
+}
+
+button {
+    /* Este margen adicional representa aproximadamente el mismo espacio que el espacio
+        entre las etiquetas y sus campos de texto */
+    margin-left: 0.5em;
+}
+
+/* Animación de entrada */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animación de salida */
+.fade-out {
+    opacity: 1;
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.bloq-sup,
+.bloq-inf {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Ajusta la opacidad según desees */
+    z-index: 9999; /* Asegúrate de que el z-index sea mayor que cualquier otro elemento */
+    text-align: center; /* Ajusta según necesites */
+    padding: 10px; /* Ajusta según necesites */
+}
+
+.bloq-sup {
+    top: 0;
+}
+
+.bloq-inf {
+    bottom: 0;
+}
+
+.button {
+    /* Alinear los botones con los campos de texto */
+    padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
+}
+
+.form-1 {
+    /* Centrar el formulario en la página */
+    margin: 0 auto;
+    width: 400px;
+    /* Esquema del formulario */
+    padding: 1em;
+    border-radius: 1em;
+
+}
+
+.btn-1{
+    font-size: 1rem;
+    /* text-transform: lowercase; */
+    font-weight: 500;
+    color: #000;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
+    padding: 7px 20px;
+    background-color: #28C985;
+    border-radius: 2rem;
+    /* border: #ccc; */
+    border:0.7px solid #000000c8;
+}
+
+.btn-1 {
+    background-color: white;
+    border: 2px solid #04AA6D;
+    transition: background-color 1s;
+}
+
+.btn-1:hover {
+    background-color: #28C985; 
+    color: white;
+    transition: background-color 1s;
+}
+
+.buttondiv{
+    display: flex;
+    justify-content: center;
+    right: 25%;
+}
+
+.button-container {
+    text-align: center;
+}
+
+
+.bloq-mid{
+    display: block;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -57%);
+    /* background-color: #28C985;
+    width: 50%; */
+}
+
+.intermed {
+    position: relative;
+    top: 3px; /* Ajusta este valor según lo que necesites */
+    margin-left: 25px; /* Ajusta este valor según lo que necesites */
+    margin-bottom: 25px;
+    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
+    width: 400px;
+    height: 20px;
+    left: 23%;
+}
+
+
+.bloq-sup{
+    /* display: flex;
+    align-items: center; */
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 13%;
+    top: 0;
+    background-color: #f2f2f2;
+}
+
+.bloq-inf {
+    position: fixed;
+    bottom: 0;
+    left: 0px; /* Asegúrate de agregar las unidades de medida (px en este caso) */
+    width: 100%;
+    height: 17%;
+    background-color: #f2f2f2; /* Color de fondo opcional */
+    text-align: center;
+    padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+}
+
+.bloq-sup_secd {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    margin-top: -25px;
+    margin-left: 5px;
+
+}
+
+.boton-2 {
+    margin-right: 10px; /* Ajusta el margen según sea necesario */
+    background-size: cover; /* Ajusta el tamaño de la imagen según sea necesario */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+    border: none; /* Quita el borde del botón */
+    width: 55px; /* Ajusta el ancho del botón según sea necesario */
+    height: 55px; /* Ajusta la altura del botón según sea necesario */
+}
+
+.titulo {
+    margin-right: 20px; /* Ajusta el margen según sea necesario */
+    line-height: 62px;
+}
+
+.descripcion {
+    margin-left: 5px;
+    line-height: 0px;  /* Ajusta el margen según sea necesario */
+}
+
+.error-message {
+    text-align: center;
+    margin-top: 40px; /* Ajusta este valor según sea necesario */
+}
+
+.form-control {
+    width: 72%; /* O el ancho deseado */
+    padding: 8px; /* Ajusta el relleno según sea necesario */
+    margin-bottom: 10px; /* Espacio entre los campos del formulario */
+    border: 1px solid #ccc; /* Borde de los campos del formulario */
+    border-radius: 4px; /* Esquinas redondeadas */
+    box-sizing: border-box; /* Hace que el padding y el borde se incluyan en el ancho */
+}
