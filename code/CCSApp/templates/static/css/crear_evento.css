@@ -149,7 +149,7 @@ button {
     justify-content: center;
     /* background-color: aqua; */
     width: 30%;
-    margin-left: 16%;
+    margin-left: 34%;
 }
 
 .buttondiv2{
@@ -197,7 +197,7 @@ button {
 .intermed {
     position: relative;
     top: 20px; /* Ajusta este valor según lo que necesites */
-    left: 7%;
+    left: 10%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
