@@ -79,6 +79,30 @@ button {
     }
 }
 
+.bloq-sup,
+.bloq-inf {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Ajusta la opacidad según desees */
+    z-index: 9999; /* Asegúrate de que el z-index sea mayor que cualquier otro elemento */
+    text-align: center; /* Ajusta según necesites */
+    padding: 10px; /* Ajusta según necesites */
+}
+
+.bloq-sup {
+    top: 0;
+}
+
+.bloq-inf {
+    bottom: 0;
+}
+
+.bloq-mid-wrapper {
+    width: 100%;
+    /* background-color: #999; */
+}
+
 .button {
     /* Alinear los botones con los campos de texto */
     padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
@@ -174,6 +198,9 @@ button {
     border: 2px solid #04AA6D;
     border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+    width: 40%;
+    height: 55%;
 }
 
 .bloq-mid input{

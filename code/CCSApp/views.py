@@ -555,7 +555,7 @@ def crear_evento(request):
             return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         formEvent = EventoForm()
-    return render(request, 'crear_evento.html', {'formEvent': formEvent})
+    return render(request, 'crear_evento.html', {'formEvent': EventoForm})
 
 def crear_actividad(request):
     if request.method == 'POST':
