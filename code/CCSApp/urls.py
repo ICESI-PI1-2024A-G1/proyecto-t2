@@ -34,6 +34,8 @@ urlpatterns = [
     path('delete_program/<str:codigo>',views.delete_program,name = 'delete-program'),
     path('index/program_csv/', views.programs_csv, name = 'program-csv'),
     path('index/servicios_asignacion/crear_espacio/', views.crear_espacio, name="crear_espacio"),
+    path('index/servicios_asignacion/crear_evento/', views.crear_evento, name="crear_evento"),
+    path('index/servicios_asignacion/crear_actividad/', views.crear_actividad, name="crear_actividad"),
     path('crear_edificio/', views.crear_edificio, name="crear_edificio"),
     
     path('index/servicios_asignacion/lista_edificios/', views.lista_edificios, name='lista_edificios'),

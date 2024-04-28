@@ -526,3 +526,37 @@ def editar_espacio(request, espacio_codigo):
     else:
         form = EditarEspacio(instance=espacio)
     return render(request, 'editar_espacio.html', {'form': form})
+
+def crear_evento(request):
+    if request.method == 'POST':
+        formEvent = EventoForm(request.POST)
+        if formEvent.is_valid():
+            # Procesar los datos del formulario y guardar el programa académico
+            evento = Evento(
+                nombre_evento=formEvent.cleaned_data['nombre_evento'],
+                fecha_inicio_evento=formEvent.cleaned_data['fecha_inicio_evento'],
+                fecha_finalizacion_evento=formEvent.cleaned_data['fecha_finalizacion_evento'],
+                lugar_evento=formEvent.cleaned_data['lugar_evento'],
+                descripcion_evento=formEvent.cleaned_data['descripcion_evento'],
+                programa_de_posgrado_evento=formEvent.cleaned_data['programa_de_posgrado_evento'])
+            evento.save()
+            return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
+    else:
+        formEvent = EventoForm()
+    return render(request, 'crear_evento.html', {'formEvent': formEvent})
+
+def crear_actividad(request):
+    if request.method == 'POST':
+        formActividad = ActividadForm(request.POST)
+        if formActividad.is_valid():
+            # Procesar los datos del formulario y guardar el programa académico
+            actividad = Actividad(
+                nombre_actividad=formActividad.cleaned_data['nombre_actividad'],
+                duracion_en_horas=formActividad.cleaned_data['duracion_en_horas'],
+                orador_actividad=formActividad.cleaned_data['orador_actividad'],
+                evento_actividad=formActividad.cleaned_data['evento_actividad'])
+            actividad.save()
+            return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
+    else:
+        formActividad = ActividadForm()
+    return render(request, 'crear_actividad.html', {'formActividad': formActividad})
