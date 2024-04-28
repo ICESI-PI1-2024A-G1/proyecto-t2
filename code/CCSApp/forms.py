@@ -10,15 +10,19 @@ class RegistrarPeriodo(forms.Form):
 
 class NewHorario(forms.Form):
     id_horario = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    fecha_inicio_hora = forms.DateTimeField(
+    fecha_inicio_horario = forms.DateTimeField(
         label="Fecha Inicio",
-        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+        widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
     )
-    fecha_final_hora = forms.DateTimeField(
-        label="Fecha Final",
-        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+
+    hora_inicio_horario = forms.TimeField(
+        label="Hora Inicio",
+        widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
     )
-    
+    hora_final_horario = forms.TimeField(
+        label="Hora Final",
+        widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+    )
     
     MODALIDAD_CHOICES = [
         ('presencial', 'Presencial'),
@@ -40,14 +44,20 @@ class NewHorario(forms.Form):
     
 class ModificarHorarioForm(forms.Form):
     horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar", widget=forms.Select(attrs={'class': 'form-control'}))
-    fecha_inicio_hora = forms.DateTimeField(
+    fecha_inicio_horario = forms.DateTimeField(
         label="Fecha Inicio",
-        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+        widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
     )
-    fecha_final_hora = forms.DateTimeField(
-        label="Fecha Final",
-        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+
+    hora_inicio_horario = forms.TimeField(
+        label="Hora Inicio",
+        widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
     )
+    hora_final_horario = forms.TimeField(
+        label="Hora Final",
+        widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+    )
+    
     materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
     
     MODALIDAD_CHOICES = [
