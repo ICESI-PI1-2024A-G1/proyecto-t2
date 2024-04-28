@@ -90,6 +90,24 @@ ul {
     }
  }
  
+.bloq-sup,
+.bloq-inf {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Ajusta la opacidad según desees */
+    z-index: 9999; /* Asegúrate de que el z-index sea mayor que cualquier otro elemento */
+    text-align: center; /* Ajusta según necesites */
+    padding: 10px; /* Ajusta según necesites */
+}
+
+.bloq-sup {
+    top: 0;
+}
+
+.bloq-inf {
+    bottom: 0;
+}
  
  .button {
     /* Alinear los botones con los campos de texto */
