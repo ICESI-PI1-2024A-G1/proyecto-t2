@@ -1,19 +1,20 @@
 from datetime import *
 from django.db import models
+import datetime
 
 fecha_inicio_por_defecto = date(2024, 3, 15)
 fecha_finalizacion_por_defecto = date(2025, 3, 14)
+hora_finalizacion_por_defecto = datetime.time(8, 0, 0)
 
 #AL EDITAR SI VAN A PONER UNA LLAVE FORANEA ASEGURENSE QUE EL MODELO AL QUE VAN A REFERIRSE CON LA LLAVE ESTE ARRIBA DEL QUE ESTAN EDITANDO.
 
 class Periodo(models.Model):
     id_periodo = models.CharField(max_length= 10, unique= True, default= '', null= False, blank= False, primary_key= True)
-    fecha_inicio_periodo = models.DateField()
-    fecha_final_periodo = models.DateField()
+    fecha_inicio_periodo = models.DateField(default='')
+    fecha_final_periodo = models.DateField(default='')
 
     def __str__(self):
          return self.id_periodo
-
 
 class Horario(models.Model):
     MODALIDAD_CHOICES = [
@@ -22,19 +23,22 @@ class Horario(models.Model):
         ('mixta', 'Mixta'),
     ]
 
-    GRUPO = [
+    GRUPO_CHOICES = [
         ('001', '001'),
         ('002', '002'),
         ('003', '003'),
         ('004', '004')
     ]
 
-    id_horario = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True)
-    fecha_inicio_hora = models.DateTimeField(default= '')
-    fecha_final_hora = models.DateTimeField()
-    materia = models.ForeignKey('Materia', default = '', on_delete=models.CASCADE)
-    grupo = models.CharField(max_length=20, default = '', choices=GRUPO)#
-    modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)#
+    id_horario = models.CharField(max_length=10, unique=True, primary_key=True)
+
+    fecha_inicio_horario = models.DateField(default=fecha_inicio_por_defecto, null=False, blank=False)
+    hora_inicio_horario = models.TimeField(default=time(8, 0), null=False, blank=False)  
+    hora_final_horario = models.TimeField(default=time(10, 0), null=False, blank=False)  
+
+    materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
+    grupo = models.CharField(max_length=20, choices=GRUPO_CHOICES, default='')
+    modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)
     enlace_virtual = models.URLField(blank=True, null=True)
     salon_presencial = models.CharField(max_length=50, blank=True, null=True)
 
