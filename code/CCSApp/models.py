@@ -157,7 +157,7 @@ class Espacio(models.Model):
     tipo = models.CharField(max_length=20, choices=TIPOS_CHOICES)
     def  __str__(self):
             return self.espacio_codigo
-
+        
 class Evento(models.Model):
     nombre_evento = models.CharField(max_length =255, null = False, blank = False, primary_key = True)
     fecha_inicio_evento = models.DateField(null = False, blank = False)
