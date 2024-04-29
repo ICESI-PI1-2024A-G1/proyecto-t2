@@ -270,7 +270,7 @@ class EventoForm(forms.Form):
         label="Fecha Inicio",
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
     )
-    fecha_final_evento = forms.DateTimeField(
+    fecha_finalizacion_evento = forms.DateTimeField(
         label="Fecha Final",
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
     )    
@@ -280,6 +280,6 @@ class EventoForm(forms.Form):
     
 class ActividadForm(forms.Form):
     nombre_actividad = forms.CharField(label = 'Nombre', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    duracion_en_horas = models.ForeignKey(Espacio, on_delete=models.CASCADE, default = '', null = False, blank = False)
-    orador_actividad = models.CharField(blank=True)
-    evento_actividad = models.ForeignKey(Evento, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    duracion_en_horas = forms.IntegerField(label= "Duracion(Horas)", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    orador_actividad = forms.CharField(label = 'Encargado', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    evento_actividad = forms.ModelChoiceField(label="Evento", queryset=Evento.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
