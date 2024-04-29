@@ -121,6 +121,16 @@ button {
     text-decoration: none;
     cursor: pointer;
   }
+  
+  /* Animación para la aparición del cuadro emergente */
+  @keyframes animacion-aparicion {
+    from {
+      opacity: 0; /* Comienza transparente */
+    }
+    to {
+      opacity: 1; /* Se vuelve completamente visible */
+    }
+  }
 
 .bloq-sup,
 .bloq-inf {
@@ -141,11 +151,6 @@ button {
     bottom: 0;
 }
 
-.bloq-mid-wrapper {
-    width: 100%;
-    /* background-color: #999; */
-}
-
 .button {
     /* Alinear los botones con los campos de texto */
     padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
@@ -161,12 +166,14 @@ button {
     height: 10%;
     justify-content: center;
     background-color: transparent;
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
  }
   
  .div_CCSA{
     margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 14px;
+    margin-bottom: 6px;
     margin-right: 10px;
     /* background-color: #28C985; */
     width: 22%;
@@ -181,14 +188,16 @@ button {
     /* Esquema del formulario */
     padding: 1em;
     border-radius: 1em;
+
 }
 
 .btn-1{
     font-size: 1rem;
-    /* text-transform: lowercase; */
     font-weight: 500;
     color: #000;
     border: none;
+    margin-top: 2%;
+    margin-left: 2%;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
     padding: 7px 20px;
     background-color: #28C985;
@@ -212,37 +221,22 @@ button {
 .buttondiv{
     display: flex;
     justify-content: center;
-    margin-top: 4%;
 }
 
 .bloq-mid{
     display: block;
     justify-content: center;
     position: fixed;
+    width: 50%;
+    height: 50%;
     top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* background-color: aqua; */
-    height: 60%;
+    /* background-color: #28C985; */
     border: 2px solid #04AA6D;
     border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    overflow-y: scroll;
-    width: 40%;
-    height: 55%;
 }
-
-.intermed-bloq {
-    position: relative;
-    top:1%; /* Ajusta este valor según lo que necesites */
-    left: 0%;
-    margin-left: 0%; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 0%;
-    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 100%;
-    height: 80%;
-    /* background-color:#999 ; */
-} 
 
 .bloq-mid input{
     width: 65%;
@@ -264,17 +258,41 @@ button {
 
 .intermed {
     position: relative;
-    top: 0%; /* Ajusta este valor según lo que necesites */
-    margin-left: 26%; /* Ajusta este valor según lo que necesites */
-    margin-top: 2%;
-    width: 60%;
-    height: 18%;
-    /* background-color: #28C985; */
+    top: 20px; /* Ajusta este valor según lo que necesites */
+    left: 30%;
+    margin-left: 2px; /* Ajusta este valor según lo que necesites */
+    margin-bottom: 25px;
+    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
+    width: 50%;
+    height: 30px;
+    /* background-color: #04AA6D; */
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
-    display: flex; /* Establece el contenedor como flexbox */
-    align-items: center; /* Centra verticalmente el contenido */
 }
 
+.intermed-bloq{
+    display: block;
+    justify-content: center;
+    position: fixed;
+    width: 90%;
+    height: 70%;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color:aqua; */
+    /* border: 2px solid #04AA6D; */
+    /* border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+}
+
+.intermed-bloq .form-control{
+    width: 65%;
+    height: 50%;
+    background-color: transparent;
+    border: 2px solid #04AA6D;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 7px 20px;
+}
 
 .intermed-bloq .form-control2{
     width: 65%;
@@ -288,23 +306,16 @@ button {
     margin-bottom: 4px;
 }
 
-.intermed-bloq .form-control{
-    width: 65%;
-    height: 50%;
-    background-color: transparent;
-    border: 2px solid #04AA6D;
-    border-radius: 10px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    padding: 7px 20px;
-}
-
 .bloq-sup{
+    /* display: flex;
+    align-items: center; */
     position: fixed;
     left: 0;
     width: 100%;
     height: 13%;
     top: 0;
     background-color: #f2f2f2;
+    /* border: 2px solid #04AA6D; */
     border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
@@ -350,7 +361,6 @@ button {
     margin-left: 12px;
     line-height: 0px;  /* Ajusta el margen según sea necesario */
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
-
  }
 
 .error-message {

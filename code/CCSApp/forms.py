@@ -235,9 +235,13 @@ class EditarEspacio(forms.ModelForm):
         model = Espacio
         fields = ['espacio_codigo', 'capacidad_espacio', 'edificio_espacio', 'disponibilidad_espacio', 'tipo']
         widgets = {
-            'disponibilidad_espacio': forms.Select(choices=Espacio.disponibilidad_espacio),
-            'tipo': forms.Select(choices=Espacio.tipo)
+            'espacio_codigo': forms.TextInput(attrs={'class': 'form-control'}),
+            'capacidad_espacio': forms.NumberInput(attrs={'class': 'form-control'}),
+            'edificio_espacio': forms.Select(attrs={'class': 'form-control'}),
+            'disponibilidad_espacio': forms.Select(choices=Espacio.disponibilidad_espacio, attrs={'class': 'form-control'}),
+            'tipo': forms.Select(choices=Espacio.tipo, attrs={'class': 'form-control'})
         }
+
     
 
 class EventoForm(forms.Form):

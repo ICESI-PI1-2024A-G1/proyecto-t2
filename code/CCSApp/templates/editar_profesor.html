@@ -32,18 +32,13 @@
           </div>
         </form>
       </div>
-
       <div class="bloq-mid">
         <div class="intermed">
           <h1>Registro de Profesor</h1>
-          {% if error %}
-          <div class="error-message">
-            {{ error }}
-          </div>
-          {% endif %}
+          
         </div>
         <div class="intermed-bloq">
-          <form method="post">
+          <form method="POST" class="form-1" enctype="multipart/form-data" id="registro-materia-form">
             {% csrf_token %}
             {{ form.as_p }}
             <div class="boton-intermed">
@@ -51,8 +46,24 @@
             </div>
           </form>
         </div>
+        {% if error %}
+          <div class="error-message">
+            {{ error }}
+          </div>
+        {% endif %}
       </div>
-
+      <div id="modal-confirmacion" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+          <p>Editando Profesor...</p>
+        </div>
+      </div> 
+      <div id="modal-error" class="modal" style="display: none;">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModalError()">&times;</span>
+          <p id="error-message-modal"></p>
+        </div>
+      </div> 
       <div class="bloq-inf">
         <h4>Universidad Icesi</h4>
         <h4>Todos los derechos reservados</h4>
@@ -61,6 +72,7 @@
     </div>
   </div>
   <script src="{% static 'js/transiciones.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
 

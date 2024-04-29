@@ -38,23 +38,33 @@
             <h1>Crear Nuevo Evento</h1>
           </div>
           <div class="intermed-bloq">
-            <form method="POST" class="form-1">
+            <form method="POST" class="form-1" enctype="multipart/form-data" id="registro-materia-form">
               {% csrf_token %}
               {{ formEvent.as_p }}
               <div class="buttondiv">
                 <button type="submit" class="btn-1">Guardar</button>
               </div>
             </form>
-            <div class="buttondiv2">
-            </div>
           </div>
           {% if error %}
           <div class="error-message">
             {{ error }}
           </div>
           {% endif %}
-        </div>  
+        </div> 
       </div>
+      <div id="modal-confirmacion" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+          <p>Editando Espacio...</p>
+        </div>
+      </div> 
+      <div id="modal-error" class="modal" style="display: none;">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModalError()">&times;</span>
+          <p id="error-message-modal"></p>
+        </div>
+      </div> 
       <div class="bloq-inf">
         <h4>Universidad Icesi</h4>
         <h4>Todos los derechos reservados</h4>
@@ -63,5 +73,6 @@
     </div>
   </div>
   <script src="{% static 'js/transiciones.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

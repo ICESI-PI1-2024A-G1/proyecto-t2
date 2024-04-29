@@ -180,6 +180,7 @@ def editar_materia(request, nombre_materia):
         form = MateriaEditForm(instance=materia)
     return render(request, 'editar_materia.html', {'form': form})
 
+
 def malla_curricular(request):
     if request.method == 'POST':
         form = CrearMallaCurricular(request.POST)
