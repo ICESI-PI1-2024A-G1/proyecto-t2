@@ -145,7 +145,7 @@ def registrar_materia_malla(request):
                     materia = Materia(
                         nombre_materia=form.cleaned_data['nombre_materia'],
                         codigo_materia=codigo_materia,
-                        departamento=form.cleaned_data['departamento'],
+                        departamento = form.cleaned_data['departamento'],
                         creditos_materia=form.cleaned_data['creditos_materia'],
                         syllabus=syllabus_file
                     )
