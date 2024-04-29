@@ -206,20 +206,35 @@ class Materia_profesor(models.Model):
           return self.id
 
 
-     
+   
 class ProgramacionAcademica(models.Model):
      id_programacionAcademica = models.CharField(max_length= 36, unique = True, null= False, default= " ", blank= False, primary_key= True)
      programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete= models.CASCADE, default= '', null= False, blank = False)
+     cod_banner = models.CharField(max_length= 20, default = "")
      departamento = models.ForeignKey(Departamento, on_delete= models.CASCADE,  null= False, blank= False, default = '')
+     horas = models.FloatField(default= '')
      num_creditos = models.IntegerField(null = False, blank= False, default= '')
      periodo = models.ForeignKey(Periodo, on_delete= models.CASCADE,  null= False, blank= False, default = '')
      materia = models.ManyToManyField(Materia)
-     horario = models.ManyToManyField(Horario)
-     # modalidad = models.CharField(max_length= 20, default = '', null = False, blank = False)
+     modalidad = models.CharField(max_length= 20, default = '', null = False, blank = False)
      grupo = models.CharField(max_length= 20, default = '', null = False, blank = False)
      docente = models.ForeignKey(Profesor, on_delete=models.CASCADE, default = '', null = False, blank = False)
+     tipo_de_contrato = models.CharField(max_length= 200, default = '')
+     ciudad = models.CharField(max_length= 200, default = '')
+     correo_electronico = models.CharField(max_length= 200, default = '')
+     telefono = models.CharField(max_length= 200, default = '')
+     fecha_de_clase = models.CharField(max_length= 200, default = '')
+     horario = models.ManyToManyField(Horario)
+     estado_de_contrato = models.CharField(max_length= 200, default = '')
+     fecha_elab_contrato = models.CharField(max_length= 200, default = '')
+     num_contrato = models.CharField(max_length= 200, default = '')
+     listas_mosaicos = models.CharField(max_length= 200, default = '')
+     entrega_notas = models.CharField(max_length= 200, default = '')
+     intu_canvas = models.CharField(max_length= 200, default = '')
+     tiquetes = models.CharField(max_length= 200, default = '')
+     hotel = models.CharField(max_length= 200, default = '')
+     viaticos = models.CharField(max_length= 200, default = '')
      semestre = models.ForeignKey(Semestre, on_delete=models.CASCADE, default = '', null = False, blank = False)
 
-     def  __str__ (self):
+     def  _str_ (self):
           return f"Programacion Academica - {self.id_programacionAcademica}"
-   

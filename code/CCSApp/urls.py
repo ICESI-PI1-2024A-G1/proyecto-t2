@@ -31,22 +31,6 @@ urlpatterns = [
     path('index/gestion/editar/<str:codigo_programa>/', views.editar_programa, name='editar_programa'),
     path('programacion/materias/<int:programa_id>/', views.materias, name='materias'),
     path('programacion/materias/<int:materia_id>/horarios/', views.horarios, name='horarios'),
-<<<<<<< HEAD
-    #path('index/edit/<str:codigo>/', views.edit_programacion, name='editar_programacion'),
-    path('delete_program/<str:codigo>',views.delete_program,name = 'delete-program'),
-    path('program_csv', views.programs_csv, name = 'program-csv'),
-    path('crear_espacio/', views.crear_espacio, name="crear_espacio"),
-
-    path('reset_password/', auth_views.PasswordResetView.as_view(), name="reset_password"),
-
-    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
-
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-
-    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
-
-
-=======
     
     path('delete_program/<str:codigo>',views.delete_program,name = 'delete-program'),
     path('index/program_csv/', views.programs_csv, name = 'program-csv'),
@@ -58,5 +42,4 @@ urlpatterns = [
     path('index/servicios_asignacion/lista_edificios/', views.lista_edificios, name='lista_edificios'),
     path('index/servicios/asignacion/lista_espacios/<str:nombre_edificio>/', views.lista_espacios, name='lista_espacios'),
     path('index/servicios_asignacion/editar_espacio/<str:espacio_codigo>/', views.editar_espacio, name='editar_espacio')
->>>>>>> develop
     ]

@@ -10,22 +10,6 @@
     <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
 </head>
 <body>
-<<<<<<< HEAD
-    <h2>Iniciar Sesión</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% if form.non_field_errors %}
-            <div class="error">{{ form.non_field_errors }}</div>
-        {% endif %}
-        <div class ="auth_actions">
-            <input class = "btn btn--sub btn--lg" type="submit" value="log">
-            <a href="{% url 'reset_password' %}">Olvidaste contraseña?</a>
-        </div>
-        <button type="submit">Iniciar Sesión</button>
-    </form>
-    <a href="/register_us"><button> Registrar </button></a>
-=======
     <div id="page-container">
         <div id="page1" class="fade-in">
             <div class="bloq-sup">
@@ -71,6 +55,5 @@
         </div>
     </div>
     <script src="{% static 'js/transiciones.js' %}"></script>
->>>>>>> develop
 </body>
 </html
