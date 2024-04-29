@@ -135,24 +135,7 @@ class Profesor(models.Model):
     def  __str__(self):
         return self.cedula_profesor
  
-class Evento(models.Model):
-    nombre_evento = models.CharField(max_length =255, null = False, blank = False, primary_key = True)
-    fecha_inicio_evento = models.DateField(null = False, blank = False)
-    fecha_finalizacion_evento = models.DateField(null = False, blank = False)
-    lugar_evento = models.TextField(null = False, blank = False)
-    descripcion_evento = models.TextField(null = False, blank = False)
-    programa_de_posgrado_evento = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
-    def  __str__(self):
-            return self.nombre_evento
-    
-class Actividad(models.Model):
-    nombre_actividad = models.CharField(max_length = 255, null = False, blank = False, primary_key = True)
-    descripcion_actividad = models.TextField(null = False, blank = False)
-    duracion_en_horas= models.PositiveIntegerField(default = 1, null = False, blank = False)
-    orador_actividad = models.CharField(max_length = 255, null = False, blank = False)
-    evento_actividad = models.ForeignKey(Evento, on_delete=models.CASCADE, default = '', null = False, blank = False)
-    def  __str__(self):
-            return self.nombre_actividad
+
     
 class Edificio(models.Model):
     nombre_edificio = models.CharField(max_length =255, null = False, blank = False, primary_key=True)  
@@ -174,6 +157,25 @@ class Espacio(models.Model):
     tipo = models.CharField(max_length=20, choices=TIPOS_CHOICES)
     def  __str__(self):
             return self.espacio_codigo
+        
+class Evento(models.Model):
+    nombre_evento = models.CharField(max_length =255, null = False, blank = False, primary_key = True)
+    fecha_inicio_evento = models.DateField(null = False, blank = False)
+    fecha_finalizacion_evento = models.DateField(null = False, blank = False)
+    lugar_evento = models.ForeignKey(Espacio, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    descripcion_evento = models.TextField(null = False, blank = False)
+    programa_de_posgrado_evento = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    def  __str__(self):
+            return self.nombre_evento
+    
+class Actividad(models.Model):
+    nombre_actividad = models.CharField(max_length = 255, null = False, blank = False, primary_key = True)
+    descripcion_actividad = models.TextField(null = False, blank = False)
+    duracion_en_horas= models.PositiveIntegerField(default = 1, null = False, blank = False)
+    orador_actividad = models.CharField(max_length = 255, null = False, blank = False)
+    evento_actividad = models.ForeignKey(Evento, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    def  __str__(self):
+            return self.nombre_actividad
     
 class Usuario(models.Model):
     nombre = models.CharField(max_length =255, null = False, blank = False)
