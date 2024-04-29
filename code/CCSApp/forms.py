@@ -9,7 +9,6 @@ class RegistrarPeriodo(forms.Form):
 
 
 class NewHorario(forms.Form):
-    id_horario = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     fecha_inicio_horario = forms.DateTimeField(
         label="Fecha Inicio",
         widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
@@ -43,7 +42,6 @@ class NewHorario(forms.Form):
     grupo = forms.ChoiceField(label="Grupo", choices=GRUPO, widget=forms.Select(attrs={'class': 'form-control2'}))
     
 class ModificarHorarioForm(forms.Form):
-    horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar", widget=forms.Select(attrs={'class': 'form-control'}))
     fecha_inicio_horario = forms.DateTimeField(
         label="Fecha Inicio",
         widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),

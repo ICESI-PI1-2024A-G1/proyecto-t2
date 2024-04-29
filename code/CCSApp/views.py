@@ -18,7 +18,6 @@ def asignar_horario(request):
     if request.method == 'POST':
         form = NewHorario(request.POST)
         if form.is_valid():
-            id_horario = form.cleaned_data['id_horario']
             fecha_inicio_horario = form.cleaned_data['fecha_inicio_horario']
             hora_inicio_horario = form.cleaned_data['hora_inicio_horario']
             hora_final_horario = form.cleaned_data['hora_final_horario']
@@ -40,7 +39,6 @@ def asignar_horario(request):
             if not conflicto:
                 # No hay conflicto, guardar el nuevo horario
                 Horario.objects.create(
-                    id_horario=id_horario,
                     fecha_inicio_horario=fecha_inicio_horario,
                     hora_inicio_horario=hora_inicio_horario,
                     hora_final_horario=hora_final_horario,
