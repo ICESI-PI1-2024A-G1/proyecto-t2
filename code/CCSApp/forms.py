@@ -9,7 +9,7 @@ class RegistrarPeriodo(forms.Form):
 
 
 class NewHorario(forms.Form):
-    id_horario = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    #id_horario = forms.CharField(label= "Id", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     fecha_inicio_horario = forms.DateTimeField(
         label="Fecha Inicio",
         widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
@@ -43,7 +43,7 @@ class NewHorario(forms.Form):
     grupo = forms.ChoiceField(label="Grupo", choices=GRUPO, widget=forms.Select(attrs={'class': 'form-control2'}))
     
 class ModificarHorarioForm(forms.Form):
-    horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar", widget=forms.Select(attrs={'class': 'form-control'}))
+    #horario_id = forms.ModelChoiceField(queryset=Horario.objects.all(), label="Selecciona un horario para modificar", widget=forms.Select(attrs={'class': 'form-control'}))
     fecha_inicio_horario = forms.DateTimeField(
         label="Fecha Inicio",
         widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
@@ -94,23 +94,26 @@ class LoginForm(forms.Form):
 
 
 class CrearProgramaAcademico(forms.Form):
-    nombre_programa = forms.CharField(label="Nombre", max_length=255, help_text="Ingrese el nombre del programa.")
-    codigo_programa = forms.CharField(label="Código", max_length=100, help_text="Ingrese el código del programa.")
-    fecha_inicio_programa = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    nombre_programa = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    codigo_programa = forms.CharField(label="Código", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    fecha_inicio_programa = forms.DateTimeField(
+        label="Fecha Inicio",
+        widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
+    )
     ESTADO_CHOICES = [
         ("Activo","Activo"),
         ("Inactivo","Inactivo")
     ]
-    estado_programa = forms.ChoiceField(label = "Estado", choices= ESTADO_CHOICES, help_text= 'Seleccione el estado del programa' )
-    duracion_programa = forms.CharField(label="Duración", help_text="Ingrese la duración del programa en años")
+    estado_programa = forms.ChoiceField(label = "Estado", choices= ESTADO_CHOICES, widget=forms.Select(attrs={'class': 'form-control2'}))
+    duracion_programa = forms.CharField(label="Duración", widget=forms.TextInput(attrs={'class': 'form-control'}))
     # facultad= forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
-    facultad_programa = forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), help_text="Seleccione la facultad a la que pertenece el programa.")
+    facultad_programa = forms.ModelChoiceField(label="Facultad", queryset=Facultad.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
     MODALIDADES_CHOICES = [
         ('Presencial', 'Presencial'),
         ('Virtual', 'Virtual'),
         ('Mixta', 'Mixta')
     ]
-    modalidad_programa = forms.ChoiceField(label="Modalidad", choices=MODALIDADES_CHOICES, help_text="Seleccione la modalidad del programa.")
+    modalidad_programa = forms.ChoiceField(label="Modalidad", choices=MODALIDADES_CHOICES, widget=forms.Select(attrs={'class': 'form-control2'}))
 
     def clean(self):
         cleaned_data = super().clean()
@@ -156,7 +159,7 @@ class MateriaEditForm(forms.ModelForm):
         }
 
 class RegistrarProfesor(forms.Form):
-    nombre_profesor = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    nombre_profesor = forms.CharField(label="Nombre Completo", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     cedula_profesor = forms.CharField(label="Identificación del profesor", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     especializacion_profesor = forms.CharField(label="Especialización", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     correo_electronico = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
@@ -214,9 +217,7 @@ class EspacioForm(forms.Form):
         ('sala computo', 'sala computo')
     )
     tipo = forms.ChoiceField(label="Modalidad", choices=TIPOS_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
-    
-
-        
+       
 class CrearEdificio(forms.ModelForm):
     class Meta:
         model = Edificio

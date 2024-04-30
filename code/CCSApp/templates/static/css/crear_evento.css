@@ -238,12 +238,12 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
     /* background-color: #28C985; */
-    border: 2px solid #04AA6D;
-    border-radius: 10px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    /* border: 2px solid #04AA6D; */
+    /* border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
     overflow-y: scroll;
-    width: 40%;
-    height: 55%;
+    width: 100%;
+    height: 64.8%;
 }
 
 .bloq-mid input{
@@ -267,11 +267,11 @@ button {
 .intermed {
     position: relative;
     top: 20px; /* Ajusta este valor según lo que necesites */
-    left: 10%;
+    left: 38%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 80%;
+    width: 25%;
     height: 30px;
     /* background-color: #04AA6D; */
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
@@ -282,7 +282,7 @@ button {
     width: 65%;
     height: 50%;
     background-color: transparent;
-    border: 2px solid #04AA6D;
+    /* border: 2px solid #04AA6D; */
     border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     padding: 7px 20px;
