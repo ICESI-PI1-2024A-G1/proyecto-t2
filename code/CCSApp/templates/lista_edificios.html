@@ -6,8 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lista de edificios</title>
-  <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
-  <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
+  <link rel="stylesheet" href='{% static "css/lista.css" %}' type='text/css'>
+  <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
 </head>
 
 <body>
@@ -16,11 +16,15 @@
       <div class="bloq-sup">
         <form method="get">
           <div class="bloq-sup_secd">
-            <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeRegistro()">
-              <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
-            </button>
+            <div class="div_boton_return">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeRegistro()">
+                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+              </button>
+            </div>
             <div class="titulo">
-              <h1>CCSA</h1>
+              <div class="div_CCSA">
+                <h1>CCSA</h1>
+              </div>
               <div class="descripcion">
                 <h3>Centro Compartido de Servicios Académicos</h3>
               </div>
@@ -28,7 +32,6 @@
           </div>
         </form>
       </div>
-
       <div class="bloq-mid">
         <div class="intermed">
           <h1>Lista de edificios</h1>
