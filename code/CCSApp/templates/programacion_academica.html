@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div >
+          <button type="submit">Ver Semestres</button>
+        </div>
+        <!-- {% if programa %}
+        <h2>Programa Seleccionado: {{ programa_de_posgrado.nombre_de_posgrado }}</h2>
+        {% if semestre %}
+          <h3>Semestres disponibles</h3>
+          <ul>
+            {% for semestre in semestres %}
+              <li>{{ semestres.nombre_semestre }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No hay semestres disponibles.</p>
+        {% endif %}
+      {% endif %} -->
+      </form>
+
+ 
+</body>
+</html>
