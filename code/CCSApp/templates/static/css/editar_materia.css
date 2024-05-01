@@ -56,6 +56,47 @@ ul {
     margin-left: 0.5em;
  }
  
+ .modal {
+   display: none; /* El cuadro emergente está oculto por defecto */
+   position: fixed; 
+   z-index: 1; 
+   left: 0;
+   top: 0;
+   width: 100%; 
+   height: 100%; 
+   overflow: auto; 
+   background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente */
+ }
+ 
+ .modal-contenido {
+   background-color: #fefefe;
+   margin: 0 auto; 
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%; 
+   max-width: 600px; /* Ancho máximo */
+   border-radius: 20px; /* Bordes más curvos */
+   position: absolute; /* Cambiamos la posición a absoluta */
+   top: 50%; /* Lo posicionamos en la mitad superior del viewport */
+   left: 50%; /* Lo posicionamos en el centro horizontal */
+   transform: translate(-50%, -50%); /* Centramos vertical y horizontalmente */
+   animation-name: animacion-aparicion;
+   animation-duration: 0.5s; /* Duración de la animación */
+ }
+ 
+ .cerrar-modal {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+ }
+ 
+ .cerrar-modal:hover,
+ .cerrar-modal:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+ }
  
  /* Animación de entrada */
  .fade-in {
@@ -134,6 +175,7 @@ ul {
     background-color: #28C985;
     border-radius: 2rem;
     border:0.7px solid #000000c8;
+    width: 100%;
  }
  
  
@@ -190,11 +232,10 @@ ul {
  .intermed {
     position: relative;
     top: 0%; /* Ajusta este valor según lo que necesites */
-    left: 30%;
+    left: 32%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
-    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 40%;
+    width: 25%;
     height: 5%;
     /* background-color:#28C985; */
     font-size: 0.75em;
@@ -216,10 +257,10 @@ ul {
  
  .boton-intermed{
     /* background-color: bisque; */
-    width: 32%;
-    top: 50%;
-    left: 20%;
-    transform: translate(100%, 150%);
+    width: 50%;
+    top: 60%;
+    transform: translate(40%, 100%);
+    margin-top: 8%;
  }
 
  .spaced-input {

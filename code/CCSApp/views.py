@@ -18,7 +18,7 @@ def asignar_horario(request):
     if request.method == 'POST':
         form = NewHorario(request.POST)
         if form.is_valid():
-            id_horario = form.cleaned_data['id_horario']
+            #id_horario = form.cleaned_data['id_horario']
             fecha_inicio_horario = form.cleaned_data['fecha_inicio_horario']
             hora_inicio_horario = form.cleaned_data['hora_inicio_horario']
             hora_final_horario = form.cleaned_data['hora_final_horario']
@@ -40,7 +40,7 @@ def asignar_horario(request):
             if not conflicto:
                 # No hay conflicto, guardar el nuevo horario
                 Horario.objects.create(
-                    id_horario=id_horario,
+                    #id_horario=id_horario,
                     fecha_inicio_horario=fecha_inicio_horario,
                     hora_inicio_horario=hora_inicio_horario,
                     hora_final_horario=hora_final_horario,
@@ -128,6 +128,8 @@ def registrar_materia_malla(request):
             form = CrearMateria(request.POST, request.FILES)
             if form.is_valid():
                 codigo_materia = form.cleaned_data['codigo_materia']
+                nombre_materia = form.cleaned_data['nombre_materia']
+                
                 # Verificar si ya existe una materia con el mismo código
                 if Materia.objects.filter(codigo_materia=codigo_materia).exists():
                     # Si existe, puedes manejar la situación como desees,
@@ -136,14 +138,23 @@ def registrar_materia_malla(request):
                         'form': CrearMateria,
                         'error': 'La materia ya existe en la base de datos.'
                     })
+                # Si el código de la materia no existe, verificar si el nombre de la materia también existe
+                elif Materia.objects.filter(nombre_materia=nombre_materia).exists():
+                    return render(request, 'registro_materia.html', {
+                        'form': CrearMateria,
+                        'error': 'La materia ya existe en la base de datos.'
+                    })
                 else:
+                    # Si no existe ninguna materia con el mismo código ni con el mismo nombre,
+                    # continuar con la verificación del archivo y la creación de la materia
+
                     syllabus_file = form.cleaned_data['syllabus']
                     if not syllabus_file.name.endswith('.pdf'):
                         raise ValidationError('El archivo debe ser un PDF.')
 
                     # Si no existe, crear la nueva materia
                     materia = Materia(
-                        nombre_materia=form.cleaned_data['nombre_materia'],
+                        nombre_materia=nombre_materia,
                         codigo_materia=codigo_materia,
                         departamento = form.cleaned_data['departamento'],
                         creditos_materia=form.cleaned_data['creditos_materia'],
@@ -156,6 +167,7 @@ def registrar_materia_malla(request):
                 'form': CrearMateria,
                 'error': 'Por favor, proporcione datos válidos.'
             })
+
 
 def buscar_materia(request):
     if request.method == 'POST':
@@ -178,6 +190,7 @@ def editar_materia(request, nombre_materia):
     else:
         form = MateriaEditForm(instance=materia)
     return render(request, 'editar_materia.html', {'form': form})
+
 
 def malla_curricular(request):
     if request.method == 'POST':
@@ -229,7 +242,11 @@ def log_in(request):
                 return redirect(index)
             except Usuario.DoesNotExist:
                 # Si no se encuentra el usuario, puedes mostrar un mensaje de error o redirigir de nuevo al formulario de inicio de sesión.
-                form.add_error(None, 'Usuario o clave incorrecta, intente de nuevo')
+                #form.add_error(None, 'Usuario o clave incorrecta, intente de nuevo')
+                return render(request, 'log_in.html', {
+                        'form': LoginForm,
+                        'error': 'Usuario o clave incorrecta, intente de nuevo'
+                })
     else:
         form = LoginForm()
     return render(request, 'log_in.html', {'form': form})
