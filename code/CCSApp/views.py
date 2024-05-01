@@ -525,25 +525,43 @@ def editar_espacio(request, espacio_codigo):
 
 def crear_programacion_academica(request):
     form = ProgramacionAcademicaForm(request.POST or None)  # Maneja datos del POST
+    materias_seleccionadas = request.POST.getlist('materias')
+
     if form.is_valid():
         programa_de_posgrado = form.cleaned_data['programa_de_posgrado']
-        semestre = Semestre.objects.filter(programa_semestre = programa_de_posgrado)
-        materias = Materia.objects.filter(nombre_semestre = semestre)
+        semestre = Semestre.objects.filter(programa_semestre=programa_de_posgrado)
+
+        for semestre_actual in semestre:
+            materias_semestre = Materia.objects.filter(nombre_semestre=semestre_actual)
+            context['materias_semestre_' + str(semestre_actual.id)] = materias_semestre
+
         departamento = form.cleaned_data['departamento']
-        
+
+        for codigo in materias_seleccionadas:
+            materia = Materia.objects.get(pk=codigo)
+
+            # Obtener horarios seleccionados para la materia actual
+            horarios_seleccionados = request.POST.getlist('horarios_' + codigo)
+
+            for horario_id in horarios_seleccionados:
+                horario = Horario.objects.get(pk=horario_id)
+
+                # Asociar el horario con la materia
+                materia.horarios.add(horario)
+
     else:
         programa_de_posgrado = None
         semestre = []
         materias = []
         departamento = None
-        
 
-    context = {'form': form, 
-               'programa_de_posgrado': programa_de_posgrado, 
-               'semestre': semestre,
-               'materias': materias,
-               'departamento': departamento}
-    
+    context = {
+        'form': form,
+        'programa_de_posgrados': programa_de_posgrado,
+        'semestres': semestre,
+        'departamentos': departamento
+    }
+
     return render(request, 'programacion_academica.html', context)
 
 def crear_evento(request):
