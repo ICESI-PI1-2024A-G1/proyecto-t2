@@ -10,19 +10,7 @@
     
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        
-        {% for programa in programa_de_posgrados %}
-          {% for semestre in semestres %}
-            {% if programa.nombre_programa == semestre.programa_semestre %}
-            <p>
-              {{ semestre.nombre_semestre }}
-            </p>
-              {% else %}
-            <p> No hay semestres asociados disponibles</p>
-            {% endif %}
-          {% endfor %}
-        {% endfor %}  
+        {{ form.as_p }} 
         <div>
           <a href="/index">
             <button type="submit">Continuar</button>

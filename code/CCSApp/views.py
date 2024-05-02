@@ -541,45 +541,23 @@ def editar_espacio(request, espacio_codigo):
     return render(request, 'editar_espacio.html', {'form': form})
 
 def crear_programacion_academica(request):
-    form = ProgramacionAcademicaForm(request.POST or None)  # Maneja datos del POST
-    materias_seleccionadas = request.POST.getlist('materias')
-
-    if form.is_valid():
-        programa_de_posgrado = form.cleaned_data['programa_de_posgrado']
-        semestre = Semestre.objects.filter(programa_semestre=programa_de_posgrado)
-
-        for semestre_actual in semestre:
-            materias_semestre = Materia.objects.filter(nombre_semestre=semestre_actual)
-            context['materias_semestre_' + str(semestre_actual.id)] = materias_semestre
-
-        departamento = form.cleaned_data['departamento']
-
-        for codigo in materias_seleccionadas:
-            materia = Materia.objects.get(pk=codigo)
-
-            # Obtener horarios seleccionados para la materia actual
-            horarios_seleccionados = request.POST.getlist('horarios_' + codigo)
-
-            for horario_id in horarios_seleccionados:
-                horario = Horario.objects.get(pk=horario_id)
-
-                # Asociar el horario con la materia
-                materia.horarios.add(horario)
-
+    if request.method == 'POST':
+        form = ProgramacionAcademicaForm(request.POST)  # Maneja datos del POST
+        if form.is_valid():
+            programacion_academica = ProgramacionAcademicaForm(
+                programa_de_posgrado =form.cleaned_data['programa_de_posgrado'],
+                semestre =form.cleaned_data['semestre'],
+                departamento =form.cleaned_data['departamento'],
+                estado_programa = form.cleaned_data['estado_programa'],
+                materia =form.cleaned_data['materia'],
+                horario =form.cleaned_data['horario'],
+                grupo =form.cleaned_data['grupo'],
+                profesor = form.cleaned_data['profesor'])
+            programacion_academica.save()
+            return redirect('/index')  # Redirigir a alguna vista después de guardar el formulario
     else:
-        programa_de_posgrado = None
-        semestre = []
-        materias = []
-        departamento = None
-
-    context = {
-        'form': form,
-        'programa_de_posgrados': programa_de_posgrado,
-        'semestres': semestre,
-        'departamentos': departamento
-    }
-
-    return render(request, 'programacion_academica.html', context)
+        form = CrearProgramaAcademico()
+    return render(request, 'programacion_academica.html', {'form': form})
 
 def crear_evento(request):
     if request.method == 'POST':
