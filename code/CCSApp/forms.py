@@ -37,45 +37,24 @@ class NewHorario(forms.Form):
     ]
     modalidad = forms.ChoiceField(label="Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control2'}))
     enlace_virtual = forms.URLField(label="Enlace Virtual", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    espacio = forms.ModelChoiceField(label="Espacio", queryset=Espacio.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
+    salon_presencial = forms.ModelChoiceField(label="Espacio", queryset=Espacio.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
     materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
     grupo = forms.ChoiceField(label="Grupo", choices=GRUPO, widget=forms.Select(attrs={'class': 'form-control2'}))
     
-class ModificarHorarioForm(forms.Form):
-    fecha_inicio_horario = forms.DateTimeField(
-        label="Fecha Inicio",
-        widget=forms.DateTimeInput(attrs={'type': 'date', 'class': 'form-control'}),
-    )
-
-    hora_inicio_horario = forms.TimeField(
-        label="Hora Inicio",
-        widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-    )
-    hora_final_horario = forms.TimeField(
-        label="Hora Final",
-        widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-    )
-    
-    materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
-    
-    MODALIDAD_CHOICES = [
-        ('presencial', 'Presencial'),
-        ('virtual', 'Virtual'),
-        ('mixta', 'Mixta'),
-    ]
-
-    GRUPO = [
-        ('001', '001'),
-        ('002', '002'),
-        ('003', '003'),
-        ('004', '004')
-    ]
-    modalidad = forms.ChoiceField(label="Nueva Modalidad", choices=MODALIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control2'}))
-    grupo = forms.ChoiceField(label="Nueva Grupo", choices=GRUPO, widget=forms.Select(attrs={'class': 'form-control2'}))
-    enlace_virtual = forms.URLField(label="Nuevo Enlace Virtual", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    espacio = forms.CharField(label= "Espacio", max_length =255, widget=forms.Select(attrs={'class': 'form-control2'}))
-
-    
+class ModificarHorarioForm(forms.ModelForm):
+    class Meta:
+        model = Horario
+        fields = ['fecha_inicio_horario', 'hora_inicio_horario', 'hora_final_horario', 'materia', 'modalidad', 'grupo', 'enlace_virtual', 'salon_presencial']
+        widgets = {
+            'fecha_inicio_horario': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'hora_inicio_horario': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+            'hora_final_horario': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+            'materia': forms.Select(attrs={'class': 'form-control2'}),
+            'modalidad': forms.Select(attrs={'class': 'form-control2'}),
+            'grupo': forms.Select(attrs={'class': 'form-control2'}),
+            'enlace_virtual': forms.TextInput(attrs={'class': 'form-control'}),
+            'salon_presencial': forms.Select(attrs={'class': 'form-control2'}),
+        }
 
 class NewUsuary(forms.Form):
     nombre = forms.CharField(label= "nombre", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
