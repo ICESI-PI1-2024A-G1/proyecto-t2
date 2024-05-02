@@ -60,6 +60,7 @@ def asignar_horario(request):
 def modificar_horarios(request, id_horario):
     horario = Horario.objects.get(pk=id_horario)
     if request.method == 'POST':
+        print(request.POST.dict())
         form = ModificarHorarioForm(request.POST, instance=horario)
         if form.is_valid():
             form.save()
