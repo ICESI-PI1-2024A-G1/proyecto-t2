@@ -31,8 +31,7 @@ class Horario(models.Model):
         ('004', '004')
     ]
 
-    id_horario = models.CharField(max_length=10, unique=True, primary_key=True)
-
+    id_horario = models.AutoField(primary_key=True)
     fecha_inicio_horario = models.DateField(default=fecha_inicio_por_defecto, null=False, blank=False)
     hora_inicio_horario = models.TimeField(default=time(8, 0), null=False, blank=False)  
     hora_final_horario = models.TimeField(default=time(10, 0), null=False, blank=False)  
@@ -44,7 +43,7 @@ class Horario(models.Model):
     salon_presencial = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
-        return self.id_horario
+        return str(self.id_horario)
     
 class Facultad(models.Model):
     codigo_facultad = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True) #cambio
