@@ -57,7 +57,7 @@ def asignar_horario(request):
     else:
         form = NewHorario()
 
-    return render(request, 'asignar_horario.html', {'formNewHorario': form})
+    return render(request, 'Asignar/asignar_horario.html', {'formNewHorario': form})
 
 def modificar_horarios(request):
     if request.method == 'POST':
@@ -77,7 +77,7 @@ def modificar_horarios(request):
             return redirect('/index/servicios_asignacion') 
     else:
         form = ModificarHorarioForm()
-    return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
+    return render(request, 'Editar/modificar_horarios.html', {'formModificarHorarios': form})
 
 def consultar_horarios(request):
     # Obtener todos los horarios inicialmente
@@ -111,16 +111,16 @@ def consultar_horarios(request):
         'horarios': horarios
     }
 
-    return render(request, 'consultar_horarios.html', context)
+    return render(request, 'Buscar/consultar_horarios.html', context)
 
 def servicios_asignacion(request):
     if request.method == "GET":
-        return render(request, 'servicios_asignacion.html')
+        return render(request, 'Semestre/servicios_asignacion.html')
     
 
 def registrar_materia_malla(request):
     if request.method == "GET":
-        return render(request, 'registro_materia.html', {
+        return render(request, 'Registrar/registro_materia.html', {
             'form': CrearMateria
         })
     else:
@@ -152,7 +152,7 @@ def registrar_materia_malla(request):
                     materia.save()
                     return redirect('/index/servicios_asignacion')
         except ValueError:
-            return render(request, 'registro_materia.html', {
+            return render(request, 'Registrar/registro_materia.html', {
                 'form': CrearMateria,
                 'error': 'Por favor, proporcione datos válidos.'
             })
@@ -163,10 +163,10 @@ def buscar_materia(request):
         if form.is_valid():
             nombre_materia = form.cleaned_data['nombre_materia']
             materias = Materia.objects.filter(nombre_materia__istartswith=nombre_materia)
-            return render(request, 'buscar_materia.html', {'form': form, 'materias': materias})
+            return render(request, 'Buscar/buscar_materia.html', {'form': form, 'materias': materias})
     else:
         form = MateriaSearchForm()
-    return render(request, 'buscar_materia.html', {'form': form})
+    return render(request, 'Buscar/buscar_materia.html', {'form': form})
 
 def editar_materia(request, nombre_materia):
     materia = Materia.objects.get(nombre_materia=nombre_materia)
@@ -177,7 +177,7 @@ def editar_materia(request, nombre_materia):
             return redirect('buscar_materia')
     else:
         form = MateriaEditForm(instance=materia)
-    return render(request, 'editar_materia.html', {'form': form})
+    return render(request, 'Editar/editar_materia.html', {'form': form})
 
 def malla_curricular(request):
     if request.method == 'POST':
@@ -193,7 +193,7 @@ def malla_curricular(request):
             return redirect('/index/servicios_asignacion/registroMateria')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearMallaCurricular()
-    return render(request, 'np_malla_curricular.html', {'form' : form})
+    return render(request, 'Semestre/np_malla_curricular.html', {'form' : form})
 
 def nuevo_programa(request):
     if request.method == 'POST':
@@ -212,7 +212,7 @@ def nuevo_programa(request):
             return redirect('/gestion/nuevoprograma/director_programa')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearProgramaAcademico()
-    return render(request, 'nuevo_programa.html', {'form': form})
+    return render(request, 'Crear/nuevo_programa.html', {'form': form})
 
 def log_in(request):
     if request.method == 'POST':
@@ -232,7 +232,7 @@ def log_in(request):
                 form.add_error(None, 'Usuario o clave incorrecta, intente de nuevo')
     else:
         form = LoginForm()
-    return render(request, 'log_in.html', {'form': form})
+    return render(request, 'login/log_in.html', {'form': form})
 
 def register_us(request):
     if request.method == 'POST':
@@ -251,7 +251,7 @@ def register_us(request):
             if Usuario.objects.filter(cedula=cedula).exists():
                 # Manejar el caso donde ya existe un usuario con la cédula proporcionada
                 # Por ejemplo, puedes agregar un mensaje de error al formulario.
-                return render(request, 'register_us.html', {
+                return render(request, 'Registar/register_us.html', {
                         'form': NewUsuary,
                         'error': 'Ya existe un usuario con esta cédula.'
                 })
@@ -272,20 +272,20 @@ def register_us(request):
         # ...
     else:
         form = NewUsuary()
-    return render(request, 'register_us.html', {'form': form})
+    return render(request, 'Registrar/register_us.html', {'form': form})
 
 def gestion(request):
-    return render(request, 'gestion.html')
+    return render(request, 'Semestre/gestion.html')
 
 def index(request):
     if request.method == "GET":
-        return render(request, 'index.html')
+        return render(request, 'login/index.html')
  
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'login/home.html')
 
 def asignar_espacios(request):
-    return render(request, 'asignar_espacios.html')
+    return render(request, 'Asignar/asignar_espacios.html')
 
 def registrar_profesor(request):
     if request.method == "POST":
@@ -298,7 +298,7 @@ def registrar_profesor(request):
             telefono = form.cleaned_data['telefono']
             
             if Profesor.objects.filter(cedula_profesor=cedula_profesor).exists():
-                return render(request, 'registro_profesores.html', {
+                return render(request, 'Registrar/registro_profesores.html', {
                     'form': form,
                     'error': 'El profesor ya existe en la base de datos.'
                 })
@@ -315,7 +315,7 @@ def registrar_profesor(request):
     else:
         form = RegistrarProfesor()
     
-    return render(request, 'registro_profesores.html', {
+    return render(request, 'Registrar/registro_profesores.html', {
         'form': form
     })
 
@@ -325,10 +325,10 @@ def buscar_profesor(request):
         if form.is_valid():
             nombre_profesor = form.cleaned_data['nombre_profesor']
             profesores = Profesor.objects.filter(nombre_profesor__icontains=nombre_profesor)
-            return render(request, 'buscar_profesor.html', {'form': form, 'profesores': profesores})
+            return render(request, 'Buscar/buscar_profesor.html', {'form': form, 'profesores': profesores})
     else:
         form = ProfesorSearchForm()
-    return render(request, 'buscar_profesor.html', {'form': form})
+    return render(request, 'Buscar/buscar_profesor.html', {'form': form})
 
 def editar_profesor(request, nombre_profesor):
     profesor = Profesor.objects.get(nombre_profesor=nombre_profesor)
@@ -339,12 +339,12 @@ def editar_profesor(request, nombre_profesor):
             return redirect('buscar_profesor')
     else:
         form = ProfesorEditForm(instance=profesor)
-    return render(request, 'editar_profesor.html', {'form': form})
+    return render(request, 'Editar/editar_profesor.html', {'form': form})
 
 def lista_programas(request):
     programas = Programa_de_posgrado.objects.all()
     directores = Director_de_programa.objects.all()
-    return render(request, 'lista_programas.html', {'programas': programas, 'directores': directores})
+    return render(request, 'Listas/lista_programas.html', {'programas': programas, 'directores': directores})
 
 def editar_programa(request, codigo_programa):  
     programa = get_object_or_404(Programa_de_posgrado, codigo_programa=codigo_programa)  
@@ -354,7 +354,7 @@ def editar_programa(request, codigo_programa):
         return redirect('lista_programas_pos.html')  
     else:
         form = EditarProgramaForm(instance=programa)
-    return render(request, 'editar_programa.html', {'form': form})
+    return render(request, 'Editar/editar_programa.html', {'form': form})
 
 def director_programa(request):
     if request.method == 'POST':
@@ -378,14 +378,14 @@ def director_programa(request):
             form = DirectorDePrograma(request.POST)
     else:
         form = DirectorDePrograma()
-    return render(request, 'director_programa.html', {'form': form})
+    return render(request, 'Semestre/director_programa.html', {'form': form})
 
 def operacionexitosanp(request):
     return render(request, 'operacion_exitosa_np.html')
 
 def eliminar_programa_inactivo(request):
     programas = Programa_de_posgrado.objects.all()
-    return render(request, 'eliminar_programa_inactivo.html', {'programas': programas})
+    return render(request, 'Editar/eliminar_programa_inactivo.html', {'programas': programas})
 
 def delete_program(request, codigo):
     programa = Programa_de_posgrado.objects.get(pk = codigo)
@@ -449,32 +449,18 @@ def programs_csv(request):
     wb.save(response)
     return response
 
-def materias(request):
-    programas = Programa_de_posgrado.objects.all()
-    materias = Materia.objects.all()
-    context = {'programas': programas, 'materias': materias}
-    return render(request, 'materias.html', context)
 
 def horarios(request, codigo_materia):
     horarios = Horario.objects.filter(materia__codigo=codigo_materia)
     context = {'horarios': horarios}
-    return render(request, 'lista_horarios.html', context)
+    return render(request, 'Listas/lista_horarios.html', context)
 
 def elegir_semestre(request):
     semestre = Semestre.objects.all()
     context = { 'semestres': semestre }
 
-    return render(request, "elegir_semestre.html", context)
+    return render(request, "Semestre/elegir_semestre.html", context)
 
-def crear_espacio(request):
-    if request.method == 'POST':
-        form = EspacioForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/index/servicios_asignacion')  
-    else:
-        form = EspacioForm()
-    return render(request, 'crear_espacio.html', {'form': form})
 
 def crear_espacio(request):
     if request.method == 'POST':
@@ -491,7 +477,7 @@ def crear_espacio(request):
             return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = EspacioForm()
-    return render(request, 'crear_espacio.html', {'form': form})
+    return render(request, 'Crear/crear_espacio.html', {'form': form})
 
 def crear_edificio(request):
     if request.method == 'POST':
@@ -501,16 +487,16 @@ def crear_edificio(request):
             return redirect('/index/servicios_asignacion')  
     else:
         form = CrearEdificio()
-    return render(request, 'crear_edificio.html', {'form': form})
+    return render(request, 'Crear/crear_edificio.html', {'form': form})
 
 def lista_edificios(request):
     edificios = Edificio.objects.all()
-    return render(request, 'lista_edificios.html', {'edificios': edificios})
+    return render(request, 'Listas/lista_edificios.html', {'edificios': edificios})
 
 def lista_espacios(request, nombre_edificio):
     edificio = get_object_or_404(Edificio, pk=nombre_edificio)
     espacios = Espacio.objects.filter(edificio_espacio=edificio)
-    return render(request, 'lista_espacios.html', {'edificio': edificio, 'espacios': espacios})
+    return render(request, 'Listas/lista_espacios.html', {'edificio': edificio, 'espacios': espacios})
 
 def editar_espacio(request, espacio_codigo):
     espacio = get_object_or_404(Espacio, pk=espacio_codigo)
@@ -521,7 +507,7 @@ def editar_espacio(request, espacio_codigo):
             return redirect('/index/servicios_asignacion')  # Redirigir a la lista de edificios después de la edición
     else:
         form = EditarEspacio(instance=espacio)
-    return render(request, 'editar_espacio.html', {'form': form})
+    return render(request, 'Editar/editar_espacio.html', {'form': form})
 
 def crear_programacion_academica(request):
     form = ProgramacionAcademicaForm(request.POST or None)  # Maneja datos del POST
@@ -544,7 +530,7 @@ def crear_programacion_academica(request):
                'materias': materias,
                'departamento': departamento}
     
-    return render(request, 'programacion_academica.html', context)
+    return render(request, 'Semestre/programacion_academica.html', context)
 
 def crear_evento(request):
     if request.method == 'POST':
@@ -562,7 +548,7 @@ def crear_evento(request):
             return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         formEvent = EventoForm()
-    return render(request, 'crear_evento.html', {'formEvent': EventoForm})
+    return render(request, 'Crear/crear_evento.html', {'formEvent': EventoForm})
 
 def crear_actividad(request):
     if request.method == 'POST':
@@ -578,4 +564,4 @@ def crear_actividad(request):
             return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         formActividad = ActividadForm()
-    return render(request, 'crear_actividad.html', {'formActividad': formActividad})
+    return render(request, 'Crear/crear_actividad.html', {'formActividad': formActividad})

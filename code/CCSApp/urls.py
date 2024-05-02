@@ -29,7 +29,7 @@ urlpatterns = [
     
     path('index/lista/', views.lista_programas, name='lista_programas'),
     path('index/gestion/editar/<str:codigo_programa>/', views.editar_programa, name='editar_programa'),
-    path('programacion/materias/<int:programa_id>/', views.materias, name='materias'),
+   
     path('programacion/materias/<int:materia_id>/horarios/', views.horarios, name='horarios'),
     
     path('delete_program/<str:codigo>',views.delete_program,name = 'delete-program'),
