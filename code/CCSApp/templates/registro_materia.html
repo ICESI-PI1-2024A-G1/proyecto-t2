@@ -1,77 +1,77 @@
-<html>
-    <head>
-        <title>
-            Registrar Materias de la Malla Curricular
-        </title>
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
 
-        <form method="get" action="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Materias de la Malla Curricular</title>
+  <link rel="stylesheet" href='{% static "css/registro_materia_estilo.css" %}' type='text/css'>
+  <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+</head>
 
-            <input name="boton1" type="image" src="Images/retorno.png" width="25" height="25">
-
+<body>
+  <div id="page-container">
+    <div id="page1" class="fade-in">
+      <div class="bloq-sup">
+        <form method="get">
+          <div class="bloq-sup_secd">
+            <div class="div_boton_return">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeRegistro()">
+                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+              </button>
+            </div>
+            <div class="titulo">
+              <div class="div_CCSA">
+                <h1>CCSA</h1>
+              </div>
+              <div class="descripcion">
+                <h3>Centro Compartido de Servicios Académicos</h3>
+              </div>
+            </div>
+          </div>
         </form>
-
-        <H1>CCSA</H1>
-        <H3>Centro Compartido de Servicios Academicos</H3>
-
-    </head>
-
-    <body>
-        <nav>
-            <h2>Registro de Materias</h2>
-
-            <form action="" method="post">
-
-                <ul>
-                    <li>
-                        <label for="Name Materia">Nombre de la Materia</label>
-                        <br>
-                        <br>
-                        <input type="text" id="name" name="name_course" placeholder="Escriba el nombre de la materia" style="width : 245px;">
-                    </li>
-                    <br>
-                    <li>
-                        <label for="Cod Materia">Codigo de la Materia</label>
-                        <br>
-                        <br>
-                        <input type="text" id="cod" name="cod_course" placeholder="Escriba el codigo de la materia" style="width : 245px;">
-                    </li>
-                    <br>
-                    <li>
-                        <label for="Creditos Materia">Creditos Academicos</label>
-                        <br>
-                        <br>
-                        <input type="text" id="cred_Materia" name="cred" placeholder="Escriba la cantidad de creditos para la materia" style="width : 245px;">
-                    </li>
-                    <br>
-                    <li>
-                        <label for="Descripcion">Descripcion</label>
-                        <br><br>
-                        <input type="text" id="descp" name="descrip_Materia" placeholder="Escriba una breve descripcion para la materia" style="width : 245px;">
-                    </li>
-                    <br>
-                    <li>
-                        <label for="syllabus">Syllabus</label>
-                        <br><br>
-                        <input type="text" id="syll" name="syll_materia" placeholder="Ej: Text" style="width : 245px;">
-                    </li>
-                    <br>
-                    <li>
-                        <label for="nrc">NRC</label>
-                        <br><br>
-                        <input type="text" id="nrc" class="icon_conteiner" name="nrc_materia" placeholder="Ej: Text" style="width : 245px;">
-                    </li>
-                    <br>
-                    <input type="submit" name="save" value="Guardar">
-                    <input type="button" name="close" value="Visualizar">
-                </ul>
-
-            </form>
-
-        </nav>
-
+      </div>
+      <div class="bloq-mid">
+        <div class="intermed">
+          <h1>Crear Nueva Materia</h1>
+        </div>
+        <div class="intermed-bloq">
+          <form method="POST" class="form-1" enctype="multipart/form-data" id="registro-materia-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="buttondiv">
+              <button type="submit" class="btn-1">Guardar</button>
+            </div>
+          </form>
+        </div>
+        {% if error %}
+        <div class="error-message" style="display: none;">
+          {{ error }}
+        </div>
+        {% endif %}
+      </div>
+      <div id="modal-confirmacion" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+          <p>Creando Materia...</p>
+        </div>
+      </div> 
+      <div id="modal-error" class="modal" style="display: none;">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModalError()">&times;</span>
+          <p id="error-message-modal"></p>
+        </div>
+      </div>       
+      <div class="bloq-inf">
         <h4>Universidad Icesi</h4>
         <h4>Todos los derechos reservados</h4>
         <h4>Derechos de Autor</h4>
-    </body>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/transiciones.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
 
 </html>

@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Espacios</title>
+  <link rel="stylesheet" href='{% static "css/crear_evento.css" %}' type='text/css'>
+  <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+</head>
+
+<body>
+  <div id="page-container">
+    <div id="page1" class="fade-in">
+      <div class="bloq-sup">
+        <form method="get">
+          <div class="bloq-sup_secd">
+            <div class="div_boton_return">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeAsignarHorario()">
+                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+              </button>
+            </div>
+            <div class="titulo">
+              <div class="div_CCSA">
+                <h1>CCSA</h1>
+              </div>
+              <div class="descripcion">
+                <h3>Centro Compartido de Servicios Académicos</h3>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="bloq-mid-wrapper">
+        <div class="bloq-mid">
+          <div class="intermed">
+            <h1>Crear Nuevo Evento</h1>
+          </div>
+          <div class="intermed-bloq">
+            <form method="POST" class="form-1" enctype="multipart/form-data" id="registro-materia-form">
+              {% csrf_token %}
+              {{ formEvent.as_p }}
+              <div class="buttondiv">
+                <button type="submit" class="btn-1">Guardar</button>
+              </div>
+            </form>
+          </div>
+          {% if error %}
+          <div class="error-message">
+            {{ error }}
+          </div>
+          {% endif %}
+        </div> 
+      </div>
+      <div id="modal-confirmacion" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+          <p>Editando Espacio...</p>
+        </div>
+      </div> 
+      <div id="modal-error" class="modal" style="display: none;">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" onclick="cerrarModalError()">&times;</span>
+          <p id="error-message-modal"></p>
+        </div>
+      </div> 
+      <div class="bloq-inf">
+        <h4>Universidad Icesi</h4>
+        <h4>Todos los derechos reservados</h4>
+        <h4>Derechos de Autor</h4>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/transiciones.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

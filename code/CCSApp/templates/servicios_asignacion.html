@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Asignación</title>
+    <link rel="stylesheet" href='{% static "css/servicios_de_asignacion.css" %}' type='text/css'>
+    <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+  </head>
+<body>
+  <div id="page-container">
+    <div id="page1" class="fade-in">
+      <div class="bloq-sup">
+        <form method="get">
+            <div class="bloq-sup_secd">
+              <div class="div_boton_return">
+                <button class="boton-2" name="boton1" type="button" onclick="redirigirIndex()">
+                  <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+                </button>
+              </div>
+              <div class="titulo">
+                <div class="div_CCSA">
+                  <h1>CCSA</h1>
+                </div>
+                <div class="descripcion">
+                    <h3>Centro Compartido de Servicios Académicos</h3>
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="bloq-mid">
+        <div class="intermed">
+            <h1>Servicios<br>De Asignación</h1>
+        </div>
+        <div class="intermed-bloq">
+          <button class="btn-1" type="button" onclick="redirigirRegistrarMateria()">Registrar Materia</button>
+          <a href="/index/servicios_asignacion/buscar_materia"><button class="btn-1" type="button">Editar Materia</button></a>
+          <button class="btn-1" type="button" onclick="redirigirRegistrarProfesor()">Registrar Profesor</button>
+          <a href="/index/servicios_asignacion/buscar_profesor"><button class="btn-1" type="button">Editar Profesor</button></a>
+          <button class="btn-1" type="button" onclick="redirigirConsultarHorario()">Consultar y Editar Horarios</button>
+          <button class="btn-1" type="button" onclick="redirigirCrearEspacio()">Crear Espacio</button>
+          <button class="btn-1" type="button" onclick="redirigirAHTML7()">Editar Espacio</button>
+          <a href="/index/servicios_asignacion/crear_evento"><button class="btn-1" type="button">Crear Evento</button></a>
+          <a href="/index/servicios_asignacion/crear_actividad"><button class="btn-1" type="button">Crear Actividad</button></a>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="/static/Images/servicios_asignacion.png" alt="Mi imagen">
+      </div> 
+      <div class="bloq-inf">
+        <h4>Universidad Icesi</h4>
+        <h4>Todos los derechos reservados</h4>
+        <h4>Derechos de Autor</h4>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Función para redirigir a una página HTML específica
+    function redirigirAHTML() {
+      window.location.href = '/index'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+    }
+  </script>
+  <script>
+    // Función para redirigir a una página HTML específica
+    function redirigirAHTML2() {
+      window.location.href = 'editar/<str:codigo>/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+    }
+  </script>
+  <script src="{% static 'js/transiciones.js' %}"></script>
+      <script>
+        // Función para redirigir a una página HTML específica
+        function redirigirAHTML7() {
+          window.location.href = 'lista_edificios/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+      </script>
+      <script>
+        // Función para redirigir a una página HTML específica
+        function redirigirAHTML8() {
+          window.location.href = 'eliminar_espacio/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+      </script>
+</body>
+</html>
