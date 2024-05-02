@@ -103,8 +103,10 @@
                 <td>{{ horario.enlace_virtual }}</td>
                 <td>{{ horario.salon_presencial }}</td>
                 <td>
-                  <a href="{% url 'modificar_horarios' horario.id_horario %}">Editar</a>
-                </td>
+                  <a href="{% url 'modificar_horarios' horario.id_horario %}">
+                    <img src="/static/Images/editor-de-documentos.png" height="45" width="45" alt="Botón de retorno" />
+                  </a>
+                </td>              
               </tr>
               {% endfor %}
             </tbody>
