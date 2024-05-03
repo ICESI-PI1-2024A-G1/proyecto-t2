@@ -178,7 +178,7 @@ class Actividad(models.Model):
     
 class Usuario(models.Model):
     nombre = models.CharField(max_length =255, null = False, blank = False)
-    cedula = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
+    cedula = models.CharField(max_length = 100, unique = True, default ='', null = False, blank = False ,primary_key=True)
     rol = models.CharField(max_length=255, null = False, blank = False)
     departamento = models.CharField(max_length=500, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
