@@ -13,6 +13,7 @@
         {{ form.as_p }}
         <div >
           <button type="submit">Ver Semestres</button>
+          <button class="btn-1" type="button" onclick="descargarCSV()">Descargar CSV de programas</button>
         </div>
         <!-- {% if programa %}
         <h2>Programa Seleccionado: {{ programa_de_posgrado.nombre_de_posgrado }}</h2>
@@ -28,7 +29,11 @@
         {% endif %}
       {% endif %} -->
       </form>
-
- 
 </body>
+<script>
+  // Función para redirigir a una página HTML específica
+  function descargarCSV() {
+    window.location.href = 'program_csv/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+  }
+</script>
 </html>

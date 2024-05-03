@@ -33,7 +33,7 @@ urlpatterns = [
     path('programacion/materias/<int:materia_id>/horarios/', views.horarios, name='horarios'),
     
     path('delete_program/<str:codigo>',views.delete_program,name = 'delete-program'),
-    path('index/program_csv/', views.programs_csv, name = 'program-csv'),
+    path('index/programacion/program_csv/', views.InformeProgramacion.as_view(), name = 'program-csv'),
     path('index/servicios_asignacion/crear_espacio/', views.crear_espacio, name="crear_espacio"),
     path('index/servicios_asignacion/crear_evento/', views.crear_evento, name="crear_evento"),
     path('index/servicios_asignacion/crear_actividad/', views.crear_actividad, name="crear_actividad"),
@@ -42,4 +42,6 @@ urlpatterns = [
     path('index/servicios_asignacion/lista_edificios/', views.lista_edificios, name='lista_edificios'),
     path('index/servicios/asignacion/lista_espacios/<str:nombre_edificio>/', views.lista_espacios, name='lista_espacios'),
     path('index/servicios_asignacion/editar_espacio/<str:espacio_codigo>/', views.editar_espacio, name='editar_espacio')
+
+ 
     ]
