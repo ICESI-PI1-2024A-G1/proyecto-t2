@@ -1,3 +1,2 @@
-
-*.pyc
-code/CCSAsite/__pycache__/settings.cpython-310.pyc
+venv
+__pycache__
