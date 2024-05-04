@@ -12,6 +12,9 @@ from openpyxl.styles import PatternFill, Border, Side, Alignment, Font
 from openpyxl.utils import get_column_letter
 from django.db.models import Q
 from django.views.generic.base import TemplateView
+import openpyxl
+from django.http import HttpResponse
+
 
 # Create your views here.
 
@@ -218,6 +221,27 @@ def nuevo_programa(request):
         form = CrearProgramaAcademico()
     return render(request, 'Crear/nuevo_programa.html', {'form': form})
 
+def buscar_programa_academico(request):
+    if request.method == 'POST':
+        form = BuscarProgramaForm(request.POST)
+        if form.is_valid():
+            codigo_programa = form.cleaned_data['codigo_programa']
+            programas = Programa_de_posgrado.objects.filter(codigo_programa__istartswith=codigo_programa)
+            return render(request, 'Buscar/buscar_programa_academico.html', {'form': form, 'programas': programas})
+    else:
+        form = BuscarProgramaForm()
+    return render(request, 'Buscar/buscar_programa_academico.html', {'form': form})
+
+def editar_programa(request, codigo_programa):  
+    programa = get_object_or_404(Programa_de_posgrado, codigo_programa=codigo_programa)  
+    form = EditarProgramaForm(request.POST, instance=programa)
+    if form.is_valid():
+        form.save()
+        return redirect('buscar_programa_academico')  
+    else:
+        form = EditarProgramaForm(instance=programa)
+    return render(request, 'Editar/editar_programa.html', {'form': form})
+
 def log_in(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -354,15 +378,6 @@ def lista_programas(request):
     directores = Director_de_programa.objects.all()
     return render(request, 'Listas/lista_programas.html', {'programas': programas, 'directores': directores})
 
-def editar_programa(request, codigo_programa):  
-    programa = get_object_or_404(Programa_de_posgrado, codigo_programa=codigo_programa)  
-    form = EditarProgramaForm(request.POST, instance=programa)
-    if form.is_valid():
-        form.save()
-        return redirect('lista_programas_pos.html')  
-    else:
-        form = EditarProgramaForm(instance=programa)
-    return render(request, 'Editar/editar_programa.html', {'form': form})
 
 def director_programa(request):
     if request.method == 'POST':
@@ -457,6 +472,57 @@ def programs_csv(request):
     wb.save(response)
     return response
 
+def programas_csv(request):
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=programasdeposgrado.xlsx'
+
+    workbook = openpyxl.Workbook()
+    worksheet = workbook.active
+
+    column_headers = [
+        'Nombre del Programa',
+        'Codigo del programa',
+        'Fecha de Inicio',
+        'Estado',
+        'Duracion (Años)',
+        'Facultad',
+        'Modalidad',
+        'Director del Programa'
+    ]
+
+    # Escribir encabezados de columnas
+    for col_num, header_title in enumerate(column_headers, start=1):
+        cell = worksheet.cell(row=1, column=col_num)
+        cell.value = header_title
+
+    # Estilo para el título (celda amarilla)
+    title_style = PatternFill(start_color='FFFF00', end_color='FFFF00', fill_type='solid')
+
+    # Aplicar estilo amarillo a los encabezados de columnas
+    for col_num in range(1, len(column_headers) + 1):
+        worksheet.cell(row=1, column=col_num).fill = title_style
+
+    # Escribir datos de programas
+    programas = Programa_de_posgrado.objects.all()
+    for row_num, programa in enumerate(programas, start=2):
+        worksheet.append([
+            programa.nombre_programa,
+            programa.codigo_programa,
+            programa.fecha_inicio_programa,
+            programa.estado_programa,
+            programa.duracion_programa,
+            programa.facultad_programa.nombre_facultad,
+            programa.modalidad_programa,
+            programa.director_programa.nombre_director
+        ])
+
+    # Ajustar el ancho de las columnas después de escribir los datos
+    for col_num in range(1, len(column_headers) + 1):
+        column_letter = openpyxl.utils.get_column_letter(col_num)
+        worksheet.column_dimensions[column_letter].auto_size = True
+
+    workbook.save(response)
+    return response
 
 def horarios(request, codigo_materia):
     horarios = Horario.objects.filter(materia__codigo=codigo_materia)

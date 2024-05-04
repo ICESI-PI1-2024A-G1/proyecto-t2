@@ -38,11 +38,9 @@
           </div>
           <div class="intermed-bloq">
               <button class="btn-1" type="button" onclick="redirigirNuevoPrograma()"> Crear un nuevo programa</button>
-              <button class="btn-1" type="button" onclick="redirigirAHTML2()">Editar programa existente</button>
-              <button class="btn-1" type="button">Generar reporte sobre programa existente</button>
+              <button class="btn-1" type="button" onclick="redirigirBuscarPrograma()">Buscar informacion de programa</button>
+              <button id="descargar-btn" class="btn-1">Descargar reporte sobre programa existente</button>            
               <button class="btn-1" type="button">Eliminar programa inactivo</button>
-              <button class="btn-1" type="button">Buscar informacion de programa</button>
-              <button class="btn-1" type="button">Periodo Academico</button>
           </div>
       </div>
       <div class="photo">
@@ -68,6 +66,7 @@
     }
   </script>
   <script src="{% static 'js/transiciones.js' %}"></script>
+  <script src="{% static 'js/descargar.js' %}"></script>
 </body>
 
 </html>

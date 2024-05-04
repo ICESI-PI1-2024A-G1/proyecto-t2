@@ -201,14 +201,20 @@ class ProfesorEditForm(forms.ModelForm):
         }
     
 class BuscarProgramaForm(forms.Form):
-    codigo = forms.CharField(label="Código del Programa", max_length=100)
+    codigo_programa = forms.CharField(label="Código del Programa", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class EditarProgramaForm(forms.ModelForm):
     class Meta:
         model = Programa_de_posgrado
         fields = ['nombre_programa', 'codigo_programa', 'fecha_inicio_programa','estado_programa', 'duracion_programa', 'facultad_programa', 'modalidad_programa']
         widgets = {
-            'estado': forms.Select(choices=Programa_de_posgrado.estado_programa),
+            'nombre_programa': forms.TextInput(attrs={'class': 'form-control'}),
+            'codigo_programa': forms.TextInput(attrs={'class': 'form-control'}),
+            'fecha_inicio_programa': forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
+            'duracion_programa': forms.TextInput(attrs={'class': 'form-control'}),
+            'facultad_programa': forms.Select(attrs={'class': 'form-control'}),
+            'modalidad_programa': forms.Select(attrs={'class': 'form-control'}),
+            'estado_programa': forms.Select(attrs={'class': 'form-control'}),
         }
 
         
