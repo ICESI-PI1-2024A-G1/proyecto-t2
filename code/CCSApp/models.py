@@ -43,7 +43,7 @@ class Horario(models.Model):
     salon_presencial = models.ForeignKey('Espacio', on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.id_horario)
+        return str (self.id_horario)
     
 class Facultad(models.Model):
     codigo_facultad = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False, primary_key=True) #cambio
@@ -156,7 +156,7 @@ class Espacio(models.Model):
     )
     tipo = models.CharField(max_length=20, choices=TIPOS_CHOICES)
     def  __str__(self):
-            return f'{self.espacio_codigo} -{self.edificio_espacio}'
+            return f'{self.espacio_codigo}-{self.edificio_espacio}'
         
 class Evento(models.Model):
     nombre_evento = models.CharField(max_length =255, null = False, blank = False, primary_key = True)

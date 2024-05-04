@@ -57,13 +57,13 @@ class ModificarHorarioForm(forms.ModelForm):
         }
 
 class NewUsuary(forms.Form):
-    nombre = forms.CharField(label= "nombre", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    cedula = forms.CharField(label= "cedula", max_length = 100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    rol = forms.CharField(label= "rol", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    departamento = forms.CharField(label= "departamento", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    correo_electronico = forms.EmailField(label="correo electronico", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    telefono = forms.IntegerField(label= "telefono", widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(label="password", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    nombre = forms.CharField(label= "Nombre", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    cedula = forms.CharField(label= "Cédula", max_length = 100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    rol = forms.CharField(label= "Rol", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    departamento = forms.CharField(label= "Departamento", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    correo_electronico = forms.EmailField(label="Correo Electronico", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    telefono = forms.IntegerField(label= "Telefono", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label="Password", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class LoginForm(forms.Form):
     cedula = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class': 'form-control'}))

@@ -68,7 +68,7 @@ def modificar_horarios(request, id_horario):
             return redirect('/index/servicios_asignacion/consultar_horarios')
     else:
         form = ModificarHorarioForm(instance=horario)
-    return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
+    return render(request, 'Editar/modificar_horarios.html', {'formModificarHorarios': form})
 
 def consultar_horarios(request):
     # Obtener todos los horarios inicialmente
@@ -534,7 +534,7 @@ def crear_programacion_academica(request):
             return redirect('/index')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = ProgramacionAcademicaForm()
-    return render(request, 'programacion_academica.html', {'form': form})
+    return render(request, 'Semestre/programacion_academica.html', {'form': form})
 
 def crear_evento(request):
     if request.method == 'POST':
