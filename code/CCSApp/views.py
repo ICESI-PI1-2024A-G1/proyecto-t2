@@ -6,11 +6,12 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 import csv
-from django.http import HttpResponse
+from django.http.response import HttpResponse
 from openpyxl import Workbook
-from openpyxl.styles import PatternFill, Border, Side
+from openpyxl.styles import PatternFill, Border, Side, Alignment, Font
 from openpyxl.utils import get_column_letter
 from django.db.models import Q
+from django.views.generic.base import TemplateView
 
 # Create your views here.
 
@@ -55,7 +56,7 @@ def asignar_horario(request):
     else:
         form = NewHorario()
 
-    return render(request, 'asignar_horario.html', {'formNewHorario': form})
+    return render(request, 'Asignar/asignar_horario.html', {'formNewHorario': form})
 
 def modificar_horarios(request, id_horario):
     horario = Horario.objects.get(pk=id_horario)
@@ -67,7 +68,7 @@ def modificar_horarios(request, id_horario):
             return redirect('/index/servicios_asignacion/consultar_horarios')
     else:
         form = ModificarHorarioForm(instance=horario)
-    return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
+    return render(request, 'Editar/modificar_horarios.html', {'formModificarHorarios': form})
 
 def consultar_horarios(request):
     # Obtener todos los horarios inicialmente
@@ -101,16 +102,16 @@ def consultar_horarios(request):
         'horarios': horarios
     }
 
-    return render(request, 'consultar_horarios.html', context)
+    return render(request, 'Buscar/consultar_horarios.html', context)
 
 def servicios_asignacion(request):
     if request.method == "GET":
-        return render(request, 'servicios_asignacion.html')
+        return render(request, 'Semestre/servicios_asignacion.html')
     
 
 def registrar_materia_malla(request):
     if request.method == "GET":
-        return render(request, 'registro_materia.html', {
+        return render(request, 'Registrar/registro_materia.html', {
             'form': CrearMateria
         })
     else:
@@ -153,7 +154,7 @@ def registrar_materia_malla(request):
                     materia.save()
                     return redirect('/index/servicios_asignacion')
         except ValueError:
-            return render(request, 'registro_materia.html', {
+            return render(request, 'Registrar/registro_materia.html', {
                 'form': CrearMateria,
                 'error': 'Por favor, proporcione datos válidos.'
             })
@@ -165,10 +166,10 @@ def buscar_materia(request):
         if form.is_valid():
             nombre_materia = form.cleaned_data['nombre_materia']
             materias = Materia.objects.filter(nombre_materia__istartswith=nombre_materia)
-            return render(request, 'buscar_materia.html', {'form': form, 'materias': materias})
+            return render(request, 'Buscar/buscar_materia.html', {'form': form, 'materias': materias})
     else:
         form = MateriaSearchForm()
-    return render(request, 'buscar_materia.html', {'form': form})
+    return render(request, 'Buscar/buscar_materia.html', {'form': form})
 
 def editar_materia(request, nombre_materia):
     materia = Materia.objects.get(nombre_materia=nombre_materia)
@@ -179,7 +180,7 @@ def editar_materia(request, nombre_materia):
             return redirect('buscar_materia')
     else:
         form = MateriaEditForm(instance=materia)
-    return render(request, 'editar_materia.html', {'form': form})
+    return render(request, 'Editar/editar_materia.html', {'form': form})
 
 
 def malla_curricular(request):
@@ -196,7 +197,7 @@ def malla_curricular(request):
             return redirect('/index/servicios_asignacion/registroMateria')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearMallaCurricular()
-    return render(request, 'np_malla_curricular.html', {'form' : form})
+    return render(request, 'Semestre/np_malla_curricular.html', {'form' : form})
 
 def nuevo_programa(request):
     if request.method == 'POST':
@@ -215,7 +216,7 @@ def nuevo_programa(request):
             return redirect('/gestion/nuevoprograma/director_programa')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearProgramaAcademico()
-    return render(request, 'nuevo_programa.html', {'form': form})
+    return render(request, 'Crear/nuevo_programa.html', {'form': form})
 
 def log_in(request):
     if request.method == 'POST':
@@ -239,7 +240,7 @@ def log_in(request):
                 })
     else:
         form = LoginForm()
-    return render(request, 'log_in.html', {'form': form})
+    return render(request, 'login/log_in.html', {'form': form})
 
 def register_us(request):
     if request.method == 'POST':
@@ -258,7 +259,7 @@ def register_us(request):
             if Usuario.objects.filter(cedula=cedula).exists():
                 # Manejar el caso donde ya existe un usuario con la cédula proporcionada
                 # Por ejemplo, puedes agregar un mensaje de error al formulario.
-                return render(request, 'register_us.html', {
+                return render(request, 'Registar/register_us.html', {
                         'form': NewUsuary,
                         'error': 'Ya existe un usuario con esta cédula.'
                 })
@@ -279,20 +280,20 @@ def register_us(request):
         # ...
     else:
         form = NewUsuary()
-    return render(request, 'register_us.html', {'form': form})
+    return render(request, 'Registrar/register_us.html', {'form': form})
 
 def gestion(request):
-    return render(request, 'gestion.html')
+    return render(request, 'Semestre/gestion.html')
 
 def index(request):
     if request.method == "GET":
-        return render(request, 'index.html')
+        return render(request, 'login/index.html')
  
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'login/home.html')
 
 def asignar_espacios(request):
-    return render(request, 'asignar_espacios.html')
+    return render(request, 'Asignar/asignar_espacios.html')
 
 def registrar_profesor(request):
     if request.method == "POST":
@@ -305,7 +306,7 @@ def registrar_profesor(request):
             telefono = form.cleaned_data['telefono']
             
             if Profesor.objects.filter(cedula_profesor=cedula_profesor).exists():
-                return render(request, 'registro_profesores.html', {
+                return render(request, 'Registrar/registro_profesores.html', {
                     'form': form,
                     'error': 'El profesor ya existe en la base de datos.'
                 })
@@ -322,7 +323,7 @@ def registrar_profesor(request):
     else:
         form = RegistrarProfesor()
     
-    return render(request, 'registro_profesores.html', {
+    return render(request, 'Registrar/registro_profesores.html', {
         'form': form
     })
 
@@ -332,10 +333,10 @@ def buscar_profesor(request):
         if form.is_valid():
             nombre_profesor = form.cleaned_data['nombre_profesor']
             profesores = Profesor.objects.filter(nombre_profesor__icontains=nombre_profesor)
-            return render(request, 'buscar_profesor.html', {'form': form, 'profesores': profesores})
+            return render(request, 'Buscar/buscar_profesor.html', {'form': form, 'profesores': profesores})
     else:
         form = ProfesorSearchForm()
-    return render(request, 'buscar_profesor.html', {'form': form})
+    return render(request, 'Buscar/buscar_profesor.html', {'form': form})
 
 def editar_profesor(request, nombre_profesor):
     profesor = Profesor.objects.get(nombre_profesor=nombre_profesor)
@@ -346,12 +347,12 @@ def editar_profesor(request, nombre_profesor):
             return redirect('buscar_profesor')
     else:
         form = ProfesorEditForm(instance=profesor)
-    return render(request, 'editar_profesor.html', {'form': form})
+    return render(request, 'Editar/editar_profesor.html', {'form': form})
 
 def lista_programas(request):
     programas = Programa_de_posgrado.objects.all()
     directores = Director_de_programa.objects.all()
-    return render(request, 'lista_programas.html', {'programas': programas, 'directores': directores})
+    return render(request, 'Listas/lista_programas.html', {'programas': programas, 'directores': directores})
 
 def editar_programa(request, codigo_programa):  
     programa = get_object_or_404(Programa_de_posgrado, codigo_programa=codigo_programa)  
@@ -361,7 +362,7 @@ def editar_programa(request, codigo_programa):
         return redirect('lista_programas_pos.html')  
     else:
         form = EditarProgramaForm(instance=programa)
-    return render(request, 'editar_programa.html', {'form': form})
+    return render(request, 'Editar/editar_programa.html', {'form': form})
 
 def director_programa(request):
     if request.method == 'POST':
@@ -385,14 +386,14 @@ def director_programa(request):
             form = DirectorDePrograma(request.POST)
     else:
         form = DirectorDePrograma()
-    return render(request, 'director_programa.html', {'form': form})
+    return render(request, 'Semestre/director_programa.html', {'form': form})
 
 def operacionexitosanp(request):
     return render(request, 'operacion_exitosa_np.html')
 
 def eliminar_programa_inactivo(request):
     programas = Programa_de_posgrado.objects.all()
-    return render(request, 'eliminar_programa_inactivo.html', {'programas': programas})
+    return render(request, 'Editar/eliminar_programa_inactivo.html', {'programas': programas})
 
 def delete_program(request, codigo):
     programa = Programa_de_posgrado.objects.get(pk = codigo)
@@ -456,32 +457,18 @@ def programs_csv(request):
     wb.save(response)
     return response
 
-def materias(request):
-    programas = Programa_de_posgrado.objects.all()
-    materias = Materia.objects.all()
-    context = {'programas': programas, 'materias': materias}
-    return render(request, 'materias.html', context)
 
 def horarios(request, codigo_materia):
     horarios = Horario.objects.filter(materia__codigo=codigo_materia)
     context = {'horarios': horarios}
-    return render(request, 'lista_horarios.html', context)
+    return render(request, 'Listas/lista_horarios.html', context)
 
 def elegir_semestre(request):
     semestre = Semestre.objects.all()
     context = { 'semestres': semestre }
 
-    return render(request, "elegir_semestre.html", context)
+    return render(request, "Semestre/elegir_semestre.html", context)
 
-def crear_espacio(request):
-    if request.method == 'POST':
-        form = EspacioForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/index/servicios_asignacion')  
-    else:
-        form = EspacioForm()
-    return render(request, 'crear_espacio.html', {'form': form})
 
 def crear_espacio(request):
     if request.method == 'POST':
@@ -498,7 +485,7 @@ def crear_espacio(request):
             return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = EspacioForm()
-    return render(request, 'crear_espacio.html', {'form': form})
+    return render(request, 'Crear/crear_espacio.html', {'form': form})
 
 def crear_edificio(request):
     if request.method == 'POST':
@@ -508,16 +495,16 @@ def crear_edificio(request):
             return redirect('/index/servicios_asignacion')  
     else:
         form = CrearEdificio()
-    return render(request, 'crear_edificio.html', {'form': form})
+    return render(request, 'Crear/crear_edificio.html', {'form': form})
 
 def lista_edificios(request):
     edificios = Edificio.objects.all()
-    return render(request, 'lista_edificios.html', {'edificios': edificios})
+    return render(request, 'Listas/lista_edificios.html', {'edificios': edificios})
 
 def lista_espacios(request, nombre_edificio):
     edificio = get_object_or_404(Edificio, pk=nombre_edificio)
     espacios = Espacio.objects.filter(edificio_espacio=edificio)
-    return render(request, 'lista_espacios.html', {'edificio': edificio, 'espacios': espacios})
+    return render(request, 'Listas/lista_espacios.html', {'edificio': edificio, 'espacios': espacios})
 
 def editar_espacio(request, espacio_codigo):
     espacio = get_object_or_404(Espacio, pk=espacio_codigo)
@@ -528,30 +515,26 @@ def editar_espacio(request, espacio_codigo):
             return redirect('/index/servicios_asignacion')  # Redirigir a la lista de edificios después de la edición
     else:
         form = EditarEspacio(instance=espacio)
-    return render(request, 'editar_espacio.html', {'form': form})
+    return render(request, 'Editar/editar_espacio.html', {'form': form})
 
 def crear_programacion_academica(request):
-    form = ProgramacionAcademicaForm(request.POST or None)  # Maneja datos del POST
-    if form.is_valid():
-        programa_de_posgrado = form.cleaned_data['programa_de_posgrado']
-        semestre = Semestre.objects.filter(programa_semestre = programa_de_posgrado)
-        materias = Materia.objects.filter(nombre_semestre = semestre)
-        departamento = form.cleaned_data['departamento']
-        
+    if request.method == 'POST':
+        form = ProgramacionAcademicaForm(request.POST)  # Maneja datos del POST
+        if form.is_valid():
+            programacion_academica = ProgramacionAcademicaForm(
+                programa_de_posgrado =form.cleaned_data['programa_de_posgrado'],
+                semestre =form.cleaned_data['semestre'],
+                departamento =form.cleaned_data['departamento'],
+                estado_programa = form.cleaned_data['estado_programa'],
+                materia =form.cleaned_data['materia'],
+                horario =form.cleaned_data['horario'],
+                grupo =form.cleaned_data['grupo'],
+                profesor = form.cleaned_data['profesor'])
+            programacion_academica.save()
+            return redirect('/index')  # Redirigir a alguna vista después de guardar el formulario
     else:
-        programa_de_posgrado = None
-        semestre = []
-        materias = []
-        departamento = None
-        
-
-    context = {'form': form, 
-               'programa_de_posgrado': programa_de_posgrado, 
-               'semestre': semestre,
-               'materias': materias,
-               'departamento': departamento}
-    
-    return render(request, 'programacion_academica.html', context)
+        form = ProgramacionAcademicaForm()
+    return render(request, 'Semestre/programacion_academica.html', {'form': form})
 
 def crear_evento(request):
     if request.method == 'POST':
@@ -569,7 +552,7 @@ def crear_evento(request):
             return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         formEvent = EventoForm()
-    return render(request, 'crear_evento.html', {'formEvent': EventoForm})
+    return render(request, 'Crear/crear_evento.html', {'formEvent': EventoForm})
 
 def crear_actividad(request):
     if request.method == 'POST':
@@ -585,4 +568,69 @@ def crear_actividad(request):
             return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         formActividad = ActividadForm()
-    return render(request, 'crear_actividad.html', {'formActividad': formActividad})
+    return render(request, 'Crear/crear_actividad.html', {'formActividad': formActividad})
+
+
+class InformeProgramacion(TemplateView):
+    def get(self,request,*args,**kwargs):
+        query = ProgramacionAcademica.objects.all()
+        wb = Workbook()
+        flag= True
+        if flag:
+            ws=wb.active
+            ws.title = 'Hoja'+str(Font)
+            flag = False
+        else:
+            ws = wb.create_sheet("Hoja"+str(Font)) 
+
+         # Escribir el encabezado
+        headers = ['PROGRAMA', 'COD BANNER', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'TIPO DE CONTRATO', 'CIUDAD', 'EMAIL', 'TELEFONO', 'FECHA DE CLASE', 'HORARIO', 'ESTADO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
+        ws.append(headers)
+
+        for cell in ws[1]:
+         cell.fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
+
+        # Obtener el índice de la columna "GRUPO" en la hoja de cálculo
+        grupo_index = headers.index('GRUPO') + 1
+
+        # Aplicar color verde a las celdas de la columna "GRUPO"
+        for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=grupo_index, max_col=grupo_index):
+            for cell in row:
+                cell.fill = PatternFill(start_color="00FF00", end_color="00FF00", fill_type="solid")
+
+        # Agregar bordes a todas las celdas
+        border = Border(left=Side(style='thin'), 
+                        right=Side(style='thin'), 
+                        top=Side(style='thin'), 
+                        bottom=Side(style='thin'))
+        for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=1, max_col=len(headers)):
+            for cell in row:
+                cell.border = border
+
+        # Ajustar el ancho de las columnas al contenido
+        for column in ws.columns:
+            max_length = 0
+            column_letter = get_column_letter(column[0].column)  # Obtener la letra de la columna
+            for cell in column:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(cell.value)
+                except:
+                    pass
+            adjusted_width = (max_length + 2) * 1.2  # Multiplicar por 1.2 para dar un poco de espacio adicional
+            ws.column_dimensions[column_letter].width = adjusted_width
+
+           
+        
+
+        nombre_archivo= "ReporteProgramacionAcademica.xlsx"
+
+        response= HttpResponse(content_type ="application/ms-excel")
+        contenido = "attachment; filename = {0}".format(nombre_archivo)
+        response["Content-Disposition"]= contenido
+        wb.save(response)
+        return response
+
+
+
+

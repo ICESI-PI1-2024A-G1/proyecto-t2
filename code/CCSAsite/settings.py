@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import dj_database_url
+# import dj_database_urlcl
 import os
 from pathlib import Path
 from django.urls import reverse_lazy
@@ -84,6 +84,8 @@ WSGI_APPLICATION = 'CCSAsite.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
+#Este bloque de codigo no puede ser eliminado, ya que es necesario para la conexion a la base de datos en el deployment
+#Solo dejarlo comentado a la hora de hacer cambios localmente
 # DATABASES = {
 #     'default': dj_database_url.config(
 #         # Replace this value with your local database's connection string.
@@ -92,6 +94,8 @@ WSGI_APPLICATION = 'CCSAsite.wsgi.application'
 #     )
 # }
 
+#Este bloque de codigo no puede ser eliminado, ya que es necesario para hacer ediciones o trabajar localmente el proyecto
+#Solo dejarlo comentado a la hora de hacer deploy en Render
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
