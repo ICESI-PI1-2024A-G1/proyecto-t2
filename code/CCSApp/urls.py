@@ -17,6 +17,7 @@ urlpatterns = [
     path('gestion/eliminar_programa_inactivo/', views.eliminar_programa_inactivo, name = 'eliminar_programa'),
     path('index/servicios_asignacion/asignar_horario/', views.asignar_horario),
     path('index/servicios_asignacion/modificar_horarios/', views.modificar_horarios),
+    path('index/servicios_asignacion/modificar_horarios/<int:id_horario>/', views.modificar_horarios, name='modificar_horarios'),
     path('index/servicios_asignacion/consultar_horarios/', views.consultar_horarios),
     path('index/servicios_asignacion/', views.servicios_asignacion),
     path('index/servicios_asignacion/registroMateria/', views.registrar_materia_malla),

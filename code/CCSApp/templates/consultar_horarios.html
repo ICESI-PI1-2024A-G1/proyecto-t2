@@ -87,6 +87,7 @@
                 <th>Modalidad</th>
                 <th>Enlace Virtual</th>
                 <th>Salon Presencial</th>
+                <th>Acción</th> <!-- Columna adicional para el hipervínculo de edición -->
               </tr>
             </thead>
             <tbody>
@@ -101,6 +102,11 @@
                 <td>{{ horario.modalidad }}</td>
                 <td>{{ horario.enlace_virtual }}</td>
                 <td>{{ horario.salon_presencial }}</td>
+                <td>
+                  <a href="{% url 'modificar_horarios' horario.id_horario %}">
+                    <img src="/static/Images/editor-de-documentos.png" height="45" width="45" alt="Botón de retorno" />
+                  </a>
+                </td>              
               </tr>
               {% endfor %}
             </tbody>
