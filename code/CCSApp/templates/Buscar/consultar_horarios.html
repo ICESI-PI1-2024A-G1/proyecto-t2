@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consultar Horarios</title>
   <link rel="stylesheet" href='{% static "css/consultar_horario.css" %}' type='text/css'>
-  <link rel="shortcut icon" href="https://www.icesi.edu.co/moodle/theme/image.php/space/theme/1712249811/favicon">
+  <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
 </head>
 
 <body>
@@ -87,6 +87,7 @@
                 <th>Modalidad</th>
                 <th>Enlace Virtual</th>
                 <th>Salon Presencial</th>
+                <th>Acción</th> <!-- Columna adicional para el hipervínculo de edición -->
               </tr>
             </thead>
             <tbody>
@@ -101,6 +102,11 @@
                 <td>{{ horario.modalidad }}</td>
                 <td>{{ horario.enlace_virtual }}</td>
                 <td>{{ horario.salon_presencial }}</td>
+                <td>
+                  <a href="{% url 'modificar_horarios' horario.id_horario %}">
+                    <img src="/static/Images/editor-de-documentos.png" height="45" width="45" alt="Botón de retorno" />
+                  </a>
+                </td>              
               </tr>
               {% endfor %}
             </tbody>

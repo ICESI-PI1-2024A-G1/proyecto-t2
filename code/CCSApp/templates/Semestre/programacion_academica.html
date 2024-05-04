@@ -10,24 +10,13 @@
     
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <div >
-          <button type="submit">Ver Semestres</button>
-          <button class="btn-1" type="button" onclick="descargarCSV()">Descargar CSV de programas</button>
+        {{ form.as_p }} 
+        <div>
+          <a href="/index">
+            <button type="submit">Continuar</button>
+            <button class="btn-1" type="button" onclick="descargarCSV()">Descargar CSV de programas</button>
+          </a>
         </div>
-        <!-- {% if programa %}
-        <h2>Programa Seleccionado: {{ programa_de_posgrado.nombre_de_posgrado }}</h2>
-        {% if semestre %}
-          <h3>Semestres disponibles</h3>
-          <ul>
-            {% for semestre in semestres %}
-              <li>{{ semestres.nombre_semestre }}</li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p>No hay semestres disponibles.</p>
-        {% endif %}
-      {% endif %} -->
       </form>
 </body>
 <script>
