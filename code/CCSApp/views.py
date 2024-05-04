@@ -531,27 +531,23 @@ def editar_espacio(request, espacio_codigo):
     return render(request, 'editar_espacio.html', {'form': form})
 
 def crear_programacion_academica(request):
-    form = ProgramacionAcademicaForm(request.POST or None)  # Maneja datos del POST
-    if form.is_valid():
-        programa_de_posgrado = form.cleaned_data['programa_de_posgrado']
-        semestre = Semestre.objects.filter(programa_semestre = programa_de_posgrado)
-        materias = Materia.objects.filter(nombre_semestre = semestre)
-        departamento = form.cleaned_data['departamento']
-        
+    if request.method == 'POST':
+        form = ProgramacionAcademicaForm(request.POST)  # Maneja datos del POST
+        if form.is_valid():
+            programacion_academica = ProgramacionAcademicaForm(
+                programa_de_posgrado =form.cleaned_data['programa_de_posgrado'],
+                semestre =form.cleaned_data['semestre'],
+                departamento =form.cleaned_data['departamento'],
+                estado_programa = form.cleaned_data['estado_programa'],
+                materia =form.cleaned_data['materia'],
+                horario =form.cleaned_data['horario'],
+                grupo =form.cleaned_data['grupo'],
+                profesor = form.cleaned_data['profesor'])
+            programacion_academica.save()
+            return redirect('/index')  # Redirigir a alguna vista después de guardar el formulario
     else:
-        programa_de_posgrado = None
-        semestre = []
-        materias = []
-        departamento = None
-        
-
-    context = {'form': form, 
-               'programa_de_posgrado': programa_de_posgrado, 
-               'semestre': semestre,
-               'materias': materias,
-               'departamento': departamento}
-    
-    return render(request, 'programacion_academica.html', context)
+        form = ProgramacionAcademicaForm()
+    return render(request, 'programacion_academica.html', {'form': form})
 
 def crear_evento(request):
     if request.method == 'POST':

@@ -107,23 +107,34 @@ class CrearProgramaAcademico(forms.Form):
 
         return cleaned_data
 
+
+
 class ProgramacionAcademicaForm(forms.Form):
     programa_de_posgrado = forms.ModelChoiceField(label="Programa de posgrado", queryset= Programa_de_posgrado.objects.all(), help_text="Seleccione el programa")
     semestre = forms.ModelChoiceField(label="Semestre", queryset= Semestre.objects.all(), help_text="Seleccione el programa")
     departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), help_text="Seleccione el departamento")
-    #num_creditos = forms.IntegerField(label = 'Numeros de creditos',help_text = "Escriba la cantidad de creditos totales que tendra el estudiante cuando curse esta programacion academica")
+    horas = forms.FloatField(label='Horas totales', help_text= 'Escriba las horas totales de la materia')
     #periodo = forms.ModelChoiceField(label="Periodo", queryset= Periodo.objects.all(), help_text="Seleccione el periodo al que pertenece la programacion academica")
-    #materia = forms.ModelChoiceField(label="Materia", queryset= Materia.objects.all(), help_text="Seleccione las materias que desea asignar a la programacion academica")
-    #horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), help_text="Seleccione el horario de las materias que desea asignar a la programacion academica")
+    materia = forms.ModelChoiceField(label="Materia", queryset= Materia.objects.all(), help_text="Seleccione las materias que desea asignar a la programacion academica")
+    horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), help_text="Seleccione el horario de las materias que desea asignar a la programacion academica")
+    grupo =  forms.CharField(max_length=10, label= "Grupo", help_text= 'Escriba el grupo al que perteneceran los estudiantes que cursen esta programacion')
+    profesor = forms.ModelChoiceField(label="Profesor", queryset= Profesor.objects.all(), help_text="Seleccione el horario de las materias que desea asignar a la programacion academica")
 
     def clean(self):
         cleaned_data = super().clean()
 
         # Get the selected faculty instance
+        selected_programa = cleaned_data.get('programa_de_posgrado')
         selected_semestre = cleaned_data.get('semestre')
         selected_departamento = cleaned_data.get('departamento')
+        selected_materia = cleaned_data.get('materia')
+        selected_horario = cleaned_data.get('horario')
+        selected_grupo = cleaned_data.get('grupo')
+        selected_profesor = cleaned_data.get('profesor')
 
-        selected = (selected_semestre,  selected_departamento)
+
+        selected = (selected_semestre,  selected_departamento, selected_programa, selected_materia, selected_horario, selected_profesor, selected_grupo)
+
         # Validate the selected faculty
         if not selected:
             raise forms.ValidationError('Seleccione una opcion valida')
@@ -131,6 +142,11 @@ class ProgramacionAcademicaForm(forms.Form):
         # Update the cleaned data with the faculty instance
         cleaned_data['semestre'] = selected_semestre
         cleaned_data['departamento'] = selected_departamento
+        cleaned_data['programa_de_posgrado'] = selected_programa
+        cleaned_data['materia'] = selected_materia
+        cleaned_data['horario'] = selected_horario
+        cleaned_data['grupo'] = selected_grupo
+        cleaned_data['profesor'] = selected_profesor
 
         return cleaned_data
 

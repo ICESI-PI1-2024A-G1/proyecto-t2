@@ -85,7 +85,8 @@ class Semestre(models.Model):
     estado_semestre = models.CharField(max_length= 8, null= False, blank= False,  default= 'Activo', choices= [('activo', 'Activo'), ('inactivo', 'Inactivo')])  # Cambiar a charfield
     año = models.IntegerField(blank= False, null= False, default= "2024")
     periodo = models.IntegerField(choices=[(1, '1'), (2, '2')], default= "1")
-    programa_semestre = models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
+    programa_semestre = models.ManyToManyField(Programa_de_posgrado, default = "")
+    #models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
 
     def __str__(self):
         return f"{self.año}-{self.periodo}"
@@ -209,7 +210,7 @@ class Materia_profesor(models.Model):
 
    
 class ProgramacionAcademica(models.Model):
-     id_programacionAcademica = models.CharField(max_length= 36, unique = True, null= False, default= " ", blank= False, primary_key= True)
+     id_programacionAcademica = models.AutoField(primary_key= True)
      programa_de_posgrado = models.ForeignKey(Programa_de_posgrado, on_delete= models.CASCADE, default= '', null= False, blank = False)
      cod_banner = models.CharField(max_length= 20, default = "")
      departamento = models.ForeignKey(Departamento, on_delete= models.CASCADE,  null= False, blank= False, default = '')
@@ -217,6 +218,7 @@ class ProgramacionAcademica(models.Model):
      num_creditos = models.IntegerField(null = False, blank= False, default= '')
      periodo = models.ForeignKey(Periodo, on_delete= models.CASCADE,  null= False, blank= False, default = '')
      materia = models.ManyToManyField(Materia)
+     horario = models.ManyToManyField(Horario)
      modalidad = models.CharField(max_length= 20, default = '', null = False, blank = False)
      grupo = models.CharField(max_length= 20, default = '', null = False, blank = False)
      docente = models.ForeignKey(Profesor, on_delete=models.CASCADE, default = '', null = False, blank = False)
