@@ -57,13 +57,13 @@ class ModificarHorarioForm(forms.ModelForm):
         }
 
 class NewUsuary(forms.Form):
-    nombre = forms.CharField(label= "nombre", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    cedula = forms.CharField(label= "cedula", max_length = 100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    rol = forms.CharField(label= "rol", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    departamento = forms.CharField(label= "departamento", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    correo_electronico = forms.EmailField(label="correo electronico", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    telefono = forms.IntegerField(label= "telefono", widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(label="password", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    nombre = forms.CharField(label= "Nombre", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    cedula = forms.CharField(label= "Cédula", max_length = 100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    rol = forms.CharField(label= "Rol", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    departamento = forms.CharField(label= "Departamento", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    correo_electronico = forms.EmailField(label="Correo Electronico", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    telefono = forms.IntegerField(label= "Telefono", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label="Password", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class LoginForm(forms.Form):
     cedula = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -161,7 +161,7 @@ class CrearMateria(forms.Form):
     codigo_materia = forms.CharField(label="Código", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     creditos_materia = forms.DecimalField(label="Creditos", max_digits=10, widget=forms.NumberInput(attrs={'class': 'form-control'}))
     syllabus = forms.FileField(label='Selecciona un archivo', widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
-    departamento = forms.CharField(label="Departamento", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), help_text="Seleccione el departamento")
 
 class MateriaSearchForm(forms.Form):
     nombre_materia = forms.CharField(label='Nombre de la Materia', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -228,10 +228,10 @@ class EspacioForm(forms.Form):
     ]
     disponibilidad_espacio = forms.ChoiceField(label="Disponibilidad", choices=DISPONIBILIDAD_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
     TIPOS_CHOICES = (
-        ('salon', 'salon'),
-        ('auditorio', 'auditorio'),
-        ('coliseo', 'coliseo'),
-        ('sala computo', 'sala computo')
+        ('salon', 'Salon'),
+        ('auditorio', 'Auditorio'),
+        ('coliseo', 'Coliseo'),
+        ('sala computo', 'Sala de Computo')
     )
     tipo = forms.ChoiceField(label="Modalidad", choices=TIPOS_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
        

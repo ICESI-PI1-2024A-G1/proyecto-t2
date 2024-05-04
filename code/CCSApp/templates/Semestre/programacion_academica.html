@@ -14,10 +14,15 @@
         <div>
           <a href="/index">
             <button type="submit">Continuar</button>
+            <button class="btn-1" type="button" onclick="descargarCSV()">Descargar CSV de programas</button>
           </a>
         </div>
       </form>
-
- 
 </body>
+<script>
+  // Función para redirigir a una página HTML específica
+  function descargarCSV() {
+    window.location.href = 'program_csv/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+  }
+</script>
 </html>
