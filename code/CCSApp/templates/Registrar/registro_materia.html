@@ -32,24 +32,26 @@
           </div>
         </form>
       </div>
-      <div class="bloq-mid">
-        <div class="intermed">
-          <h1>Crear Nueva Materia</h1>
+      <div class="bloq-mid-wrapper">
+        <div class="bloq-mid">
+          <div class="intermed">
+            <h1>Crear Nueva Materia</h1>
+          </div>
+          <div class="intermed-bloq">
+            <form method="POST" class="form-1" enctype="multipart/form-data" id="registro-materia-form">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <div class="buttondiv">
+                <button type="submit" class="btn-1">Guardar</button>
+              </div>
+            </form>
+          </div>
+          {% if error %}
+          <div class="error-message" style="display: none;">
+            {{ error }}
+          </div>
+          {% endif %}
         </div>
-        <div class="intermed-bloq">
-          <form method="POST" class="form-1" enctype="multipart/form-data" id="registro-materia-form">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div class="buttondiv">
-              <button type="submit" class="btn-1">Guardar</button>
-            </div>
-          </form>
-        </div>
-        {% if error %}
-        <div class="error-message" style="display: none;">
-          {{ error }}
-        </div>
-        {% endif %}
       </div>
       <div id="modal-confirmacion" class="modal">
         <div class="modal-contenido">

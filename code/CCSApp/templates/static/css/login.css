@@ -216,54 +216,63 @@ button {
 }
 
 
-.bloq-mid{
+/* Estilos para el contenedor principal */
+.bloq-mid {
     display: block;
     justify-content: center;
     position: fixed;
-    top: 50%;
+    top: 48%;
     left: 50%;
-    width: 40%;
-    transform: translate(-50%, -57%);
+    width: 100%; /* Ancho del contenedor principal */
+    height: 64.8%;
+    overflow-y: scroll;
+    transform: translate(-50%, -50%);
     /* background-color: #999; */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el contenedor intermedio */
+.intermed {
+    display: block;
+    position: relative;
+    margin: 25px; /* Margen uniforme alrededor del contenedor intermedio */
+    width: 300px; /* Ancho del contenedor intermedio en píxeles */
+    left: calc(50% - 150px); /* Centra el contenedor horizontalmente */
+    top: 20%;
+    transform: translate(0%, 0%);
+    /* background-color: aqua; */
+}
+
+/* Estilos para el contenedor de input */
+.intermed-bloq {
+    position: relative;
+    width: 400px; /* Ancho del contenedor de input en píxeles */
+    /* background-color: #04AA6D; */
+    left: calc(50% - 200px); /* Centra el contenedor horizontalmente */
+    top: 20%;
     border: 2px solid #04AA6D;
     border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-.intermed {
-    position: relative;
-    margin-left: 25px; /* Ajusta este valor según lo que necesites */
-    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 40%;
-    height: 10%;
-    left: 30%;
-    /* background-color: aqua; */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 50%);
+/* Estilos para el input en el estado normal */
+.intermed-bloq input {
+    width: 60%; /* Ancho completo */
+    max-width: 80%; /* Ancho máximo en función del contenedor */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
-
-.intermed-bloq{
-    position: relative;
-    left: 10%;
-    margin-bottom: 25px;
-    margin-right: 10px;
-    width: 80%;
-    height: 20%;
-    /* background-color:#04AA6D; */
-    
-}
-
 
 .bloq-sup{
-    /* display: flex;
-    align-items: center; */
     position: fixed;
     left: 0;
     width: 100%;
     height: 13%;
     top: 0;
     background-color: #f2f2f2;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .bloq-inf {
@@ -305,8 +314,14 @@ button {
 .descripcion {
     margin-left: 12px;
     line-height: 0px;  /* Ajusta el margen según sea necesario */
-    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */ 
  }
+
+ @media (max-width: 600px) {
+    .descripcion {
+        font-size: 14px; /* Tamaño de fuente más pequeño para pantallas más pequeñas */
+    }
+}
 
 .error-message {
     text-align: center;

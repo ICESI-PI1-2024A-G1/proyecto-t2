@@ -145,8 +145,6 @@ button {
     border-radius: 1.5rem;
     width: 40%;
     height: 28%;
-    margin-bottom: 1%;
-    margin-top: 2%;
     margin-left: 6%;
     border: 0.7px solid #000000c8;
     cursor: pointer;
@@ -208,7 +206,10 @@ button {
     height: 70%;
     /* background-color: aqua; */
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
-
+    display: flex; /* Establecer el contenedor como flexbox */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan si no caben en una línea */
+    justify-content: space-around; /* Distribuir uniformemente los elementos a lo largo del eje principal */
+    align-items: center; /* Centrar los elementos verticalmente */
 }
 
 .intermed-bloq-down{

@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Programas Academicos</title>
+  <link rel="stylesheet" href='{% static "css/consultar_programas_academicos.css" %}' type='text/css'>
+  <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+</head>
+
+<body>
+  <div id="page-container">
+    <div id="page1" class="fade-in">
+      <div class="bloq-sup">
+        <form method="get">
+          <div class="bloq-sup_secd">
+            <div class="div_boton_return">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirGestiondesdeNuevoPrograma()">
+                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+              </button>
+            </div>
+            <div class="titulo">
+              <div class="div_CCSA">
+                <h1>CCSA</h1>
+              </div>
+              <div class="descripcion">
+                <h3>Centro Compartido de Servicios Académicos</h3>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Barra de filtro para buscar horarios -->
+      <div class="bloq-mid-wrapper">
+        <div class="bloq-mid">
+          <div class="intermed">
+            <h1>Horarios Registrados</h1>
+          </div>
+          <table class="form-1">
+            <thead>
+              <tr>
+                <th>Nombre Programa</th>
+                <th>Codigo de Programa</th>
+                <th>Fecha de Inicio del Programa</th>
+                <th>Estado</th>
+                <th>Duración</th>
+                <th>Facultad</th>
+                <th>Modalidad</th>
+                <th>Director De Programa</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for programa in programas %}
+              <tr>
+                <td>{{ programa.nombre_programa }}</td>
+                <td>{{ programa.codigo_programa }}</td>
+                <td>{{ programa.fecha_inicio_programa }}</td>
+                <td>{{ programa.estado_programa }}</td>
+                <td>{{ programa.duracion_programa }}</td>
+                <td>{{ programa.modalida_programa }}</td>
+                <td>{{ programa.director_programa }}</td>
+                <td>
+                  <a href="{% url 'eliminar_programa_inactivo' programa.codigo_programa %}">
+                    <div style="text-align: center;"> <!-- Contenedor para centrar horizontalmente la imagen -->
+                      <img src="/static/Images/eliminar.png" height="45" width="45" alt="Botón de retorno" style="display: block; margin: auto;" /> <!-- Estilos para centrar la imagen -->
+                    </div>                  
+                  </a>
+                </td>  
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="bloq-inf">
+        <h4>Universidad Icesi</h4>
+        <h4>Todos los derechos reservados</h4>
+        <h4>Derechos de Autor</h4>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/transiciones.js' %}"></script>
+</body>
+
+</html>
