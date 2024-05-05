@@ -15,7 +15,6 @@ from django.views.generic.base import TemplateView
 import openpyxl
 from django.http import HttpResponse
 
-
 # Create your views here.
 
 def asignar_horario(request):
@@ -98,7 +97,6 @@ def consultar_horarios(request):
         horarios = horarios.filter(hora_inicio_horario = hora_inicio_horario)
     if hora_final_horario:
         horarios = horarios.filter(hora_final_horario = hora_final_horario)
-
 
     # Pasar los horarios filtrados al contexto para mostrar en la plantilla
     context = {
@@ -241,6 +239,17 @@ def editar_programa(request, codigo_programa):
     else:
         form = EditarProgramaForm(instance=programa)
     return render(request, 'Editar/editar_programa.html', {'form': form})
+
+def consultar_programas_academicos(request):
+    # Obtener todos los programas académicos con estado "Inactivo"
+    programas = Programa_de_posgrado.objects.filter(estado_programa='Inactivo')
+
+    # Pasar los programas académicos filtrados al contexto para mostrar en la plantilla
+    context = {
+        'programas': programas
+    }
+
+    return render(request, 'Buscar/consultar_programas_academicos.html', context)
 
 def log_in(request):
     if request.method == 'POST':
@@ -406,9 +415,20 @@ def director_programa(request):
 def operacionexitosanp(request):
     return render(request, 'operacion_exitosa_np.html')
 
-def eliminar_programa_inactivo(request):
-    programas = Programa_de_posgrado.objects.all()
-    return render(request, 'Editar/eliminar_programa_inactivo.html', {'programas': programas})
+def eliminar_programa_inactivo(request, codigo_programa):
+    try:
+        # Obtener el programa de posgrado con el código proporcionado
+        programa = Programa_de_posgrado.objects.get(codigo_programa=codigo_programa)
+        
+        # Eliminar el programa si existe
+        programa.delete()
+        
+        # Redirigir a una página de confirmación o mostrar un mensaje de éxito
+        return redirect('/index/gestion/eliminar_programa_academico')
+
+    except Programa_de_posgrado.DoesNotExist:
+        # Manejar el caso en el que el programa no existe
+        return render(request, 'Editar/error_programa_inexistente.html')
 
 def delete_program(request, codigo):
     programa = Programa_de_posgrado.objects.get(pk = codigo)

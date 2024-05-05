@@ -29,6 +29,7 @@ urlpatterns = [
     path('index/gestion/nuevoprograma/', views.nuevo_programa),
     path('index/gestion/buscar_programa_academico/', views.buscar_programa_academico, name='buscar_programa_academico'),
     path('index/gestion/buscar_programa_academico/editar/<str:codigo_programa>/', views.editar_programa, name='editar_programa'),
+    path('index/gestion/eliminar_programa_academico/', views.consultar_programas_academicos),
     
     path('index/lista/', views.lista_programas, name='lista_programas'),
    
@@ -45,5 +46,6 @@ urlpatterns = [
     path('index/servicios/asignacion/lista_espacios/<str:nombre_edificio>/', views.lista_espacios, name='lista_espacios'),
     path('index/servicios_asignacion/editar_espacio/<str:espacio_codigo>/', views.editar_espacio, name='editar_espacio'),
 
-    path('index/gestion/programas_csv/', views.programas_csv, name = 'programas-csv')
+    path('index/gestion/programas_csv/', views.programas_csv, name = 'programas-csv'),
+    path('index/gestion/eliminar_programa_academico/<int:codigo_programa>/', views.eliminar_programa_inactivo, name='eliminar_programa_inactivo')
     ]

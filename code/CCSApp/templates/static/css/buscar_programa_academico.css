@@ -292,10 +292,11 @@ td a {
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
     width: 60%;
-    height: 15%;
+    height: 30%;
     /* background-color:#28C985; */
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
- }
+    text-align: center;
+   }
  
  
  .intermed-bloq{
