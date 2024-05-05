@@ -19,9 +19,9 @@ class Periodo(models.Model):
 
 class Horario(models.Model):
     MODALIDAD_CHOICES = [
-        ('presencial', 'Presencial'),
-        ('virtual', 'Virtual'),
-        ('mixta', 'Mixta'),
+        ('Presencial', 'Presencial'),
+        ('Virtual', 'Virtual'),
+        ('Mixta', 'Mixta'),
     ]
 
     GRUPO_CHOICES = [
@@ -53,13 +53,14 @@ class Facultad(models.Model):
         return f"{self.codigo_facultad} - {self.nombre_facultad}"
 
 class Director_de_programa(models.Model):
-     nombre_director= models.CharField(max_length =255, null = False, blank = False, primary_key= "")
-     numero_director = models.IntegerField(null = False, blank = False)
-     correo_director = models.CharField(max_length=500, null = False, blank = False)
-     foto_de_perfil = models.ImageField(upload_to= 'fotosdirectores/')
+    id = models.AutoField(primary_key=True)
+    nombre_director= models.CharField(max_length =255, null = False, blank = False, primary_key= "")
+    numero_director = models.IntegerField(null = False, blank = False)
+    correo_director = models.CharField(max_length=500, null = False, blank = False)
+    foto_de_perfil = models.ImageField(upload_to= 'fotosdirectores/')
 
-     def __str__(self):
-          return self.nombre_director
+    def __str__(self):
+        return self.nombre_director
      
 class Programa_de_posgrado(models.Model):
     nombre_programa = models.CharField(max_length =255, unique= True,null = False, blank = False) #cambio
@@ -86,7 +87,6 @@ class Semestre(models.Model):
     año = models.IntegerField(blank= False, null= False, default= "2024")
     periodo = models.IntegerField(choices=[(1, '1'), (2, '2')], default= "1")
     programa_semestre = models.ManyToManyField(Programa_de_posgrado, default = "")
-    #models.ForeignKey(Programa_de_posgrado, on_delete=models.CASCADE, default = '', null = False, blank = False)
 
     def __str__(self):
         return f"{self.año}-{self.periodo}"
@@ -106,7 +106,6 @@ class Materia(models.Model):
     departamento = models.ForeignKey(Departamento, on_delete= models.CASCADE, default = '', null = False, blank = False)
     semestre = models.ForeignKey(Semestre, on_delete= models.CASCADE, default = '', null = False, blank = False)
 
-
     def  __str__(self):
         return f'{self.codigo_materia} - {self.nombre_materia}'
     
@@ -124,8 +123,6 @@ class Malla_curricular(models.Model): #replantear
     def  __str__(self):
             return self.nombre_malla
     
-
-
 class Profesor(models.Model):
     nombre_profesor = models.CharField(max_length =255, null = False, blank = False)
     cedula_profesor = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
@@ -134,9 +131,7 @@ class Profesor(models.Model):
     telefono = models.IntegerField(null = False, blank = False)
     def  __str__(self):
         return f'{self.cedula_profesor} - {self.nombre_profesor}'
- 
-
-    
+     
 class Edificio(models.Model):
     nombre_edificio = models.CharField(max_length =255, null = False, blank = False, primary_key=True)  
     numero_espacios= models.IntegerField(null = False, blank = False)
