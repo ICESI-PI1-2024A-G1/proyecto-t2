@@ -168,6 +168,7 @@ def registrar_materia_malla(request):
                         nombre_materia=nombre_materia,
                         codigo_materia=codigo_materia,
                         departamento = form.cleaned_data['departamento'],
+                        semestre = form.cleaned_data['semestre'],
                         creditos_materia=form.cleaned_data['creditos_materia'],
                         syllabus=syllabus_file
                     )
@@ -202,7 +203,6 @@ def editar_materia(request, nombre_materia):
         form = MateriaEditForm(instance=materia)
     return render(request, 'Editar/editar_materia.html', {'form': form})
 
-
 def malla_curricular(request):
     if request.method == 'POST':
         form = CrearMallaCurricular(request.POST)
@@ -223,20 +223,40 @@ def nuevo_programa(request):
     if request.method == 'POST':
         form = CrearProgramaAcademico(request.POST)
         if form.is_valid():
-            # Procesar los datos del formulario y guardar el programa académico
-            programa_academico = Programa_de_posgrado(
-                nombre_programa =form.cleaned_data['nombre_programa'],
-                codigo_programa=form.cleaned_data['codigo_programa'],
-                fecha_inicio_programa =form.cleaned_data['fecha_inicio_programa'],
-                estado_programa = form.cleaned_data['estado_programa'],
-                duracion_programa =form.cleaned_data['duracion_programa'],
-                facultad_programa =form.cleaned_data['facultad_programa'],
-                modalidad_programa =form.cleaned_data['modalidad_programa'])
-            programa_academico.save()
-            return redirect('/gestion/nuevoprograma/director_programa')  # Redirigir a alguna vista después de guardar el formulario
+            # Obtener el código del programa académico del formulario
+            codigo_programa = form.cleaned_data['codigo_programa']
+            nombre_programa = form.cleaned_data['nombre_programa']
+            
+            # Verificar si el código del programa académico ya existe en la base de datos
+            if Programa_de_posgrado.objects.filter(codigo_programa=codigo_programa).exists():
+                # Si el código ya existe, mostrar un mensaje de error
+                return render(request, 'Crear/nuevo_programa.html', {
+                        'form': CrearProgramaAcademico,
+                        'error': 'El programa de posgrado ya existe en la base de datos.'
+                    })
+            elif Programa_de_posgrado.objects.filter(nombre_programa=nombre_programa).exists():
+                    return render(request, 'Crear/nuevo_programa.html', {
+                        'form': CrearProgramaAcademico,
+                        'error': 'El programa de posgrado ya existe en la base de datos.'
+                    })
+            else:
+                # Si el código no existe, procesar los datos del formulario y guardar el programa académico
+                programa_academico = Programa_de_posgrado(
+                    nombre_programa=form.cleaned_data['nombre_programa'],
+                    codigo_programa=codigo_programa,
+                    fecha_inicio_programa=form.cleaned_data['fecha_inicio_programa'],
+                    estado_programa=form.cleaned_data['estado_programa'],
+                    duracion_programa=form.cleaned_data['duracion_programa'],
+                    facultad_programa=form.cleaned_data['facultad_programa'],
+                    modalidad_programa=form.cleaned_data['modalidad_programa'],
+                    director_programa=form.cleaned_data['director_programa'],
+                )
+                programa_academico.save()
+                return redirect('/index/gestion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearProgramaAcademico()
     return render(request, 'Crear/nuevo_programa.html', {'form': form})
+
 
 def buscar_programa_academico(request):
     if request.method == 'POST':
@@ -254,7 +274,7 @@ def editar_programa(request, codigo_programa):
     form = EditarProgramaForm(request.POST, instance=programa)
     if form.is_valid():
         form.save()
-        return redirect('buscar_programa_academico')  
+        return redirect('/index/gestion/buscar_programa_academico')  
     else:
         form = EditarProgramaForm(instance=programa)
     return render(request, 'Editar/editar_programa.html', {'form': form})
@@ -371,7 +391,7 @@ def registrar_profesor(request):
                     telefono=telefono,
                 )
                 profesor.save()
-                return redirect('/index')
+                return redirect('/index/servicios_asignacion')
     else:
         form = RegistrarProfesor()
     
@@ -617,7 +637,7 @@ def editar_espacio(request, espacio_codigo):
         form = EditarEspacio(request.POST, instance=espacio)
         if form.is_valid():
             form.save()
-            return redirect('/index/servicios_asignacion')  # Redirigir a la lista de edificios después de la edición
+            return redirect('/index/servicios_asignacion/lista_edificios')  # Redirigir a la lista de edificios después de la edición
     else:
         form = EditarEspacio(instance=espacio)
     return render(request, 'Editar/editar_espacio.html', {'form': form})
@@ -645,19 +665,28 @@ def crear_evento(request):
     if request.method == 'POST':
         formEvent = EventoForm(request.POST)
         if formEvent.is_valid():
-            # Procesar los datos del formulario y guardar el programa académico
-            evento = Evento(
-                nombre_evento=formEvent.cleaned_data['nombre_evento'],
-                fecha_inicio_evento=formEvent.cleaned_data['fecha_inicio_evento'],
-                fecha_finalizacion_evento=formEvent.cleaned_data['fecha_finalizacion_evento'],
-                lugar_evento=formEvent.cleaned_data['lugar_evento'],
-                descripcion_evento=formEvent.cleaned_data['descripcion_evento'],
-                programa_de_posgrado_evento=formEvent.cleaned_data['programa_de_posgrado_evento'])
-            evento.save()
-            return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
+            nombre_evento = formEvent.cleaned_data['nombre_evento']
+            # Verificar si ya existe un evento con el mismo nombre
+            if Evento.objects.filter(nombre_evento=nombre_evento).exists():
+                # Si el evento ya existe, puedes manejar la situación como desees,
+                # por ejemplo, mostrando un mensaje de error
+                return render(request, 'Crear/crear_evento.html', {'formEvent': formEvent, 'error': 'El evento ya existe.'})
+            else:
+                # Si el evento no existe, guardar el evento
+                evento = Evento(
+                    nombre_evento=nombre_evento,
+                    fecha_inicio_evento=formEvent.cleaned_data['fecha_inicio_evento'],
+                    fecha_finalizacion_evento=formEvent.cleaned_data['fecha_finalizacion_evento'],
+                    lugar_evento=formEvent.cleaned_data['lugar_evento'],
+                    descripcion_evento=formEvent.cleaned_data['descripcion_evento'],
+                    programa_de_posgrado_evento=formEvent.cleaned_data['programa_de_posgrado_evento']
+                )
+                evento.save()
+                return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         formEvent = EventoForm()
-    return render(request, 'Crear/crear_evento.html', {'formEvent': EventoForm})
+    return render(request, 'Crear/crear_evento.html', {'formEvent': formEvent})
+
 
 def crear_actividad(request):
     if request.method == 'POST':

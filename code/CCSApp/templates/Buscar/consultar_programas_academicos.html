@@ -64,7 +64,9 @@
                 <td>{{ programa.director_programa }}</td>
                 <td>
                   <a href="{% url 'eliminar_programa_inactivo' programa.codigo_programa %}">
-                    <img src="/static/Images/editor-de-documentos.png" height="45" width="45" alt="Botón de retorno" />
+                    <div style="text-align: center;"> <!-- Contenedor para centrar horizontalmente la imagen -->
+                      <img src="/static/Images/eliminar.png" height="45" width="45" alt="Botón de retorno" style="display: block; margin: auto;" /> <!-- Estilos para centrar la imagen -->
+                    </div>                  
                   </a>
                 </td>  
               </tr>

@@ -53,13 +53,14 @@ class Facultad(models.Model):
         return f"{self.codigo_facultad} - {self.nombre_facultad}"
 
 class Director_de_programa(models.Model):
-     nombre_director= models.CharField(max_length =255, null = False, blank = False, primary_key= "")
-     numero_director = models.IntegerField(null = False, blank = False)
-     correo_director = models.CharField(max_length=500, null = False, blank = False)
-     foto_de_perfil = models.ImageField(upload_to= 'fotosdirectores/')
+    id = models.AutoField(primary_key=True)
+    nombre_director= models.CharField(max_length =255, null = False, blank = False, primary_key= "")
+    numero_director = models.IntegerField(null = False, blank = False)
+    correo_director = models.CharField(max_length=500, null = False, blank = False)
+    foto_de_perfil = models.ImageField(upload_to= 'fotosdirectores/')
 
-     def __str__(self):
-          return self.nombre_director
+    def __str__(self):
+        return self.nombre_director
      
 class Programa_de_posgrado(models.Model):
     nombre_programa = models.CharField(max_length =255, unique= True,null = False, blank = False) #cambio
