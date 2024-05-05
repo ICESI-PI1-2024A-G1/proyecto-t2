@@ -60,15 +60,39 @@ def asignar_horario(request):
 
 def modificar_horarios(request, id_horario):
     horario = Horario.objects.get(pk=id_horario)
+
     if request.method == 'POST':
-        print(request.POST.dict())
         form = ModificarHorarioForm(request.POST, instance=horario)
         if form.is_valid():
+            # Verificar si la modalidad es "virtual"
+            if form.cleaned_data['modalidad'] == 'virtual':
+                # Crear un nuevo espacio y asociarlo al horario
+                nuevo_edificio = Edificio.objects.create(
+                    nombre_edificio = '0',
+                    numero_espacios = 0
+                )
+                nuevo_espacio = Espacio.objects.create(
+                    espacio_codigo='',  # Puedes ajustar esto según tu lógica
+                    capacidad_espacio=30,  # Ejemplo de capacidad por defecto
+                    edificio_espacio=nuevo_edificio,  # Asignar el edificio de la materia asociada al horario
+                    disponibilidad_espacio='Disponible',  # Estado inicial del espacio
+                    tipo='Salon'  # Puedes ajustar el tipo según tu lógica
+                )
+                # Asociar el nuevo espacio al horario
+                horario.salon_presencial = nuevo_espacio
+
+            # Guardar el formulario (incluyendo el nuevo espacio si es necesario)
             form.save()
+
             return redirect('/index/servicios_asignacion/consultar_horarios')
     else:
         form = ModificarHorarioForm(instance=horario)
+<<<<<<< HEAD
+
+    return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
+=======
     return render(request, 'Editar/modificar_horarios.html', {'formModificarHorarios': form})
+>>>>>>> develop
 
 def consultar_horarios(request):
     # Obtener todos los horarios inicialmente
