@@ -39,6 +39,12 @@ def asignar_horario(request):
                 Q(hora_inicio_horario=hora_final_horario)    # No se superpone después
             ).exists()
 
+            if form.cleaned_data['modalidad'] == 'Virtual':
+                # Obtener el edificio y espacio 'N/A'
+                nuevo_espacio = Espacio.objects.get(espacio_codigo='N/A')
+                # Asociar el nuevo espacio al horario
+                salon_presencial = nuevo_espacio
+
             if not conflicto:
                 # No hay conflicto, guardar el nuevo horario
                 Horario.objects.create(
@@ -66,27 +72,36 @@ def modificar_horarios(request, id_horario):
     if request.method == 'POST':
         form = ModificarHorarioForm(request.POST, instance=horario)
         if form.is_valid():
+            salon_presencial = form.cleaned_data['salon_presencial']
+            fecha_inicio_horario = form.cleaned_data['fecha_inicio_horario']
+            hora_inicio_horario = form.cleaned_data['hora_inicio_horario']
+            hora_final_horario = form.cleaned_data['hora_final_horario']
             # Verificar si la modalidad es "virtual"
-            if form.cleaned_data['modalidad'] == 'virtual':
-                # Crear un nuevo espacio y asociarlo al horario
-                nuevo_edificio = Edificio.objects.create(
-                    nombre_edificio = '0',
-                    numero_espacios = 0
-                )
-                nuevo_espacio = Espacio.objects.create(
-                    espacio_codigo='',  # Puedes ajustar esto según tu lógica
-                    capacidad_espacio=30,  # Ejemplo de capacidad por defecto
-                    edificio_espacio=nuevo_edificio,  # Asignar el edificio de la materia asociada al horario
-                    disponibilidad_espacio='Disponible',  # Estado inicial del espacio
-                    tipo='Salon'  # Puedes ajustar el tipo según tu lógica
-                )
+            # Consulta para verificar conflictos
+
+            if form.cleaned_data['modalidad'] == 'Virtual':
+                # Obtener el edificio y espacio 'N/A'
+                nuevo_espacio = Espacio.objects.get(espacio_codigo='N/A')
                 # Asociar el nuevo espacio al horario
                 horario.salon_presencial = nuevo_espacio
 
-            # Guardar el formulario (incluyendo el nuevo espacio si es necesario)
-            form.save()
+            conflicto = Horario.objects.filter(
+                salon_presencial=salon_presencial,
+                fecha_inicio_horario=fecha_inicio_horario,  # Coincide en la misma fecha
+            ).exclude(
+                Q(hora_final_horario=hora_inicio_horario) |  # No se superpone antes
+                Q(hora_inicio_horario=hora_final_horario) |   # No se superpone después
+                Q(pk=id_horario)  # Excluir el horario actual
+            ).exists()
 
-            return redirect('/index/servicios_asignacion/consultar_horarios')
+            if not conflicto:
+                # No hay conflicto, guardar el horario modificado
+                form.save()
+                return redirect('/index/servicios_asignacion/consultar_horarios')
+            else:
+                # Hay conflicto, mostrar un mensaje de error
+                form.add_error(None, "El horario se superpone con otro horario existente.")
+            
     else:
         form = ModificarHorarioForm(instance=horario)
     return render(request, 'Editar/modificar_horarios.html', {'formModificarHorarios': form})
@@ -306,7 +321,7 @@ def log_in(request):
             except Usuario.DoesNotExist:
                 # Si no se encuentra el usuario, puedes mostrar un mensaje de error o redirigir de nuevo al formulario de inicio de sesión.
                 #form.add_error(None, 'Usuario o clave incorrecta, intente de nuevo')
-                return render(request, 'log_in.html', {
+                return render(request, 'login/log_in.html', {
                         'form': LoginForm,
                         'error': 'Usuario o clave incorrecta, intente de nuevo'
                 })

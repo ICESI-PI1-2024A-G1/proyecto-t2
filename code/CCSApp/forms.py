@@ -24,9 +24,9 @@ class NewHorario(forms.Form):
     )
     
     MODALIDAD_CHOICES = [
-        ('presencial', 'Presencial'),
-        ('virtual', 'Virtual'),
-        ('mixta', 'Mixta'),
+        ('Presencial', 'Presencial'),
+        ('Virtual', 'Virtual'),
+        ('Mixta', 'Mixta'),
     ]
 
     GRUPO = [
@@ -40,6 +40,16 @@ class NewHorario(forms.Form):
     salon_presencial = forms.ModelChoiceField(label="Espacio", queryset=Espacio.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
     materia = forms.ModelChoiceField(label="Materia", queryset=Materia.objects.all(),empty_label=None, widget=forms.Select(attrs={'class': 'form-control2'}))
     grupo = forms.ChoiceField(label="Grupo", choices=GRUPO, widget=forms.Select(attrs={'class': 'form-control2'}))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        modalidad = cleaned_data.get('modalidad')
+        enlace_virtual = cleaned_data.get('enlace_virtual')
+
+        if modalidad == 'Virtual' and not enlace_virtual:
+            self.add_error('enlace_virtual', 'Este campo es obligatorio cuando la modalidad es Virtual.')
+
+        return cleaned_data
     
 class ModificarHorarioForm(forms.ModelForm):
     class Meta:
@@ -49,12 +59,27 @@ class ModificarHorarioForm(forms.ModelForm):
             'fecha_inicio_horario': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'hora_inicio_horario': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
             'hora_final_horario': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'materia': forms.Select(attrs={'class': 'form-control2'}),
+            'materia': forms.TextInput(attrs={'class': 'form-control2', 'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
             'modalidad': forms.Select(attrs={'class': 'form-control2'}),
             'grupo': forms.Select(attrs={'class': 'form-control2'}),
             'enlace_virtual': forms.TextInput(attrs={'class': 'form-control'}),
             'salon_presencial': forms.Select(attrs={'class': 'form-control2'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(ModificarHorarioForm, self).__init__(*args, **kwargs)
+        if self.instance and self.instance.pk:
+            self.fields['materia'].widget.attrs['value'] = self.instance.materia.nombre_materia
+
+    def clean(self):
+        cleaned_data = super().clean()
+        modalidad = cleaned_data.get('modalidad')
+        enlace_virtual = cleaned_data.get('enlace_virtual')
+
+        if modalidad == 'Virtual' and not enlace_virtual:
+            self.add_error('enlace_virtual', 'Este campo es obligatorio cuando la modalidad es Virtual.')
+
+        return cleaned_data
 
 class NewUsuary(forms.Form):
     nombre = forms.CharField(label= "Nombre", max_length =255, widget=forms.TextInput(attrs={'class': 'form-control'}))
