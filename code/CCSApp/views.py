@@ -87,12 +87,7 @@ def modificar_horarios(request, id_horario):
             return redirect('/index/servicios_asignacion/consultar_horarios')
     else:
         form = ModificarHorarioForm(instance=horario)
-<<<<<<< HEAD
-
-    return render(request, 'modificar_horarios.html', {'formModificarHorarios': form})
-=======
     return render(request, 'Editar/modificar_horarios.html', {'formModificarHorarios': form})
->>>>>>> develop
 
 def consultar_horarios(request):
     # Obtener todos los horarios inicialmente
