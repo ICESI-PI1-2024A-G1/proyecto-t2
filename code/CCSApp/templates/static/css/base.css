@@ -188,18 +188,24 @@ button {
 }
 
 
-.bloq-mid{
-    display: block;
-    justify-content: center;
+.bloq-mid {
+    display: flex; /* Usar flexbox */
+    justify-content: center; /* Centrar horizontalmente los elementos */
+    align-items: center; /* Centrar verticalmente los elementos */
     position: fixed;
     top: 20%;
     left: 50%;
-    width: 74%;
+    width: 90%;
     transform: translate(-50%, -57%);
-    /*background-color: #28C985;*/
+    /* background-color: #28C985; */
     margin-top: 2px;
     margin-left: 10px;
 }
+
+.bloq-mid button {
+    margin: 5px; /* Agregar un pequeño espacio entre los botones */
+}
+
 
 .bloq-mid-2{
     display: block;

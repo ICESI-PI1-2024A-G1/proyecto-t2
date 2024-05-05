@@ -109,15 +109,15 @@ class CrearProgramaAcademico(forms.Form):
         return cleaned_data
 
 class ProgramacionAcademicaForm(forms.Form):
-    programa_de_posgrado = forms.ModelChoiceField(label="Programa de posgrado", queryset= Programa_de_posgrado.objects.all(), help_text="Seleccione el programa")
-    semestre = forms.ModelChoiceField(label="Semestre", queryset= Semestre.objects.all(), help_text="Seleccione el programa")
-    departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), help_text="Seleccione el departamento")
-    horas = forms.FloatField(label='Horas totales', help_text= 'Escriba las horas totales de la materia')
+    programa_de_posgrado = forms.ModelChoiceField(label="Programa de posgrado", queryset= Programa_de_posgrado.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    semestre = forms.ModelChoiceField(label="Semestre", queryset= Semestre.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    horas = forms.FloatField(label='Horas totales', widget=forms.Select(attrs={'class': 'form-control2'}))
     #periodo = forms.ModelChoiceField(label="Periodo", queryset= Periodo.objects.all(), help_text="Seleccione el periodo al que pertenece la programacion academica")
-    materia = forms.ModelChoiceField(label="Materia", queryset= Materia.objects.all(), help_text="Seleccione las materias que desea asignar a la programacion academica")
-    horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), help_text="Seleccione el horario de las materias que desea asignar a la programacion academica")
-    grupo =  forms.CharField(max_length=10, label= "Grupo", help_text= 'Escriba el grupo al que perteneceran los estudiantes que cursen esta programacion')
-    profesor = forms.ModelChoiceField(label="Profesor", queryset= Profesor.objects.all(), help_text="Seleccione el horario de las materias que desea asignar a la programacion academica")
+    materia = forms.ModelChoiceField(label="Materia", queryset= Materia.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    grupo =  forms.CharField(max_length=10, label= "Grupo", widget=forms.Select(attrs={'class': 'form-control2'}))
+    profesor = forms.ModelChoiceField(label="Profesor", queryset= Profesor.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
 
     def clean(self):
         cleaned_data = super().clean()

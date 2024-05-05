@@ -121,7 +121,7 @@ button {
     text-decoration: none;
     cursor: pointer;
   }
-
+  
 .bloq-sup,
 .bloq-inf {
     position: fixed;
@@ -141,23 +141,17 @@ button {
     bottom: 0;
 }
 
+.bloq-mid-wrapper {
+    width: 100%;
+    /* background-color: #999; */
+}
+
 .button {
     /* Alinear los botones con los campos de texto */
     padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
 }
 
-.div_CCSA{
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    /* background-color: #28C985; */
-    width: 22%;
-    justify-content: center;
-    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
- }
-
- .div_boton_return{
+.div_boton_return{
     margin-left: 0px;
     margin-top: 40px;
     margin-bottom: 5px;
@@ -168,15 +162,29 @@ button {
     justify-content: center;
     background-color: transparent;
  }
+  
+ .div_CCSA{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 22%;
+    justify-content: center;
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+ }
 
 .form-1 {
     /* Centrar el formulario en la página */
     margin: 0 auto;
-    width: 400px;
+    margin-right: 48%;
+    width: 48%;
     /* Esquema del formulario */
     padding: 1em;
     border-radius: 1em;
-
+    /* background: #f9f9f9; */
+    border: 2px solid #04AA6D;
 }
 
 .btn-1{
@@ -189,8 +197,8 @@ button {
     padding: 7px 20px;
     background-color: #28C985;
     border-radius: 2rem;
-    /* border: #ccc; */
     border:0.7px solid #000000c8;
+    /* border: #ccc; */
 }
 
 .btn-1 {
@@ -208,70 +216,112 @@ button {
 .buttondiv{
     display: flex;
     justify-content: center;
-    right: 25%;
+    /* background-color: aqua; */
+    width: 30%;
+    margin-left: 34%;
 }
 
-.button-container {
-    text-align: center;
+.buttondiv2{
+    display: flex;
+    justify-content: center;
+    /* background-color: #04AA6D; */
+    width: 35%;
+    margin-left: 36%;
+    top: 50%;
+    left: 50%;
+    transform: translate(30%, -143%);
 }
 
-
-/* Estilos para el contenedor principal */
-.bloq-mid {
+.bloq-mid{
     display: block;
     justify-content: center;
     position: fixed;
     top: 48%;
     left: 50%;
-    width: 100%; /* Ancho del contenedor principal */
-    height: 64.8%;
-    overflow-y: scroll;
     transform: translate(-50%, -50%);
-    /* background-color: #999; */
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    /* background-color: #28C985; */
+    /* border: 2px solid #04AA6D; */
+    /* border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+    overflow-y: scroll;
+    width: 100%;
+    height: 64.8%;
 }
 
-/* Estilos para el contenedor intermedio */
-.intermed {
-    display: block;
-    position: relative;
-    margin: 25px; /* Margen uniforme alrededor del contenedor intermedio */
-    width: 300px; /* Ancho del contenedor intermedio en píxeles */
-    left: calc(50% - 150px); /* Centra el contenedor horizontalmente */
-    top: 20%;
-    transform: translate(0%, 0%);
-    /* background-color: aqua; */
-}
-
-/* Estilos para el contenedor de input */
-.intermed-bloq {
-    position: relative;
-    width: 400px; /* Ancho del contenedor de input en píxeles */
-    /* background-color: #04AA6D; */
-    left: calc(50% - 200px); /* Centra el contenedor horizontalmente */
-    top: 20%;
-    border: 2px solid #04AA6D;
-    border-radius: 10px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilos para el input en el estado normal */
-.intermed-bloq input {
-    width: 60%; /* Ancho completo */
-    max-width: 80%; /* Ancho máximo en función del contenedor */
-    padding: 8px;
+.bloq-mid input{
+    width: 65%;
+    height: 5%;
+    margin-left: 0%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
+.bloq-mid label {
+ width: 30%; /* Ancho de la etiqueta */
+ /* background-color: #04AA6D; */
+ text-align: left; /* Alineación del texto a la izquierda */
+ margin-left: 2.5%;
+}
+
+.intermed {
+    position: relative;
+    top: 20px; /* Ajusta este valor según lo que necesites */
+    left: 38%;
+    margin-left: 25px; /* Ajusta este valor según lo que necesites */
+    margin-bottom: 25px;
+    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
+    width: 25%;
+    height: 30px;
+    /* background-color: #04AA6D; */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+}
+
+.intermed-bloq {
+    position: relative;
+    width: 100%; /* Ancho del contenedor de input en píxeles */
+    /* background-color: #04AA6D; */
+    /* left: calc(50% - 200px); */
+    top: 20%;
+    border-radius: 10px;
+}
+
+.intermed-bloq .form-control2{
+    width: 65%;
+    height: 50%;
+    background-color: transparent;
+    border: 2px solid #04AA6D;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 7px 20px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.intermed-bloq .form-control{
+    width: 65%;
+    height: 50%;
+    background-color: transparent;
+    /* border: 2px solid #04AA6D; */
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 7px 20px;
+}
+
 .bloq-sup{
+    /* display: flex;
+    align-items: center; */
     position: fixed;
     left: 0;
     width: 100%;
     height: 13%;
     top: 0;
     background-color: #f2f2f2;
+    /* border: 2px solid #04AA6D; */
+    border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -304,24 +354,20 @@ button {
     border: none; /* Quita el borde del botón */
     width: 55px; /* Ajusta el ancho del botón según sea necesario */
     height: 55px; /* Ajusta la altura del botón según sea necesario */
+    background-color: transparent;
 }
 
 .titulo {
-    margin-right: 20px; /* Ajusta el margen según sea necesario */
-    line-height: 62px;
+    margin-right: 10px; /* Ajusta el margen según sea necesario */
+    line-height: 62px; 
 }
 
 .descripcion {
     margin-left: 12px;
     line-height: 0px;  /* Ajusta el margen según sea necesario */
-    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */ 
- }
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
 
- @media (max-width: 600px) {
-    .descripcion {
-        font-size: 14px; /* Tamaño de fuente más pequeño para pantallas más pequeñas */
-    }
-}
+ }
 
 .error-message {
     text-align: center;
