@@ -12,6 +12,8 @@ from openpyxl.styles import PatternFill, Border, Side, Alignment, Font
 from openpyxl.utils import get_column_letter
 from django.db.models import Q
 from django.views.generic.base import TemplateView
+import openpyxl
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -60,11 +62,30 @@ def asignar_horario(request):
 
 def modificar_horarios(request, id_horario):
     horario = Horario.objects.get(pk=id_horario)
+
     if request.method == 'POST':
-        print(request.POST.dict())
         form = ModificarHorarioForm(request.POST, instance=horario)
         if form.is_valid():
+            # Verificar si la modalidad es "virtual"
+            if form.cleaned_data['modalidad'] == 'virtual':
+                # Crear un nuevo espacio y asociarlo al horario
+                nuevo_edificio = Edificio.objects.create(
+                    nombre_edificio = '0',
+                    numero_espacios = 0
+                )
+                nuevo_espacio = Espacio.objects.create(
+                    espacio_codigo='',  # Puedes ajustar esto según tu lógica
+                    capacidad_espacio=30,  # Ejemplo de capacidad por defecto
+                    edificio_espacio=nuevo_edificio,  # Asignar el edificio de la materia asociada al horario
+                    disponibilidad_espacio='Disponible',  # Estado inicial del espacio
+                    tipo='Salon'  # Puedes ajustar el tipo según tu lógica
+                )
+                # Asociar el nuevo espacio al horario
+                horario.salon_presencial = nuevo_espacio
+
+            # Guardar el formulario (incluyendo el nuevo espacio si es necesario)
             form.save()
+
             return redirect('/index/servicios_asignacion/consultar_horarios')
     else:
         form = ModificarHorarioForm(instance=horario)
@@ -95,7 +116,6 @@ def consultar_horarios(request):
         horarios = horarios.filter(hora_inicio_horario = hora_inicio_horario)
     if hora_final_horario:
         horarios = horarios.filter(hora_final_horario = hora_final_horario)
-
 
     # Pasar los horarios filtrados al contexto para mostrar en la plantilla
     context = {
@@ -148,6 +168,7 @@ def registrar_materia_malla(request):
                         nombre_materia=nombre_materia,
                         codigo_materia=codigo_materia,
                         departamento = form.cleaned_data['departamento'],
+                        semestre = form.cleaned_data['semestre'],
                         creditos_materia=form.cleaned_data['creditos_materia'],
                         syllabus=syllabus_file
                     )
@@ -182,7 +203,6 @@ def editar_materia(request, nombre_materia):
         form = MateriaEditForm(instance=materia)
     return render(request, 'Editar/editar_materia.html', {'form': form})
 
-
 def malla_curricular(request):
     if request.method == 'POST':
         form = CrearMallaCurricular(request.POST)
@@ -203,20 +223,72 @@ def nuevo_programa(request):
     if request.method == 'POST':
         form = CrearProgramaAcademico(request.POST)
         if form.is_valid():
-            # Procesar los datos del formulario y guardar el programa académico
-            programa_academico = Programa_de_posgrado(
-                nombre_programa =form.cleaned_data['nombre_programa'],
-                codigo_programa=form.cleaned_data['codigo_programa'],
-                fecha_inicio_programa =form.cleaned_data['fecha_inicio_programa'],
-                estado_programa = form.cleaned_data['estado_programa'],
-                duracion_programa =form.cleaned_data['duracion_programa'],
-                facultad_programa =form.cleaned_data['facultad_programa'],
-                modalidad_programa =form.cleaned_data['modalidad_programa'])
-            programa_academico.save()
-            return redirect('/gestion/nuevoprograma/director_programa')  # Redirigir a alguna vista después de guardar el formulario
+            # Obtener el código del programa académico del formulario
+            codigo_programa = form.cleaned_data['codigo_programa']
+            nombre_programa = form.cleaned_data['nombre_programa']
+            
+            # Verificar si el código del programa académico ya existe en la base de datos
+            if Programa_de_posgrado.objects.filter(codigo_programa=codigo_programa).exists():
+                # Si el código ya existe, mostrar un mensaje de error
+                return render(request, 'Crear/nuevo_programa.html', {
+                        'form': CrearProgramaAcademico,
+                        'error': 'El programa de posgrado ya existe en la base de datos.'
+                    })
+            elif Programa_de_posgrado.objects.filter(nombre_programa=nombre_programa).exists():
+                    return render(request, 'Crear/nuevo_programa.html', {
+                        'form': CrearProgramaAcademico,
+                        'error': 'El programa de posgrado ya existe en la base de datos.'
+                    })
+            else:
+                # Si el código no existe, procesar los datos del formulario y guardar el programa académico
+                programa_academico = Programa_de_posgrado(
+                    nombre_programa=form.cleaned_data['nombre_programa'],
+                    codigo_programa=codigo_programa,
+                    fecha_inicio_programa=form.cleaned_data['fecha_inicio_programa'],
+                    estado_programa=form.cleaned_data['estado_programa'],
+                    duracion_programa=form.cleaned_data['duracion_programa'],
+                    facultad_programa=form.cleaned_data['facultad_programa'],
+                    modalidad_programa=form.cleaned_data['modalidad_programa'],
+                    director_programa=form.cleaned_data['director_programa'],
+                )
+                programa_academico.save()
+                return redirect('/index/gestion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = CrearProgramaAcademico()
     return render(request, 'Crear/nuevo_programa.html', {'form': form})
+
+
+def buscar_programa_academico(request):
+    if request.method == 'POST':
+        form = BuscarProgramaForm(request.POST)
+        if form.is_valid():
+            codigo_programa = form.cleaned_data['codigo_programa']
+            programas = Programa_de_posgrado.objects.filter(codigo_programa__istartswith=codigo_programa)
+            return render(request, 'Buscar/buscar_programa_academico.html', {'form': form, 'programas': programas})
+    else:
+        form = BuscarProgramaForm()
+    return render(request, 'Buscar/buscar_programa_academico.html', {'form': form})
+
+def editar_programa(request, codigo_programa):  
+    programa = get_object_or_404(Programa_de_posgrado, codigo_programa=codigo_programa)  
+    form = EditarProgramaForm(request.POST, instance=programa)
+    if form.is_valid():
+        form.save()
+        return redirect('/index/gestion/buscar_programa_academico')  
+    else:
+        form = EditarProgramaForm(instance=programa)
+    return render(request, 'Editar/editar_programa.html', {'form': form})
+
+def consultar_programas_academicos(request):
+    # Obtener todos los programas académicos con estado "Inactivo"
+    programas = Programa_de_posgrado.objects.filter(estado_programa='Inactivo')
+
+    # Pasar los programas académicos filtrados al contexto para mostrar en la plantilla
+    context = {
+        'programas': programas
+    }
+
+    return render(request, 'Buscar/consultar_programas_academicos.html', context)
 
 def log_in(request):
     if request.method == 'POST':
@@ -319,7 +391,7 @@ def registrar_profesor(request):
                     telefono=telefono,
                 )
                 profesor.save()
-                return redirect('/index')
+                return redirect('/index/servicios_asignacion')
     else:
         form = RegistrarProfesor()
     
@@ -354,15 +426,6 @@ def lista_programas(request):
     directores = Director_de_programa.objects.all()
     return render(request, 'Listas/lista_programas.html', {'programas': programas, 'directores': directores})
 
-def editar_programa(request, codigo_programa):  
-    programa = get_object_or_404(Programa_de_posgrado, codigo_programa=codigo_programa)  
-    form = EditarProgramaForm(request.POST, instance=programa)
-    if form.is_valid():
-        form.save()
-        return redirect('lista_programas_pos.html')  
-    else:
-        form = EditarProgramaForm(instance=programa)
-    return render(request, 'Editar/editar_programa.html', {'form': form})
 
 def director_programa(request):
     if request.method == 'POST':
@@ -391,9 +454,20 @@ def director_programa(request):
 def operacionexitosanp(request):
     return render(request, 'operacion_exitosa_np.html')
 
-def eliminar_programa_inactivo(request):
-    programas = Programa_de_posgrado.objects.all()
-    return render(request, 'Editar/eliminar_programa_inactivo.html', {'programas': programas})
+def eliminar_programa_inactivo(request, codigo_programa):
+    try:
+        # Obtener el programa de posgrado con el código proporcionado
+        programa = Programa_de_posgrado.objects.get(codigo_programa=codigo_programa)
+        
+        # Eliminar el programa si existe
+        programa.delete()
+        
+        # Redirigir a una página de confirmación o mostrar un mensaje de éxito
+        return redirect('/index/gestion/eliminar_programa_academico')
+
+    except Programa_de_posgrado.DoesNotExist:
+        # Manejar el caso en el que el programa no existe
+        return render(request, 'Editar/error_programa_inexistente.html')
 
 def delete_program(request, codigo):
     programa = Programa_de_posgrado.objects.get(pk = codigo)
@@ -457,6 +531,57 @@ def programs_csv(request):
     wb.save(response)
     return response
 
+def programas_csv(request):
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=programasdeposgrado.xlsx'
+
+    workbook = openpyxl.Workbook()
+    worksheet = workbook.active
+
+    column_headers = [
+        'Nombre del Programa',
+        'Codigo del programa',
+        'Fecha de Inicio',
+        'Estado',
+        'Duracion (Años)',
+        'Facultad',
+        'Modalidad',
+        'Director del Programa'
+    ]
+
+    # Escribir encabezados de columnas
+    for col_num, header_title in enumerate(column_headers, start=1):
+        cell = worksheet.cell(row=1, column=col_num)
+        cell.value = header_title
+
+    # Estilo para el título (celda amarilla)
+    title_style = PatternFill(start_color='FFFF00', end_color='FFFF00', fill_type='solid')
+
+    # Aplicar estilo amarillo a los encabezados de columnas
+    for col_num in range(1, len(column_headers) + 1):
+        worksheet.cell(row=1, column=col_num).fill = title_style
+
+    # Escribir datos de programas
+    programas = Programa_de_posgrado.objects.all()
+    for row_num, programa in enumerate(programas, start=2):
+        worksheet.append([
+            programa.nombre_programa,
+            programa.codigo_programa,
+            programa.fecha_inicio_programa,
+            programa.estado_programa,
+            programa.duracion_programa,
+            programa.facultad_programa.nombre_facultad,
+            programa.modalidad_programa,
+            programa.director_programa.nombre_director
+        ])
+
+    # Ajustar el ancho de las columnas después de escribir los datos
+    for col_num in range(1, len(column_headers) + 1):
+        column_letter = openpyxl.utils.get_column_letter(col_num)
+        worksheet.column_dimensions[column_letter].auto_size = True
+
+    workbook.save(response)
+    return response
 
 def horarios(request, codigo_materia):
     horarios = Horario.objects.filter(materia__codigo=codigo_materia)
@@ -512,7 +637,7 @@ def editar_espacio(request, espacio_codigo):
         form = EditarEspacio(request.POST, instance=espacio)
         if form.is_valid():
             form.save()
-            return redirect('/index/servicios_asignacion')  # Redirigir a la lista de edificios después de la edición
+            return redirect('/index/servicios_asignacion/lista_edificios')  # Redirigir a la lista de edificios después de la edición
     else:
         form = EditarEspacio(instance=espacio)
     return render(request, 'Editar/editar_espacio.html', {'form': form})
@@ -540,19 +665,28 @@ def crear_evento(request):
     if request.method == 'POST':
         formEvent = EventoForm(request.POST)
         if formEvent.is_valid():
-            # Procesar los datos del formulario y guardar el programa académico
-            evento = Evento(
-                nombre_evento=formEvent.cleaned_data['nombre_evento'],
-                fecha_inicio_evento=formEvent.cleaned_data['fecha_inicio_evento'],
-                fecha_finalizacion_evento=formEvent.cleaned_data['fecha_finalizacion_evento'],
-                lugar_evento=formEvent.cleaned_data['lugar_evento'],
-                descripcion_evento=formEvent.cleaned_data['descripcion_evento'],
-                programa_de_posgrado_evento=formEvent.cleaned_data['programa_de_posgrado_evento'])
-            evento.save()
-            return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
+            nombre_evento = formEvent.cleaned_data['nombre_evento']
+            # Verificar si ya existe un evento con el mismo nombre
+            if Evento.objects.filter(nombre_evento=nombre_evento).exists():
+                # Si el evento ya existe, puedes manejar la situación como desees,
+                # por ejemplo, mostrando un mensaje de error
+                return render(request, 'Crear/crear_evento.html', {'formEvent': formEvent, 'error': 'El evento ya existe.'})
+            else:
+                # Si el evento no existe, guardar el evento
+                evento = Evento(
+                    nombre_evento=nombre_evento,
+                    fecha_inicio_evento=formEvent.cleaned_data['fecha_inicio_evento'],
+                    fecha_finalizacion_evento=formEvent.cleaned_data['fecha_finalizacion_evento'],
+                    lugar_evento=formEvent.cleaned_data['lugar_evento'],
+                    descripcion_evento=formEvent.cleaned_data['descripcion_evento'],
+                    programa_de_posgrado_evento=formEvent.cleaned_data['programa_de_posgrado_evento']
+                )
+                evento.save()
+                return redirect('/index/servicios_asignacion')  # Redirigir a alguna vista después de guardar el formulario
     else:
         formEvent = EventoForm()
-    return render(request, 'Crear/crear_evento.html', {'formEvent': EventoForm})
+    return render(request, 'Crear/crear_evento.html', {'formEvent': formEvent})
+
 
 def crear_actividad(request):
     if request.method == 'POST':
@@ -571,38 +705,60 @@ def crear_actividad(request):
     return render(request, 'Crear/crear_actividad.html', {'formActividad': formActividad})
 
 
+from openpyxl import Workbook
+from openpyxl.styles import PatternFill, Border, Side
+from django.http import HttpResponse
+
 class InformeProgramacion(TemplateView):
-    def get(self,request,*args,**kwargs):
+    def get(self, request, *args, **kwargs):
         query = ProgramacionAcademica.objects.all()
         wb = Workbook()
-        flag= True
-        if flag:
-            ws=wb.active
-            ws.title = 'Hoja'+str(Font)
-            flag = False
-        else:
-            ws = wb.create_sheet("Hoja"+str(Font)) 
 
-         # Escribir el encabezado
+        # Crear una nueva hoja en el libro de trabajo
+        ws = wb.active
+        ws.title = 'Hoja1'
+
+        # Escribir el encabezado
         headers = ['PROGRAMA', 'COD BANNER', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'TIPO DE CONTRATO', 'CIUDAD', 'EMAIL', 'TELEFONO', 'FECHA DE CLASE', 'HORARIO', 'ESTADO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
         ws.append(headers)
 
+        # Aplicar formato al encabezado
         for cell in ws[1]:
-         cell.fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
+            cell.fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
 
-        # Obtener el índice de la columna "GRUPO" en la hoja de cálculo
-        grupo_index = headers.index('GRUPO') + 1
+        # Obtener los datos de los registros y escribirlos en el archivo xlsx
+        for registro in query:
+            data_row = [
+                registro.programa_de_posgrado.nombre_programa,
+                registro.cod_banner,
+                registro.departamento.id_departamento,
+                registro.horas,
+                registro.num_creditos,
+                registro.periodo.id_periodo,
+                ', '.join([materia.nombre_materia for materia in registro.materia.all()]),  # Obtener los nombres de las materias separados por coma
+                registro.modalidad,
+                registro.grupo,
+                registro.docente.nombre_profesor,
+                registro.tipo_de_contrato,
+                registro.ciudad,
+                registro.correo_electronico,
+                registro.telefono,
+                registro.fecha_de_clase,
+                ', '.join([str(horario.id_horario) for horario in registro.horario.all()]),  # Obtener los nombres de los horarios separados por coma
+                registro.estado_de_contrato,
+                registro.fecha_elab_contrato,
+                registro.num_contrato,
+                registro.listas_mosaicos,
+                registro.entrega_notas,
+                registro.intu_canvas,
+                registro.tiquetes,
+                registro.hotel,
+                registro.viaticos
+            ]
+            ws.append(data_row)
 
-        # Aplicar color verde a las celdas de la columna "GRUPO"
-        for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=grupo_index, max_col=grupo_index):
-            for cell in row:
-                cell.fill = PatternFill(start_color="00FF00", end_color="00FF00", fill_type="solid")
-
-        # Agregar bordes a todas las celdas
-        border = Border(left=Side(style='thin'), 
-                        right=Side(style='thin'), 
-                        top=Side(style='thin'), 
-                        bottom=Side(style='thin'))
+        # Aplicar bordes a todas las celdas
+        border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
         for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=1, max_col=len(headers)):
             for cell in row:
                 cell.border = border
@@ -620,16 +776,15 @@ class InformeProgramacion(TemplateView):
             adjusted_width = (max_length + 2) * 1.2  # Multiplicar por 1.2 para dar un poco de espacio adicional
             ws.column_dimensions[column_letter].width = adjusted_width
 
-           
-        
+        # Configurar la respuesta HTTP
+        response = HttpResponse(content_type="application/ms-excel")
+        contenido = "attachment; filename=ReporteProgramacionAcademica.xlsx"
+        response["Content-Disposition"] = contenido
 
-        nombre_archivo= "ReporteProgramacionAcademica.xlsx"
-
-        response= HttpResponse(content_type ="application/ms-excel")
-        contenido = "attachment; filename = {0}".format(nombre_archivo)
-        response["Content-Disposition"]= contenido
+        # Guardar el archivo xlsx y devolver la respuesta
         wb.save(response)
         return response
+
 
 
 
