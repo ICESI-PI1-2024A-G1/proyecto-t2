@@ -10,7 +10,7 @@ urlpatterns = [
     path('index/', views.index, name='index'),  
     path('index/programacion/', views.crear_programacion_academica, name = "crear_programacion_academica"),
     path('index/gestion/', views.gestion),
-    path('index/gestion/nuevoprograma/', views.nuevo_programa),
+    
     path('gestion/nuevoprograma/director_programa/', views.director_programa),
     path('gestion/nuevoprograma/mallacurricular/', views.malla_curricular),
     path('gestion/nuevoprograma/operacion_exitosa/', views.operacionexitosanp),
@@ -26,10 +26,12 @@ urlpatterns = [
     path('index/servicios_asignacion/registroProfesor/', views.registrar_profesor),
     path('index/servicios_asignacion/buscar_profesor/', views.buscar_profesor, name='buscar_profesor'),
     path('index/servicios_asignacion/buscar_profesor/editar/<str:nombre_profesor>/', views.editar_profesor, name='editar_profesor'),
-
+    path('index/gestion/nuevoprograma/', views.nuevo_programa),
+    path('index/gestion/buscar_programa_academico/', views.buscar_programa_academico, name='buscar_programa_academico'),
+    path('index/gestion/buscar_programa_academico/editar/<str:codigo_programa>/', views.editar_programa, name='editar_programa'),
+    path('index/gestion/eliminar_programa_academico/', views.consultar_programas_academicos),
     
     path('index/lista/', views.lista_programas, name='lista_programas'),
-    path('index/gestion/editar/<str:codigo_programa>/', views.editar_programa, name='editar_programa'),
    
     path('programacion/materias/<int:materia_id>/horarios/', views.horarios, name='horarios'),
     
@@ -42,7 +44,8 @@ urlpatterns = [
     
     path('index/servicios_asignacion/lista_edificios/', views.lista_edificios, name='lista_edificios'),
     path('index/servicios/asignacion/lista_espacios/<str:nombre_edificio>/', views.lista_espacios, name='lista_espacios'),
-    path('index/servicios_asignacion/editar_espacio/<str:espacio_codigo>/', views.editar_espacio, name='editar_espacio')
+    path('index/servicios_asignacion/editar_espacio/<str:espacio_codigo>/', views.editar_espacio, name='editar_espacio'),
 
- 
+    path('index/gestion/programas_csv/', views.programas_csv, name = 'programas-csv'),
+    path('index/gestion/eliminar_programa_academico/<int:codigo_programa>/', views.eliminar_programa_inactivo, name='eliminar_programa_inactivo')
     ]
