@@ -705,38 +705,60 @@ def crear_actividad(request):
     return render(request, 'Crear/crear_actividad.html', {'formActividad': formActividad})
 
 
+from openpyxl import Workbook
+from openpyxl.styles import PatternFill, Border, Side
+from django.http import HttpResponse
+
 class InformeProgramacion(TemplateView):
-    def get(self,request,*args,**kwargs):
+    def get(self, request, *args, **kwargs):
         query = ProgramacionAcademica.objects.all()
         wb = Workbook()
-        flag= True
-        if flag:
-            ws=wb.active
-            ws.title = 'Hoja'+str(Font)
-            flag = False
-        else:
-            ws = wb.create_sheet("Hoja"+str(Font)) 
 
-         # Escribir el encabezado
+        # Crear una nueva hoja en el libro de trabajo
+        ws = wb.active
+        ws.title = 'Hoja1'
+
+        # Escribir el encabezado
         headers = ['PROGRAMA', 'COD BANNER', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'TIPO DE CONTRATO', 'CIUDAD', 'EMAIL', 'TELEFONO', 'FECHA DE CLASE', 'HORARIO', 'ESTADO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
         ws.append(headers)
 
+        # Aplicar formato al encabezado
         for cell in ws[1]:
-         cell.fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
+            cell.fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
 
-        # Obtener el índice de la columna "GRUPO" en la hoja de cálculo
-        grupo_index = headers.index('GRUPO') + 1
+        # Obtener los datos de los registros y escribirlos en el archivo xlsx
+        for registro in query:
+            data_row = [
+                registro.programa_de_posgrado.nombre_programa,
+                registro.cod_banner,
+                registro.departamento.id_departamento,
+                registro.horas,
+                registro.num_creditos,
+                registro.periodo.id_periodo,
+                ', '.join([materia.nombre_materia for materia in registro.materia.all()]),  # Obtener los nombres de las materias separados por coma
+                registro.modalidad,
+                registro.grupo,
+                registro.docente.nombre_profesor,
+                registro.tipo_de_contrato,
+                registro.ciudad,
+                registro.correo_electronico,
+                registro.telefono,
+                registro.fecha_de_clase,
+                ', '.join([str(horario.id_horario) for horario in registro.horario.all()]),  # Obtener los nombres de los horarios separados por coma
+                registro.estado_de_contrato,
+                registro.fecha_elab_contrato,
+                registro.num_contrato,
+                registro.listas_mosaicos,
+                registro.entrega_notas,
+                registro.intu_canvas,
+                registro.tiquetes,
+                registro.hotel,
+                registro.viaticos
+            ]
+            ws.append(data_row)
 
-        # Aplicar color verde a las celdas de la columna "GRUPO"
-        for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=grupo_index, max_col=grupo_index):
-            for cell in row:
-                cell.fill = PatternFill(start_color="00FF00", end_color="00FF00", fill_type="solid")
-
-        # Agregar bordes a todas las celdas
-        border = Border(left=Side(style='thin'), 
-                        right=Side(style='thin'), 
-                        top=Side(style='thin'), 
-                        bottom=Side(style='thin'))
+        # Aplicar bordes a todas las celdas
+        border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
         for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=1, max_col=len(headers)):
             for cell in row:
                 cell.border = border
@@ -754,16 +776,15 @@ class InformeProgramacion(TemplateView):
             adjusted_width = (max_length + 2) * 1.2  # Multiplicar por 1.2 para dar un poco de espacio adicional
             ws.column_dimensions[column_letter].width = adjusted_width
 
-           
-        
+        # Configurar la respuesta HTTP
+        response = HttpResponse(content_type="application/ms-excel")
+        contenido = "attachment; filename=ReporteProgramacionAcademica.xlsx"
+        response["Content-Disposition"] = contenido
 
-        nombre_archivo= "ReporteProgramacionAcademica.xlsx"
-
-        response= HttpResponse(content_type ="application/ms-excel")
-        contenido = "attachment; filename = {0}".format(nombre_archivo)
-        response["Content-Disposition"]= contenido
+        # Guardar el archivo xlsx y devolver la respuesta
         wb.save(response)
         return response
+
 
 
 

@@ -194,9 +194,9 @@ button {
     position: fixed;
     top: 20%;
     left: 50%;
-    width: 74%;
+    width: 82%;
     transform: translate(-50%, -57%);
-    /*background-color: #28C985;*/
+    /* background-color: #28C985; */
     margin-top: 2px;
     margin-left: 10px;
 }
