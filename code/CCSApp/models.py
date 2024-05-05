@@ -40,7 +40,7 @@ class Horario(models.Model):
     grupo = models.CharField(max_length=20, choices=GRUPO_CHOICES, default='')
     modalidad = models.CharField(max_length=20, choices=MODALIDAD_CHOICES)
     enlace_virtual = models.URLField(blank=True, null=True)
-    salon_presencial = models.ForeignKey('Espacio', on_delete=models.CASCADE)
+    salon_presencial = models.ForeignKey('Espacio', on_delete=models.CASCADE, default='')
 
     def __str__(self):
         return str(self.id_horario)
