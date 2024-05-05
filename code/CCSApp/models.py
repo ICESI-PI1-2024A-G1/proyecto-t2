@@ -19,9 +19,9 @@ class Periodo(models.Model):
 
 class Horario(models.Model):
     MODALIDAD_CHOICES = [
-        ('presencial', 'Presencial'),
-        ('virtual', 'Virtual'),
-        ('mixta', 'Mixta'),
+        ('Presencial', 'Presencial'),
+        ('Virtual', 'Virtual'),
+        ('Mixta', 'Mixta'),
     ]
 
     GRUPO_CHOICES = [
