@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Test para el registro de un usuario a la aplicacion" skipped="0" tests="1" time="5.03" timestamp="2024-05-05 04:42:33"><testcase name=""><failure message="expected:&lt;[Iniciar SesiÃ³n]&gt; but was:&lt;[]&gt;" type="java.lang.AssertionError">expected:&lt;[Iniciar SesiÃ³n]&gt; but was:&lt;[]&gt;</failure><system-err>expected:&lt;[Iniciar SesiÃ³n]&gt; but was:&lt;[]&gt;&#13;
+co.com.project.CCSApp.stepdefinitions.RegistroUsuarioStepDefinitions.quedo_registrado_exitosamente_en_el_sistema(RegistroUsuarioStepDefinitions.java:48)&#13;
+✽.quedo registrado exitosamente en el sistema(file:///C:/Users/Isabella/Documents/ICESI/5.%20Quinto%20Semestre/Proyecto%20Integrador/Trabajos/AutomatizacionPruebasPI1/PruebasPI1-CCSApp/src/test/resources/features/registroUsuario.feature:8)&#13;
+</system-err></testcase></testsuite>

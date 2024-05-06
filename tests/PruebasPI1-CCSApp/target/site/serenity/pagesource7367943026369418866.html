@@ -1,0 +1,61 @@
+<html lang='en'><head><link href='prism/prism.css' rel='stylesheet' /></head><body><script src='prism/prism.js'></script><body><div><pre><code class='language-html'>&lt;html lang="en"&gt;<br/>
+ &lt;head&gt;<br/>
+  &lt;meta charset="UTF-8"&gt;<br/>
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br/>
+  &lt;title&gt;Iniciar Sesión&lt;/title&gt;<br/>
+  &lt;link rel="stylesheet" href="/static/css/login.css" type="text/css"&gt;<br/>
+  &lt;link rel="shortcut icon" href="/static/Images/logo_icesi2.png"&gt;<br/>
+ &lt;/head&gt;<br/>
+ &lt;body&gt;<br/>
+  &lt;div id="page-container"&gt;<br/>
+   &lt;div id="page1" class="fade-in fade-out"&gt;<br/>
+    &lt;div class="bloq-sup"&gt;<br/>
+     &lt;form method="get"&gt;<br/>
+      &lt;div class="bloq-sup_secd"&gt;<br/>
+       &lt;div class="div_boton_return"&gt;&lt;!-- &lt;button class="boton-2" name="boton1" type="button"&gt; --&gt; &lt;img src="/static/Images/logo_icesi2.png" height="55" width="55" alt="Botón de retorno"&gt; &lt;!-- &lt;/button&gt; --&gt;<br/>
+       &lt;/div&gt;<br/>
+       &lt;div class="titulo"&gt;<br/>
+        &lt;div class="div_CCSA"&gt;<br/>
+         &lt;h1&gt;CCSA&lt;/h1&gt;<br/>
+        &lt;/div&gt;<br/>
+        &lt;div class="descripcion"&gt;<br/>
+         &lt;h3&gt;Centro Compartido de Servicios Académicos&lt;/h3&gt;<br/>
+        &lt;/div&gt;<br/>
+       &lt;/div&gt;<br/>
+      &lt;/div&gt;<br/>
+     &lt;/form&gt;<br/>
+    &lt;/div&gt;<br/>
+    &lt;div class="bloq-mid"&gt;<br/>
+     &lt;div class="intermed"&gt;<br/>
+      &lt;h1&gt;Iniciar Sesión&lt;/h1&gt;<br/>
+     &lt;/div&gt;<br/>
+     &lt;div class="intermed-bloq"&gt;<br/>
+      &lt;form method="POST" class="form-1" enctype="multipart/form-data" id="registro-materia-form" autocomplete="off"&gt;&lt;input type="hidden" name="csrfmiddlewaretoken" value="Ml7DaMQd6g486tp8lwPne9e8CHMnxJwnUKoRDYabHfPwyEsEIWF0Huz6iYLeUYwv"&gt;<br/>
+       &lt;p&gt;&lt;label for="id_cedula"&gt;Cedula:&lt;/label&gt; &lt;input type="text" name="cedula" class="form-control" maxlength="10" required id="id_cedula"&gt;&lt;/p&gt;<br/>
+       &lt;p&gt;&lt;label for="id_password"&gt;Password:&lt;/label&gt; &lt;input type="password" name="password" class="form-control" maxlength="100" required id="id_password"&gt;&lt;/p&gt;<br/>
+       &lt;div class="buttondiv button-container"&gt;&lt;button id="boton_iniciar" type="submit" class="btn-1"&gt;Iniciar Sesión&lt;/button&gt; &lt;button id="boton_registrar" type="button" class="btn-1" onclick="redirigirRegistro()"&gt;Registrar&lt;/button&gt;<br/>
+       &lt;/div&gt;<br/>
+      &lt;/form&gt;<br/>
+     &lt;/div&gt;<br/>
+    &lt;/div&gt;<br/>
+    &lt;div id="modal-confirmacion" class="modal"&gt;<br/>
+     &lt;div class="modal-contenido"&gt;&lt;span class="cerrar-modal" onclick="cerrarModal()"&gt;×&lt;/span&gt;<br/>
+      &lt;p&gt;Verificando Usuario...&lt;/p&gt;<br/>
+     &lt;/div&gt;<br/>
+    &lt;/div&gt;<br/>
+    &lt;div id="modal-error" class="modal" style="display: none;"&gt;<br/>
+     &lt;div class="modal-contenido"&gt;&lt;span class="cerrar-modal" onclick="cerrarModalError()"&gt;×&lt;/span&gt;<br/>
+      &lt;p id="error-message-modal"&gt;&lt;/p&gt;<br/>
+     &lt;/div&gt;<br/>
+    &lt;/div&gt;<br/>
+    &lt;div class="bloq-inf"&gt;<br/>
+     &lt;h4&gt;Universidad Icesi&lt;/h4&gt;<br/>
+     &lt;h4&gt;Todos los derechos reservados&lt;/h4&gt;<br/>
+     &lt;h4&gt;Derechos de Autor&lt;/h4&gt;<br/>
+    &lt;/div&gt;<br/>
+   &lt;/div&gt;<br/>
+  &lt;/div&gt;<br/>
+  &lt;script src="/static/js/transiciones.js"&gt;&lt;/script&gt;<br/>
+  &lt;script src="/static/js/script.js"&gt;&lt;/script&gt;<br/>
+ &lt;/body&gt;<br/>
+&lt;/html&gt;</code></pre></div></body></html>

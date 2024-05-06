@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    implementation 'net.serenity-bdd:serenity-core:4.0.0'
+    implementation 'net.serenity-bdd:serenity-cucumber:4.0.0'
+    implementation 'net.serenity-bdd:serenity-screenplay:4.0.0'
+    implementation 'net.serenity-bdd:serenity-screenplay-webdriver:4.0.0'
+    implementation 'org.seleniumhq.selenium:selenium-server:3.14.0'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.7.0'
+
+    implementation('org.slf4j:slf4j-simple:2.0.13')
+
+}
