@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Test para el registro de un usuario a la aplicacion" skipped="0" tests="1" time="3.21" timestamp="2024-05-05 09:13:30"><testcase name=""><failure message="Expected condition failed: waiting for By.cssSelector: #boton_registrar to be present (tried for 4 second(s) with 100 milliseconds interval)&#10;Build info: version: '4.12.0', revision: '249f2a7d1b*'&#10;System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.12'&#10;Driver info: driver.version: unknown" type="net.thucydides.core.webdriver.exceptions.ElementShouldBePresentException">Expected condition failed: waiting for By.cssSelector: #boton_registrar to be present (tried for 4 second(s) with 100 milliseconds interval)
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Test para el ingreso de usuarios a la plataforma" skipped="0" tests="1" time="4.22" timestamp="2024-05-05 09:13:18"><testcase name=""><failure message="Expected condition failed: waiting for By.cssSelector: #boton_iniciar to be present (tried for 4 second(s) with 100 milliseconds interval)&#10;Build info: version: '4.12.0', revision: '249f2a7d1b*'&#10;System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.12'&#10;Driver info: driver.version: unknown" type="net.thucydides.core.webdriver.exceptions.ElementShouldBePresentException">Expected condition failed: waiting for By.cssSelector: #boton_iniciar to be present (tried for 4 second(s) with 100 milliseconds interval)
 Build info: version: '4.12.0', revision: '249f2a7d1b*'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.12'
-Driver info: driver.version: unknown</failure><system-err>Expected condition failed: waiting for By.cssSelector: #boton_registrar to be present (tried for 4 second(s) with 100 milliseconds interval)
+Driver info: driver.version: unknown</failure><system-err>Expected condition failed: waiting for By.cssSelector: #boton_iniciar to be present (tried for 4 second(s) with 100 milliseconds interval)
 Build info: version: '4.12.0', revision: '249f2a7d1b*'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.12'
 Driver info: driver.version: unknown&#13;
@@ -11,14 +11,14 @@ net.thucydides.core.steps.StepInterceptor.runTestStep(StepInterceptor.java:471)&
 net.thucydides.core.steps.StepInterceptor.runOrSkipMethod(StepInterceptor.java:213)&#13;
 net.thucydides.core.steps.StepInterceptor.testStepResult(StepInterceptor.java:200)&#13;
 net.thucydides.core.steps.StepInterceptor.intercept(StepInterceptor.java:92)&#13;
-co.com.project.CCSApp.task.PruebaRegistro.performAs(PruebaRegistro.java:16)&#13;
+co.com.project.CCSApp.task.PruebaIngreso.performAs(PruebaIngreso.java:17)&#13;
 net.thucydides.core.steps.StepInterceptor.invokeMethod(StepInterceptor.java:519)&#13;
 net.thucydides.core.steps.StepInterceptor.executeTestStepMethod(StepInterceptor.java:499)&#13;
 net.thucydides.core.steps.StepInterceptor.runTestStep(StepInterceptor.java:471)&#13;
 net.thucydides.core.steps.StepInterceptor.runOrSkipMethod(StepInterceptor.java:213)&#13;
 net.thucydides.core.steps.StepInterceptor.testStepResult(StepInterceptor.java:200)&#13;
 net.thucydides.core.steps.StepInterceptor.intercept(StepInterceptor.java:92)&#13;
-co.com.project.CCSApp.stepdefinitions.RegistroUsuarioStepDefinitions.ingreso_los_datos_para_crear_mi_usuario(RegistroUsuarioStepDefinitions.java:40)&#13;
+co.com.project.CCSApp.stepdefinitions.IngresoUsuarioStepDefinitions.ingresoLosDatosParaIniciarEnMiUsuario(IngresoUsuarioStepDefinitions.java:37)&#13;
 io.cucumber.java.Invoker.doInvoke(Invoker.java:66)&#13;
 io.cucumber.java.Invoker.invoke(Invoker.java:24)&#13;
 io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)&#13;
