@@ -86,22 +86,22 @@ WSGI_APPLICATION = 'CCSAsite.wsgi.application'
 
 #Este bloque de codigo no puede ser eliminado, ya que es necesario para la conexion a la base de datos en el deployment
 #Solo dejarlo comentado a la hora de hacer cambios localmente
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         # Replace this value with your local database's connection string.
-#         default='postgresql://postgres:proyecto_t2_user@dpg-corsrk21hbls73favg00-a:5432/proyecto_t2',
-#         conn_max_age=600
-#     )
-# }
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://postgres:proyecto_t2_user@dpg-corsrk21hbls73favg00-a:5432/proyecto_t2',
+        conn_max_age=600
+    )
+}
 
 #Este bloque de codigo no puede ser eliminado, ya que es necesario para hacer ediciones o trabajar localmente el proyecto
 #Solo dejarlo comentado a la hora de hacer deploy en Render
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
