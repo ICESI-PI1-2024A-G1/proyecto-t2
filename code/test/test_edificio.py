@@ -1,5 +1,10 @@
 import pytest
 from CCSApp.models import Edificio
+from django.test import TestCase, RequestFactory
+from django.urls import reverse
+from CCSApp.views import lista_edificios
+
+
 
 @pytest.mark.django_db
 def test_edificio_creation():
@@ -11,3 +16,5 @@ def test_edificio_creation():
 
     # Verificamos que el edificio se haya creado correctamente
     assert edificio.nombre_edificio == 'Edificio A'
+
+
