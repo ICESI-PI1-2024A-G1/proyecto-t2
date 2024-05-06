@@ -58,10 +58,15 @@ def asignar_horario(request):
                     salon_presencial=salon_presencial,
                     grupo=grupo
                 )
-                return redirect('/index/servicios_asignacion')
+                return redirect('/index/programacion')
             else:
+                return render(request, 'Asignar/asignar_horario.html', {
+                    'formNewHorario': form,
+                    'error': 'El horario se superpone con otro horario existente.'
+                })
+
                 # Hay conflicto, mostrar un mensaje de error
-                form.add_error(None, "El horario se superpone con otro horario existente.")
+                #form.add_error(None, "El horario se superpone con otro horario existente.")
     else:
         form = NewHorario()
 
@@ -161,7 +166,7 @@ def registrar_materia_malla(request):
                 if Materia.objects.filter(codigo_materia=codigo_materia).exists():
                     # Si existe, puedes manejar la situación como desees,
                     # por ejemplo, mostrando un mensaje de error
-                    return render(request, 'registro_materia.html', {
+                    return render(request, 'Registrar/registro_materia.html', {
                         'form': CrearMateria,
                         'error': 'La materia ya existe en la base de datos.'
                     })

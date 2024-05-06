@@ -140,7 +140,9 @@ class ProgramacionAcademicaForm(forms.Form):
     horas = forms.FloatField(label='Horas totales', widget=forms.Select(attrs={'class': 'form-control2'}))
     #periodo = forms.ModelChoiceField(label="Periodo", queryset= Periodo.objects.all(), help_text="Seleccione el periodo al que pertenece la programacion academica")
     materia = forms.ModelChoiceField(label="Materia", queryset= Materia.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
-    horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    horario_choices = [(horario.id_horario, horario.fecha_inicio_horario) for horario in Horario.objects.all()]
+    horarios = forms.ChoiceField(label="Horarios", choices=horario_choices, widget=forms.SelectMultiple(attrs={'class': 'form-control2'}))
+    #horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
     grupo =  forms.CharField(max_length=10, label= "Grupo", widget=forms.Select(attrs={'class': 'form-control2'}))
     profesor = forms.ModelChoiceField(label="Profesor", queryset= Profesor.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
 

@@ -404,10 +404,10 @@ function redirigirServiciosAsignaciondesdeAsignarHorario() {
                 document.getElementById("page-container").innerHTML = this.responseText;
                 
                 // Aplicar la animación de entrada a la página 2
-                document.getElementById(window.location.href = '/index/servicios_asignacion').classList.add("fade-in");
+                document.getElementById(window.location.href = '/index/programacion').classList.add("fade-in");
             }
         };
-        xhttp.open("GET", window.location.href = '/index/servicios_asignacion', true);
+        xhttp.open("GET", window.location.href = '/index/programacion', true);
         xhttp.send();
     }, 500);
 }
