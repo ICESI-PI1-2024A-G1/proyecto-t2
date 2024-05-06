@@ -79,9 +79,59 @@ button {
     }
 }
 
+.bloq-sup,
+.bloq-inf {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Ajusta la opacidad según desees */
+    z-index: 9999; /* Asegúrate de que el z-index sea mayor que cualquier otro elemento */
+    text-align: center; /* Ajusta según necesites */
+    padding: 10px; /* Ajusta según necesites */
+}
+
+.bloq-sup {
+    top: 0;
+}
+
+.bloq-inf {
+    bottom: 0;
+}
+
+.bloq-mid-wrapper {
+    width: 100%;
+    /* background-color: #999; */
+}
+
+
+.div_boton_return{
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 5%;
+    height: 10%;
+    justify-content: center;
+    background-color: transparent;
+ }
+  
+ .div_CCSA{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 22%;
+    justify-content: center;
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+}
+
 .form-1 {
     width: 100%;
     border-collapse: collapse;
+    /* background-color: aqua; */
+    margin-bottom: 10px;
 }
 
 .form-1 th,
@@ -103,6 +153,49 @@ button {
     background-color: #ddd;
 }
 
+.intermed {
+    position: relative;
+    top: 0%; /* Ajusta este valor según lo que necesites */
+    left: 30%;
+    margin-left: 100px;
+    margin-bottom: 2%;
+    width: 26%;
+    /* background-color: aqua; */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+}
+
+.intermed-bloq {
+    position: relative;
+    margin-left:0%; /* Ajusta este valor según lo que necesites */
+    margin-bottom: 2%;
+    width: 80%;
+    height: 30%;
+    left: 10%;
+    /* background-color:#999; */
+} 
+
+.intermed-bloq .form-control{
+    width: 22%;
+    height: 50%;
+    background-color: transparent;
+    border: 2px solid #04AA6D;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 8px 20px;
+}
+
+.div-btn{
+    display: block;
+    justify-content: center;
+    position: fixed;
+    top: 33%;
+    left: 100%;
+    transform: translate(-46%, -50%);
+    /*background-color: aqua;*/
+    width: 30%;
+}
+
 .button {
     /* Alinear los botones con los campos de texto */
     padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
@@ -120,16 +213,17 @@ button {
 
 .btn-1{
     font-size: 1rem;
-    /* text-transform: lowercase; */
     font-weight: 500;
     color: #000;
     border: none;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
-    padding: 7px 20px;
+    padding: 8px 20px;
     background-color: #28C985;
     border-radius: 2rem;
     border:0.7px solid #000000c8;
-    /* border: #ccc; */
+    width: 10%;
+    margin-left: 45%;
+    margin-top: 4px;
 }
 
 .btn-1 {
@@ -153,25 +247,14 @@ button {
     display: block;
     justify-content: center;
     position: fixed;
-    top: 50%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -57%);
+    overflow-y: scroll;
+    width: 100%;
+    height: 66%;
     /* background-color: #28C985; */
-    /* width: 50%; */
 }
-
-.intermed {
-    position: relative;
-    top: 20%; /* Ajusta este valor según lo que necesites */
-    left: 17%;
-    margin-left: 25px; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 25px;
-    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 55%;
-    height: 30px;
-    /* background-color: aqua; */
-}
-
 
 .bloq-sup{
     /* display: flex;
@@ -193,6 +276,8 @@ button {
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
 
 .bloq-sup_secd {
@@ -211,6 +296,7 @@ button {
     border: none; /* Quita el borde del botón */
     width: 55px; /* Ajusta el ancho del botón según sea necesario */
     height: 55px; /* Ajusta la altura del botón según sea necesario */
+    background-color: transparent;
 }
 
 .titulo {
@@ -219,9 +305,11 @@ button {
 }
 
 .descripcion {
-    margin-left: 5px;
+    margin-left: 12px;
     line-height: 0px;  /* Ajusta el margen según sea necesario */
-}
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+ }
 
 .error-message {
     text-align: center;

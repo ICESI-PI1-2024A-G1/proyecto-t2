@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang = "es"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+        <title>Informe Programacion Posgrado</title>
+    </head>
+    <body>
+        {%if queryset %}
+          <table border ="2"> 
+            <thead>
+                <tr>
+                     <th>PROGRAMA</th>
+                     <th>COD BANNER</th>
+                     <th>DEPT</th>
+                     <th>HORAS</th>
+                     <th>NUM CREDITOS</th>
+                     <th>PERIODO</th>
+                     <th>MATERIA</th>
+                     <th>MODALIDAD</th>
+                     <th>GRUPO</th>
+                     <th>DOCENTE</th>
+                     <th>C.C</th>
+                     <th>TIPO DE CONTRATO</th>
+                     <th>CIUDAD</th>
+                     <th>EMAIL</th>
+                     <th>TELEFONO</th>
+                     <th>FECHA DE CLASE</th>
+                     <th>HORARIO</th>
+                     <th>ESTADO DE CONTRATO</th>
+                     <th>No.CONTRATO</th>
+                     <th>LISTAS-MOSAICOS</th>
+                     <th>ENTREGA DE NOTAS</th>
+                     <th>INTU/CANVAS</th>
+                     <th>TIQUETES</th>
+                     <th>HOTEL</th>
+                     <th>VIATICOS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for q in queryset % }
+                   <tr>
+                      <td>{{q.programa_de_posgrado}}</td>
+                      <td>{{q.cod_banner}}</td>
+                      <td>{{q.departamento}}</td>
+                      <td>{{q.horas}}</td>
+                      <td>{{q.num_creditos}}</td>
+                      <td>{{q.periodo}}</td>
+                      <td>{{q.materia}}</td>
+                      <td>{{q.modalidad}}</td>
+                      <td>{{q.grupo}}</td>
+                      <td>{{q.docente}}</td>
+                      <td>{{q.tipo_de_contrato}}</td>
+                      <td>{{q.ciudad}}</td>
+                      <td>{{q.correo_electronico}}</td>
+                      <td>{{q.telefono}}</td>
+                      <td>{{q.fecha_de_clase}}</td>
+                      <td>{{q.horario}}</td>
+                      <td>{{q.estado_de_contrato}}</td>
+                      <td>{{q.fecha_elab_contrato}}</td>
+                      <td>{{q.num_contrato}}</td>
+                      <td>{{q.listas_mosaico}}</td>
+                      <td>{{q.entrega_de_notas}}</td>
+                      <td>{{q.intu_canvas}}</td>
+                      <td>{{q.tiquetes}}</td>
+                      <td>{{q.hotel}}</td>
+                      <td>{{q.viaticos}}</td>
+                   </tr> 
+                {% endfor %}
+            </tbody>
+        </table> 
+    
+    {% else%}
+        <h1>No hay datos registrados</h1>
+    {% endif%}    
+    </body>
+
+</html>
+
+
+

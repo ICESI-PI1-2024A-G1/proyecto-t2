@@ -21,6 +21,121 @@ function redirigirIndex() {
     }, 500);
 }
 
+function redirigirIndextoEditarMateria() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = 'buscar_materia/').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = 'buscar_materia/', true);
+        xhttp.send();
+    }, 500);
+}
+
+function redirigirIndextoEditarProfesor() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = 'buscar_profesor/').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = 'buscar_profesor/', true);
+        xhttp.send();
+    }, 500);
+}
+
+function redirigirIndextoCrearEvento() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = 'crear_evento/').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = 'crear_evento/', true);
+        xhttp.send();
+    }, 500);
+}
+
+function redirigirIndextoCrearActividad() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = 'crear_actividad/').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = 'crear_actividad/', true);
+        xhttp.send();
+    }, 500);
+}
+
+function redirigirListaEspaciosDesdeEditarEspacio() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = '/index/servicios_asignacion/lista_edificios').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = '/index/servicios_asignacion/lista_edificios', true);
+        xhttp.send();
+    }, 500);
+}
+
 function redirigirPrincipal() {
     document.getElementById("page1").classList.add("fade-out");
     
@@ -63,6 +178,52 @@ function redirigirGestion() {
             }
         };
         xhttp.open("GET", window.location.href = 'gestion/', true);
+        xhttp.send();
+    }, 500);
+}
+
+function redirigirGestionEliminarPrograma() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = 'eliminar_programa_academico/').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = 'eliminar_programa_academico/', true);
+        xhttp.send();
+    }, 500);
+}
+
+function redirigirGestiondesdeNuevoPrograma() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = '/index/gestion').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = '/index/gestion', true);
         xhttp.send();
     }, 500);
 }
@@ -243,10 +404,10 @@ function redirigirServiciosAsignaciondesdeAsignarHorario() {
                 document.getElementById("page-container").innerHTML = this.responseText;
                 
                 // Aplicar la animación de entrada a la página 2
-                document.getElementById(window.location.href = '/index/servicios_asignacion').classList.add("fade-in");
+                document.getElementById(window.location.href = '/index/programacion').classList.add("fade-in");
             }
         };
-        xhttp.open("GET", window.location.href = '/index/servicios_asignacion', true);
+        xhttp.open("GET", window.location.href = '/index/programacion', true);
         xhttp.send();
     }, 500);
 }
@@ -408,6 +569,75 @@ function redirigirIndexDesdeProgramacion() {
             }
         };
         xhttp.open("GET", window.location.href = '/index', true);
+        xhttp.send();
+    }, 500);
+}
+
+function redirigirListaEdificio() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = '/index/servicios_asignacion/lista_edificios').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = '/index/servicios_asignacion/lista_edificios', true);
+        xhttp.send();
+    }, 500);
+}
+
+function redirigirBuscarPrograma() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = 'buscar_programa_academico/').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = 'buscar_programa_academico/', true);
+        xhttp.send();
+    }, 500);
+}
+
+function redirigirBuscarDesdeEditarPrograma() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = '/index/gestion/buscar_programa_academico').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = '/index/gestion/buscar_programa_academico', true);
         xhttp.send();
     }, 500);
 }

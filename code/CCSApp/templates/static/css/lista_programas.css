@@ -79,7 +79,24 @@ button {
     }
 }
 
+.bloq-sup,
+.bloq-inf {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Ajusta la opacidad según desees */
+    z-index: 9999; /* Asegúrate de que el z-index sea mayor que cualquier otro elemento */
+    text-align: center; /* Ajusta según necesites */
+    padding: 10px; /* Ajusta según necesites */
+}
 
+.bloq-sup {
+    top: 0;
+}
+
+.bloq-inf {
+    bottom: 0;
+}
 
 .button {
     /* Alinear los botones con los campos de texto */
@@ -169,6 +186,7 @@ button {
     transform: translate(-50%, -57%);
     /* background-color: #28C985;
     width: 50%; */
+    background-color: #28C985;
 }
 
 .intermed {
@@ -209,6 +227,8 @@ button {
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
 }
 
 .bloq-sup_secd {
@@ -218,6 +238,19 @@ button {
     margin-top: -25px;
     margin-left: 5px;
 
+}
+
+.intermed-bloq-1 {
+    display: block;
+    justify-content: center;
+    position: fixed;
+    top: 18%;
+    left: 52%;
+    width: 75%;
+    transform: translate(-50%, -57%);
+    /* background-color: #28C985;
+    width: 50%; */ 
+    background-color: #999;
 }
 
 .boton-2 {
@@ -270,3 +303,4 @@ button {
     width: 100%; /* Para que la imagen ocupe todo el ancho del div */
     height: auto; /* Para mantener la proporción de la imagen */
 }
+

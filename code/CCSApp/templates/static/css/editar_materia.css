@@ -56,6 +56,47 @@ ul {
     margin-left: 0.5em;
  }
  
+ .modal {
+   display: none; /* El cuadro emergente está oculto por defecto */
+   position: fixed; 
+   z-index: 1; 
+   left: 0;
+   top: 0;
+   width: 100%; 
+   height: 100%; 
+   overflow: auto; 
+   background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente */
+ }
+ 
+ .modal-contenido {
+   background-color: #fefefe;
+   margin: 0 auto; 
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%; 
+   max-width: 600px; /* Ancho máximo */
+   border-radius: 20px; /* Bordes más curvos */
+   position: absolute; /* Cambiamos la posición a absoluta */
+   top: 50%; /* Lo posicionamos en la mitad superior del viewport */
+   left: 50%; /* Lo posicionamos en el centro horizontal */
+   transform: translate(-50%, -50%); /* Centramos vertical y horizontalmente */
+   animation-name: animacion-aparicion;
+   animation-duration: 0.5s; /* Duración de la animación */
+ }
+ 
+ .cerrar-modal {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+ }
+ 
+ .cerrar-modal:hover,
+ .cerrar-modal:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+ }
  
  /* Animación de entrada */
  .fade-in {
@@ -90,6 +131,24 @@ ul {
     }
  }
  
+.bloq-sup,
+.bloq-inf {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Ajusta la opacidad según desees */
+    z-index: 9999; /* Asegúrate de que el z-index sea mayor que cualquier otro elemento */
+    text-align: center; /* Ajusta según necesites */
+    padding: 10px; /* Ajusta según necesites */
+}
+
+.bloq-sup {
+    top: 0;
+}
+
+.bloq-inf {
+    bottom: 0;
+}
  
  .button {
     /* Alinear los botones con los campos de texto */
@@ -104,23 +163,20 @@ ul {
     /* Esquema del formulario */
     padding: 1em;
     border-radius: 1em;
- 
- 
  }
  
- 
- .btn-1{
+.btn-1{
     font-size: 1rem;
-    /* text-transform: lowercase; */
     font-weight: 500;
     color: #000;
     border: none;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     padding: 7px 20px;
     background-color: #28C985;
     border-radius: 2rem;
     border:0.7px solid #000000c8;
-    /* border: #ccc; */
+    width: 100%;
+    /* margin-bottom: 10%; */
  }
  
  
@@ -148,45 +204,94 @@ ul {
     display: block;
     justify-content: center;
     position: fixed;
-    top: 50%;
+    top: 52%;
     left: 50%;
-    transform: translate(-45%, -57%);
-    /* background-color: #28C985; */
-    width: 50%;
-    height: 30%;
+    transform: translate(-50%, -57%);
+    /* background-color:#999; */
+    overflow-y: scroll;
+    width: 100%;
+    height: 65%;
  }
- 
- 
+
+.bloq-mid input{
+      width: 60%;
+      height: 5%;
+      margin-left: 0%;
+      margin-top: 1%;
+      margin-bottom: 1%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+}
+
+ .bloq-mid label {
+   width: 28%; /* Ancho de la etiqueta */
+   /* background-color: #04AA6D; */
+   text-align: left; /* Alineación del texto a la izquierda */
+   margin-left: 2.5%;
+}
+
  .intermed {
     position: relative;
-    top: 0%; /* Ajusta este valor según lo que necesites */
-    left: 25%;
+    top: 2%; /* Ajusta este valor según lo que necesites */
+    left: 40%;
     margin-left: 25px; /* Ajusta este valor según lo que necesites */
     margin-bottom: 25px;
-    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 35%;
-    height: 20%;
-    /* background-color: #f2f2f2; */
+    width: 16%;
+    height: 5%;
+    /* background-color:#28C985; */
+    font-size: 0.75em;
  }
  
+ .intermed-bloq {
+   /* background-color:aqua; */
+   width: 40%;
+   height: 80%;
+   justify-content: center;
+   margin-left: 30%; /* Ajusta este valor según lo que necesites */
+   margin-top: 3%;
+   border: 2px solid #04AA6D;
+   border-radius: 10px;
+   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+}
+
+.intermed-bloq .form-control2{
+   width: 65%;
+   height: 50%;
+   background-color: transparent;
+   border: 2px solid #04AA6D;
+   border-radius: 10px;
+   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+   padding: 7px 20px;
+   margin-top: 4px;
+   margin-bottom: 4px;
+}
  
- .intermed-bloq{
-    /* background-color:aqua; */
-    width:100%;
-    height: 60%;
-    justify-content: center;
- }
- 
- 
+.intermed-bloq .form-control{
+   width: 65%;
+   height: 50%;
+   background-color: transparent;
+   border: 2px solid #04AA6D;
+   border-radius: 10px;
+   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+   padding: 7px 20px;
+}
+
  .boton-intermed{
     /* background-color: bisque; */
-    width: 18%;
-    top: 50%;
-    left: 40%;
-    transform: translate(200%, 10%);
+    width: 50%;
+    top: 60%;
+    transform: translate(40%, 100%);
+    margin-bottom: 12%;
  }
- 
- 
+
+ .spaced-input {
+    margin-left: 5%; /* Ajusta el valor según lo desees */
+    /* margin-top: 0.5%; */
+}
+
+
  .bloq-sup{
     /* display: flex;
     align-items: center; */
@@ -196,6 +301,8 @@ ul {
     height: 13%;
     top: 0;
     background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
  }
  
  
@@ -208,7 +315,9 @@ ul {
     background-color: #f2f2f2; /* Color de fondo opcional */
     text-align: center;
     padding: 10px 2; /* Ajusta el padding según sea necesario, reduce el espacio debajo del texto */
- }
+    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
+
+   }
  
  
  .bloq-sup_secd {
@@ -217,8 +326,43 @@ ul {
     margin-top: auto;
     margin-top: -25px;
     margin-left: 5px;
- 
- 
+ }
+
+ .div_boton_return{
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 5%;
+    height: 10%;
+    justify-content: center;
+    /* border-radius: 50%; */
+    /* border: 1px solid #000000c8; */
+    /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+    /* padding: 7px 20px; */
+    /* background-color: #28C985; */
+    /* border-radius: 2rem; */
+    /* border:0.7px solid #000000c8; */
+    /* border: #ccc; */
+ }
+
+ .div_CCSA{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    /* background-color: #28C985; */
+    width: 22%;
+    justify-content: center;
+    /* border-radius: 50%; */
+    /* border: 1px solid #000000c8; */
+    /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+    /* padding: 7px 20px; */
+    /* background-color: #28C985; */
+    /* border-radius: 2rem; */
+    /* border:0.7px solid #000000c8; */
+    /* border: #ccc; */
  }
  
  
@@ -229,17 +373,18 @@ ul {
     border: none; /* Quita el borde del botón */
     width: 55px; /* Ajusta el ancho del botón según sea necesario */
     height: 55px; /* Ajusta la altura del botón según sea necesario */
+    background-color: transparent;
  }
- 
  
  .titulo {
     margin-right: 10px; /* Ajusta el margen según sea necesario */
     line-height: 62px;
+    /* background-color:antiquewhite; */
  }
  
  
  .descripcion {
-    margin-left: 5px;
+    margin-left: 12px;
     line-height: 0px;  /* Ajusta el margen según sea necesario */
  }
  
@@ -258,11 +403,3 @@ ul {
     border-radius: 4px; /* Esquinas redondeadas */
     box-sizing: border-box; /* Hace que el padding y el borde se incluyan en el ancho */
  }
- 
- 
- 
- 
- 
- 
- 
- 
