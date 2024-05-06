@@ -219,7 +219,7 @@ class ProfesorEditForm(forms.ModelForm):
         model = Profesor
         fields = ['nombre_profesor', 'cedula_profesor', 'especializacion_profesor', 'correo_electronico', 'telefono']
         widgets = {
-            'nombre_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'nombre_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input',  'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
             'cedula_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input','readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
             'especializacion_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
             'correo_electronico': forms.EmailInput(attrs={'class': 'form-control spaced-input'}),
