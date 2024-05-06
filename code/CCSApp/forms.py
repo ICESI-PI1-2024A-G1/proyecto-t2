@@ -87,7 +87,7 @@ class NewUsuary(forms.Form):
     rol = forms.CharField(label= "Rol", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     departamento = forms.CharField(label= "Departamento", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
     correo_electronico = forms.EmailField(label="Correo Electronico", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    telefono = forms.IntegerField(label= "Telefono", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    telefono = forms.CharField(label= "Telefono", widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(label="Password", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class LoginForm(forms.Form):
@@ -209,7 +209,7 @@ class RegistrarProfesor(forms.Form):
     cedula_profesor = forms.CharField(label="Identificación del profesor", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     especializacion_profesor = forms.CharField(label="Especialización", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     correo_electronico = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    telefono = forms.CharField(label="Teléfono", widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class ProfesorSearchForm(forms.Form):
     nombre_profesor = forms.CharField(label='Nombre del Profesor', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -247,7 +247,7 @@ class EditarProgramaForm(forms.ModelForm):
         
 class DirectorDePrograma(forms.Form):
     nombre_director = forms.CharField(label = 'Nombre', max_length= 255)
-    numero_director = forms.IntegerField(label = "Numero celular de contacto")
+    numero_director = forms.CharField(label = "Numero celular de contacto")
     correo_director = forms.CharField(label = "Correo Electronico", max_length= 500)
     foto_de_perfil = forms.ImageField()
 
