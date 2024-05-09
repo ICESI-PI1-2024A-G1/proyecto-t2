@@ -134,12 +134,24 @@ class CrearProgramaAcademico(forms.Form):
         return cleaned_data
 
 class ProgramacionAcademicaForm(forms.Form):
-    programa_de_posgrado = forms.ModelChoiceField(label="Programa de posgrado", queryset= Programa_de_posgrado.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
-    semestre = forms.ModelChoiceField(label="Semestre", queryset= Semestre.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    programa_de_posgrado = forms.ModelChoiceField(
+        label="Programa de posgrado",
+        queryset=Programa_de_posgrado.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_programa_de_posgrado'})
+    )
+    semestre = forms.ModelChoiceField(
+        label="Semestre",
+        queryset=Semestre.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_semestre'})
+    )
     departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
     horas = forms.FloatField(label='Horas totales', widget=forms.Select(attrs={'class': 'form-control2'}))
     #periodo = forms.ModelChoiceField(label="Periodo", queryset= Periodo.objects.all(), help_text="Seleccione el periodo al que pertenece la programacion academica")
-    materia = forms.ModelChoiceField(label="Materia", queryset= Materia.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    materia = forms.ModelChoiceField(
+        label="Materia",
+        queryset=Materia.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_materia'})
+    )
     horario_choices = [(horario.id_horario, horario.fecha_inicio_horario) for horario in Horario.objects.all()]
     horarios = forms.ChoiceField(label="Horarios", choices=horario_choices, widget=forms.SelectMultiple(attrs={'class': 'form-control2'}))
     #horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
@@ -189,6 +201,7 @@ class CrearMateria(forms.Form):
     syllabus = forms.FileField(label='Selecciona un archivo', widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
     departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
     semestre = forms.ModelChoiceField(label="Semestre", queryset= Semestre.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    programa_de_posgrado_materia = forms.ModelChoiceField(label="Programa de posgrado", queryset= Programa_de_posgrado.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
 
 class MateriaSearchForm(forms.Form):
     nombre_materia = forms.CharField(label='Nombre de la Materia', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))

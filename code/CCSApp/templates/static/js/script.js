@@ -51,3 +51,40 @@ function cerrarModal() {
     var modal = document.getElementById("modal-confirmacion");
     modal.style.display = "none";
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const programaSelect = document.querySelector('#id_programa_de_posgrado');
+    const semestreSelect = document.querySelector('#id_semestre');
+    const materiaSelect = document.querySelector('#id_materia');
+
+    programaSelect.addEventListener('change', function() {
+        updateMaterias();
+    });
+
+    semestreSelect.addEventListener('change', function() {
+        updateMaterias();
+    });
+
+    function updateMaterias() {
+        const programaValue = programaSelect.value;
+        const semestreValue = semestreSelect.value;
+
+        // Realiza una solicitud AJAX al servidor
+        fetch(`/api/filtrar_materias/?programa=${programaValue}&semestre=${semestreValue}`)
+            .then(response => response.json())
+            .then(data => {
+                // Actualiza las opciones del campo de selección de materias
+                materiaSelect.innerHTML = '';
+                data.forEach(materia => {
+                    const option = document.createElement('option');
+                    option.textContent = `${materia.codigo_materia} - ${materia.nombre_materia}`;
+                    option.value = materia.codigo_materia;
+                    materiaSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener las materias:', error);
+            });
+    }
+});
+

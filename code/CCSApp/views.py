@@ -191,7 +191,8 @@ def registrar_materia_malla(request):
                         departamento = form.cleaned_data['departamento'],
                         semestre = form.cleaned_data['semestre'],
                         creditos_materia=form.cleaned_data['creditos_materia'],
-                        syllabus=syllabus_file
+                        syllabus=syllabus_file,
+                        programa_de_posgrado_materia = form.cleaned_data['programa_de_posgrado_materia'],
                     )
                     materia.save()
                     return redirect('/index/servicios_asignacion')
@@ -200,6 +201,22 @@ def registrar_materia_malla(request):
                 'form': CrearMateria,
                 'error': 'Por favor, proporcione datos válidos.'
             })
+        
+from django.http import JsonResponse
+from .models import Materia
+
+def filtrar_materias(request):
+    programa_id = request.GET.get('programa_de_posgrado')
+    semestre_id = request.GET.get('semestre')
+
+    materias = Materia.objects.filter(programa_de_posgrado_materia=programa_id, semestre=semestre_id)
+
+    data = [{
+        'codigo_materia': materia.codigo_materia,
+        'nombre_materia': materia.nombre_materia
+    } for materia in materias]
+
+    return JsonResponse(data, safe=False)
 
 
 def buscar_materia(request):
