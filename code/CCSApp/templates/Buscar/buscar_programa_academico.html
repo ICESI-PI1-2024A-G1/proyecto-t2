@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Buscar Materia</title>
+ <link rel="stylesheet" href='{% static "css/buscar_programa_academico.css" %}' type='text/css'>
+ <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+</head>
+<body>
+  <div id="page-container">
+    <div id="page1" class="fade-in">
+      <div class="bloq-sup">
+        <form method="get">
+          <div class="bloq-sup_secd">
+            <div class="div_boton_return">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirGestiondesdeNuevoPrograma()">
+                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+              </button>
+            </div>
+            <div class="titulo">
+              <div class="div_CCSA">
+                <h1>CCSA</h1>
+              </div>
+              <div class="descripcion">
+                <h3>Centro Compartido de Servicios Académicos</h3>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="bloq-mid">
+        <div class="intermed">
+          <h1>Buscar Programa Academico</h1>
+          {% if error %}
+          <div class="error-message">
+          {{ error }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="intermed-bloq">
+          <!-- buscar_materia.html -->
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="boton-intermed">
+              <button type="submit", class = "btn-1">Buscar</button>
+            </div>
+          </form>
+          <!-- <ul>
+            {% for materia in materias %}
+            <li> 
+              <a href="{% url 'editar_materia' materia.nombre_materia %}">{{ materia.nombre_materia }}</a>
+            </li>
+            {% endfor %}
+          </ul> -->
+          <div class="div_Table">
+            <div class="div_Table2">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Codigo del Programa Academico</th>
+                    <!-- Agrega más encabezados si es necesario -->
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for programa_academico in programas %}
+                  <tr>
+                    <td>
+                      <a href="{% url 'editar_programa' programa_academico.codigo_programa %}">{{ programa_academico.codigo_programa }}</a>
+                    </td>
+                    <!-- Puedes agregar más columnas si es necesario -->
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="2">No se encontraron programas academicos.</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bloq-inf">
+      <h4>Universidad Icesi</h4>
+      <h4>Todos los derechos reservados</h4>
+      <h4>Derechos de Autor</h4>
+      </div>
+    </div>
+  </div>
+<script src="{% static 'js/transiciones.js' %}"></script>
+</body>
+</html>
