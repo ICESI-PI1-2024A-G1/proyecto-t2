@@ -29,15 +29,52 @@ class RegisterProfesorTest(unittest.TestCase):
         # Verifica que el título de la página sea 'CCSA'
         self.assertIn('CCSA', driver.title)
         
-        # Ahora, realiza el registro de un profesor
-        driver.find_element(By.XPATH, '//button[text()="Servicios de Asignacion"]').click()
-        driver.find_element(By.XPATH, '//button[text()="Registrar Profesor"]').click()
-        driver.find_element(By.ID, 'nombre_completo').send_keys('Norha Villegas')
-        driver.find_element(By.ID, 'identificacion_profesor').send_keys('68298420')
-        driver.find_element(By.ID, 'especializacion').send_keys('Doctorado en Gestión informática organizativa')
-        driver.find_element(By.ID, 'correo_electronico_profe').send_keys('nvillega@u.icesi.edu.co')
-        driver.find_element(By.ID, 'telefono').send_keys('3195627853')
-        driver.find_element(By.ID, 'Guardar').click()
+        WebDriverWait(driver, 10).until(
+        EC.invisibility_of_element_located((By.CSS_SELECTOR, '.bloq-sup_secd'))
+)
+
+        # Hacer clic en el elemento utilizando JavaScript
+        element = driver.find_element(By.XPATH, '//button[text()="Servicios de Asignacion"]')
+        driver.execute_script("arguments[0].click();", element)
+
+        WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//button[text()="Registrar Profesor"]'))
+        ).click()
+        
+        # Espera hasta que el campo de entrada 'nombre_profesor' esté presente y sea interactuable
+        nombre_profesor_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'nombre_profesor'))
+        )
+        nombre_profesor_input.send_keys('Norha Villegas')
+
+        identificacion_profesor_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'cedula_profesor'))
+        )
+        identificacion_profesor_input.send_keys('68298420')
+
+        especializacion_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'especializacion_profesor'))
+        )
+        especializacion_input.send_keys('Doctorado en Gestión informática organizativa')
+
+        correo_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'correo_electronico'))
+        )
+        correo_input.send_keys('nvillega@u.icesi.edu.co')
+
+        telefono_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'telefono'))
+        )
+        telefono_input.send_keys('3195627853')
+        
+        # Haz clic en el botón "Guardar"
+        WebDriverWait(driver, 20).until(
+        EC.invisibility_of_element_located((By.CSS_SELECTOR, '.intermed-bloq'))
+    )
+        # Hacer clic en el botón "Guardar"
+        guardar_button = driver.find_element(By.XPATH, '//button[text()="Guardar"]')
+        guardar_button.click()
+
 
         # Puedes agregar más lógica de espera o verificaciones aquí si es necesario
         
