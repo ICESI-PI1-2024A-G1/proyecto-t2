@@ -1,88 +1,93 @@
-from django.contrib.auth.models import User
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
+import random
+import string
 import time
+import unittest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import StaleElementReferenceException
 
-class AdminUserTest(StaticLiveServerTestCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.selenium = WebDriver()
-        cls.selenium.implicitly_wait(10)  
+class RegisterTest(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Chrome()
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.selenium.quit()
-        super().tearDownClass()
+    def generate_random_name(self, length=8):
+        return ''.join(random.choices(string.ascii_letters, k=length))
 
-        
-    def test_add_user(self):
-        self.selenium.get(self.live_server_url)
-        
-        username_input = self.selenium.find_element(By.NAME,'id')
-        password_input = self.selenium.find_element(By.NAME, 'password')
-        username_input.send_keys('1116070867')
-        password_input.send_keys('juandiaz123')
-        
-        password_input.send_keys(Keys.RETURN)
-        self.assertIn('Panel de control de Administrador', self.selenium.title)
+    def generate_random_cedula(self):
+        return ''.join(random.choices(string.digits, k=10))  # Una cédula típica tiene 10 dígitos
+
+    def generate_random_rol(self):
+        roles = ['Gestor', 'Lider', 'Director']  # Lista de roles posibles
+        return random.choice(roles)
+
+    def generate_random_department(self):
+        departments = ['Departamento 1', 'Departamento 2', 'Departamento 3']  # Lista de departamentos posibles
+        return random.choice(departments)
+
+    def generate_random_email(self, length=8):
+        return self.generate_random_name(length) + '@example.com'
+
+    def generate_random_phone(self):
+        return ''.join(random.choices(string.digits, k=10))  # Un número de teléfono típico tiene 10 dígitos
+
+    def generate_random_password(self, length=8):
+        return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
+
+    def test_register(self):
+        driver = self.driver
+        driver.get('http://127.0.0.1:8000')
+        self.assertIn('Iniciar Sesión', driver.title)
 
 
+        register_button1 = driver.find_element(By.NAME, 'btn_registrar')
+        register_button1.click()
 
-        self.selenium.find_element(By.ID, 'UserList').click()
+        time.sleep(4)
 
-        time.sleep(2)
-        self.assertEqual('Panel de control', self.selenium.title)
+        self.assertIn('Registro', driver.title)
 
-                
-        self.selenium.find_element(By.ID, 'addUser').click()
+        # Genera datos de entrada aleatorios
+        name = self.generate_random_name()
+        cedula = self.generate_random_cedula()
+        rol = self.generate_random_rol()
+        department = self.generate_random_department()
+        email = self.generate_random_email()
+        phone = self.generate_random_phone()
+        password = self.generate_random_password()
         
+        # Encuentra los campos de registro
+        nombre_input = driver.find_element(By.NAME, 'nombre')
+        cedula_input = driver.find_element(By.NAME, 'cedula')
+        rol_input = driver.find_element(By.NAME, 'rol')
+        departamento_input = driver.find_element(By.NAME, 'departamento')
+        correo_input  = driver.find_element(By.NAME, 'correo_electronico')
+        telefono_input  = driver.find_element(By.NAME, 'telefono')
+        password_input  = driver.find_element(By.NAME, 'password')
         
-        list_user = self.selenium.find_element(By.ID, 'titleAdd').text
-        self.assertIn('Usuarios externos', list_user)
-        
-        
-        self.selenium.find_element(By.ID, '1106293874').click()
-        time.sleep(2)
-        
-        
-        user = self.selenium.find_element(By.ID, '1106293874').text
+        # Llena los campos de registro
+        nombre_input.send_keys(name)
+        cedula_input.send_keys(cedula)
+        rol_input.send_keys(rol)
+        departamento_input.send_keys(department)
+        correo_input.send_keys(email)
+        telefono_input.send_keys(phone)
+        password_input.send_keys(password)
 
-        self.assertIn('1106293874', user)
+        # Encuentra el botón de registro y haz clic en él
+        register_button = driver.find_element(By.NAME, 'registrar')
+        register_button.click()
+        
+        # Espera hasta que se cargue la página después del registro
+        WebDriverWait(driver, 10).until(
+            EC.title_contains('Iniciar Sesión')
+        )
 
-        
+        # Verifica que el título de la página sea 'Inicio'
+        self.assertIn('Iniciar Sesión', driver.title)
 
-    def test_delete_user(self):
-        self.selenium.get(self.live_server_url)
-        
-        username_input = self.selenium.find_element(By.NAME, 'id')
-        password_input = self.selenium.find_element(By.NAME, 'password')
-        username_input.send_keys('1116070867')
-        password_input.send_keys('juandiaz123')
-        
-        password_input.send_keys(Keys.RETURN)
-        self.assertIn('Panel de control de Administrador', self.selenium.title)
+    def tearDown(self):
+        self.driver.close()
 
-        try:
-            self.selenium.find_element(By.ID, 'UserList').click()
-        except StaleElementReferenceException:
-            self.selenium.find_element(By.ID, 'UserList').click()
-
-        time.sleep(2)
-        self.assertEqual('Panel de control', self.selenium.title)
-        
-        self.selenium.find_element(By.ID, 'roleSelect_1109185879').send_keys('remove')
-        
-        
-        try:
-            self.selenium.find_element(By.ID, 'addUser').click()
-        except StaleElementReferenceException:
-            self.selenium.find_element(By.ID, 'addUser').click()
-
-        self.assertEqual('1109185879', self.selenium.find_element(By.ID, '1109185879_id').text)
+if __name__ == "__main__":
+    unittest.main()
