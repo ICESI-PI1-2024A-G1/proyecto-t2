@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="# Enter feature name here" skipped="0" tests="1" time="4.94" timestamp="2024-05-05 04:43:55"><testcase name=""><error type="java.lang.NullPointerException"/><system-err>null&#13;
-co.com.project.CCSApp.stepdefinitions.IngresoUsuarioStepDefinitions.entroALaAplicacionDelCCSA(IngresoUsuarioDefinitions.java:48)&#13;
-✽.entro a la aplicacion del CCSA(file:///C:/Users/Isabella/Documents/ICESI/5.%20Quinto%20Semestre/Proyecto%20Integrador/Trabajos/AutomatizacionPruebasPI1/PruebasPI1-CCSApp/src/test/resources/features/ingresoUsuario.feature:9)&#13;
-</system-err></testcase></testsuite>
