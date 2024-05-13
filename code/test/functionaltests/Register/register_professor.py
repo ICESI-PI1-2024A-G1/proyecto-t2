@@ -67,16 +67,15 @@ class RegisterProfesorTest(unittest.TestCase):
         )
         telefono_input.send_keys('3195627853')
         
-        # Haz clic en el botón "Guardar"
-        WebDriverWait(driver, 20).until(
-        EC.invisibility_of_element_located((By.CSS_SELECTOR, '.intermed-bloq'))
-    )
-        # Hacer clic en el botón "Guardar"
-        guardar_button = driver.find_element(By.XPATH, '//button[text()="Guardar"]')
+        guardar_button = driver.find_element(By.NAME, 'guardar_profesor_btn')
         guardar_button.click()
 
+        # Haz clic en el botón "Guardar"
+        WebDriverWait(driver, 10).until(
+        EC.title_contains('Servicios de Asignación')
+        )
+        # Hacer clic en el botón "Guardar"
 
-        # Puedes agregar más lógica de espera o verificaciones aquí si es necesario
         
     def tearDown(self):
         self.driver.close()
