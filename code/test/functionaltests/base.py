@@ -8,7 +8,5 @@ driver = webdriver.Chrome(service = service)
 
 driver.get("http://127.0.0.1:8000/")
 
-input_user_element= driver.get_element(By.ID, '')
-
 time.sleep(2)
 driver.quit()

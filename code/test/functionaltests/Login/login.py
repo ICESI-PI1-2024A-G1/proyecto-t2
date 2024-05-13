@@ -1,38 +1,41 @@
-from django.contrib.auth.models import User
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium.webdriver.chrome.webdriver import WebDriver
+import unittest
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from django.conf import settings
+import time
 
-settings.configure(
-            INSTALLED_APPS = [
-                'django.contrib.admin',
-                'django.contrib.auth',
-                'django.contrib.contenttypes',
-                'django.contrib.sessions',
-                'django.contrib.messages',
-                'django.contrib.staticfiles',
-                'DJANGO_SETTINGS_MODULE',
-                'CCSApp'
-            ]
+class LoginTest(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+
+    def test_login(self):
+        driver = self.driver
+        driver.get('http://127.0.0.1:8000/')
+        self.assertIn('Iniciar Sesión', driver.title)
+        username_input = driver.find_element(By.NAME, 'cedula')
+        password_input = driver.find_element(By.NAME, 'password')
+        username_input.send_keys('1023456325')
+        password_input.send_keys('dorits123')
+
+        # Encuentra el botón de "Iniciar sesión" y haz clic en él
+        login_button = driver.find_element(By.NAME, 'btn_iniciar')
+        login_button.click()
+        
+        # Espera hasta que la página se cargue después del inicio de sesión
+        WebDriverWait(driver, 10).until(
+            EC.title_contains('CCSA')
         )
 
-class LoginFunctionalTest(StaticLiveServerTestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.selenium = WebDriver()
-        cls.selenium.implicity_wait(4)
-    
-    def login_test(self):
+        # Verifica que el título de la página sea 'CCSA'
+        self.assertIn('CCSA', driver.title)
         
-        self.selenium.get(self.live_server_url)
+        
 
-        username_input = self.selenium.find_element(By.ID, 'id_cedula')
-        password_input = self.selenium.find_element(By.ID, 'id_password')
-        username_input.send_keys('2345549302')
-        password_input.send_keys('Doris123')
 
-        password_input.send_keys(Keys.RETURN)
+    def tearDown(self):
+        self.driver.close()
 
-        self.assertIn('CCSA', self.selenium.title)
+if __name__ == "__main__":
+    unittest.main()

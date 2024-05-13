@@ -40,7 +40,7 @@
                         {% csrf_token %}
                         {{ form.as_p }}
                         <div class="buttondiv button-container">
-                            <button type="submit" class="btn-1">Iniciar Sesión</button>
+                            <button name="btn_iniciar" type="submit" class="btn-1">Iniciar Sesión</button>
                             <button type="button" class="btn-1" onclick="redirigirRegistro()">Registrar</button>
                         </div>                    
                     </form>
