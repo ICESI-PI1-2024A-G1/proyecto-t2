@@ -5,18 +5,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
-class RegisterProfesorTest(unittest.TestCase):
-    # Inicializar el driver de Chrome con las opciones
-    
+class RegisterMateriaTest(unittest.TestCase):
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("--force-device-scale-factor=0.8")
         self.driver = webdriver.Chrome(options=chrome_options)
 
-    
-
-    def test_register_profesor(self):
+    def test_register_materia(self):
         driver = self.driver
         driver.get('http://127.0.0.1:8000/')
         self.assertIn('Iniciar Sesión', driver.title)
@@ -39,42 +35,48 @@ class RegisterProfesorTest(unittest.TestCase):
         
         WebDriverWait(driver, 10).until(
         EC.invisibility_of_element_located((By.CSS_SELECTOR, '.bloq-sup_secd'))
-)
+        )
 
         # Hacer clic en el elemento utilizando JavaScript
         element = driver.find_element(By.XPATH, '//button[text()="Servicios de Asignacion"]')
         driver.execute_script("arguments[0].click();", element)
 
         WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, '//button[text()="Registrar Profesor"]'))
+            EC.element_to_be_clickable((By.XPATH, '//button[text()="Registrar Materia"]'))
         ).click()
         
-        # Espera hasta que el campo de entrada 'nombre_profesor' esté presente y sea interactuable
-        nombre_profesor_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'nombre_profesor'))
+        # Espera hasta que el campo de entrada 'nombre_materia' esté presente y sea interactuable
+        nombre_materia_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'nombre_materia'))
         )
-        nombre_profesor_input.send_keys('Norha Villegas')
+        nombre_materia_input.send_keys('Fundamentos UX')
 
-        identificacion_profesor_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'cedula_profesor'))
+        codigo_materia_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'codigo_materia'))
         )
-        identificacion_profesor_input.send_keys('68298420')
+        codigo_materia_input.send_keys('123456')
 
-        especializacion_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'especializacion_profesor'))
+        creditos_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'creditos_materia'))
         )
-        especializacion_input.send_keys('Doctorado en Gestión informática organizativa')
+        creditos_input.send_keys('4')
 
-        correo_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'correo_electronico'))
+        # Subir archivo
+        archivo_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'syllabus'))
         )
-        correo_input.send_keys('nvillega@u.icesi.edu.co')
+        archivo_input.send_keys("C:\\Users\\user\\OneDrive\\Documentos\\Formato.pdf")  # Ruta del archivo en tu sistema
 
-        telefono_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'telefono'))
+        departamento_select = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'departamento'))
         )
-        telefono_input.send_keys('3195627853')
-        
+        departamento_select.send_keys('DIS-Diseño')
+
+        semestre_select = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'semestre'))
+        )
+        semestre_select.send_keys('2023-2')
+
         # Haz clic en el botón "Guardar"
         guardar_button = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '//button[text()="Guardar"]'))

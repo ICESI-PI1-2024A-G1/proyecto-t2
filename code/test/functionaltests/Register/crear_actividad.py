@@ -5,18 +5,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
-class RegisterProfesorTest(unittest.TestCase):
-    # Inicializar el driver de Chrome con las opciones
-    
+class RegisterActividadTest(unittest.TestCase):
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("--force-device-scale-factor=0.8")
         self.driver = webdriver.Chrome(options=chrome_options)
 
-    
-
-    def test_register_profesor(self):
+    def test_register_actividad(self):
         driver = self.driver
         driver.get('http://127.0.0.1:8000/')
         self.assertIn('Iniciar Sesión', driver.title)
@@ -38,44 +34,40 @@ class RegisterProfesorTest(unittest.TestCase):
         self.assertIn('CCSA', driver.title)
         
         WebDriverWait(driver, 10).until(
-        EC.invisibility_of_element_located((By.CSS_SELECTOR, '.bloq-sup_secd'))
-)
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, '.bloq-sup_secd'))
+        )
 
-        # Hacer clic en el elemento utilizando JavaScript
+        # Hacer clic en el elemento "Servicios de Asignacion"
         element = driver.find_element(By.XPATH, '//button[text()="Servicios de Asignacion"]')
         driver.execute_script("arguments[0].click();", element)
 
+        # Hacer clic en el botón "Registrar Actividad"
         WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, '//button[text()="Registrar Profesor"]'))
+            EC.element_to_be_clickable((By.XPATH, '//button[text()="Crear Actividad"]'))
         ).click()
         
-        # Espera hasta que el campo de entrada 'nombre_profesor' esté presente y sea interactuable
-        nombre_profesor_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'nombre_profesor'))
+        # Esperar hasta que los campos estén presentes y sean interactuables
+        nombre_actividad_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'nombre_actividad'))
         )
-        nombre_profesor_input.send_keys('Norha Villegas')
+        nombre_actividad_input.send_keys('Taller de Diseño')
 
-        identificacion_profesor_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'cedula_profesor'))
+        duracion_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'duracion_en_horas'))
         )
-        identificacion_profesor_input.send_keys('68298420')
+        duracion_input.send_keys('2 horas')
 
-        especializacion_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'especializacion_profesor'))
+        encargado_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'orador_actividad'))
         )
-        especializacion_input.send_keys('Doctorado en Gestión informática organizativa')
+        encargado_input.send_keys('Juan Perez')
 
-        correo_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'correo_electronico'))
+        evento_select = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'evento_actividad'))
         )
-        correo_input.send_keys('nvillega@u.icesi.edu.co')
+        evento_select.send_keys('Graduacion')
 
-        telefono_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'telefono'))
-        )
-        telefono_input.send_keys('3195627853')
-        
-        # Haz clic en el botón "Guardar"
+        # Hacer clic en el botón "Guardar"
         guardar_button = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '//button[text()="Guardar"]'))
         )
