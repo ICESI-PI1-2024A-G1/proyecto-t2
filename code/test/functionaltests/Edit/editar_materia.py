@@ -5,18 +5,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
-class RegisterProfesorTest(unittest.TestCase):
-    # Inicializar el driver de Chrome con las opciones
-    
+class EditarMateriaTest(unittest.TestCase):
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("--force-device-scale-factor=0.8")
         self.driver = webdriver.Chrome(options=chrome_options)
 
-    
-
-    def test_register_profesor(self):
+    def test_editar_materia(self):
         driver = self.driver
         driver.get('http://127.0.0.1:8000/')
         self.assertIn('Iniciar Sesión', driver.title)
@@ -38,48 +34,47 @@ class RegisterProfesorTest(unittest.TestCase):
         self.assertIn('CCSA', driver.title)
         
         WebDriverWait(driver, 10).until(
-        EC.invisibility_of_element_located((By.CSS_SELECTOR, '.bloq-sup_secd'))
-)
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, '.bloq-sup_secd'))
+        )
 
-        # Hacer clic en el elemento utilizando JavaScript
+        # Hacer clic en el elemento "Servicios de Asignacion"
         element = driver.find_element(By.XPATH, '//button[text()="Servicios de Asignacion"]')
         driver.execute_script("arguments[0].click();", element)
 
+        # Hacer clic en el botón "Editar Materia"
         WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, '//button[text()="Registrar Profesor"]'))
+            EC.element_to_be_clickable((By.XPATH, '//button[text()="Editar Materia"]'))
         ).click()
         
-        # Espera hasta que el campo de entrada 'nombre_profesor' esté presente y sea interactuable
-        nombre_profesor_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'nombre_profesor'))
+        # Esperar hasta que el campo de entrada 'nombre_materia' esté presente y sea interactuable
+        nombre_materia_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'nombre_materia'))
         )
-        nombre_profesor_input.send_keys('Norha Villegas')
+        nombre_materia_input.send_keys('Analitica para los negocios')
 
-        identificacion_profesor_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'cedula_profesor'))
+        # Hacer clic en el botón "Buscar"
+        buscar_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//button[text()="Buscar"]'))
         )
-        identificacion_profesor_input.send_keys('68298420')
+        buscar_button.click()
 
-        especializacion_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'especializacion_profesor'))
+        # Seleccionar la materia encontrada
+        materia_encontrada = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//div[@class="div_Table2"]//table//tbody//tr//td//a[contains(text(), "Fundamentos UX")]'))
         )
-        especializacion_input.send_keys('Doctorado en Gestión informática organizativa')
+        materia_encontrada.click()
 
-        correo_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'correo_electronico'))
+        # Cambiar el campo de departamento
+        departamento_select = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'departamento'))
         )
-        correo_input.send_keys('nvillega@u.icesi.edu.co')
+        departamento_select.send_keys('ECO-Economia')
 
-        telefono_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'telefono'))
+        # Hacer clic en el botón "Guardar Cambios"
+        guardar_cambios_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//button[text()="Guardar Cambios"]'))
         )
-        telefono_input.send_keys('3195627853')
-        
-        # Haz clic en el botón "Guardar"
-        guardar_button = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, '//button[text()="Guardar"]'))
-        )
-        guardar_button.click()
+        guardar_cambios_button.click()
 
         # Puedes agregar más lógica de espera o verificaciones aquí si es necesario
         
