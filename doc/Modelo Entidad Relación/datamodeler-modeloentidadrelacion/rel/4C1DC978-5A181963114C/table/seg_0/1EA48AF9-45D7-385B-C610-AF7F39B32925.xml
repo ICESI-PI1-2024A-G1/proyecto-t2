@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1EA48AF9-45D7-385B-C610-AF7F39B32925" name="Periodo">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>5270758B-BCB6-7478-9F34-119A4D3D9D4E</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_periodo" id="34CADD9A-6FB2-087B-34C9-FE4B2C1C5303">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>37676BBA-5DE8-0A32-EF5C-332FCCD8C135</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_inicio_periodo" id="901CC75C-2E33-05E5-36A0-1B80FE657542">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>82B19652-EF02-74EF-0110-D254A6336CE5</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_final_periodo" id="4BB05584-B9A2-F946-06A4-4BF07AE17332">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>81F30D26-BE2D-41A4-EE32-B862CF7E7CC6</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ProgramacionAcademica_id_programacionAcademica" id="7DCA60CF-D241-50E0-2BD9-F87F0C090FB9">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>4115CCE3-4A4C-586C-53A6-4B32BFCA9C74</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B993934D-BFFB-86AE-D225-263709678A3A" referredColumn="15A96A89-9822-E138-DA97-CF509904B89B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="62036B1C-2705-6133-44D1-1CD6E0CF990D" name="Periodo_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>8BBF06CE-4DBF-E1DF-0894-10FAD0AD0CBE</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="34CADD9A-6FB2-087B-34C9-FE4B2C1C5303"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="720AA19E-11A3-EE5E-6F64-5FD2DCC788B0" name="Periodo__IDX">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>CED71C86-B021-A240-7FB5-19BFF2B39D26</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="7DCA60CF-D241-50E0-2BD9-F87F0C090FB9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="06AD3DA8-0717-6E22-EC0A-9C87938A559E" name="Periodo_ProgramacionAcademica_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>CED71C86-B021-A240-7FB5-19BFF2B39D26</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7DCA60CF-D241-50E0-2BD9-F87F0C090FB9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -8,7 +8,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Nombre" id="64AE3405-C5E5-E2C0-99A3-CC29E87A41DB">
+<Column name="nombre_materia" id="64AE3405-C5E5-E2C0-99A3-CC29E87A41DB">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:11:37 UTC</createdTime>
 <generatorID>2627CEC3-E2FA-82F4-8DF1-9CE6DA271228</generatorID>
@@ -19,7 +19,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Código" id="CB9C2E57-4A42-1AD4-0E0D-D5AB123260A8">
+<Column name="codigo_materia" id="CB9C2E57-4A42-1AD4-0E0D-D5AB123260A8">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:11:37 UTC</createdTime>
 <generatorID>2C7682D7-A497-6C73-787D-B26BFE23369D</generatorID>
@@ -30,25 +30,25 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Descripción" id="33C56F66-1ADA-0DF1-C884-FBF58662D447">
+<Column name="creditos_materia" id="33C56F66-1ADA-0DF1-C884-FBF58662D447">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:11:37 UTC</createdTime>
 <generatorID>E17E45E0-D2B5-7273-BA57-22A53FF2AD26</generatorID>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Créditos" id="32EB2FDC-6071-DD37-BC22-9C1ED7812327">
+<Column name="syllabus1" id="32EB2FDC-6071-DD37-BC22-9C1ED7812327">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:11:37 UTC</createdTime>
 <generatorID>1BC1D3C0-2A9A-D331-E8A0-A98E4AE5600D</generatorID>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<logicalDatatype>LOGDT010</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -74,6 +74,49 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="Semestre_nombre_semestre" id="7ECBDEB0-261A-002F-3CE2-8DB8612D0022">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>F0D021F8-BC78-ABBC-6BD0-5638A112AA8E</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="24456919-9D04-18DD-6539-7E1225925A05" referredColumn="4DC95493-4EC0-8775-D6DD-46520BAF8097"/>
+</associations>
+</Column>
+<Column name="Departamento_id_departamento" id="04E5ADB1-A917-8D19-3553-30C332DFC100">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>331ECD6B-DF07-90B1-7A7C-E25AA0D8C497</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6718EF34-3701-2626-30F2-0BA9E885FD57" referredColumn="26085420-9797-D4A3-6104-7AF312300F6C"/>
+</associations>
+</Column>
+<Column name="ProgramacionAcademica_id_programacionAcademica" id="A74927B8-F521-B72C-EB44-F08F7334DF8B">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>94BD841C-31A3-AF32-11EE-488CB3CADE78</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="621C79A2-D689-2F5C-6311-BAF061C935E8" referredColumn="15A96A89-9822-E138-DA97-CF509904B89B"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="E31B9AD0-5B1B-D7D2-9632-AAD88159D219" name="Materia_PK">
@@ -86,6 +129,50 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="CB9C2E57-4A42-1AD4-0E0D-D5AB123260A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="36EFB421-0497-7651-12E5-1DB174E518D6" name="Materia__IDX">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>4000651F-4520-54C3-7E92-EAA9618ABC24</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="A74927B8-F521-B72C-EB44-F08F7334DF8B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F3E07272-B1E9-BA82-5D93-E57BAFDDEF8E" name="Materia_Semestre_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>FDEA2213-A661-42B1-5FD4-716ED4B62350</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7ECBDEB0-261A-002F-3CE2-8DB8612D0022"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="61F2BCD9-A800-4DF0-CBF8-CE2BCDCE7942" name="Materia_Departamento_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>9A867669-044E-8519-47BC-E1D197982EB0</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="04E5ADB1-A917-8D19-3553-30C332DFC100"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5AF27185-B729-70BA-7D94-F7D1FB5B674D" name="Materia_ProgramacionAcademica_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>4000651F-4520-54C3-7E92-EAA9618ABC24</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A74927B8-F521-B72C-EB44-F08F7334DF8B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

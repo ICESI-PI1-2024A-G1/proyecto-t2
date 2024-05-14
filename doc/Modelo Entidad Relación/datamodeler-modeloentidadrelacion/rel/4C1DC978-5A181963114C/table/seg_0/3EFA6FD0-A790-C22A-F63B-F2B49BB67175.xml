@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3EFA6FD0-A790-C22A-F63B-F2B49BB67175" name="Director_de_programa">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>34249D5D-0C46-6460-1AB2-D8BC53CCA6DB</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="05432AB7-2E6C-C3F2-03C7-28F8F0A9145A">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>924CC1DC-47C8-26A7-9907-A6C233051981</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre_director" id="804927CD-13DE-0053-8579-315C45BD58B8">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>4923A778-4CF2-56C5-AA4F-F85EFD1B2007</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="numero_director" id="D257A73F-3DF8-25F0-A0DF-5E6C6DEA9C79">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>78B85BF3-1B25-448D-CA68-979331B9290A</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="correo_director" id="30806237-C26A-150C-E89A-606E4D439067">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>921AA593-8AE1-CDA0-9C72-1E96F61C82F1</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="foto_de_perfil" id="8A4E8D89-DFEB-0E69-6186-2473021A6F12">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>A34ECD7F-CD12-60C7-817B-EA1139867A19</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT010</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Programa_de_Posgrado_Código" id="7517F6B1-BFDC-150E-E201-E7A95E95BC4C">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>88F2F8A1-F9DD-1F39-F6FF-BBE0615EB7B9</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0C483AA0-02B8-F49F-A886-4D54A8A047AD" referredColumn="0F7DED87-2C79-E4F4-5F22-37BD7A9D7C12"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F6B471C7-0588-1845-F44A-F08682F290DA" name="Director_de_programa_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>E679CED3-43A8-2958-6712-34F900C1D3F6</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="05432AB7-2E6C-C3F2-03C7-28F8F0A9145A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="61D2D097-F409-5103-2DA4-BAB59D00EC93" name="Director_de_programa__IDX">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>F36ED839-00F2-7120-2052-23A6A08E8B91</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="7517F6B1-BFDC-150E-E201-E7A95E95BC4C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="590E174E-F294-AD17-D6F0-05ED7752ACF2" name="Director_de_programa_Programa_de_Posgrado_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>F36ED839-00F2-7120-2052-23A6A08E8B91</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7517F6B1-BFDC-150E-E201-E7A95E95BC4C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

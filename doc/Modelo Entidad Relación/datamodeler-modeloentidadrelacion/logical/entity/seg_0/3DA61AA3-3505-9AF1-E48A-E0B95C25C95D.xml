@@ -15,7 +15,7 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Nombre" id="6DB4BB4B-F4F7-538A-876A-85810BCCD690">
+<Attribute name="nombre_semestre" id="6DB4BB4B-F4F7-538A-876A-85810BCCD690">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:57:46 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
@@ -51,18 +51,40 @@
 <logicalDatatype>LOGDT007</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Código" id="5B9A6374-0DC3-FD67-ABCF-40FC8C47F196">
+<Attribute name="estado_semestre" id="83B7531C-7DC6-B405-1B8B-52D27D8A19E6">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 02:04:16 UTC</createdTime>
-<generatorID>2C039CBD-2589-0AC8-5043-4AE1434F24E2</generatorID>
+<createdTime>2024-05-14 00:04:48 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
-<referedAttribute>8034033A-4E0B-86E6-F5CC-B3C8B9E7A14D</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="año" id="89CC1F62-AD24-EF1C-F96E-815B318894B6">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 00:05:11 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="periodo" id="542566FB-9837-859B-CB4C-5F3E51832F04">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 00:05:32 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -71,8 +93,9 @@
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:57:57 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
