@@ -6,70 +6,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href='{% static "css/login.css" %}' type='text/css'>
+    <link rel="stylesheet" href='{% static "css/login.css" %}'type='text/css'>
     <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <div id="page-container">
-        <div id="page1" class="fade-in">
-            <div class="bloq-sup">
-                <form method="get">
-                    <div class="bloq-sup_secd">
-                        <div class="div_boton_return">
-                            <!-- <button class="boton-2" name="boton1" type="button"> -->
-                              <img src="/static/Images/logo_icesi2.png" height="55" width="55" alt="Botón de retorno" />
-                            <!-- </button> -->
-                        </div>
-                        <div class="titulo">
-                            <div class="div_CCSA">
-                                <h1>CCSA</h1>
-                              </div>
-                            <div class="descripcion">
-                                <h3>Centro Compartido de Servicios Académicos</h3>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="bloq-mid">
-                <div class="intermed">
-                    <h1>Iniciar Sesión</h1>
-                </div>
-                <div class="intermed-bloq">
-                    <form method="POST" class="form-1" enctype="multipart/form-data" id="registro-materia-form" autocomplete="off">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="buttondiv button-container">
-                            <button name="btn_iniciar" type="submit" class="btn-1">Iniciar Sesión</button>
-                            <button name="btn_registrar" type="button" class="btn-1" onclick="redirigirRegistro()">Registrar</button>
-                        </div>                    
-                    </form>
-                </div>
-                {% if error %}
-                    <div class="error-message" style="display: none;">
-                    {{ error }}
-                    </div>
-                {% endif %}
-            </div>
-            <div id="modal-confirmacion" class="modal">
-                <div class="modal-contenido">
-                    <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
-                    <p>Verificando Usuario...</p>
-                </div>
-            </div> 
-            <div id="modal-error" class="modal" style="display: none;">
-                <div class="modal-contenido">
-                    <span class="cerrar-modal" onclick="cerrarModalError()">&times;</span>
-                    <p id="error-message-modal"></p>
-                </div>
-            </div>  
-            <div class="bloq-inf">
-                <h4>Universidad Icesi</h4>
-                <h4>Todos los derechos reservados</h4>
-                <h4>Derechos de Autor</h4>
-            </div>
+    <header>
+        <div class="contenedor-imagen">
+            <img src="/static/Images/logo_icesi2.png"  alt="Botón de retorno">    
         </div>
+        
+        <div class="div-heading">
+            <h1 class="poppins-semibold">CCSA</h1>
+            <h3 class="poppins-regular">Centro Compartido de Servicios Académicos</h3>  
+        </div>                                  
+    </header>
+    <!-- Div principal-->
+    <div class="div-a-centrar"> 
+        <!-- Div secundario izquierdo-->
+        <div class="div-secundario-login">
+            <div>
+                <h2 class="poppins-semibold">Iniciar Sesión</h2>
+            </div>
+            <form method="POST" class="poppins-regular form-1" enctype="multipart/form-data" id="registro-materia-form" autocomplete="off">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="button-container">
+                    <button name="btn_iniciar" type="submit" class="poppins-medium btn-1">Iniciar Sesión</button>
+                    <button name="btn_registrar" type="submit" class="poppins-medium btn-1" onclick="redirigirRegistro()">Registrar</button>
+                </div>                    
+            </form>
+                {% if error %}
+            <div class="poppins-regular error-message" style="display: none;">
+            {{ error }}
+            </div>
+        {% endif %}
+            </div>     
     </div>
+
+    <footer>
+        <div>
+            <h4 class="poppins-medium">
+                Universidad Icesi
+            </h4>
+            <h4 class="poppins-medium">
+                Todos los derechos reservados
+            </h4>
+        </div>
+    </footer>
     <script src="{% static 'js/transiciones.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>

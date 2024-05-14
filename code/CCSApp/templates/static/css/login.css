@@ -1,3 +1,105 @@
+
+
+h1 {
+    font-size: 38px;
+    margin: 0%;
+}
+
+h2 {
+    font-size: 28px;
+    margin: 0 auto;
+    align-self: center;
+}
+
+h3 {
+    font-size: 18px;
+    margin-top: -10px;
+    margin-bottom: 0%;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+h4 {
+    font-size: 14px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    background-color: #F1F1F1;    
+    padding-left: 2%;
+    padding-top: 1.2%;
+    padding-bottom: 1.2%;
+
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Alinea verticalmente los elementos */
+    background-color: #D9D9D9;
+    padding-left: 2%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    padding-right: 2%;
+}
+
+footer div {
+    text-align: center;
+}
+
+body, html {
+    height: 100%;
+    margin: 0 auto;
+    background-color: #FFF;
+
+}
+
+
+.div-a-centrar {
+    margin: 10%;
+    display: block;
+    justify-content: center;
+    position: relative;
+    width: auto;
+}
+
+.div-secundario-login{
+    box-sizing: border-box;
+    padding: 0 auto;
+    text-align: center;
+    width: auto;
+    position: relative;
+    margin: 0 auto;
+}
+
+.div-principal-login{
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+.div-heading{
+    margin-top: -9px;
+    vertical-align: center;
+}
+
+.ccsa-heading {
+    font-size: 40px;
+}
+
+.contenedor-imagen {
+    width: 90px; /* Ancho deseado del contenedor */
+    height: auto; /* Altura automática para mantener la proporción */
+}
+
+.contenedor-imagen img {
+    max-width: 100%; /* La imagen se ajustará al 100% del ancho del contenedor */
+    height: auto; /* Altura automática para mantener la proporción */
+}
+
+
+
 ul {
     list-style: none;
     padding: 0;
@@ -124,7 +226,7 @@ button {
 
 .bloq-sup,
 .bloq-inf {
-    position: fixed;
+    position: relative;
     left: 0;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.8); /* Ajusta la opacidad según desees */
@@ -172,10 +274,10 @@ button {
 .form-1 {
     /* Centrar el formulario en la página */
     margin: 0 auto;
-    width: 400px;
+    width: 450px;
     /* Esquema del formulario */
-    padding: 1em;
-    border-radius: 1em;
+    font-size: 16px;
+    
 
 }
 
@@ -187,7 +289,7 @@ button {
     border: none;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);;
     padding: 7px 20px;
-    background-color: #28C985;
+    background-color: #0a3662;
     border-radius: 2rem;
     /* border: #ccc; */
     border:0.7px solid #000000c8;
@@ -195,19 +297,19 @@ button {
 
 .btn-1 {
     background-color: white;
-    border: 2px solid #04AA6D;
+    border: 2px solid #0a3662;
     transition: background-color 1s;
 }
 
 .btn-1:hover {
-    background-color: #28C985; 
+    background-color: #0a3662; 
     color: white;
     transition: background-color 1s;
 }
 
 .buttondiv{
     display: flex;
-    margin-left: 14%;
+    margin: auto;
 }
 
 .button-container {
@@ -337,3 +439,112 @@ button {
     border-radius: 4px; /* Esquinas redondeadas */
     box-sizing: border-box; /* Hace que el padding y el borde se incluyan en el ancho */
 }
+
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .poppins-extralight {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+  
+  .poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .poppins-extrabold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+  }
+  
+  .poppins-black {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .poppins-thin-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .poppins-extralight-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: italic;
+  }
+  
+  .poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .poppins-medium-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  .poppins-semibold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+  }
+  
+  .poppins-bold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .poppins-extrabold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+  }
+  
+  .poppins-black-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
