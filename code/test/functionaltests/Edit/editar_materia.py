@@ -60,7 +60,7 @@ class EditarMateriaTest(unittest.TestCase):
 
         # Seleccionar la materia encontrada
         materia_encontrada = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, '//div[@class="div_Table2"]//table//tbody//tr//td//a[contains(text(), "Fundamentos UX")]'))
+            EC.element_to_be_clickable((By.XPATH, '//div[@class="div_Table2"]//table//tbody//tr//td//a[contains(text(), "Analitica para los Negocios")]'))
         )
         materia_encontrada.click()
 
