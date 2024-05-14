@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
-class CrearEventoTest(unittest.TestCase):
+class TestCrearEvento(unittest.TestCase):
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument("--window-size=1920,1080")

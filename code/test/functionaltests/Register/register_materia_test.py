@@ -5,14 +5,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
-class RegisterActividadTest(unittest.TestCase):
+class TestRegisterMateria(unittest.TestCase):
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("--force-device-scale-factor=0.8")
         self.driver = webdriver.Chrome(options=chrome_options)
 
-    def test_register_actividad(self):
+    def test_register_materia(self):
         driver = self.driver
         driver.get('http://127.0.0.1:8000/')
         self.assertIn('Iniciar Sesión', driver.title)
@@ -34,40 +34,50 @@ class RegisterActividadTest(unittest.TestCase):
         self.assertIn('CCSA', driver.title)
         
         WebDriverWait(driver, 10).until(
-            EC.invisibility_of_element_located((By.CSS_SELECTOR, '.bloq-sup_secd'))
+        EC.invisibility_of_element_located((By.CSS_SELECTOR, '.bloq-sup_secd'))
         )
 
-        # Hacer clic en el elemento "Servicios de Asignacion"
+        # Hacer clic en el elemento utilizando JavaScript
         element = driver.find_element(By.XPATH, '//button[text()="Servicios de Asignacion"]')
         driver.execute_script("arguments[0].click();", element)
 
-        # Hacer clic en el botón "Registrar Actividad"
         WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, '//button[text()="Crear Actividad"]'))
+            EC.element_to_be_clickable((By.XPATH, '//button[text()="Registrar Materia"]'))
         ).click()
         
-        # Esperar hasta que los campos estén presentes y sean interactuables
-        nombre_actividad_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'nombre_actividad'))
+        # Espera hasta que el campo de entrada 'nombre_materia' esté presente y sea interactuable
+        nombre_materia_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'nombre_materia'))
         )
-        nombre_actividad_input.send_keys('Taller de Diseño')
+        nombre_materia_input.send_keys('Fundamentos UX')
 
-        duracion_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'duracion_en_horas'))
+        codigo_materia_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'codigo_materia'))
         )
-        duracion_input.send_keys('2 horas')
+        codigo_materia_input.send_keys('123456')
 
-        encargado_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'orador_actividad'))
+        creditos_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'creditos_materia'))
         )
-        encargado_input.send_keys('Juan Perez')
+        creditos_input.send_keys('4')
 
-        evento_select = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'evento_actividad'))
+        # Subir archivo
+        archivo_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'syllabus'))
         )
-        evento_select.send_keys('Graduacion')
+        archivo_input.send_keys("C:\\Users\\user\\OneDrive\\Documentos\\Formato.pdf")  # Ruta del archivo en tu sistema
 
-        # Hacer clic en el botón "Guardar"
+        departamento_select = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'departamento'))
+        )
+        departamento_select.send_keys('DIS-Diseño')
+
+        semestre_select = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'semestre'))
+        )
+        semestre_select.send_keys('2023-2')
+
+        # Haz clic en el botón "Guardar"
         guardar_button = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '//button[text()="Guardar"]'))
         )
