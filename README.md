@@ -36,7 +36,7 @@ El repositorio esta compuesto por dos carpetas principales (code, src) acompaña
     2. [Diagramas de secuencias](https://github.com/ICESI-PI1-2024A-G1/proyecto-t2/tree/IOS-readMe/doc/Diagrama%20de%20Secuencia)
     3. [Diagrama de Casos de Uso](https://github.com/ICESI-PI1-2024A-G1/proyecto-t2/tree/IOS-readMe/doc/Diagramas%20de%20casos%20de%20uso)
 
-#### Intruciones de uso{#Instrucciones}
+#### Intruciones de uso
 1. Abrir una terminal o Windows Powershell, si le dificulta el uso de comandos, abra la terminal desde la carpeta principal del proyecto.
 2. Si no le importa usar comandos, dirijase a la carpeta principal del proyecto a traves de estos.
 3. Ejecutar el comando: `.\src\venv\Scripts\activate` para activar el entorno virtual de python configurado.

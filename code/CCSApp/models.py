@@ -55,7 +55,7 @@ class Facultad(models.Model):
 class Director_de_programa(models.Model):
     id = models.AutoField(primary_key=True)
     nombre_director= models.CharField(max_length =255, null = False, blank = False, primary_key= "")
-    numero_director = models.IntegerField(null = False, blank = False)
+    numero_director = models.CharField(max_length =500, null = False, blank = False)
     correo_director = models.CharField(max_length=500, null = False, blank = False)
     foto_de_perfil = models.ImageField(upload_to= 'fotosdirectores/')
 
@@ -128,7 +128,7 @@ class Profesor(models.Model):
     cedula_profesor = models.CharField(max_length = 10, unique = True, default ='', null = False, blank = False ,primary_key=True)
     especializacion_profesor = models.CharField(max_length=255, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
-    telefono = models.IntegerField(null = False, blank = False)
+    telefono = models.CharField(max_length=500, null = False, blank = False)
     def  __str__(self):
         return f'{self.cedula_profesor} - {self.nombre_profesor}'
      
@@ -178,7 +178,7 @@ class Usuario(models.Model):
     rol = models.CharField(max_length=255, null = False, blank = False)
     departamento = models.CharField(max_length=500, null = False, blank = False)
     correo_electronico = models.CharField(max_length=500, null = False, blank = False)
-    telefono = models.IntegerField( null = False, blank = False)
+    telefono = models.CharField(max_length=500, null = False, blank = False)
     password = models.CharField(max_length= 30,default= 000000000, null= False, blank = False)
     def  __str__(self):
         return self.cedula 
