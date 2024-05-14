@@ -5,14 +5,18 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
-class CrearEspacioTest(unittest.TestCase):
+class TestRegisterProfesor(unittest.TestCase):
+    # Inicializar el driver de Chrome con las opciones
+    
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("--force-device-scale-factor=0.8")
         self.driver = webdriver.Chrome(options=chrome_options)
 
-    def test_register_espacio(self):
+    
+
+    def test_register_profesor(self):
         driver = self.driver
         driver.get('http://127.0.0.1:8000/')
         self.assertIn('Iniciar Sesión', driver.title)
@@ -34,45 +38,44 @@ class CrearEspacioTest(unittest.TestCase):
         self.assertIn('CCSA', driver.title)
         
         WebDriverWait(driver, 10).until(
-            EC.invisibility_of_element_located((By.CSS_SELECTOR, '.bloq-sup_secd'))
-        )
+        EC.invisibility_of_element_located((By.CSS_SELECTOR, '.bloq-sup_secd'))
+)
 
-        # Hacer clic en el elemento "Servicios de Asignacion"
+        # Hacer clic en el elemento utilizando JavaScript
         element = driver.find_element(By.XPATH, '//button[text()="Servicios de Asignacion"]')
         driver.execute_script("arguments[0].click();", element)
 
-        # Hacer clic en el botón "Registrar Espacio"
         WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, '//button[text()="Crear Espacio"]'))
+            EC.element_to_be_clickable((By.XPATH, '//button[text()="Registrar Profesor"]'))
         ).click()
         
-        # Esperar hasta que los campos estén presentes y sean interactuables
-        nombre_espacio_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'espacio_codigo'))
+        # Espera hasta que el campo de entrada 'nombre_profesor' esté presente y sea interactuable
+        nombre_profesor_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'nombre_profesor'))
         )
-        nombre_espacio_input.send_keys('201')
+        nombre_profesor_input.send_keys('Norha Villegas')
 
-        capacidad_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'capacidad_espacio'))
+        identificacion_profesor_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'cedula_profesor'))
         )
-        capacidad_input.send_keys('30')
+        identificacion_profesor_input.send_keys('68298420')
 
-        edificio_select = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'edificio_espacio'))
+        especializacion_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'especializacion_profesor'))
         )
-        edificio_select.send_keys('Edificio E')
+        especializacion_input.send_keys('Doctorado en Gestión informática organizativa')
 
-        disponibilidad_select = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'disponibilidad_espacio'))
+        correo_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'correo_electronico'))
         )
-        disponibilidad_select.send_keys('Disponible')
+        correo_input.send_keys('nvillega@u.icesi.edu.co')
 
-        modalidad_select = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.ID, 'id_tipo'))
+        telefono_input = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, 'telefono'))
         )
-        modalidad_select.send_keys('Salon')
-
-        # Hacer clic en el botón "Guardar"
+        telefono_input.send_keys('3195627853')
+        
+        # Haz clic en el botón "Guardar"
         guardar_button = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '//button[text()="Guardar"]'))
         )
