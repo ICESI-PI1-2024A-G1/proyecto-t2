@@ -14,6 +14,7 @@ from django.db.models import Q
 from django.views.generic.base import TemplateView
 import openpyxl
 from django.http import HttpResponse
+from django.contrib import messages
 
 # Create your views here.
 
@@ -57,10 +58,15 @@ def asignar_horario(request):
                     salon_presencial=salon_presencial,
                     grupo=grupo
                 )
-                return redirect('/index/servicios_asignacion')
+                return redirect('/index/programacion')
             else:
+                return render(request, 'Asignar/asignar_horario.html', {
+                    'formNewHorario': form,
+                    'error': 'El horario se superpone con otro horario existente.'
+                })
+
                 # Hay conflicto, mostrar un mensaje de error
-                form.add_error(None, "El horario se superpone con otro horario existente.")
+                #form.add_error(None, "El horario se superpone con otro horario existente.")
     else:
         form = NewHorario()
 
@@ -76,32 +82,32 @@ def modificar_horarios(request, id_horario):
             fecha_inicio_horario = form.cleaned_data['fecha_inicio_horario']
             hora_inicio_horario = form.cleaned_data['hora_inicio_horario']
             hora_final_horario = form.cleaned_data['hora_final_horario']
-            # Verificar si la modalidad es "virtual"
-            # Consulta para verificar conflictos
 
             if form.cleaned_data['modalidad'] == 'Virtual':
-                # Obtener el edificio y espacio 'N/A'
                 nuevo_espacio = Espacio.objects.get(espacio_codigo='N/A')
-                # Asociar el nuevo espacio al horario
                 horario.salon_presencial = nuevo_espacio
+
+            elif form.cleaned_data['modalidad'] == 'Presencial':
+                horario.enlace_virtual = 'N/A'
 
             conflicto = Horario.objects.filter(
                 salon_presencial=salon_presencial,
-                fecha_inicio_horario=fecha_inicio_horario,  # Coincide en la misma fecha
+                fecha_inicio_horario=fecha_inicio_horario,
             ).exclude(
-                Q(hora_final_horario=hora_inicio_horario) |  # No se superpone antes
-                Q(hora_inicio_horario=hora_final_horario) |   # No se superpone después
-                Q(pk=id_horario)  # Excluir el horario actual
+                Q(hora_final_horario__lte=hora_inicio_horario) |
+                Q(hora_inicio_horario__gte=hora_final_horario) |
+                Q(pk=id_horario)
             ).exists()
 
             if not conflicto:
-                # No hay conflicto, guardar el horario modificado
                 form.save()
                 return redirect('/index/servicios_asignacion/consultar_horarios')
             else:
-                # Hay conflicto, mostrar un mensaje de error
-                form.add_error(None, "El horario se superpone con otro horario existente.")
-            
+                # Si hay conflicto, volver a renderizar el mismo formulario con el mensaje de error
+                return render(request, 'Editar/modificar_horarios.html', {
+                    'formModificarHorarios': form,
+                    'error': 'El horario se superpone con otro horario existente.'
+                })
     else:
         form = ModificarHorarioForm(instance=horario)
     return render(request, 'Editar/modificar_horarios.html', {'formModificarHorarios': form})
@@ -160,7 +166,7 @@ def registrar_materia_malla(request):
                 if Materia.objects.filter(codigo_materia=codigo_materia).exists():
                     # Si existe, puedes manejar la situación como desees,
                     # por ejemplo, mostrando un mensaje de error
-                    return render(request, 'registro_materia.html', {
+                    return render(request, 'Registrar/registro_materia.html', {
                         'form': CrearMateria,
                         'error': 'La materia ya existe en la base de datos.'
                     })
@@ -638,8 +644,10 @@ def crear_edificio(request):
     return render(request, 'Crear/crear_edificio.html', {'form': form})
 
 def lista_edificios(request):
-    edificios = Edificio.objects.all()
+    # Filtrar los edificios excluyendo aquellos que tienen nombre 'N/A'
+    edificios = Edificio.objects.exclude(nombre_edificio='N/A')
     return render(request, 'Listas/lista_edificios.html', {'edificios': edificios})
+
 
 def lista_espacios(request, nombre_edificio):
     edificio = get_object_or_404(Edificio, pk=nombre_edificio)

@@ -87,7 +87,7 @@ class NewUsuary(forms.Form):
     rol = forms.CharField(label= "Rol", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     departamento = forms.CharField(label= "Departamento", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
     correo_electronico = forms.EmailField(label="Correo Electronico", max_length=500, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    telefono = forms.IntegerField(label= "Telefono", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    telefono = forms.CharField(label= "Telefono", widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(label="Password", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class LoginForm(forms.Form):
@@ -140,7 +140,9 @@ class ProgramacionAcademicaForm(forms.Form):
     horas = forms.FloatField(label='Horas totales', widget=forms.Select(attrs={'class': 'form-control2'}))
     #periodo = forms.ModelChoiceField(label="Periodo", queryset= Periodo.objects.all(), help_text="Seleccione el periodo al que pertenece la programacion academica")
     materia = forms.ModelChoiceField(label="Materia", queryset= Materia.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
-    horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    horario_choices = [(horario.id_horario, horario.fecha_inicio_horario) for horario in Horario.objects.all()]
+    horarios = forms.ChoiceField(label="Horarios", choices=horario_choices, widget=forms.SelectMultiple(attrs={'class': 'form-control2'}))
+    #horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
     grupo =  forms.CharField(max_length=10, label= "Grupo", widget=forms.Select(attrs={'class': 'form-control2'}))
     profesor = forms.ModelChoiceField(label="Profesor", queryset= Profesor.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
 
@@ -209,7 +211,7 @@ class RegistrarProfesor(forms.Form):
     cedula_profesor = forms.CharField(label="Identificación del profesor", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     especializacion_profesor = forms.CharField(label="Especialización", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     correo_electronico = forms.CharField(label="Correo", max_length=255, widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    telefono = forms.IntegerField(label="Teléfono", widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    telefono = forms.CharField(label="Teléfono", widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class ProfesorSearchForm(forms.Form):
     nombre_profesor = forms.CharField(label='Nombre del Profesor', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -219,7 +221,7 @@ class ProfesorEditForm(forms.ModelForm):
         model = Profesor
         fields = ['nombre_profesor', 'cedula_profesor', 'especializacion_profesor', 'correo_electronico', 'telefono']
         widgets = {
-            'nombre_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
+            'nombre_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input',  'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
             'cedula_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input','readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
             'especializacion_profesor': forms.TextInput(attrs={'class': 'form-control spaced-input'}),
             'correo_electronico': forms.EmailInput(attrs={'class': 'form-control spaced-input'}),
@@ -247,7 +249,7 @@ class EditarProgramaForm(forms.ModelForm):
         
 class DirectorDePrograma(forms.Form):
     nombre_director = forms.CharField(label = 'Nombre', max_length= 255)
-    numero_director = forms.IntegerField(label = "Numero celular de contacto")
+    numero_director = forms.CharField(label = "Numero celular de contacto")
     correo_director = forms.CharField(label = "Correo Electronico", max_length= 500)
     foto_de_perfil = forms.ImageField()
 

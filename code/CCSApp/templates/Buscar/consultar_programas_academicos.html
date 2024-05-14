@@ -37,7 +37,7 @@
       <div class="bloq-mid-wrapper">
         <div class="bloq-mid">
           <div class="intermed">
-            <h1>Horarios Registrados</h1>
+            <h1>Programas Inactivos</h1>
           </div>
           <table class="form-1">
             <thead>
@@ -60,7 +60,8 @@
                 <td>{{ programa.fecha_inicio_programa }}</td>
                 <td>{{ programa.estado_programa }}</td>
                 <td>{{ programa.duracion_programa }}</td>
-                <td>{{ programa.modalida_programa }}</td>
+                <td>{{ programa.facultad_programa }}</td>
+                <td>{{ programa.modalidad_programa }}</td>
                 <td>{{ programa.director_programa }}</td>
                 <td>
                   <a href="{% url 'eliminar_programa_inactivo' programa.codigo_programa %}">
