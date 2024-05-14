@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="55DEE788-8DDB-C29E-1935-0F1AF47F3C1B" name="Nrc">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 00:17:24 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_nrc" id="A0670DB8-748C-C9E2-2C15-2D33B5075C06">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 00:17:31 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="grupo" id="CB4084C7-6E97-65C4-D7B6-C5D665B2C04D">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 00:17:50 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="codigo_materia" id="C7F12ADF-CCE1-9810-BEB1-6295AAD4CF9B">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 00:18:36 UTC</createdTime>
+<generatorID>9AB8432A-8085-12F3-52B4-12693CD56CD9</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<referedAttribute>2C7682D7-A497-6C73-787D-B26BFE23369D</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre_semestre" id="719E42B9-C929-0464-B23B-DE39CE9FF1E7">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 00:19:00 UTC</createdTime>
+<generatorID>0B8DE85F-429B-D260-EAC9-3969A2456433</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<referedAttribute>6DB4BB4B-F4F7-538A-876A-85810BCCD690</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="F6ECBAB4-ADA6-E032-8335-506DD3F86A11" name="Nrc PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 00:17:49 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A0670DB8-748C-C9E2-2C15-2D33B5075C06</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

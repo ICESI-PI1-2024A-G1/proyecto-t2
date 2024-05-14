@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5270758B-BCB6-7478-9F34-119A4D3D9D4E" name="Periodo">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-13 22:50:37 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_periodo" id="37676BBA-5DE8-0A32-EF5C-332FCCD8C135">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-13 22:50:54 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fecha_inicio_periodo" id="82B19652-EF02-74EF-0110-D254A6336CE5">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-13 22:51:16 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fecha_final_periodo" id="81F30D26-BE2D-41A4-EE32-B862CF7E7CC6">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-13 22:51:28 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_programacionAcademica" id="4115CCE3-4A4C-586C-53A6-4B32BFCA9C74">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:22:29 UTC</createdTime>
+<generatorID>CED71C86-B021-A240-7FB5-19BFF2B39D26</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<referedAttribute>29DFA3CA-1F7C-3441-B2A0-614CFFA9F269</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8BBF06CE-4DBF-E1DF-0894-10FAD0AD0CBE" name="Periodo PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-13 22:51:08 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>37676BBA-5DE8-0A32-EF5C-332FCCD8C135</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

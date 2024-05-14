@@ -8,7 +8,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Nombre" id="5F5524B4-D884-60B3-6AD0-113936D5A935">
+<Column name="nombre_malla" id="5F5524B4-D884-60B3-6AD0-113936D5A935">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:11:37 UTC</createdTime>
 <generatorID>01D1296F-B058-42FD-DEC9-372DC1EDD6BA</generatorID>
@@ -19,7 +19,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Descripción" id="82521BC2-82D2-E5A6-3680-E6860D131681">
+<Column name="requisitos_previos" id="82521BC2-82D2-E5A6-3680-E6860D131681">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:11:37 UTC</createdTime>
 <generatorID>E6882D39-B7FB-53C2-F02D-770421AFB9D3</generatorID>
@@ -91,6 +91,36 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
+<Column name="Programa_de_Posgrado_Código" id="0CFE0047-F0C9-D05F-D4CF-4D467F5950A7">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>CB329DFD-037F-B6EB-1B14-ECC83E158CE5</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8BDF39F8-0BFF-D53B-C277-3B436DC01AE8" referredColumn="0F7DED87-2C79-E4F4-5F22-37BD7A9D7C12"/>
+</associations>
+</Column>
+<Column name="Semestre_nombre_semestre" id="C19F85CC-010C-E758-A8D6-33B4925727BC">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>D30E0413-503D-AB6D-679B-D9F0C796CEDA</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="75CD4455-D469-08CA-438B-54A61B58DA2C" referredColumn="4DC95493-4EC0-8775-D6DD-46520BAF8097"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="68FE81C8-D21F-BB10-5DEC-2503C84D59F9" name="Malla_Curricular_PK">
@@ -103,6 +133,17 @@
 <colUsage columnID="1D444F26-BA0B-1108-2517-82924357C7A3"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="359AAB89-E870-2DB7-9A0F-AA67A67AEA76" name="Malla_Curricular__IDX">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>8D57B140-84B1-B8F3-48C0-679DAC6232F9</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="0CFE0047-F0C9-D05F-D4CF-4D467F5950A7"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="48E2DC5F-A4C9-4C3A-2AF2-177B9EF77AE0" name="Malla_Curricular_Módulo_de_Posgrado_FK">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:11:37 UTC</createdTime>
@@ -112,6 +153,28 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="C24FB669-6F35-CEEC-65E3-92F6393C9CC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="39A1FB91-040E-BD49-C65E-EDDB9A1FC2B6" name="Malla_Curricular_Programa_de_Posgrado_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>8D57B140-84B1-B8F3-48C0-679DAC6232F9</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0CFE0047-F0C9-D05F-D4CF-4D467F5950A7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FA5B8BB4-8D6A-2F1C-299E-64EC75271B59" name="Malla_Curricular_Semestre_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>0E001447-4B02-8C47-22A5-269819D02077</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C19F85CC-010C-E758-A8D6-33B4925727BC"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

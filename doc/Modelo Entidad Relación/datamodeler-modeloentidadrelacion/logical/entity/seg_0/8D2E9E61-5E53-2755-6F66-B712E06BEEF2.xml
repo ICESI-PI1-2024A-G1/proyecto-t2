@@ -15,7 +15,7 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Nombre" id="ACE2BE27-49E5-79D5-7E11-86582E3D3769">
+<Attribute name="espacio_codigo" id="ACE2BE27-49E5-79D5-7E11-86582E3D3769">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:00:46 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
@@ -24,10 +24,10 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Ubicación" id="C744E4EE-0A99-DF54-2581-EC601DE0F7F0">
+<Attribute name="capacidad_espacio" id="C744E4EE-0A99-DF54-2581-EC601DE0F7F0">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:00:54 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
@@ -36,10 +36,10 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Capacidad" id="28563A02-9A55-3367-6AD0-3DE9466C46C5">
+<Attribute name="disponibilidad_espacio" id="28563A02-9A55-3367-6AD0-3DE9466C46C5">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:01:03 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
@@ -48,19 +48,7 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Disponibilidad" id="4D216AE0-1F56-A4B1-1021-834F13BF25B7">
-<createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 02:01:12 UTC</createdTime>
-<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
-<engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Tipo" id="8357C1A2-9FEC-48B9-A2BC-D0DF34D53E0F">
@@ -81,8 +69,9 @@
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:00:53 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

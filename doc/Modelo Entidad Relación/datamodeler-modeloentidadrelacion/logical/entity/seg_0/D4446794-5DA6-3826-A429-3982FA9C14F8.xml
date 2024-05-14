@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E5019CEC-FFAD-4176-EFFE-44D3CEF725FC" name="Módulo de Posgrado">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D4446794-5DA6-3826-A429-3982FA9C14F8" name="Horario">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:48:58 UTC</createdTime>
+<createdTime>2024-05-13 22:56:01 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
@@ -15,58 +15,57 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Nombre" id="7821A3EC-7D7F-A9A2-DAFE-B783AACFFCB0">
+<Attribute name="id_horario" id="B362B394-1362-A231-7541-3270F946E6C2">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:49:05 UTC</createdTime>
+<createdTime>2024-05-13 22:56:11 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Código" id="8034033A-4E0B-86E6-F5CC-B3C8B9E7A14D">
+<Attribute name="fecha_inicio_horario" id="F83FBD00-19DF-7A01-8378-572E0F0FEA4C">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:49:10 UTC</createdTime>
+<createdTime>2024-05-13 22:56:22 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT007</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Descripción" id="877C3B05-5C42-270F-8EF8-8FDA577107E3">
+<Attribute name="hora_inicio_horario" id="86E25D42-DB90-103E-8590-4A69E86E123F">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:49:33 UTC</createdTime>
+<createdTime>2024-05-13 22:56:31 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT014</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Requisitos previos" id="6C2FB6EA-9B9F-4D8F-E610-9E952CC17360">
+<Attribute name="hora_final_horario" id="E8347E9D-375C-AF08-8B3D-B6B45ED5B64C">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:49:44 UTC</createdTime>
+<createdTime>2024-05-13 22:57:06 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT014</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Créditos" id="3F4ED7DF-26BD-9DFC-F875-BDDC771D3E4C">
+<Attribute name="grupo" id="4F4C9EB8-9D9A-CDDA-5CB6-E9EF4BB6C6FD">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:49:53 UTC</createdTime>
+<createdTime>2024-05-13 22:57:34 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
@@ -76,70 +75,68 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Syllabus" id="00C9E54C-1126-00B4-74D4-37CBC7673F5F">
+<Attribute name="modalidad" id="21BAF810-3124-AFB5-8B66-1E943B9623B4">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:50:04 UTC</createdTime>
+<createdTime>2024-05-13 22:59:05 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT010</logicalDatatype>
+<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Programa de Posgrado" id="66A3E264-281F-392C-8988-48C99CA51502">
+<Attribute name="enlace_virtual" id="6DFC6D4D-FE27-70EE-2344-D56FC901BFB8">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:50:21 UTC</createdTime>
+<createdTime>2024-05-13 22:59:27 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="codigo_materia" id="EBA9B78A-9E35-A946-D480-935EE0B30A0F">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 00:30:44 UTC</createdTime>
+<generatorID>68C310B7-870A-A4E6-32FE-E1C650F0D9AF</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<referedAttribute>2C7682D7-A497-6C73-787D-B26BFE23369D</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Código1" id="E791DBF8-CD0D-9E1E-9B41-8ABFAFC0D543">
+<Attribute name="id_programacionAcademica" id="03C47DA5-96FA-1675-B154-2E953237CCFC">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 02:03:57 UTC</createdTime>
-<generatorID>1B1365CE-7DCF-279B-ACE8-B7091EF0D0EB</generatorID>
+<createdTime>2024-05-14 01:21:40 UTC</createdTime>
+<generatorID>0C46457A-5732-C95A-7890-74D1E6E75B36</generatorID>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
-<referedAttribute>D6B4840A-FDF1-D32C-7611-56067DC5EA96</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Nombre1" id="4AC8E301-BBB6-A363-8A2B-CC2C13C357E1">
-<createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 02:04:36 UTC</createdTime>
-<generatorID>2C039CBD-2589-0AC8-5043-4AE1434F24E2</generatorID>
-<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
-<engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
-</engineerTo>
-<referedAttribute>6DB4BB4B-F4F7-538A-876A-85810BCCD690</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<referedAttribute>29DFA3CA-1F7C-3441-B2A0-614CFFA9F269</referedAttribute>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="7C6ABA00-5822-C6C1-FC35-C1A279D18AEF" name="Módulo de Posgrado PK">
+<identifier id="44FEA550-B340-F228-D920-9153BEB24C8F" name="Horario PK">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:49:20 UTC</createdTime>
+<createdTime>2024-05-13 22:56:17 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>8034033A-4E0B-86E6-F5CC-B3C8B9E7A14D</attributeRef>
+<attributeRef>B362B394-1362-A231-7541-3270F946E6C2</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

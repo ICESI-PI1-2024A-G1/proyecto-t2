@@ -129,6 +129,74 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="Estado_del_programa" id="E9088DBC-B298-7A3A-A318-F0E8E05EDC1F">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>9E272F67-829A-8518-AB66-85CB5BEAF275</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Director_de_programa_id" id="61CBAD30-AD74-4499-F0EC-AC62051E6DA2">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>49FAE1D6-407F-DF7E-ECAE-BA5FC8CAA21B</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6C997737-CBB8-C278-AF6F-8CD1158C18EE" referredColumn="05432AB7-2E6C-C3F2-03C7-28F8F0A9145A"/>
+</associations>
+</Column>
+<Column name="Facultad_codigo_facultad" id="0E759374-D163-9043-578B-C853CE39BFAB">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>F0D11CF7-31EF-D211-4497-A40C279E3524</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A1D69D0E-78B2-57AD-2640-081916D6016D" referredColumn="8846B891-7252-CCFE-F20B-A902C515F5F8"/>
+</associations>
+</Column>
+<Column name="ProgramacionAcademica_id_programacionAcademica" id="9757EE54-55E4-7FD8-D9E4-A0D7EA6D7A18">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>7C719B24-7C15-0E94-37A2-0030FCB59643</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="340FD47B-21BC-CDC7-F6B7-85F7A0D4BCCF" referredColumn="15A96A89-9822-E138-DA97-CF509904B89B"/>
+</associations>
+</Column>
+<Column name="Malla_Curricular_Malla_Curricular_ID" id="F197C9B7-D23D-4E80-A00B-2AA5B11A7ED3">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B7623CF8-6344-BC98-4B0E-840A83C5A8D7" referredColumn="1D444F26-BA0B-1108-2517-82924357C7A3"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="7055806A-4236-AF5B-9D4B-9017F0A40132" name="Programa_de_Posgrado_PK">
@@ -141,6 +209,83 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="0F7DED87-2C79-E4F4-5F22-37BD7A9D7C12"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D424C175-36B1-A4D7-0092-3AF4C279C235" name="Programa_de_Posgrado__IDX">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>F36ED839-00F2-7120-2052-23A6A08E8B91</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="61CBAD30-AD74-4499-F0EC-AC62051E6DA2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="457DE907-E8D1-D35B-9B21-1AD7EAE7C190" name="Programa_de_Posgrado__IDXv1">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>8D57B140-84B1-B8F3-48C0-679DAC6232F9</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="F197C9B7-D23D-4E80-A00B-2AA5B11A7ED3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="58FBC82E-4CC1-D106-0F1E-B0FFD0602E1A" name="Programa_de_Posgrado__IDXv2">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>D81108A8-7603-69BA-1D10-42CA1AF97C94</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="9757EE54-55E4-7FD8-D9E4-A0D7EA6D7A18"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EDA57F65-27AB-F38E-8CCD-EC8928709767" name="Programa_de_Posgrado_Director_de_programa_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>F36ED839-00F2-7120-2052-23A6A08E8B91</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="61CBAD30-AD74-4499-F0EC-AC62051E6DA2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D1E21A8D-4F9F-3483-6F4D-6D8284BAB9C4" name="Programa_de_Posgrado_Facultad_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>0FC68A85-3EA3-DE02-8BF5-0D82B17BB78C</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0E759374-D163-9043-578B-C853CE39BFAB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9923AB00-2FEA-48EA-2224-F7DA77B2A674" name="Programa_de_Posgrado_Malla_Curricular_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>8D57B140-84B1-B8F3-48C0-679DAC6232F9</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F197C9B7-D23D-4E80-A00B-2AA5B11A7ED3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DB81254E-A23F-1364-F2F9-9A45DF7AE15C" name="Programa_de_Posgrado_ProgramacionAcademica_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>D81108A8-7603-69BA-1D10-42CA1AF97C94</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9757EE54-55E4-7FD8-D9E4-A0D7EA6D7A18"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
