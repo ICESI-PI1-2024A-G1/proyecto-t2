@@ -206,17 +206,11 @@ def registrar_materia_malla(request):
 def filtrar_materias(request):
     programa_id = request.GET.get('programa')
     semestre_id = request.GET.get('semestre')
-    
-    print(f"Programa ID: {programa_id}, Semestre ID: {semestre_id}") 
-    print(f"Tipo de programa ID: {type(programa_id)}, Tipo de Semestre ID: {type(semestre_id)}")  # Depuración
 
     materias = Materia.objects.filter(
         programa_de_posgrado_materia=programa_id,
         semestre=semestre_id
     ).values('codigo_materia', 'nombre_materia')  # Solo obtenemos datos necesarios
-
-    print(materias.query)  # Imprime la consulta SQL
-    print(f"Materias encontradas: {list(materias)}")
 
     return JsonResponse(list(materias), safe=False)  # Retornamos JSON
 

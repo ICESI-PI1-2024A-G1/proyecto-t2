@@ -211,7 +211,6 @@ class ProgramacionAcademica(models.Model):
      num_creditos = models.IntegerField(null = False, blank= False, default= '')
      periodo = models.ForeignKey(Periodo, on_delete= models.CASCADE,  null= False, blank= False, default = '')
      materia = models.ManyToManyField(Materia)
-     horario = models.ManyToManyField(Horario)
      modalidad = models.CharField(max_length= 20, default = '', null = False, blank = False)
      grupo = models.CharField(max_length= 20, default = '', null = False, blank = False)
      docente = models.ForeignKey(Profesor, on_delete=models.CASCADE, default = '', null = False, blank = False)
