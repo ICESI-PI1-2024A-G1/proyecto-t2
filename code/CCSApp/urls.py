@@ -5,8 +5,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
 
-    #Experimental
-    path('api/filtrar_materias/', views.filtrar_materias, name='filtrar_materias'),
+    #Experimental no tocar
+    path('index/programacion/filtrar_materias/', views.filtrar_materias, name='filtrar_materias'),
     
     path('', views.log_in),
     path('register_us/', views.register_us),

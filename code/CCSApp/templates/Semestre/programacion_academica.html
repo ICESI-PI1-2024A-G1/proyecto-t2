@@ -73,10 +73,52 @@
   </div>
   <script src="{% static 'js/transiciones.js' %}"></script>
   <script src="{% static 'js/script.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => { 
+    const programaSelect = document.getElementById('id_programa_de_posgrado');
+    const semestreSelect = document.getElementById('id_semestre');
+    const materiaSelect = document.getElementById('id_materia');
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; 
 
+    if (programaSelect && semestreSelect && materiaSelect) { 
+        programaSelect.addEventListener('change', updateMateriaOptions);
+        semestreSelect.addEventListener('change', updateMateriaOptions);
 
+        function updateMateriaOptions() {
+            const programaId = programaSelect.value;
+            const semestreId = semestreSelect.value;
 
-    
+            if (programaId && semestreId) { 
+                fetch(`/index/programacion/filtrar_materias/?programa=${programaId}&semestre=${semestreId}`, {
+                    headers: {
+                        'X-CSRFToken': csrfToken 
+                    }
+                })
+                .then(response => response.json())
+                .then(materias => {
+                    materiaSelect.innerHTML = '<option value="">---------</option>'; 
+
+                    materias.forEach(materia => {
+                        const option = document.createElement('option');
+                        option.value = materia.codigo_materia;
+                        option.text = materia.nombre_materia;
+                        materiaSelect.add(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al obtener materias:', error);
+                });
+            } else {
+                materiaSelect.innerHTML = '<option value="">---------</option>';
+            }
+        }
+
+        updateMateriaOptions(); 
+    } else {
+        console.error('No se encontraron los elementos del formulario necesarios para el filtrado.');
+    }
+});
+</script>  
 </body>
 <script>
   // Función para redirigir a una página HTML específica

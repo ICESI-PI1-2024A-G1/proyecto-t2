@@ -1,6 +1,6 @@
 from django.forms import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import *
@@ -201,22 +201,24 @@ def registrar_materia_malla(request):
                 'form': CrearMateria,
                 'error': 'Por favor, proporcione datos válidos.'
             })
-        
-from django.http import JsonResponse
-from .models import Materia
+    
 
 def filtrar_materias(request):
-    programa_id = request.GET.get('programa_de_posgrado')
+    programa_id = request.GET.get('programa')
     semestre_id = request.GET.get('semestre')
+    
+    print(f"Programa ID: {programa_id}, Semestre ID: {semestre_id}") 
+    print(f"Tipo de programa ID: {type(programa_id)}, Tipo de Semestre ID: {type(semestre_id)}")  # Depuración
 
-    materias = Materia.objects.filter(programa_de_posgrado_materia=programa_id, semestre=semestre_id)
+    materias = Materia.objects.filter(
+        programa_de_posgrado_materia=programa_id,
+        semestre=semestre_id
+    ).values('codigo_materia', 'nombre_materia')  # Solo obtenemos datos necesarios
 
-    data = [{
-        'codigo_materia': materia.codigo_materia,
-        'nombre_materia': materia.nombre_materia
-    } for materia in materias]
+    print(materias.query)  # Imprime la consulta SQL
+    print(f"Materias encontradas: {list(materias)}")
 
-    return JsonResponse(data, safe=False)
+    return JsonResponse(list(materias), safe=False)  # Retornamos JSON
 
 
 def buscar_materia(request):

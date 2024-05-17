@@ -144,19 +144,37 @@ class ProgramacionAcademicaForm(forms.Form):
         queryset=Semestre.objects.all(),
         widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_semestre'})
     )
-    departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
-    horas = forms.FloatField(label='Horas totales', widget=forms.Select(attrs={'class': 'form-control2'}))
-    #periodo = forms.ModelChoiceField(label="Periodo", queryset= Periodo.objects.all(), help_text="Seleccione el periodo al que pertenece la programacion academica")
+    departamento = forms.ModelChoiceField(
+        label="Departamento",
+        queryset=Departamento.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2'})
+    )
+    # No necesitas este campo, ya que las horas totales no son un valor que se seleccione
+    # horas = forms.FloatField(label='Horas totales', widget=forms.Select(attrs={'class': 'form-control2'})) 
     materia = forms.ModelChoiceField(
         label="Materia",
-        queryset=Materia.objects.all(),
+        queryset=Materia.objects.none(),  # Inicialmente vacío, se llenará dinámicamente
         widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_materia'})
     )
+
     horario_choices = [(horario.id_horario, horario.fecha_inicio_horario) for horario in Horario.objects.all()]
-    horarios = forms.ChoiceField(label="Horarios", choices=horario_choices, widget=forms.SelectMultiple(attrs={'class': 'form-control2'}))
-    #horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
-    grupo =  forms.CharField(max_length=10, label= "Grupo", widget=forms.Select(attrs={'class': 'form-control2'}))
-    profesor = forms.ModelChoiceField(label="Profesor", queryset= Profesor.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    horarios = forms.ChoiceField(
+        label="Horarios",
+        choices=horario_choices,
+        widget=forms.SelectMultiple(attrs={'class': 'form-control2'})
+    )
+
+    grupo = forms.CharField(
+        max_length=10,
+        label="Grupo",
+        widget=forms.TextInput(attrs={'class': 'form-control2'})  # Cambiamos a TextInput
+    )
+
+    profesor = forms.ModelChoiceField(
+        label="Profesor",
+        queryset=Profesor.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2'})
+    )
 
     def clean(self):
         cleaned_data = super().clean()
@@ -187,6 +205,7 @@ class ProgramacionAcademicaForm(forms.Form):
         cleaned_data['profesor'] = selected_profesor
 
         return cleaned_data
+
 
 class CrearMallaCurricular(forms.Form):
     nombre_malla = forms.CharField(label="Nombre", max_length=255)
