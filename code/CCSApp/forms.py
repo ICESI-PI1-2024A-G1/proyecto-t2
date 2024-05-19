@@ -174,7 +174,8 @@ class ProgramacionAcademicaForm(forms.Form):
     grupo = forms.ChoiceField(
         choices=[('001', '001'), ('002', '002'), ('003', '003'), ('004', '004')],
         label="Grupo",
-        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_grupo'})
+        widget=forms.HiddenInput(),
+        required=False
     )
     profesor = forms.ModelChoiceField(
         label="Profesor",
@@ -271,12 +272,11 @@ class ProgramacionAcademicaForm(forms.Form):
         selected_departamento = cleaned_data.get('departamento')
         selected_materia = cleaned_data.get('materia')
         selected_horario = cleaned_data.get('horario')
-        selected_grupo = cleaned_data.get('grupo')
         selected_profesor = cleaned_data.get('profesor')
         selected_horas = cleaned_data.get('horas')
 
         # Validar las opciones seleccionadas
-        if not all([selected_programa, selected_semestre, selected_departamento, selected_materia, selected_horario, selected_grupo, selected_profesor, selected_horas]):
+        if not all([selected_programa, selected_semestre, selected_departamento, selected_materia, selected_horario, selected_profesor, selected_horas]):
             raise forms.ValidationError('Seleccione una opción válida en todos los campos.')
 
         # Obtener el número de créditos de la materia seleccionada
@@ -286,6 +286,7 @@ class ProgramacionAcademicaForm(forms.Form):
         if selected_horario:
             cleaned_data['modalidad'] = selected_horario.modalidad
             cleaned_data['fecha_de_clase'] = selected_horario.fecha_inicio_horario
+            cleaned_data['grupo'] = selected_horario.grupo
 
         if selected_profesor:
             cleaned_data['correo_electronico'] = selected_profesor.correo_electronico
