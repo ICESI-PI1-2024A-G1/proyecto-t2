@@ -17,7 +17,7 @@
         <form method="get">
           <div class="bloq-sup_secd">
             <div class="div_boton_return">
-              <button class="boton-2" name="boton1" type="button" onclick="redirigirServiciosAsignaciondesdeConsultarHorarios()">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirIndexConsultarEditarProgramaciones()">
                 <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
               </button>
             </div>
@@ -42,22 +42,22 @@
           <div class="intermed-bloq">
             <form method="get" class="filtro-form">
 
+              <label for="fecha_de_clase">Fecha:</label>
+              <input class="form-control" type="date" name="fecha_de_clase" id="fecha_de_clase">
+
               <label for="programa_de_posgrado">Programa de Posgrado:</label>
               <select class="form-control" name="programa_de_posgrado" id="programa_de_posgrado">
                 <option value="">Seleccionar programa</option>
                 {% for programa in programas_de_posgrado %}
-                <option value="{{ programa.id }}">{{ programa.nombre }}</option>
+                <option value="{{ programa.codigo_programa }}">{{ programa.nombre_programa }}</option>
                 {% endfor %}
               </select>
-
-              <label for="cod_banner">Código Banner:</label>
-              <input class="form-control" type="text" name="cod_banner" id="cod_banner">
 
               <label for="departamento">Departamento:</label>
               <select class="form-control" name="departamento" id="departamento">
                 <option value="">Seleccionar departamento</option>
                 {% for depto in departamentos %}
-                <option value="{{ depto.id }}">{{ depto.nombre }}</option>
+                <option value="{{ depto.id_departamento }}">{{ depto.nombre_departamento }}</option>
                 {% endfor %}
               </select>
 
@@ -65,34 +65,27 @@
               <select class="form-control" name="periodo" id="periodo">
                 <option value="">Seleccionar periodo</option>
                 {% for periodo in periodos %}
-                <option value="{{ periodo.id }}">{{ periodo.nombre }}</option>
+                <option value="{{ periodo.id_periodo }}">{{ periodo.id_periodo }}</option>
                 {% endfor %}
               </select>
 
+              <!-- No Funciona -->
               <label for="materia">Materia:</label>
-              <input class="form-control" type="text" name="materia" id="materia">
-
-              <label for="modalidad">Modalidad:</label>
-              <select class="form-control" name="modalidad" id="modalidad">
-                <option value="">Seleccionar modalidad</option>
-                <option value="Presencial">Presencial</option>
-                <option value="Virtual">Virtual</option>
-                <option value="Mixta">Mixta</option>
+              <select class="form-control" name="materia" id="materia">
+                <option value="">Seleccionar materia</option>
+                {% for materia in materias %}
+                <option value="{{ materia.codigo_materia }}">{{ materia.codigo_materia }}</option>
+                {% endfor %}
               </select>
 
-              <label for="grupo">Grupo:</label>
-              <input class="form-control" type="text" name="grupo" id="grupo">
-
+              <!-- No funciona -->
               <label for="docente">Docente:</label>
               <select class="form-control" name="docente" id="docente">
                 <option value="">Seleccionar docente</option>
                 {% for profesor in profesores %}
-                <option value="{{ profesor.id }}">{{ profesor.nombre }}</option>
+                <option value="{{ profesor.cedula_profesor }}">{{ profesor.nombre_profesor }}</option>
                 {% endfor %}
               </select>
-
-              <label for="fecha_de_clase">Fecha de Clase:</label>
-              <input class="form-control" type="date" name="fecha_de_clase" id="fecha_de_clase">
 
               <button type="submit" class="btn-1">Buscar</button>
 
@@ -120,16 +113,16 @@
               {% for programacion in programaciones %}
               <tr>
                 <td>{{ programacion.id_programacionAcademica }}</td>
-                <td>{{ programacion.programa_de_posgrado.nombre }}</td>
+                <td>{{ programacion.programa_de_posgrado }}</td>
                 <td>{{ programacion.cod_banner }}</td>
-                <td>{{ programacion.departamento.nombre }}</td>
+                <td>{{ programacion.departamento }}</td>
                 <td>{{ programacion.horas }}</td>
                 <td>{{ programacion.num_creditos }}</td>
-                <td>{{ programacion.periodo.nombre }}</td>
-                <td>{% for materia in programacion.materia.all %}{{ materia.nombre }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                <td>{{ programacion.periodo }}</td>
+                <td>{{ programacion.materia.all }}</td>
                 <td>{{ programacion.modalidad }}</td>
                 <td>{{ programacion.grupo }}</td>
-                <td>{{ programacion.docente.nombre }}</td>
+                <td>{{ programacion.docente }}</td>
                 <td>{{ programacion.fecha_de_clase }}</td>
                 <td>
                   <a href="{% url 'editar_programacion_academica' programacion.id_programacionAcademica %}">

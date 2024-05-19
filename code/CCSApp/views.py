@@ -875,37 +875,57 @@ def editar_programacion_academica(request, id_programacion):
     return render(request, 'Editar/editar_programacion_academica.html', {'form': form})
 
 def buscar_programaciones_academicas(request):
-    # Obtener todos los horarios inicialmente
-    programaciones = ProgramacionAcademica.objects.all()
+    # Obtener todas las programaciones académicas inicialmente
+    programaciones = ProgramacionAcademica.objects.prefetch_related('materia').all()
 
     # Obtener parámetros de filtro del formulario si están presentes en la solicitud GET
-    modalidad = request.GET.get('modalidad')
+    programa_de_posgrado = request.GET.get('programa_de_posgrado')
+    cod_banner = request.GET.get('cod_banner')
+    departamento = request.GET.get('departamento')
+    periodo = request.GET.get('periodo')
     materia = request.GET.get('materia')
+    modalidad = request.GET.get('modalidad')
     grupo = request.GET.get('grupo')
-    fecha_inicio_horario = request.GET.get('fecha_inicio_horario')
-    hora_inicio_horario = request.GET.get('hora_inicio_horario')
-    hora_final_horario = request.GET.get('hora_final_horario')
+    docente = request.GET.get('docente')
+    fecha_de_clase = request.GET.get('fecha_de_clase')
 
     # Aplicar filtros según los parámetros proporcionados en el formulario
-    if modalidad:
-        horarios = horarios.filter(modalidad=modalidad)
+    if programa_de_posgrado:
+        programaciones = programaciones.filter(programa_de_posgrado=programa_de_posgrado)
+    if cod_banner:
+        programaciones = programaciones.filter(cod_banner=cod_banner)
+    if departamento:
+        programaciones = programaciones.filter(departamento=departamento)
+    if periodo:
+        programaciones = programaciones.filter(periodo=periodo)
     if materia:
-        horarios = horarios.filter(materia=materia)
+        programaciones = programaciones.filter(materia_codigo_materia=materia)
+    if modalidad:
+        programaciones = programaciones.filter(modalidad=modalidad)
     if grupo:
-        horarios = horarios.filter(grupo=grupo)
-    if fecha_inicio_horario:
-        horarios = horarios.filter(fecha_inicio_horario = fecha_inicio_horario)
-    if hora_inicio_horario:
-        horarios = horarios.filter(hora_inicio_horario = hora_inicio_horario)
-    if hora_final_horario:
-        horarios = horarios.filter(hora_final_horario = hora_final_horario)
+        programaciones = programaciones.filter(grupo=grupo)
+    if docente:
+        programaciones = programaciones.filter(docente_cedula_profesor=docente)
+    if fecha_de_clase:
+        programaciones = programaciones.filter(fecha_de_clase=fecha_de_clase)
 
-    # Pasar los horarios filtrados al contexto para mostrar en la plantilla
+    # Obtener listas para los selectores del formulario
+    programas_de_posgrado = Programa_de_posgrado.objects.all()
+    departamentos = Departamento.objects.all()
+    periodos = Periodo.objects.all()
+    docentes = Profesor.objects.all()
+
+    # Pasar los datos filtrados y listas de opciones al contexto para mostrar en la plantilla
     context = {
-        'programaciones': programaciones
+        'programaciones': programaciones,
+        'programas_de_posgrado': programas_de_posgrado,
+        'departamentos': departamentos,
+        'periodos': periodos,
+        'docentes': docentes
     }
 
     return render(request, 'Buscar/buscar_programaciones_academicas.html', context)
+
 
 
 
