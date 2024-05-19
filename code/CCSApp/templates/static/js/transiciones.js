@@ -13,10 +13,10 @@ function redirigirIndex() {
                 document.getElementById("page-container").innerHTML = this.responseText;
                 
                 // Aplicar la animación de entrada a la página 2
-                document.getElementById(window.location.href = '/index').classList.add("fade-in");
+                document.getElementById(window.location.href = '/login/index').classList.add("fade-in");
             }
         };
-        xhttp.open("GET", window.location.href = '/index', true);
+        xhttp.open("GET", window.location.href = '/login/index', true);
         xhttp.send();
     }, 500);
 }

@@ -327,7 +327,7 @@ def log_in(request):
             except Usuario.DoesNotExist:
                 # Si no se encuentra el usuario, puedes mostrar un mensaje de error o redirigir de nuevo al formulario de inicio de sesión.
                 #form.add_error(None, 'Usuario o clave incorrecta, intente de nuevo')
-                return render(request, 'login/log_in.html', {
+                return render(request, 'login/log_in copy.html', {
                         'form': LoginForm,
                         'error': 'Usuario o clave incorrecta, intente de nuevo'
                 })

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuarios</title>
+    <link rel="stylesheet" href='{% static "css/registrar_us.css" %}' type='text/css'>
+    <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+</head>
+<body>
+    <div id="page-container">
+        <div id="page1" class="fade-in">
+            <div class="bloq-sup">
+                <form method="get">
+                    <div class="bloq-sup_secd">
+                    <div class="div_boton_return">
+                        <button class="boton-2" name="boton1" type="button" onclick="redirigirPrincipal()">
+                            <img src= height="55" width="55" alt="Botón de retorno" />
+                        </button>
+                    </div>
+                    <div class="titulo">
+                        <div class="div_CCSA">
+                            <h1>CCSA</h1>
+                          </div>
+                        <div class="descripcion">
+                        <h3>Centro Compartido de Servicios Académicos</h3>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div>
+            <div class="bloq-mid">
+                <div class="intermed">
+                    <h1>Registro de Usuario</h1>
+                </div>
+                <div class="intermed-bloq">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{form}}
+                        <div class="buttondiv button-container">
+                            <button name="registrar" type="submit" class="btn-1">Registrar</button>
+                        </div>    
+                    </form>
+                </div>
+            </div> 
+            <div class="bloq-inf">
+                <h4>Universidad Icesi</h4>
+                <h4>Todos los derechos reservados</h4>
+                <h4>Derechos de Autor</h4>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/transiciones.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
