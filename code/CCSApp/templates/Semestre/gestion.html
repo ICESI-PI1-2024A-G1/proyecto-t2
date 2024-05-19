@@ -1,73 +1,100 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestion de Información</title>
-  <link rel="stylesheet" href='{% static "css/gestion.css" %}' type='text/css'>
-  <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Asignación</title>
+    <link rel="stylesheet" href='{% static "css/login.css" %}' type='text/css'>
+    <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="page-container">
-    <div id="page1" class="fade-in">
-      <div class="bloq-sup">
+    <header>
+        <div class="contenedor-imagen">
+            <button class="boton-2" name="boton1" type="button" onclick="redirigirPrincipal()">
+                <img src="/static/Images/retorno.png" alt="Botón de retorno" />    
+            </button>
+        </div>
+        
+        <div class="div-heading">
+            <h1 class="poppins-semibold">CCSA</h1>
+            <h3 class="poppins-regular">Centro Compartido de Servicios Académicos</h3>  
+        </div>                                  
+    </header>
+
+    <div class="div-container">
         <form method="get">
-          <div class="bloq-sup_secd">
-            <div class="div_boton_return">
-              <button class="boton-2" name="boton1" type="button" onclick="redirigirIndex()">
-                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
-              </button>
-            </div>
-            <div class="titulo">
-              <div class="div_CCSA">
-                <h1>CCSA</h1>
-              </div>
-              <div class="descripcion">
-                <h3>Centro Compartido de Servicios Académicos</h3>
-              </div>
-            </div>
-          </div>
+            <button name="btn_gestion" class="poppins-medium-special btn-1" type="button" onclick="redirigirGestion()">Gestion de Informacion</button>
+            <button class="poppins-medium-special btn-1" type="button" onclick="redirigirAHTML2()">Asignacion de Viaticos</button>
+            <button class="poppins-medium-special btn-1" type="button" onclick="redirigirServiciosAsignacion()">Servicios de Asignacion</button>
+            <button name="csv_programacion_btn" class="poppins-medium-special btn-1" type="button" onclick="descargarCSV()"> Descargar CSV de Programación Academica </button>
         </form>
-      </div>
-
-      <div class="bloq-mid">
-          <div class="intermed">
-              <h1>Gestion de la <br>Informacion</h1>
-          </div>
-          <div class="intermed-bloq">
-              <button name ="crearp_btn" class="btn-1" type="button" onclick="redirigirNuevoPrograma()"> Crear un nuevo programa</button>
-              <button class="btn-1" type="button" onclick="redirigirBuscarPrograma()">Buscar informacion de programa</button>
-              <button id="descargar-btn" class="btn-1">Descargar reporte sobre programa existente</button>            
-              <button name="eliminarp_btn" class="btn-1" type="button" onclick="redirigirGestionEliminarPrograma()">Eliminar programa inactivo</button>
-          </div>
-      </div>
-      <div class="photo">
-          <img src="/static/Images/gestion.png" alt="Mi imagen">
-      </div>    
-      <div class="bloq-inf">
-          <h4>Universidad Icesi</h4>
-          <h4>Todos los derechos reservados</h4>
-          <h4>Derechos de Autor</h4>
-      </div>
     </div>
-  </div>    
-  <script>
-    // Función para redirigir a una página HTML específica
-    function redirigirAHTML() {
-      window.location.href = '/index'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-    }
-  </script>
-  <script>
-    // Función para redirigir a una página HTML específica
-    function redirigirAHTML2() {
-      window.location.href = 'editar/<str:codigo>/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-    }
-  </script>
-  <script src="{% static 'js/transiciones.js' %}"></script>
-  <script src="{% static 'js/descargar.js' %}"></script>
+
+    <div class="div-a-centrarr"> <!-- principal-->
+        <div> <!-- auxiliar 1-->
+            <div class="div-secundario-login">
+                <h1 class="poppins-semibold">Gestion de la informacion</h1>
+            </div>
+
+                <div class="container-btn">
+                <!-- <form method="POST"> -->
+                    <!-- {% csrf_token %} -->
+                        <div class="button-group">
+                            <button name ="crearp_btn" class="btn-1" type="button" onclick="redirigirNuevoPrograma()"> Crear un nuevo programa</button>
+                            <button class="btn-1" type="button" onclick="redirigirBuscarPrograma()">Buscar informacion de programa</button>
+                            <button id="descargar-btn" class="btn-1">Descargar reporte sobre programa existente</button>            
+                            <button name="eliminarp_btn" class="btn-1" type="button" onclick="redirigirGestionEliminarPrograma()">Eliminar programa inactivo</button>
+                        </div>              
+                </div>
+        </div>
+
+        <!--<div class="photo">
+            <img src="/static/Images/fondo.png" alt="Mi imagen">
+        </div>-->
+    </div>
+
+
+
+    <footer>
+        <div>
+            <h4 class="poppins-medium">Universidad Icesi</h4>
+            <h4 class="poppins-medium">Todos los derechos reservados</h4>
+        </div>
+    </footer>
+    
+    <script src="{% static 'js/transiciones.js' %}"></script>
+    <script>
+        function redirigirGestion() {
+            window.location.href = "/index/gestion"; 
+        }
+        function redirigirServiciosAsignacion() {
+            window.location.href = "/index/servicios_asignacion/"; 
+        }
+        // Función para redirigir a una página HTML específica
+        function descargarCSV() {
+          window.location.href = 'programacion/program_csv/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+
+        function redirigirNuevoPrograma(){
+            window.location.href = "/index/gestion/nuevoprograma/";
+        }
+
+        function redirigirBuscarPrograma(){
+            window.location.href = "/index/gestion/buscar_programa_academico/";
+        }
+
+        function redirigirGestionEliminarPrograma(){
+            window.location.href = "/index/gestion/eliminar_programa_academico/";
+        }
+
+        function redirigirPrincipal(){
+            window.location.href = "/index/";
+        }
+    </script>
 </body>
-
 </html>
-

@@ -1,14 +1,17 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios de Asignación</title>
     <link rel="stylesheet" href='{% static "css/login.css" %}' type='text/css'>
     <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
-  </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
 <body>
     <header>
         <div class="contenedor-imagen">
@@ -23,79 +26,108 @@
         </div>                                  
     </header>
 
-
-
-  <div id="page-container">
-    <div id="page1" class="fade-in">
-      <div class="bloq-sup">
+    <div class="div-container">
         <form method="get">
-            <div class="bloq-sup_secd">
-              <div class="div_boton_return">
-                <button class="boton-2" name="boton1" type="button" onclick="redirigirIndex()">
-                  <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
-                </button>
-              </div>
-              <div class="titulo">
-                <div class="div_CCSA">
-                  <h1>CCSA</h1>
-                </div>
-                <div class="descripcion">
-                    <h3>Centro Compartido de Servicios Académicos</h3>
-                </div>
-              </div>
-            </div>
+            <button name="btn_gestion" class="poppins-medium-special btn-1" type="button" onclick="redirigirGestion()">Gestion de Informacion</button>
+            <button class="poppins-medium-special btn-1" type="button" onclick="redirigirAHTML2()">Asignacion de Viaticos</button>
+            <button class="poppins-medium-special btn-1" type="button" onclick="redirigirServiciosAsignacion()">Servicios de Asignacion</button>
+            <button name="csv_programacion_btn" class="poppins-medium-special btn-1" type="button" onclick="descargarCSV()"> Descargar CSV de Programación Academica </button>
         </form>
-      </div>
-      <div class="bloq-mid">
-        <div class="intermed">
-            <h1>Servicios<br>De Asignación</h1>
-        </div>
-        <div class="intermed-bloq">
-          <button class="btn-1" type="button" onclick="redirigirRegistrarMateria()">Registrar Materia</button>
-          <button class="btn-1" type="button" onclick="redirigirIndextoEditarMateria()">Editar Materia</button>
-          <button class="btn-1" type="button" onclick="redirigirRegistrarProfesor()">Registrar Profesor</button>
-          <button class="btn-1" type="button" onclick="redirigirIndextoEditarProfesor()">Editar Profesor</button>
-          <button class="btn-1" type="button" onclick="redirigirConsultarHorario()">Consultar y Editar Horarios</button>
-          <button class="btn-1" type="button" onclick="redirigirCrearEspacio()">Crear Espacio</button>
-          <button class="btn-1" type="button" onclick="redirigirAHTML7()">Editar Espacio</button>
-          <button class="btn-1" type="button" onclick="redirigirIndextoCrearEvento()">Crear Evento</button>
-          <button class="btn-1" type="button" onclick="redirigirIndextoCrearActividad()">Crear Actividad</button>
-        </div>
-      </div>
-      <div class="photo">
-        <img src="/static/Images/servicios_asignacion.png" alt="Mi imagen">
-      </div> 
-      <div class="bloq-inf">
-        <h4>Universidad Icesi</h4>
-        <h4>Todos los derechos reservados</h4>
-        <h4>Derechos de Autor</h4>
-      </div>
     </div>
-  </div>
-  <script>
-    // Función para redirigir a una página HTML específica
-    function redirigirAHTML() {
-      window.location.href = '/index'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-    }
-  </script>
-  <script>
-    // Función para redirigir a una página HTML específica
-    function redirigirAHTML2() {
-      window.location.href = 'editar/<str:codigo>/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
-    }
-  </script>
-  <script src="{% static 'js/transiciones.js' %}"></script>
-      <script>
+
+    <div class="div-a-centrarr"> <!-- principal-->
+        <div> <!-- auxiliar 1-->
+            <div class="div-secundario-login">
+                <h1 class="poppins-semibold">Servicios de Asignación</h1>
+            </div>
+
+            <form method="get">
+                <div class="container-btn">
+                <!-- <form method="POST"> -->
+                    <!-- {% csrf_token %} -->
+                        <div class="button-group">
+                            <button class="btn-1" type="button" onclick="redirigirRegistrarMateria()">Registrar Materia</button>
+                            <button class="btn-1" type="button" onclick="redirigirIndextoEditarMateria()">Editar Materia</button>
+                            <button class="btn-1" type="button" onclick="redirigirRegistrarProfesor()">Registrar Profesor</button>
+                            <button class="btn-1" type="button" onclick="redirigirIndextoEditarProfesor()">Editar Profesor</button>
+                            <button class="btn-1" type="button" onclick="redirigirConsultarHorario()">Consultar y Editar Horarios</button>
+                            <button class="btn-1" type="button" onclick="redirigirCrearEspacio()">Crear Espacio</button>
+                            <button class="btn-1" type="button" onclick="redirigirAHTML7()">Editar Espacio</button>
+
+                            <button class="btn-1" type="button" onclick="redirigirIndextoCrearEvento()">Crear Evento</button>
+                            <button class="btn-1" type="button" onclick="redirigirIndextoCrearActividad()">Crear Actividad</button>
+                        </div>              
+                <!-- </form> -->
+                </div>
+            </form>
+        </div>
+
+        <!--<div class="photo">
+            <img src="/static/Images/fondo.png" alt="Mi imagen">
+        </div>-->
+    </div>
+
+
+
+    <footer>
+        <div>
+            <h4 class="poppins-medium">Universidad Icesi</h4>
+            <h4 class="poppins-medium">Todos los derechos reservados</h4>
+        </div>
+    </footer>
+    
+    <script src="{% static 'js/transiciones.js' %}"></script>
+    <script>
+        function redirigirRegistrarMateria() {
+            window.location.href = "/index/servicios_asignacion/registroMateria"; 
+        }
+        function redirigirIndextoEditarMateria() {
+            window.location.href = "/index/servicios_asignacion/buscar_materia"; 
+        }
         // Función para redirigir a una página HTML específica
+        function redirigirRegistrarProfesor() {
+          window.location.href = '/index/servicios_asignacion/registroProfesor'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+
+        function redirigirIndextoEditarProfesor() {
+          window.location.href = '/index/servicios_asignacion/buscar_profesor'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+
+        
+        function redirigirConsultarHorario() {
+            window.location.href = '/index/servicios_asignacion/consultar_horarios'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+        
+        function redirigirCrearEspacio() {
+            window.location.href = '/index/servicios_asignacion/crear_espacio'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+        
         function redirigirAHTML7() {
-          window.location.href = 'lista_edificios/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+          window.location.href = '/index/servicios_asignacion/lista_edificios'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
         }
-      </script>
-      <script>
+
+        function redirigirIndextoCrearEvento() {
+          window.location.href = '/index/servicios_asignacion/crear_evento'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+
+        function redirigirIndextoCrearActividad() {
+          window.location.href = '/index/servicios_asignacion/crear_actividad'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+
+        function descargarCSV() {
+          window.location.href = 'programacion/program_csv/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        }
+
+        function redirigirGestion() {
+            window.location.href = "/index/gestion"; 
+        }
+        function redirigirServiciosAsignacion() {
+            window.location.href = "/index/servicios_asignacion/"; 
+        }
         // Función para redirigir a una página HTML específica
-        function redirigirAHTML8() {
-          window.location.href = 'eliminar_espacio/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
+        function descargarCSV() {
+          window.location.href = 'programacion/program_csv/'; // Reemplaza '/servicios_asignacion' con la ruta de tu página HTML
         }
-      </script>
+    </script>
 </body>
 </html>
