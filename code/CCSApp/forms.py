@@ -133,6 +133,9 @@ class CrearProgramaAcademico(forms.Form):
 
         return cleaned_data
 
+from django import forms
+from .models import Programa_de_posgrado, Semestre, Departamento, Materia, Horario, Profesor
+
 class ProgramacionAcademicaForm(forms.Form):
     programa_de_posgrado = forms.ModelChoiceField(
         label="Programa de posgrado",
@@ -149,37 +152,120 @@ class ProgramacionAcademicaForm(forms.Form):
         queryset=Departamento.objects.all(),
         widget=forms.Select(attrs={'class': 'form-control2'})
     )
-    # No necesitas este campo, ya que las horas totales no son un valor que se seleccione
-    # horas = forms.FloatField(label='Horas totales', widget=forms.Select(attrs={'class': 'form-control2'})) 
     materia = forms.ModelChoiceField(
         label="Materia",
-        queryset=Materia.objects.none(),  # Inicialmente vacío, se llenará dinámicamente
+        queryset=Materia.objects.all(),
         widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_materia'})
     )
-
-    horario_choices = [(horario.id_horario, horario.fecha_inicio_horario) for horario in Horario.objects.all()]
-    horarios = forms.ChoiceField(
+    horario = forms.ModelChoiceField(
         label="Horarios",
-        choices=horario_choices,
-        widget=forms.SelectMultiple(attrs={'class': 'form-control2'})
+        queryset=Horario.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_horario'})
     )
-
-    grupo = forms.CharField(
-        max_length=10,
+    periodo = forms.ModelChoiceField(
+        label="Periodo",
+        queryset=Periodo.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_periodo'})
+    )
+    horas = forms.FloatField(
+        label='Horas Totales',
+        widget=forms.NumberInput(attrs={'class': 'form-control2', 'id': 'id_horas'})
+    )
+    grupo = forms.ChoiceField(
+        choices=[('001', '001'), ('002', '002'), ('003', '003'), ('004', '004')],
         label="Grupo",
-        widget=forms.TextInput(attrs={'class': 'form-control2'})  # Cambiamos a TextInput
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_grupo'})
     )
-
     profesor = forms.ModelChoiceField(
         label="Profesor",
         queryset=Profesor.objects.all(),
         widget=forms.Select(attrs={'class': 'form-control2'})
     )
+    num_creditos = forms.IntegerField(
+        label='Número de Créditos',
+        widget=forms.HiddenInput(),
+        required=False
+    )
+    modalidad = forms.CharField(
+        label='Modalidad',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='Presencial'  # Puedes definir un valor por defecto si es necesario
+    )
+    tipo_de_contrato = forms.CharField(
+        label='Tipo de Contrato',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    ciudad = forms.CharField(
+        label='Ciudad',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='Ciudad Ejemplo'  # Puedes definir un valor por defecto si es necesario
+    )
+    correo_electronico = forms.EmailField(
+        label='Correo Electrónico',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='correo@ejemplo.com'  # Puedes definir un valor por defecto si es necesario
+    )
+    telefono = forms.CharField(
+        label='Teléfono',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='123456789'  # Puedes definir un valor por defecto si es necesario
+    )
+    fecha_de_clase = forms.DateField(
+        label='Fecha de Clase',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='2023-01-01'  # Puedes definir un valor por defecto si es necesario
+    )
+    estado_de_contrato = forms.CharField(
+        label='Estado de Contrato',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='Activo'  # Puedes definir un valor por defecto si es necesario
+    )
+    fecha_elab_contrato = forms.CharField(
+        label='Fecha Elaboración de Contrato',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    num_contrato = forms.CharField(
+        label='Número de Contrato',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    listas_mosaicos = forms.CharField(
+        label='Listas y Mosaicos',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    entrega_notas = forms.CharField(
+        label='Entrega de Notas',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    intu_canvas = forms.CharField(
+        label='Intu Canvas',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    tiquetes = forms.CharField(
+        label='Tiquetes',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    hotel = forms.CharField(
+        label='Hotel',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    viaticos = forms.CharField(
+        label='Viáticos',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
 
     def clean(self):
         cleaned_data = super().clean()
 
-        # Get the selected faculty instance
+        # Obtener las instancias seleccionadas
         selected_programa = cleaned_data.get('programa_de_posgrado')
         selected_semestre = cleaned_data.get('semestre')
         selected_departamento = cleaned_data.get('departamento')
@@ -187,25 +273,26 @@ class ProgramacionAcademicaForm(forms.Form):
         selected_horario = cleaned_data.get('horario')
         selected_grupo = cleaned_data.get('grupo')
         selected_profesor = cleaned_data.get('profesor')
+        selected_horas = cleaned_data.get('horas')
 
+        # Validar las opciones seleccionadas
+        if not all([selected_programa, selected_semestre, selected_departamento, selected_materia, selected_horario, selected_grupo, selected_profesor, selected_horas]):
+            raise forms.ValidationError('Seleccione una opción válida en todos los campos.')
 
-        selected = (selected_semestre,  selected_departamento, selected_programa, selected_materia, selected_horario, selected_profesor, selected_grupo)
+        # Obtener el número de créditos de la materia seleccionada
+        if selected_materia:
+            cleaned_data['num_creditos'] = selected_materia.creditos_materia
 
-        # Validate the selected faculty
-        if not selected:
-            raise forms.ValidationError('Seleccione una opcion valida')
+        if selected_horario:
+            cleaned_data['modalidad'] = selected_horario.modalidad
+            cleaned_data['fecha_de_clase'] = selected_horario.fecha_inicio_horario
 
-        # Update the cleaned data with the faculty instance
-        cleaned_data['semestre'] = selected_semestre
-        cleaned_data['departamento'] = selected_departamento
-        cleaned_data['programa_de_posgrado'] = selected_programa
-        cleaned_data['materia'] = selected_materia
-        cleaned_data['horario'] = selected_horario
-        cleaned_data['grupo'] = selected_grupo
-        cleaned_data['profesor'] = selected_profesor
+        if selected_profesor:
+            cleaned_data['correo_electronico'] = selected_profesor.correo_electronico
+            cleaned_data['telefono'] = selected_profesor.telefono
+            cleaned_data['tipo_de_contrato'] = selected_profesor.cedula_profesor
 
         return cleaned_data
-
 
 class CrearMallaCurricular(forms.Form):
     nombre_malla = forms.CharField(label="Nombre", max_length=255)

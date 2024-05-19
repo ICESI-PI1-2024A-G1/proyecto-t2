@@ -1,3 +1,4 @@
+import collections
 from django.forms import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
@@ -214,6 +215,11 @@ def filtrar_materias(request):
 
     return JsonResponse(list(materias), safe=False)  # Retornamos JSON
 
+def filtrar_horarios(request):
+    materia_id = request.GET.get('materia')
+    horarios = Horario.objects.filter(materia_id=materia_id)
+    horarios_list = list(horarios.values('id_horario', 'fecha_inicio_horario', 'hora_inicio_horario', 'hora_final_horario'))
+    return JsonResponse(horarios_list, safe=False)
 
 def buscar_materia(request):
     if request.method == 'POST':
@@ -518,7 +524,7 @@ def programs_csv(request):
     ws = wb.active
 
     # Escribir el encabezado
-    headers = ['PROGRAMA', 'COD BANNER', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'TIPO DE CONTRATO', 'CIUDAD', 'EMAIL', 'TELEFONO', 'FECHA DE CLASE', 'HORARIO', 'ESTADO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
+    headers = ['PROGRAMA', 'COD BANNER', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'TIPO DE CONTRATO', 'CIUDAD', 'EMAIL', 'FECHA DE CLASE', 'TELEFONO', 'HORARIO', 'ESTADO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
     ws.append(headers)
 
     # Iterar sobre los programas y escribir los datos en el archivo Excel
@@ -678,20 +684,54 @@ def editar_espacio(request, espacio_codigo):
         form = EditarEspacio(instance=espacio)
     return render(request, 'Editar/editar_espacio.html', {'form': form})
 
+import uuid
+
+def generate_cod_banner():
+    return str(uuid.uuid4())[:20]  # Recorta el UUID a 20 caracteres
+
+from collections.abc import Iterable  # Importa Iterable desde collections.abc
+
 def crear_programacion_academica(request):
     if request.method == 'POST':
-        form = ProgramacionAcademicaForm(request.POST)  # Maneja datos del POST
+        form = ProgramacionAcademicaForm(request.POST)
         if form.is_valid():
-            programacion_academica = ProgramacionAcademicaForm(
-                programa_de_posgrado =form.cleaned_data['programa_de_posgrado'],
-                semestre =form.cleaned_data['semestre'],
-                departamento =form.cleaned_data['departamento'],
-                estado_programa = form.cleaned_data['estado_programa'],
-                materia =form.cleaned_data['materia'],
-                horario =form.cleaned_data['horario'],
-                grupo =form.cleaned_data['grupo'],
-                profesor = form.cleaned_data['profesor'])
+            programacion_academica = ProgramacionAcademica(
+                programa_de_posgrado=form.cleaned_data['programa_de_posgrado'],
+                cod_banner=generate_cod_banner(),
+                departamento=form.cleaned_data['departamento'],
+                horas=form.cleaned_data['horas'],
+                periodo=form.cleaned_data['periodo'],
+                num_creditos=form.cleaned_data['num_creditos'],
+                modalidad=form.cleaned_data['modalidad'],
+                grupo=form.cleaned_data['grupo'],
+                docente=form.cleaned_data['profesor'],
+                tipo_de_contrato=form.cleaned_data['tipo_de_contrato'],
+                ciudad=form.cleaned_data['ciudad'],
+                correo_electronico=form.cleaned_data['correo_electronico'],
+                telefono=form.cleaned_data['telefono'],
+                fecha_de_clase=form.cleaned_data['fecha_de_clase'],
+                estado_de_contrato=form.cleaned_data['estado_de_contrato'],
+                fecha_elab_contrato=form.cleaned_data['fecha_elab_contrato'],
+                num_contrato=form.cleaned_data['num_contrato'],
+                listas_mosaicos=form.cleaned_data['listas_mosaicos'],
+                entrega_notas=form.cleaned_data['entrega_notas'],
+                intu_canvas=form.cleaned_data['intu_canvas'],
+                tiquetes=form.cleaned_data['tiquetes'],
+                hotel=form.cleaned_data['hotel'],
+                viaticos=form.cleaned_data['viaticos'],
+                semestre=form.cleaned_data['semestre'],
+            )
             programacion_academica.save()
+
+            # Handle ManyToMany relationships
+            programacion_academica.materia.set([form.cleaned_data['materia']])  # Assuming it's a single selection
+
+            # Assuming form.cleaned_data['horario'] is a ManyToManyField
+            if isinstance(form.cleaned_data['horario'], Iterable):
+                programacion_academica.horario.set(form.cleaned_data['horario'])
+            else:
+                programacion_academica.horario.set([form.cleaned_data['horario']])
+
             return redirect('/index')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = ProgramacionAcademicaForm()
@@ -755,7 +795,7 @@ class InformeProgramacion(TemplateView):
         ws.title = 'Hoja1'
 
         # Escribir el encabezado
-        headers = ['PROGRAMA', 'COD BANNER', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'TIPO DE CONTRATO', 'CIUDAD', 'EMAIL', 'TELEFONO', 'FECHA DE CLASE', 'HORARIO', 'ESTADO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
+        headers = ['PROGRAMA', 'COD BANNER', 'SEMESTRE', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'CIUDAD', 'EMAIL', 'TELEFONO', 'FECHA DE CLASE', 'HORARIO', 'ESTADO DE CONTRATO', 'TIPO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
         ws.append(headers)
 
         # Aplicar formato al encabezado
@@ -767,6 +807,7 @@ class InformeProgramacion(TemplateView):
             data_row = [
                 registro.programa_de_posgrado.nombre_programa,
                 registro.cod_banner,
+                registro.semestre.nombre_semestre,
                 registro.departamento.id_departamento,
                 registro.horas,
                 registro.num_creditos,

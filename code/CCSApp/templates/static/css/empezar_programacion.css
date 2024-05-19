@@ -147,7 +147,6 @@ button {
 }
 
 .button {
-    /* Alinear los botones con los campos de texto */
     padding-left: 90px; /* mismo tamaño que los elementos de la etiqueta */
 }
 
@@ -156,7 +155,6 @@ button {
     margin-top: 40px;
     margin-bottom: 5px;
     margin-right: 10px;
-    /* background-color: #28C985; */
     width: 5%;
     height: 10%;
     justify-content: center;
@@ -168,23 +166,19 @@ button {
     margin-top: 10px;
     margin-bottom: 5px;
     margin-right: 10px;
-    /* background-color: #28C985; */
     width: 22%;
     justify-content: center;
     font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
 
  }
 
-.form-1 {
-    /* Centrar el formulario en la página */
-    margin: 0 auto;
-    margin-right: 48%;
-    width: 48%;
-    /* Esquema del formulario */
+ .form-1 {
+    margin: 0; /* Eliminamos los márgenes para que el formulario use todo el espacio disponible */
+    width: 100%; /* Aseguramos que el formulario use el 100% del ancho disponible */
     padding: 1em;
     border-radius: 1em;
-    /* background: #f9f9f9; */
-    border: 2px solid #04AA6D;
+    /* border: 2px solid #04AA6D; */
+    /* background-color: #999; */
 }
 
 .btn-1{
@@ -198,7 +192,7 @@ button {
     background-color: #28C985;
     border-radius: 2rem;
     border:0.7px solid #000000c8;
-    /* border: #ccc; */
+    border: #ccc;
 }
 
 .btn-1 {
@@ -224,12 +218,13 @@ button {
 .buttondiv2{
     display: flex;
     justify-content: center;
-    /* background-color: #04AA6D; */
-    width: 35%;
+    background-color: #04AA6D;
+    width: 50%;
+    height: 50%;
     margin-left: 36%;
     top: 50%;
     left: 50%;
-    transform: translate(30%, -143%);
+    transform: translate(50%, 60%);
 }
 
 .bloq-mid{
@@ -239,10 +234,6 @@ button {
     top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* background-color: #28C985; */
-    /* border: 2px solid #04AA6D; */
-    /* border-radius: 10px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
     overflow-y: scroll;
     width: 100%;
     height: 64.8%;
@@ -260,36 +251,32 @@ button {
 }
 
 .bloq-mid label {
- width: 30%; /* Ancho de la etiqueta */
- /* background-color: #04AA6D; */
- text-align: left; /* Alineación del texto a la izquierda */
+ width: 30%;
+ text-align: left;
  margin-left: 2.5%;
 }
 
 .intermed {
     position: relative;
-    top: 20px; /* Ajusta este valor según lo que necesites */
+    top: 20px; /* Ajusta este valor según sea necesario para colocar el contenedor 'intermed' en la posición deseada */
     left: 38%;
-    margin-left: 25px; /* Ajusta este valor según lo que necesites */
-    margin-bottom: 25px;
-    float: top; /* Esta propiedad no existe, ¿quizás quisiste decir "float: left;"? */
-    width: 25%;
-    height: 30px;
-    /* background-color: #04AA6D; */
-    font-family: 'Poppins', Arial, sans-serif; /* Poppins como primera opción, luego Arial, y finalmente una fuente genérica */
-
+    margin-left: 25px;
+    width: 20%;
+    height: 20%;
+    font-family: 'Poppins', Arial, sans-serif;
+    text-align: center;
 }
 
-.intermed-bloq {
+/* .intermed-bloq {
     position: relative;
-    width: 100%; /* Ancho del contenedor de input en píxeles */
-    /* background-color: #04AA6D; */
-    /* left: calc(50% - 200px); */
-    top: 20%;
+    width: 100%;
+    height: 100%;
+    top: 10%;
     border-radius: 10px;
-}
+    background-color: aqua;
+} */
 
-.intermed-bloq .form-control2{
+.intermed-bloq-container .form-control2{
     width: 65%;
     height: 50%;
     background-color: transparent;
@@ -301,7 +288,7 @@ button {
     margin-bottom: 4px;
 }
 
-.intermed-bloq .form-control{
+.intermed-bloq-container .form-control{
     width: 65%;
     height: 50%;
     background-color: transparent;
@@ -311,9 +298,16 @@ button {
     padding: 7px 20px;
 }
 
+.intermed-bloq-container {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: #04AA6D; */
+    width: 100%;
+    margin-top: 30px; /* Añade un margen superior para separar del contenedor 'intermed' */
+    padding: 1em; /* Añade un relleno si es necesario para un mejor aspecto */
+}
+
 .bloq-sup{
-    /* display: flex;
-    align-items: center; */
     position: fixed;
     left: 0;
     width: 100%;
@@ -324,6 +318,20 @@ button {
     border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
+
+.side-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%; /* Ajustamos el ancho del contenedor de botones laterales */
+}
+
+.side-buttons .btn-1 {
+    width: 70%; /* Ajustamos el ancho de los botones laterales para que sean un poco menos anchos */
+    margin: 0 auto; /* Centramos los botones dentro del contenedor */
+    box-sizing: border-box; /* Aseguramos que el padding y el border se incluyan en el ancho */
+    margin-top: 5%;
+}   
 
 .bloq-inf {
     position: fixed;

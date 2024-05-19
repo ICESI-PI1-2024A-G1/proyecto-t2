@@ -1,13 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empezar Programación Academica</title>
-    <link rel="stylesheet" href='{% static "css/empezar_programacion.css" %}' type='text/css'>
-    <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empezar Programación Academica</title>
+  <link rel="stylesheet" href='{% static "css/empezar_programacion.css" %}' type='text/css'>
+  <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+</head>
 <body>
   <div id="page-container">
     <div id="page1" class="fade-in">
@@ -32,38 +32,45 @@
       </div>
       <div class="bloq-mid-wrapper">
         <div class="bloq-mid">
-          <div class="intermed">
-            <h1>Empezar Programación Academica</h1>
-          </div>
-          <div class="intermed-bloq">
-            <form method="POST" class="form-1" enctype="multipart/form-data" id="programacionForm">
-              {% csrf_token %}
-              {{ form.as_p }} 
-              <div class="buttondiv">
-                <button type="submit" class="btn-1">Continuar</button>
-                <button class="btn-1" type="button" onclick="redirigirAsignarHorario()">Asignar Horario</button>
-              </div>
-            </form>
-          </div>
-          {% if error %}
-          <div class="error-message">
-            {{ error }}
-          </div>
-          {% endif %}
-        </div> 
+            <div class="intermed">
+                <h1>Empezar Programación Academica</h1>
+            </div>
+            <div class="intermed-bloq-container">
+                <form method="POST" class="form-1" enctype="multipart/form-data" id="programacionForm">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="buttondiv">
+                        <button type="submit" class="btn-1">Continuar</button>
+                    </div>
+                </form>
+                <div class="side-buttons">
+                    <button class="btn-1" type="button" onclick="redirigirRegistrarMateria()">Registrar Materia</button>
+                    <button class="btn-1" type="button" onclick="redirigirRegistrarProfesor()">Registrar Profesor</button>
+                    <button class="btn-1" type="button" onclick="redirigirAsignarHorario()">Asignar Horario</button>
+                    <button class="btn-1" type="button" onclick="redirigirNuevoPrograma()"> Crear un nuevo programa</button>
+                    <button class="btn-1" type="button" onclick="redirigirConsultarHorario()">Consultar y Editar Horarios</button>
+                  </div>
+            </div>
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
+        </div>
       </div>
+    
       <div id="modal-confirmacion" class="modal">
         <div class="modal-contenido">
           <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
           <p>Creando Evento...</p>
         </div>
-      </div> 
+      </div>
       <div id="modal-error" class="modal" style="display: none;">
         <div class="modal-contenido">
           <span class="cerrar-modal" onclick="cerrarModalError()">&times;</span>
           <p id="error-message-modal"></p>
         </div>
-      </div> 
+      </div>
       <div class="bloq-inf">
         <h4>Universidad Icesi</h4>
         <h4>Todos los derechos reservados</h4>
@@ -73,52 +80,82 @@
   </div>
   <script src="{% static 'js/transiciones.js' %}"></script>
   <script src="{% static 'js/script.js' %}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => { 
-    const programaSelect = document.getElementById('id_programa_de_posgrado');
-    const semestreSelect = document.getElementById('id_semestre');
-    const materiaSelect = document.getElementById('id_materia');
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const programaSelect = document.getElementById('id_programa_de_posgrado');
+      const semestreSelect = document.getElementById('id_semestre');
+      const materiaSelect = document.getElementById('id_materia');
+      const horarioSelect = document.getElementById('id_horario');
+      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    if (programaSelect && semestreSelect && materiaSelect) { 
+      if (programaSelect && semestreSelect && materiaSelect) {
         programaSelect.addEventListener('change', updateMateriaOptions);
         semestreSelect.addEventListener('change', updateMateriaOptions);
+        materiaSelect.addEventListener('change', updateHorarioOptions);
 
         function updateMateriaOptions() {
-            const programaId = programaSelect.value;
-            const semestreId = semestreSelect.value;
+          const programaId = programaSelect.value;
+          const semestreId = semestreSelect.value;
 
-            if (programaId && semestreId) { 
-                fetch(`/index/programacion/filtrar_materias/?programa=${programaId}&semestre=${semestreId}`, {
-                    headers: {
-                        'X-CSRFToken': csrfToken 
-                    }
-                })
-                .then(response => response.json())
-                .then(materias => {
-                    materiaSelect.innerHTML = '<option value="">---------</option>'; 
+          if (programaId && semestreId) {
+            fetch(`/index/programacion/filtrar_materias/?programa=${programaId}&semestre=${semestreId}`, {
+              headers: {
+                'X-CSRFToken': csrfToken
+              }
+            })
+            .then(response => response.json())
+            .then(materias => {
+              materiaSelect.innerHTML = '<option value="">---------</option>';
 
-                    materias.forEach(materia => {
-                        const option = document.createElement('option');
-                        option.value = materia.codigo_materia;
-                        option.text = materia.nombre_materia;
-                        materiaSelect.add(option);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error al obtener materias:', error);
-                });
-            } else {
-                materiaSelect.innerHTML = '<option value="">---------</option>';
-            }
+              materias.forEach(materia => {
+                const option = document.createElement('option');
+                option.value = materia.codigo_materia;
+                option.text = materia.nombre_materia;
+                materiaSelect.add(option);
+              });
+            })
+            .catch(error => {
+              console.error('Error al obtener materias:', error);
+            });
+          } else {
+            materiaSelect.innerHTML = '<option value="">---------</option>';
+          }
         }
 
-        updateMateriaOptions(); 
-    } else {
+        function updateHorarioOptions() {
+          const materiaId = materiaSelect.value;
+
+          if (materiaId) {
+            fetch(`/index/programacion/filtrar_horarios/?materia=${materiaId}`, {
+              headers: {
+                'X-CSRFToken': csrfToken
+              }
+            })
+            .then(response => response.json())
+            .then(horarios => {
+              horarioSelect.innerHTML = '<option value="">---------</option>';
+
+              horarios.forEach(horario => {
+                const option = document.createElement('option');
+                option.value = horario.id_horario;
+                option.text = `${horario.fecha_inicio_horario} ${horario.hora_inicio_horario} - ${horario.hora_final_horario}`;
+                horarioSelect.add(option);
+              });
+            })
+            .catch(error => {
+              console.error('Error al obtener horarios:', error);
+            });
+          } else {
+            horarioSelect.innerHTML = '<option value="">---------</option>';
+          }
+        }
+        updateMateriaOptions();
+      } else {
         console.error('No se encontraron los elementos del formulario necesarios para el filtrado.');
-    }
-});
-</script>  
+      }
+    });
+
+  </script>
 </body>
 <script>
   // Función para redirigir a una página HTML específica

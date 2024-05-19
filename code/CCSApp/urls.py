@@ -7,7 +7,8 @@ urlpatterns = [
 
     #Experimental no tocar
     path('index/programacion/filtrar_materias/', views.filtrar_materias, name='filtrar_materias'),
-    
+    path('index/programacion/filtrar_horarios/', views.filtrar_horarios, name='filtrar_horarios'),
+
     path('', views.log_in),
     path('register_us/', views.register_us),
     path('index/', views.index, name='index'),  
