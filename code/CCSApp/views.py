@@ -861,6 +861,51 @@ class InformeProgramacion(TemplateView):
         # Guardar el archivo xlsx y devolver la respuesta
         wb.save(response)
         return response
+    
+def editar_programacion_academica(request, id_programacion):
+    programacion = get_object_or_404(ProgramacionAcademica, id_programacionAcademica=id_programacion)
+    if request.method == 'POST':
+        form = ProgramacionAcademicaEditForm(request.POST, instance=programacion)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # Redirige a la página principal o donde desees después de la edición
+    else:
+        form = ProgramacionAcademicaEditForm(instance=programacion)
+    
+    return render(request, 'Editar/editar_programacion_academica.html', {'form': form})
+
+def buscar_programaciones_academicas(request):
+    # Obtener todos los horarios inicialmente
+    programaciones = ProgramacionAcademica.objects.all()
+
+    # Obtener parámetros de filtro del formulario si están presentes en la solicitud GET
+    modalidad = request.GET.get('modalidad')
+    materia = request.GET.get('materia')
+    grupo = request.GET.get('grupo')
+    fecha_inicio_horario = request.GET.get('fecha_inicio_horario')
+    hora_inicio_horario = request.GET.get('hora_inicio_horario')
+    hora_final_horario = request.GET.get('hora_final_horario')
+
+    # Aplicar filtros según los parámetros proporcionados en el formulario
+    if modalidad:
+        horarios = horarios.filter(modalidad=modalidad)
+    if materia:
+        horarios = horarios.filter(materia=materia)
+    if grupo:
+        horarios = horarios.filter(grupo=grupo)
+    if fecha_inicio_horario:
+        horarios = horarios.filter(fecha_inicio_horario = fecha_inicio_horario)
+    if hora_inicio_horario:
+        horarios = horarios.filter(hora_inicio_horario = hora_inicio_horario)
+    if hora_final_horario:
+        horarios = horarios.filter(hora_final_horario = hora_final_horario)
+
+    # Pasar los horarios filtrados al contexto para mostrar en la plantilla
+    context = {
+        'programaciones': programaciones
+    }
+
+    return render(request, 'Buscar/buscar_programaciones_academicas.html', context)
 
 
 

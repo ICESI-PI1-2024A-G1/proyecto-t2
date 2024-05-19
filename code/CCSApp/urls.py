@@ -8,6 +8,8 @@ urlpatterns = [
     #Experimental no tocar
     path('index/programacion/filtrar_materias/', views.filtrar_materias, name='filtrar_materias'),
     path('index/programacion/filtrar_horarios/', views.filtrar_horarios, name='filtrar_horarios'),
+    path('index/editar_programacion_academica/<int:id_programacion>/', views.editar_programacion_academica, name='editar_programacion_academica'),
+    path('index/buscar_programaciones_academicas/', views.buscar_programaciones_academicas),
 
     path('', views.log_in),
     path('register_us/', views.register_us),

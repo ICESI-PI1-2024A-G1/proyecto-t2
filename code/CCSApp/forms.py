@@ -200,7 +200,7 @@ class ProgramacionAcademicaForm(forms.Form):
     ciudad = forms.CharField(
         label='Ciudad',
         widget=forms.HiddenInput(),  # Campo oculto
-        initial='Ciudad Ejemplo'  # Puedes definir un valor por defecto si es necesario
+        initial='Cali'  # Puedes definir un valor por defecto si es necesario
     )
     correo_electronico = forms.EmailField(
         label='Correo Electrónico',
@@ -436,3 +436,47 @@ class ActividadForm(forms.Form):
     duracion_en_horas = forms.IntegerField(label= "Duracion(Horas)", widget=forms.TextInput(attrs={'class': 'form-control'}))
     orador_actividad = forms.CharField(label = 'Encargado', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     evento_actividad = forms.ModelChoiceField(label="Evento", queryset=Evento.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+
+class ProgramacionAcademicaEditForm(forms.ModelForm):
+    class Meta:
+        model = ProgramacionAcademica
+        fields = [
+            'programa_de_posgrado', 'semestre', 'departamento', 'materia', 
+            'horario', 'periodo', 'horas', 'grupo', 'docente', 'num_creditos', 
+            'modalidad', 'tipo_de_contrato', 'ciudad', 'correo_electronico', 
+            'telefono', 'fecha_de_clase', 'estado_de_contrato', 
+            'fecha_elab_contrato', 'num_contrato', 'listas_mosaicos', 
+            'entrega_notas', 'intu_canvas', 'tiquetes', 'hotel', 'viaticos'
+        ]
+        widgets = {
+            'programa_de_posgrado': forms.Select(attrs={'class': 'form-control2', 'id': 'id_programa_de_posgrado'}),
+            'semestre': forms.Select(attrs={'class': 'form-control2', 'id': 'id_semestre'}),
+            'departamento': forms.Select(attrs={'class': 'form-control2'}),
+            'materia': forms.Select(attrs={'class': 'form-control2', 'id': 'id_materia'}),
+            'horario': forms.Select(attrs={'class': 'form-control2', 'id': 'id_horario'}),
+            'periodo': forms.Select(attrs={'class': 'form-control2', 'id': 'id_periodo'}),
+            'horas': forms.NumberInput(attrs={'class': 'form-control2', 'id': 'id_horas'}),
+            'grupo': forms.HiddenInput(),
+            'docente': forms.Select(attrs={'class': 'form-control2'}),
+            'num_creditos': forms.HiddenInput(),
+            'modalidad': forms.HiddenInput(),
+            'tipo_de_contrato': forms.HiddenInput(),
+            'ciudad': forms.HiddenInput(),
+            'correo_electronico': forms.HiddenInput(),
+            'telefono': forms.HiddenInput(),
+            'fecha_de_clase': forms.HiddenInput(),
+            'estado_de_contrato': forms.HiddenInput(),
+            'fecha_elab_contrato': forms.HiddenInput(),
+            'num_contrato': forms.HiddenInput(),
+            'listas_mosaicos': forms.HiddenInput(),
+            'entrega_notas': forms.HiddenInput(),
+            'intu_canvas': forms.HiddenInput(),
+            'tiquetes': forms.HiddenInput(),
+            'hotel': forms.HiddenInput(),
+            'viaticos': forms.HiddenInput(),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        # Validaciones personalizadas aquí si es necesario
+        return cleaned_data
