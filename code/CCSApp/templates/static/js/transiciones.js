@@ -619,6 +619,29 @@ function redirigirIndexDesdeProgramacion() {
     }, 500);
 }
 
+function redirigirBuscarProgramacionDesdeEditarProgramacion() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = '/index/buscar_programaciones_academicas').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = '/index/buscar_programaciones_academicas', true);
+        xhttp.send();
+    }, 500);
+}
+
 function redirigirListaEdificio() {
     document.getElementById("page1").classList.add("fade-out");
     
