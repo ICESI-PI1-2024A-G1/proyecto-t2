@@ -565,10 +565,10 @@ function redirigirEmpezarProgramacion() {
                 document.getElementById("page-container").innerHTML = this.responseText;
                 
                 // Aplicar la animación de entrada a la página 2
-                document.getElementById(window.location.href = 'programacion/').classList.add("fade-in");
+                document.getElementById(window.location.href = 'crear_programacion_academica/').classList.add("fade-in");
             }
         };
-        xhttp.open("GET", window.location.href = 'programacion/', true);
+        xhttp.open("GET", window.location.href = 'crear_programacion_academica/', true);
         xhttp.send();
     }, 500);
 }
