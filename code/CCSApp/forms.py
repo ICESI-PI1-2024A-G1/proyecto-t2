@@ -305,7 +305,7 @@ class CrearMateria(forms.Form):
     nombre_materia = forms.CharField(label="Nombre", max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     codigo_materia = forms.CharField(label="Código", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     creditos_materia = forms.DecimalField(label="Creditos", max_digits=10, widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    syllabus = forms.FileField(label='Selecciona un archivo', widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
+    syllabus = forms.FileField(label='Selecciona un archivo PDF', widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
     departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
     semestre = forms.ModelChoiceField(label="Semestre", queryset= Semestre.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
     programa_de_posgrado_materia = forms.ModelChoiceField(label="Programa de posgrado", queryset= Programa_de_posgrado.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
@@ -411,8 +411,8 @@ class EditarEspacio(forms.ModelForm):
             'espacio_codigo': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
             'capacidad_espacio': forms.NumberInput(attrs={'class': 'form-control'}),
             'edificio_espacio': forms.Select(attrs={'class': 'form-control'}),
-            'disponibilidad_espacio': forms.Select(choices=Espacio.disponibilidad_espacio, attrs={'class': 'form-control'}),
-            'tipo': forms.Select(choices=Espacio.tipo, attrs={'class': 'form-control'})
+            'disponibilidad_espacio': forms.Select(attrs={'class': 'form-control'}),
+            'tipo': forms.Select(attrs={'class': 'form-control'})
         }
 
     
