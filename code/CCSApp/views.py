@@ -735,7 +735,7 @@ def crear_programacion_academica(request):
             return redirect('/index')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = ProgramacionAcademicaForm()
-    return render(request, 'Semestre/programacion_academica.html', {'form': form})
+    return render(request, 'Semestre/crear_programacion_academica.html', {'form': form})
 
 def crear_evento(request):
     if request.method == 'POST':
