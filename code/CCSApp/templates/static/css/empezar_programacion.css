@@ -174,9 +174,10 @@ button {
 
  .form-1 {
     margin: 0; /* Eliminamos los márgenes para que el formulario use todo el espacio disponible */
-    width: 100%; /* Aseguramos que el formulario use el 100% del ancho disponible */
+    width: 50%; /* Aseguramos que el formulario use el 100% del ancho disponible */
     padding: 1em;
     border-radius: 1em;
+    margin-left: 20%;
     /* border: 2px solid #04AA6D; */
     /* background-color: #999; */
 }

@@ -868,7 +868,7 @@ def editar_programacion_academica(request, id_programacion):
         form = ProgramacionAcademicaEditForm(request.POST, instance=programacion)
         if form.is_valid():
             form.save()
-            return redirect('index')  # Redirige a la página principal o donde desees después de la edición
+            return redirect('/index/buscar_programaciones_academicas')  # Redirige a la página principal o donde desees después de la edición
     else:
         form = ProgramacionAcademicaEditForm(instance=programacion)
     
@@ -899,13 +899,13 @@ def buscar_programaciones_academicas(request):
     if periodo:
         programaciones = programaciones.filter(periodo=periodo)
     if materia:
-        programaciones = programaciones.filter(materia_codigo_materia=materia)
+        programaciones = programaciones.filter(materia__nombre_materia=materia)
     if modalidad:
         programaciones = programaciones.filter(modalidad=modalidad)
     if grupo:
         programaciones = programaciones.filter(grupo=grupo)
-    if docente:
-        programaciones = programaciones.filter(docente_cedula_profesor=docente)
+    if docente:  # Filtrar por la cédula del docente
+        programaciones = programaciones.filter(docente__cedula_profesor=docente)
     if fecha_de_clase:
         programaciones = programaciones.filter(fecha_de_clase=fecha_de_clase)
 

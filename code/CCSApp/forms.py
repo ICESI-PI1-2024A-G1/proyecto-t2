@@ -449,11 +449,11 @@ class ProgramacionAcademicaEditForm(forms.ModelForm):
             'entrega_notas', 'intu_canvas', 'tiquetes', 'hotel', 'viaticos'
         ]
         widgets = {
-            'programa_de_posgrado': forms.Select(attrs={'class': 'form-control2', 'id': 'id_programa_de_posgrado'}),
-            'semestre': forms.Select(attrs={'class': 'form-control2', 'id': 'id_semestre'}),
+            'programa_de_posgrado': forms.Select(attrs={'class': 'form-control2', 'id': 'id_programa_de_posgrado', 'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
+            'semestre': forms.Select(attrs={'class': 'form-control2', 'id': 'id_semestre', 'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
             'departamento': forms.Select(attrs={'class': 'form-control2'}),
-            'materia': forms.Select(attrs={'class': 'form-control2', 'id': 'id_materia'}),
-            'horario': forms.Select(attrs={'class': 'form-control2', 'id': 'id_horario'}),
+            'materia': forms.SelectMultiple(attrs={'class': 'form-control2', 'id': 'id_materia', 'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
+            'horario': forms.SelectMultiple(attrs={'class': 'form-control2', 'id': 'id_horario', 'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
             'periodo': forms.Select(attrs={'class': 'form-control2', 'id': 'id_periodo'}),
             'horas': forms.NumberInput(attrs={'class': 'form-control2', 'id': 'id_horas'}),
             'grupo': forms.HiddenInput(),

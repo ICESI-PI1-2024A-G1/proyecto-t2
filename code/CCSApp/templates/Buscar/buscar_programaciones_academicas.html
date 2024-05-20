@@ -69,23 +69,23 @@
                 {% endfor %}
               </select>
 
-              <!-- No Funciona -->
+              <!-- Corregido
               <label for="materia">Materia:</label>
               <select class="form-control" name="materia" id="materia">
                 <option value="">Seleccionar materia</option>
                 {% for materia in materias %}
-                <option value="{{ materia.codigo_materia }}">{{ materia.codigo_materia }}</option>
+                  <option value="{{ materia.codigo_materia }}">{{ materia.nombre_materia }}</option>
                 {% endfor %}
-              </select>
+              </select> -->
 
-              <!-- No funciona -->
               <label for="docente">Docente:</label>
               <select class="form-control" name="docente" id="docente">
                 <option value="">Seleccionar docente</option>
-                {% for profesor in profesores %}
+                {% for profesor in docentes %}
                 <option value="{{ profesor.cedula_profesor }}">{{ profesor.nombre_profesor }}</option>
                 {% endfor %}
               </select>
+
 
               <button type="submit" class="btn-1">Buscar</button>
 
@@ -119,7 +119,11 @@
                 <td>{{ programacion.horas }}</td>
                 <td>{{ programacion.num_creditos }}</td>
                 <td>{{ programacion.periodo }}</td>
-                <td>{{ programacion.materia.all }}</td>
+                <td>
+                  {% for materia in programacion.materia.all %}
+                    {{ materia.nombre_materia }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                </td>
                 <td>{{ programacion.modalidad }}</td>
                 <td>{{ programacion.grupo }}</td>
                 <td>{{ programacion.docente }}</td>
