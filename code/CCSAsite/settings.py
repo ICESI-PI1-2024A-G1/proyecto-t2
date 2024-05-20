@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'CCSAsite.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://postgres:proyecto_t2_user@dpg-corsrk21hbls73favg00-a:5432/proyecto_t2',
+        default='postgresql://postgres:proyecto_t2_v2_user@dpg-cp5d8bgcmk4c73f041m0-a:5432/proyecto_t2_v2',
         conn_max_age=600
     )
 }
