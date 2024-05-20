@@ -14,7 +14,7 @@ urlpatterns = [
     path('', views.log_in),
     path('register_us/', views.register_us),
     path('index/', views.index, name='index'),  
-    path('index/programacion/', views.crear_programacion_academica, name = "crear_programacion_academica"),
+    path('index/crear_programacion_academica/', views.crear_programacion_academica, name = "crear_programacion_academica"),
     path('index/gestion/', views.gestion),
     
     path('gestion/nuevoprograma/director_programa/', views.director_programa),
