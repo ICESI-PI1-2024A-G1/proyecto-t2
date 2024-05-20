@@ -1,4 +1,8 @@
 # Proyecto Programacion Academica - Grupo 2/ Proyecto Integrador I
+
+# Link al render:
+https://proyecto-t2.onrender.com
+
 ## Integrantes
 
 - Juan Felipe Jojoa A00382042
