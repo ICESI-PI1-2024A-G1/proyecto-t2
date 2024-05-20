@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B7623CF8-6344-BC98-4B0E-840A83C5A8D7" containerWithKeyObject="AC4F8F65-BC7E-D027-0488-DF48B7ABA954" localFKIndex="9923AB00-2FEA-48EA-2224-F7DA77B2A674" name="Programa_de_Posgrado_Malla_Curricular_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>8D57B140-84B1-B8F3-48C0-679DAC6232F9</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<referredTableLongName>Malla_Curricular</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>81F2AC42-36EA-2A2B-39A4-09B701339B4C</referredTableID>
+<keyObject>68FE81C8-D21F-BB10-5DEC-2503C84D59F9</keyObject>
+<referredKeyID>68FE81C8-D21F-BB10-5DEC-2503C84D59F9</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Malla_Curricular_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

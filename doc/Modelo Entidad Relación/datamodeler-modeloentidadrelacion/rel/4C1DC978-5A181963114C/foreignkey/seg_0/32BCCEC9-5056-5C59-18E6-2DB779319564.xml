@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="32BCCEC9-5056-5C59-18E6-2DB779319564" containerWithKeyObject="B7D124BA-2325-CC43-83F1-18B4DEDDFDD1" localFKIndex="FB520FC9-B907-B4D6-C460-A2ABAB71A7DF" name="ProgramacionAcademica_Programa_de_Posgrado_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>D81108A8-7603-69BA-1D10-42CA1AF97C94</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<referredTableLongName>Programa_de_Posgrado</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>AC4F8F65-BC7E-D027-0488-DF48B7ABA954</referredTableID>
+<keyObject>7055806A-4236-AF5B-9D4B-9017F0A40132</keyObject>
+<referredKeyID>7055806A-4236-AF5B-9D4B-9017F0A40132</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Código</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

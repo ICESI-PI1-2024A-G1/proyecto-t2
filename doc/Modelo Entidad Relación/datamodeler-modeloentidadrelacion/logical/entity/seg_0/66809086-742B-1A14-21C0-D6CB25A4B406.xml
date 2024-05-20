@@ -15,7 +15,7 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Nombre" id="2627CEC3-E2FA-82F4-8DF1-9CE6DA271228">
+<Attribute name="nombre_materia" id="2627CEC3-E2FA-82F4-8DF1-9CE6DA271228">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:58:38 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
@@ -27,7 +27,7 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Código" id="2C7682D7-A497-6C73-787D-B26BFE23369D">
+<Attribute name="codigo_materia" id="2C7682D7-A497-6C73-787D-B26BFE23369D">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:58:46 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
@@ -39,21 +39,9 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Descripción" id="E17E45E0-D2B5-7273-BA57-22A53FF2AD26">
+<Attribute name="creditos_materia" id="E17E45E0-D2B5-7273-BA57-22A53FF2AD26">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:58:53 UTC</createdTime>
-<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
-<engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Créditos" id="1BC1D3C0-2A9A-D331-E8A0-A98E4AE5600D">
-<createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:59:01 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
@@ -63,9 +51,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Syllabus" id="4726EE07-7DD6-DD56-B0A2-88D42EE486A1">
+<Attribute name="syllabus" id="1BC1D3C0-2A9A-D331-E8A0-A98E4AE5600D">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:59:11 UTC</createdTime>
+<createdTime>2024-03-04 01:59:01 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
@@ -75,16 +63,44 @@
 <logicalDatatype>LOGDT010</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Programa de Posgrado" id="281EDF9E-99C2-F451-63CB-D1D83252EA9C">
+<Attribute name="nombre_semestre" id="F0D021F8-BC78-ABBC-6BD0-5638A112AA8E">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:59:22 UTC</createdTime>
+<createdTime>2024-05-14 00:12:13 UTC</createdTime>
+<generatorID>FDEA2213-A661-42B1-5FD4-716ED4B62350</generatorID>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
+<referedAttribute>6DB4BB4B-F4F7-538A-876A-85810BCCD690</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_departamento" id="331ECD6B-DF07-90B1-7A7C-E25AA0D8C497">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 00:12:41 UTC</createdTime>
+<generatorID>9A867669-044E-8519-47BC-E1D197982EB0</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<referedAttribute>B018311C-2410-8BC7-446C-D51A5034C090</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_programacionAcademica" id="94BD841C-31A3-AF32-11EE-488CB3CADE78">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:21:54 UTC</createdTime>
+<generatorID>4000651F-4520-54C3-7E92-EAA9618ABC24</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<referedAttribute>29DFA3CA-1F7C-3441-B2A0-614CFFA9F269</referedAttribute>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -93,8 +109,9 @@
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:58:53 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

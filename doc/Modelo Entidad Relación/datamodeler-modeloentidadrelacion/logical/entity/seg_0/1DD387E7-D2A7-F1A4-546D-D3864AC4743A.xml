@@ -15,7 +15,7 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Nombre" id="01D1296F-B058-42FD-DEC9-372DC1EDD6BA">
+<Attribute name="nombre_malla" id="01D1296F-B058-42FD-DEC9-372DC1EDD6BA">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:50:47 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
@@ -27,7 +27,7 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Descripción" id="E6882D39-B7FB-53C2-F02D-770421AFB9D3">
+<Attribute name="requisitos_previos" id="E6882D39-B7FB-53C2-F02D-770421AFB9D3">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:51:00 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
@@ -39,51 +39,29 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Programas de Posgrado" id="D3908B70-C988-AF44-F8DB-2C1AA46CF663">
+<Attribute name="Código" id="CB329DFD-037F-B6EB-1B14-ECC83E158CE5">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:51:10 UTC</createdTime>
+<createdTime>2024-05-14 00:21:00 UTC</createdTime>
+<generatorID>8D57B140-84B1-B8F3-48C0-679DAC6232F9</generatorID>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
+<referedAttribute>D6B4840A-FDF1-D32C-7611-56067DC5EA96</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Módulos de Posgrado" id="7DDCE634-0F54-9CE2-5E8C-A7B222A6BD3C">
+<Attribute name="nombre_semestre" id="D30E0413-503D-AB6D-679B-D9F0C796CEDA">
 <createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:51:24 UTC</createdTime>
+<createdTime>2024-05-14 00:21:18 UTC</createdTime>
+<generatorID>0E001447-4B02-8C47-22A5-269819D02077</generatorID>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
 </engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Requisitos" id="54BD898C-1899-FA0C-189C-F3CCAC42D0D0">
-<createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:51:33 UTC</createdTime>
-<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
-<engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Código" id="215D16CE-1856-2CA2-5212-22FE27389B18">
-<createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 02:04:46 UTC</createdTime>
-<generatorID>D308E15F-58D4-5665-2984-7AAB2346C201</generatorID>
-<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
-<engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
-</engineerTo>
-<referedAttribute>8034033A-4E0B-86E6-F5CC-B3C8B9E7A14D</referedAttribute>
+<referedAttribute>6DB4BB4B-F4F7-538A-876A-85810BCCD690</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>

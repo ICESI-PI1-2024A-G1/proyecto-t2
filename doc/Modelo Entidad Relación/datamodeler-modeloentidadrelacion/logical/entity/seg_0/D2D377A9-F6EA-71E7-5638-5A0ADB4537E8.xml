@@ -75,5 +75,17 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="id_programacionAcademica" id="FA69EB16-D31F-FF4A-1AB2-D2B2118251DC">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:21:34 UTC</createdTime>
+<generatorID>F49870D7-D6CB-7BBE-54FF-DB9EF2569FE4</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<referedAttribute>29DFA3CA-1F7C-3441-B2A0-614CFFA9F269</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 </Entity>

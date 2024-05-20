@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FF1D9D43-C216-EC4E-07B3-38A9E0C263BF" name="Relation_28">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Horario_id_horario" id="774C5B26-5D22-EA36-E151-17AD014B093E">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0C6F9C28-0C3C-6B59-1071-89936AB82EB3" referredColumn="4B040F0C-6ADD-FF7D-7408-1B43EA357D36"/>
+</associations>
+</Column>
+<Column name="Espacio_espacio_codigo" id="6B0215F0-DFE3-CDC0-C815-8C1EE2F9E353">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2615E6BA-88D9-1192-2D40-A9D71FB380E1" referredColumn="856DCBE4-A2AC-7C8E-3E59-DD133CBA9A6B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="47EA2424-F3B5-A078-80B2-91FCC402C610" name="Relation_28_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="774C5B26-5D22-EA36-E151-17AD014B093E"/>
+<colUsage columnID="6B0215F0-DFE3-CDC0-C815-8C1EE2F9E353"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A023A3AD-A84A-8032-7E56-F3DF4BF79B2D" name="Relation_28_Horario_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>E25CE655-FBB7-EB69-A693-ED6872FD6E6D</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="774C5B26-5D22-EA36-E151-17AD014B093E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A0DAF463-2CC3-E2AA-69ED-31C871639671" name="Relation_28_Espacio_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>E25CE655-FBB7-EB69-A693-ED6872FD6E6D</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B0215F0-DFE3-CDC0-C815-8C1EE2F9E353"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

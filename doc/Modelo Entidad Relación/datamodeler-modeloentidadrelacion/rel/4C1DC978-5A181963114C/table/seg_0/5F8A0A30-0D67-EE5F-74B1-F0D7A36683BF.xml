@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5F8A0A30-0D67-EE5F-74B1-F0D7A36683BF" name="Relation_29">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Materia_codigo_materia" id="ADD8DA13-6AD3-FAC3-C19B-D3B3A18BC2DA">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8BADFC11-F1EA-AF0A-9638-4A5C1814AE49" referredColumn="CB9C2E57-4A42-1AD4-0E0D-D5AB123260A8"/>
+</associations>
+</Column>
+<Column name="Profesor_Profesor_ID" id="C0010550-D5CF-038B-AF87-B579F551C686">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7261A0EE-B260-45D4-57E5-53E1395C9F57" referredColumn="6EDF03B9-1A8A-A057-8DA4-BEDAC0659AF1"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0D6C979E-C2C2-E891-9139-2226A348CAF6" name="Relation_29_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ADD8DA13-6AD3-FAC3-C19B-D3B3A18BC2DA"/>
+<colUsage columnID="C0010550-D5CF-038B-AF87-B579F551C686"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="51C22842-5D0D-6C49-6459-80AC43CA1E6D" name="Relation_29_Materia_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>79605150-73BC-7AD6-C60F-25E3251736D0</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ADD8DA13-6AD3-FAC3-C19B-D3B3A18BC2DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5FD0982A-8952-BCB7-C524-A66D2050A4F8" name="Relation_29_Profesor_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>79605150-73BC-7AD6-C60F-25E3251736D0</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C0010550-D5CF-038B-AF87-B579F551C686"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

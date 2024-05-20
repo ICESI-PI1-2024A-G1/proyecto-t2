@@ -76,6 +76,19 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
+<Column name="ProgramacionAcademica_id_programacionAcademica" id="EE211C6C-1995-4C2F-CD43-412C0890781D">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>FA69EB16-D31F-FF4A-1AB2-D2B2118251DC</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1980B35B-4BAE-55FC-939F-AC6774135D76" referredColumn="15A96A89-9822-E138-DA97-CF509904B89B"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="2F41138D-2B15-FCD8-51F2-A1F6B9406BC1" name="Profesor_PK">
@@ -86,6 +99,28 @@
 <indexState>Primary Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="6EDF03B9-1A8A-A057-8DA4-BEDAC0659AF1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="417234C9-8D81-304E-31F6-056CDF27081F" name="Profesor__IDX">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>F49870D7-D6CB-7BBE-54FF-DB9EF2569FE4</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="EE211C6C-1995-4C2F-CD43-412C0890781D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4DADF78C-A2A8-0AD6-FBCA-36CD162789AF" name="Profesor_ProgramacionAcademica_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>F49870D7-D6CB-7BBE-54FF-DB9EF2569FE4</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EE211C6C-1995-4C2F-CD43-412C0890781D"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

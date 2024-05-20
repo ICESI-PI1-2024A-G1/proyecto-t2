@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FE6F0968-9E18-A757-B597-C19408778644" name="Departamento">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>AC89A6B5-A0AA-8430-129B-A31950BAEB56</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_departamento" id="26085420-9797-D4A3-6104-7AF312300F6C">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>B018311C-2410-8BC7-446C-D51A5034C090</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre_departamento" id="A9C48C94-3548-B274-CCB7-07D6A7BEAD21">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>AAB13C80-4914-1446-F086-882B4CBE5DBB</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ProgramacionAcademica_id_programacionAcademica" id="BC4E4649-D773-D5B0-4F5E-D95F54C141BB">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>CE65D3F0-B5F6-03FC-072C-62A665422EEF</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="902C3E6F-3B56-155E-21D2-26895CD63F15" referredColumn="15A96A89-9822-E138-DA97-CF509904B89B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A65503C7-B7E4-F4F9-F37E-7679EAE06B77" name="Departamento_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>02B08FCC-6145-1991-AF9F-1B6947E9E8A5</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="26085420-9797-D4A3-6104-7AF312300F6C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="23336EB0-E7B5-23EB-64E4-63D98ABCB606" name="Departamento__IDX">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>1DBF81F2-76F7-CCD8-1E08-C4743D86DDFD</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="BC4E4649-D773-D5B0-4F5E-D95F54C141BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="277FEA1C-E4FA-4AE6-0072-760BC8F9B020" name="Departamento_ProgramacionAcademica_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>1DBF81F2-76F7-CCD8-1E08-C4743D86DDFD</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BC4E4649-D773-D5B0-4F5E-D95F54C141BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

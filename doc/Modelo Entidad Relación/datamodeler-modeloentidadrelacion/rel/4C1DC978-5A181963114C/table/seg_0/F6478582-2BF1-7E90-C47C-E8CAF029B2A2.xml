@@ -8,7 +8,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Nombre" id="856DCBE4-A2AC-7C8E-3E59-DD133CBA9A6B">
+<Column name="espacio_codigo" id="856DCBE4-A2AC-7C8E-3E59-DD133CBA9A6B">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:11:37 UTC</createdTime>
 <generatorID>ACE2BE27-49E5-79D5-7E11-86582E3D3769</generatorID>
@@ -19,18 +19,18 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Ubicación" id="2EF7388B-2272-346C-E854-65C72320F42B">
+<Column name="capacidad_espacio" id="2EF7388B-2272-346C-E854-65C72320F42B">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:11:37 UTC</createdTime>
 <generatorID>C744E4EE-0A99-DF54-2581-EC601DE0F7F0</generatorID>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Capacidad" id="0C0D661D-8AEF-C846-5A38-C427CA7D1708">
+<Column name="disponibilidad_espacio" id="0C0D661D-8AEF-C846-5A38-C427CA7D1708">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 02:11:37 UTC</createdTime>
 <generatorID>28563A02-9A55-3367-6AD0-3DE9466C46C5</generatorID>
@@ -63,6 +63,20 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="Edificio_Edificio_ID" id="76B79EDC-6CC4-D5D2-2B62-333EA7945407">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E3AC0A43-4DFD-E770-6B84-D205D478BD60" referredColumn="B6BA0169-BD5B-902C-CC9E-35EC489DEF7F"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="325EBD84-599D-57F9-A2BC-8BF7CBB3D292" name="Espacio_PK">
@@ -75,6 +89,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="856DCBE4-A2AC-7C8E-3E59-DD133CBA9A6B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="08F38EBF-5E5C-1872-0AB5-B256EBBCD6BF" name="Espacio_Edificio_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>E40959CC-5DE9-EEC0-21BD-AE78D8DC5F7E</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="76B79EDC-6CC4-D5D2-2B62-333EA7945407"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

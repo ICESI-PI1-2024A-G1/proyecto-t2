@@ -51,33 +51,9 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Requisitos de admisión" id="C4FBFFF2-856A-1124-65D1-4B5155CEEFA8">
-<createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:46:53 UTC</createdTime>
-<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
-<engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Fecha de inicio" id="17E2D3B8-BD95-AD57-8463-B32659A01636">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:47:04 UTC</createdTime>
-<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
-<engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Fecha de finalización" id="824637E7-4F83-58AA-44A8-074DE43AC541">
-<createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:47:17 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
 <engineerTo>
 <item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
@@ -111,18 +87,6 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Facultad" id="C0A991BF-E506-2D2F-B9D1-BA00CB31AC70">
-<createdBy>Samuel</createdBy>
-<createdTime>2024-03-04 01:48:19 UTC</createdTime>
-<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
-<engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Tipo de Programa" id="9C7C8403-4EC0-FAEF-E0C3-7C1BCFF89A11">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:48:38 UTC</createdTime>
@@ -147,14 +111,67 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="Estado del programa" id="9E272F67-829A-8518-AB66-85CB5BEAF275">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-13 23:25:50 UTC</createdTime>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id" id="49FAE1D6-407F-DF7E-ECAE-BA5FC8CAA21B">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-13 23:58:10 UTC</createdTime>
+<generatorID>F36ED839-00F2-7120-2052-23A6A08E8B91</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<referedAttribute>924CC1DC-47C8-26A7-9907-A6C233051981</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="codigo_facultad" id="F0D11CF7-31EF-D211-4497-A40C279E3524">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-13 23:59:30 UTC</createdTime>
+<generatorID>0FC68A85-3EA3-DE02-8BF5-0D82B17BB78C</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<referedAttribute>F73D4942-495E-0D35-28BC-0600ECC6B702</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_programacionAcademica" id="7C719B24-7C15-0E94-37A2-0030FCB59643">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:20:46 UTC</createdTime>
+<generatorID>D81108A8-7603-69BA-1D10-42CA1AF97C94</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<engineerTo>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+</engineerTo>
+<referedAttribute>29DFA3CA-1F7C-3441-B2A0-614CFFA9F269</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="53B87716-0ACD-0D44-07B9-1FD0266145C8" name="Programa de Posgrado PK">
 <createdBy>Samuel</createdBy>
 <createdTime>2024-03-04 01:46:43 UTC</createdTime>
 <ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="true"/>
+<item key="4C1DC978-472A-339E-70B0-5A181963114C" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

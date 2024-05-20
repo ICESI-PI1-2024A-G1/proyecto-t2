@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4ADD13A4-7FC9-530B-2A3D-97FAFBFDA3A8" name="Nrc">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>55DEE788-8DDB-C29E-1935-0F1AF47F3C1B</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_nrc" id="1E78955D-E851-DCFD-3FDF-C23CB18857E5">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>A0670DB8-748C-C9E2-2C15-2D33B5075C06</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="grupo" id="BE1B13DF-C1BD-8548-6FCE-671E15D39A19">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>CB4084C7-6E97-65C4-D7B6-C5D665B2C04D</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Materia_codigo_materia" id="520813D6-507C-9BA5-EAE8-AFD4CC5D2F54">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>C7F12ADF-CCE1-9810-BEB1-6295AAD4CF9B</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F5BE2DC9-9479-F598-81E3-F62473819B19" referredColumn="CB9C2E57-4A42-1AD4-0E0D-D5AB123260A8"/>
+</associations>
+</Column>
+<Column name="Semestre_nombre_semestre" id="CD606D3E-5651-154C-BE23-8E069B09D0C9">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>719E42B9-C929-0464-B23B-DE39CE9FF1E7</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6FD34E2F-BD8F-1128-09E2-DE452FD02F26" referredColumn="4DC95493-4EC0-8775-D6DD-46520BAF8097"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A0A35926-65A8-2C3F-C9C6-C843A3388DD8" name="Nrc_PK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>F6ECBAB4-ADA6-E032-8335-506DD3F86A11</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1E78955D-E851-DCFD-3FDF-C23CB18857E5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="532B2B43-D1AF-8EBF-D276-205D9D665537" name="Nrc_Materia_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>9AB8432A-8085-12F3-52B4-12693CD56CD9</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="520813D6-507C-9BA5-EAE8-AFD4CC5D2F54"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6698755C-8170-9DFB-A45C-EC9660C72F6C" name="Nrc_Semestre_FK">
+<createdBy>Samuel</createdBy>
+<createdTime>2024-05-14 01:23:52 UTC</createdTime>
+<generatorID>0B8DE85F-429B-D260-EAC9-3969A2456433</generatorID>
+<ownerDesignName>datamodeler-modeloentidadrelacion</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD606D3E-5651-154C-BE23-8E069B09D0C9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
