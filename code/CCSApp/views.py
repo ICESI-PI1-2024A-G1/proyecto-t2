@@ -59,7 +59,7 @@ def asignar_horario(request):
                     salon_presencial=salon_presencial,
                     grupo=grupo
                 )
-                return redirect('/index/programacion')
+                return redirect('/index/crear_programacion_academica')
             else:
                 return render(request, 'Asignar/asignar_horario.html', {
                     'formNewHorario': form,
