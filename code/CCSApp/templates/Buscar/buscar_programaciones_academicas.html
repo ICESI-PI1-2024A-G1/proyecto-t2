@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Programaciones Académicas</title>
+  <link rel="stylesheet" href='{% static "css/consultar_horario.css" %}' type='text/css'>
+  <link rel="shortcut icon" href="/static/Images/logo_icesi2.png">
+</head>
+
+<body>
+  <div id="page-container">
+    <div id="page1" class="fade-in">
+      <div class="bloq-sup">
+        <form method="get">
+          <div class="bloq-sup_secd">
+            <div class="div_boton_return">
+              <button class="boton-2" name="boton1" type="button" onclick="redirigirIndexConsultarEditarProgramaciones()">
+                <img src="/static/Images/retorno.png" height="55" width="55" alt="Botón de retorno" />
+              </button>
+            </div>
+            <div class="titulo">
+              <div class="div_CCSA">
+                <h1>CCSA</h1>
+              </div>
+              <div class="descripcion">
+                <h3>Centro Compartido de Servicios Académicos</h3>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Barra de filtro para buscar programaciones académicas -->
+      <div class="bloq-mid-wrapper">
+        <div class="bloq-mid">
+          <div class="intermed">
+            <h1>Programaciones Académicas Registradas</h1>
+          </div>
+          <div class="intermed-bloq">
+            <form method="get" class="filtro-form">
+
+              <label for="fecha_de_clase">Fecha:</label>
+              <input class="form-control" type="date" name="fecha_de_clase" id="fecha_de_clase">
+
+              <label for="programa_de_posgrado">Programa de Posgrado:</label>
+              <select class="form-control" name="programa_de_posgrado" id="programa_de_posgrado">
+                <option value="">Seleccionar programa</option>
+                {% for programa in programas_de_posgrado %}
+                <option value="{{ programa.codigo_programa }}">{{ programa.nombre_programa }}</option>
+                {% endfor %}
+              </select>
+
+              <label for="departamento">Departamento:</label>
+              <select class="form-control" name="departamento" id="departamento">
+                <option value="">Seleccionar departamento</option>
+                {% for depto in departamentos %}
+                <option value="{{ depto.id_departamento }}">{{ depto.nombre_departamento }}</option>
+                {% endfor %}
+              </select>
+
+              <label for="periodo">Periodo:</label>
+              <select class="form-control" name="periodo" id="periodo">
+                <option value="">Seleccionar periodo</option>
+                {% for periodo in periodos %}
+                <option value="{{ periodo.id_periodo }}">{{ periodo.id_periodo }}</option>
+                {% endfor %}
+              </select>
+
+              <!-- Corregido
+              <label for="materia">Materia:</label>
+              <select class="form-control" name="materia" id="materia">
+                <option value="">Seleccionar materia</option>
+                {% for materia in materias %}
+                  <option value="{{ materia.codigo_materia }}">{{ materia.nombre_materia }}</option>
+                {% endfor %}
+              </select> -->
+
+              <label for="docente">Docente:</label>
+              <select class="form-control" name="docente" id="docente">
+                <option value="">Seleccionar docente</option>
+                {% for profesor in docentes %}
+                <option value="{{ profesor.cedula_profesor }}">{{ profesor.nombre_profesor }}</option>
+                {% endfor %}
+              </select>
+
+
+              <button type="submit" class="btn-1">Buscar</button>
+
+            </form>
+          </div>
+          <table class="form-1">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Programa de Posgrado</th>
+                <th>Código Banner</th>
+                <th>Departamento</th>
+                <th>Horas</th>
+                <th>Créditos</th>
+                <th>Periodo</th>
+                <th>Materia</th>
+                <th>Modalidad</th>
+                <th>Grupo</th>
+                <th>Docente</th>
+                <th>Fecha de Clase</th>
+                <th>Acción</th> <!-- Columna adicional para el hipervínculo de edición -->
+              </tr>
+            </thead>
+            <tbody>
+              {% for programacion in programaciones %}
+              <tr>
+                <td>{{ programacion.id_programacionAcademica }}</td>
+                <td>{{ programacion.programa_de_posgrado }}</td>
+                <td>{{ programacion.cod_banner }}</td>
+                <td>{{ programacion.departamento }}</td>
+                <td>{{ programacion.horas }}</td>
+                <td>{{ programacion.num_creditos }}</td>
+                <td>{{ programacion.periodo }}</td>
+                <td>
+                  {% for materia in programacion.materia.all %}
+                    {{ materia.nombre_materia }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                </td>
+                <td>{{ programacion.modalidad }}</td>
+                <td>{{ programacion.grupo }}</td>
+                <td>{{ programacion.docente }}</td>
+                <td>{{ programacion.fecha_de_clase }}</td>
+                <td>
+                  <a href="{% url 'editar_programacion_academica' programacion.id_programacionAcademica %}">
+                    <img src="/static/Images/editor-de-documentos.png" height="45" width="45" alt="Editar programación" />
+                  </a>
+                </td>              
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="bloq-inf">
+        <h4>Universidad Icesi</h4>
+        <h4>Todos los derechos reservados</h4>
+        <h4>Derechos de Autor</h4>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/transiciones.js' %}"></script>
+</body>
+
+</html>

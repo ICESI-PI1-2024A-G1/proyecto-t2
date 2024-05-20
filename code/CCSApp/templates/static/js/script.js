@@ -51,3 +51,5 @@ function cerrarModal() {
     var modal = document.getElementById("modal-confirmacion");
     modal.style.display = "none";
 }
+
+

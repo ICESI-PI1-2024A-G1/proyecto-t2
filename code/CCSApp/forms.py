@@ -133,46 +133,165 @@ class CrearProgramaAcademico(forms.Form):
 
         return cleaned_data
 
+from django import forms
+from .models import Programa_de_posgrado, Semestre, Departamento, Materia, Horario, Profesor
+
 class ProgramacionAcademicaForm(forms.Form):
-    programa_de_posgrado = forms.ModelChoiceField(label="Programa de posgrado", queryset= Programa_de_posgrado.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
-    semestre = forms.ModelChoiceField(label="Semestre", queryset= Semestre.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
-    departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
-    horas = forms.FloatField(label='Horas totales', widget=forms.Select(attrs={'class': 'form-control2'}))
-    #periodo = forms.ModelChoiceField(label="Periodo", queryset= Periodo.objects.all(), help_text="Seleccione el periodo al que pertenece la programacion academica")
-    materia = forms.ModelChoiceField(label="Materia", queryset= Materia.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
-    horario_choices = [(horario.id_horario, horario.fecha_inicio_horario) for horario in Horario.objects.all()]
-    horarios = forms.ChoiceField(label="Horarios", choices=horario_choices, widget=forms.SelectMultiple(attrs={'class': 'form-control2'}))
-    #horario = forms.ModelChoiceField(label="Horario", queryset= Horario.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
-    grupo =  forms.CharField(max_length=10, label= "Grupo", widget=forms.Select(attrs={'class': 'form-control2'}))
-    profesor = forms.ModelChoiceField(label="Profesor", queryset= Profesor.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    programa_de_posgrado = forms.ModelChoiceField(
+        label="Programa de posgrado",
+        queryset=Programa_de_posgrado.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_programa_de_posgrado'})
+    )
+    semestre = forms.ModelChoiceField(
+        label="Semestre",
+        queryset=Semestre.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_semestre'})
+    )
+    departamento = forms.ModelChoiceField(
+        label="Departamento",
+        queryset=Departamento.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2'})
+    )
+    materia = forms.ModelChoiceField(
+        label="Materia",
+        queryset=Materia.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_materia'})
+    )
+    horario = forms.ModelChoiceField(
+        label="Horarios",
+        queryset=Horario.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_horario'})
+    )
+    periodo = forms.ModelChoiceField(
+        label="Periodo",
+        queryset=Periodo.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2', 'id': 'id_periodo'})
+    )
+    horas = forms.FloatField(
+        label='Horas Totales',
+        widget=forms.NumberInput(attrs={'class': 'form-control2', 'id': 'id_horas'})
+    )
+    grupo = forms.ChoiceField(
+        choices=[('001', '001'), ('002', '002'), ('003', '003'), ('004', '004')],
+        label="Grupo",
+        widget=forms.HiddenInput(),
+        required=False
+    )
+    profesor = forms.ModelChoiceField(
+        label="Profesor",
+        queryset=Profesor.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control2'})
+    )
+    num_creditos = forms.IntegerField(
+        label='Número de Créditos',
+        widget=forms.HiddenInput(),
+        required=False
+    )
+    modalidad = forms.CharField(
+        label='Modalidad',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='Presencial'  # Puedes definir un valor por defecto si es necesario
+    )
+    tipo_de_contrato = forms.CharField(
+        label='Tipo de Contrato',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    ciudad = forms.CharField(
+        label='Ciudad',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='Cali'  # Puedes definir un valor por defecto si es necesario
+    )
+    correo_electronico = forms.EmailField(
+        label='Correo Electrónico',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='correo@ejemplo.com'  # Puedes definir un valor por defecto si es necesario
+    )
+    telefono = forms.CharField(
+        label='Teléfono',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='123456789'  # Puedes definir un valor por defecto si es necesario
+    )
+    fecha_de_clase = forms.DateField(
+        label='Fecha de Clase',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='2023-01-01'  # Puedes definir un valor por defecto si es necesario
+    )
+    estado_de_contrato = forms.CharField(
+        label='Estado de Contrato',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='Activo'  # Puedes definir un valor por defecto si es necesario
+    )
+    fecha_elab_contrato = forms.CharField(
+        label='Fecha Elaboración de Contrato',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    num_contrato = forms.CharField(
+        label='Número de Contrato',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    listas_mosaicos = forms.CharField(
+        label='Listas y Mosaicos',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    entrega_notas = forms.CharField(
+        label='Entrega de Notas',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    intu_canvas = forms.CharField(
+        label='Intu Canvas',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    tiquetes = forms.CharField(
+        label='Tiquetes',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    hotel = forms.CharField(
+        label='Hotel',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
+    viaticos = forms.CharField(
+        label='Viáticos',
+        widget=forms.HiddenInput(),  # Campo oculto
+        initial='N/A'  # Puedes definir un valor por defecto si es necesario
+    )
 
     def clean(self):
         cleaned_data = super().clean()
 
-        # Get the selected faculty instance
+        # Obtener las instancias seleccionadas
         selected_programa = cleaned_data.get('programa_de_posgrado')
         selected_semestre = cleaned_data.get('semestre')
         selected_departamento = cleaned_data.get('departamento')
         selected_materia = cleaned_data.get('materia')
         selected_horario = cleaned_data.get('horario')
-        selected_grupo = cleaned_data.get('grupo')
         selected_profesor = cleaned_data.get('profesor')
+        selected_horas = cleaned_data.get('horas')
 
+        # Validar las opciones seleccionadas
+        if not all([selected_programa, selected_semestre, selected_departamento, selected_materia, selected_horario, selected_profesor, selected_horas]):
+            raise forms.ValidationError('Seleccione una opción válida en todos los campos.')
 
-        selected = (selected_semestre,  selected_departamento, selected_programa, selected_materia, selected_horario, selected_profesor, selected_grupo)
+        # Obtener el número de créditos de la materia seleccionada
+        if selected_materia:
+            cleaned_data['num_creditos'] = selected_materia.creditos_materia
 
-        # Validate the selected faculty
-        if not selected:
-            raise forms.ValidationError('Seleccione una opcion valida')
+        if selected_horario:
+            cleaned_data['modalidad'] = selected_horario.modalidad
+            cleaned_data['fecha_de_clase'] = selected_horario.fecha_inicio_horario
+            cleaned_data['grupo'] = selected_horario.grupo
 
-        # Update the cleaned data with the faculty instance
-        cleaned_data['semestre'] = selected_semestre
-        cleaned_data['departamento'] = selected_departamento
-        cleaned_data['programa_de_posgrado'] = selected_programa
-        cleaned_data['materia'] = selected_materia
-        cleaned_data['horario'] = selected_horario
-        cleaned_data['grupo'] = selected_grupo
-        cleaned_data['profesor'] = selected_profesor
+        if selected_profesor:
+            cleaned_data['correo_electronico'] = selected_profesor.correo_electronico
+            cleaned_data['telefono'] = selected_profesor.telefono
+            cleaned_data['tipo_de_contrato'] = selected_profesor.cedula_profesor
 
         return cleaned_data
 
@@ -189,6 +308,7 @@ class CrearMateria(forms.Form):
     syllabus = forms.FileField(label='Selecciona un archivo', widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
     departamento = forms.ModelChoiceField(label="Departamento", queryset= Departamento.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
     semestre = forms.ModelChoiceField(label="Semestre", queryset= Semestre.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
+    programa_de_posgrado_materia = forms.ModelChoiceField(label="Programa de posgrado", queryset= Programa_de_posgrado.objects.all(), widget=forms.Select(attrs={'class': 'form-control2'}))
 
 class MateriaSearchForm(forms.Form):
     nombre_materia = forms.CharField(label='Nombre de la Materia', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -316,3 +436,47 @@ class ActividadForm(forms.Form):
     duracion_en_horas = forms.IntegerField(label= "Duracion(Horas)", widget=forms.TextInput(attrs={'class': 'form-control'}))
     orador_actividad = forms.CharField(label = 'Encargado', max_length= 255, widget=forms.TextInput(attrs={'class': 'form-control'}))
     evento_actividad = forms.ModelChoiceField(label="Evento", queryset=Evento.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+
+class ProgramacionAcademicaEditForm(forms.ModelForm):
+    class Meta:
+        model = ProgramacionAcademica
+        fields = [
+            'programa_de_posgrado', 'semestre', 'departamento', 'materia', 
+            'horario', 'periodo', 'horas', 'grupo', 'docente', 'num_creditos', 
+            'modalidad', 'tipo_de_contrato', 'ciudad', 'correo_electronico', 
+            'telefono', 'fecha_de_clase', 'estado_de_contrato', 
+            'fecha_elab_contrato', 'num_contrato', 'listas_mosaicos', 
+            'entrega_notas', 'intu_canvas', 'tiquetes', 'hotel', 'viaticos'
+        ]
+        widgets = {
+            'programa_de_posgrado': forms.Select(attrs={'class': 'form-control2', 'id': 'id_programa_de_posgrado', 'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
+            'semestre': forms.Select(attrs={'class': 'form-control2', 'id': 'id_semestre', 'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
+            'departamento': forms.Select(attrs={'class': 'form-control2'}),
+            'materia': forms.SelectMultiple(attrs={'class': 'form-control2', 'id': 'id_materia', 'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
+            'horario': forms.SelectMultiple(attrs={'class': 'form-control2', 'id': 'id_horario', 'readonly': 'readonly', 'style': 'background-color: #d3d3d3'}),
+            'periodo': forms.Select(attrs={'class': 'form-control2', 'id': 'id_periodo'}),
+            'horas': forms.NumberInput(attrs={'class': 'form-control2', 'id': 'id_horas'}),
+            'grupo': forms.HiddenInput(),
+            'docente': forms.Select(attrs={'class': 'form-control2'}),
+            'num_creditos': forms.HiddenInput(),
+            'modalidad': forms.HiddenInput(),
+            'tipo_de_contrato': forms.HiddenInput(),
+            'ciudad': forms.HiddenInput(),
+            'correo_electronico': forms.HiddenInput(),
+            'telefono': forms.HiddenInput(),
+            'fecha_de_clase': forms.HiddenInput(),
+            'estado_de_contrato': forms.HiddenInput(),
+            'fecha_elab_contrato': forms.HiddenInput(),
+            'num_contrato': forms.HiddenInput(),
+            'listas_mosaicos': forms.HiddenInput(),
+            'entrega_notas': forms.HiddenInput(),
+            'intu_canvas': forms.HiddenInput(),
+            'tiquetes': forms.HiddenInput(),
+            'hotel': forms.HiddenInput(),
+            'viaticos': forms.HiddenInput(),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        # Validaciones personalizadas aquí si es necesario
+        return cleaned_data

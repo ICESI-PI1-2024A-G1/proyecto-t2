@@ -1,6 +1,7 @@
+import collections
 from django.forms import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import *
@@ -191,7 +192,8 @@ def registrar_materia_malla(request):
                         departamento = form.cleaned_data['departamento'],
                         semestre = form.cleaned_data['semestre'],
                         creditos_materia=form.cleaned_data['creditos_materia'],
-                        syllabus=syllabus_file
+                        syllabus=syllabus_file,
+                        programa_de_posgrado_materia = form.cleaned_data['programa_de_posgrado_materia'],
                     )
                     materia.save()
                     return redirect('/index/servicios_asignacion')
@@ -200,7 +202,24 @@ def registrar_materia_malla(request):
                 'form': CrearMateria,
                 'error': 'Por favor, proporcione datos válidos.'
             })
+    
 
+def filtrar_materias(request):
+    programa_id = request.GET.get('programa')
+    semestre_id = request.GET.get('semestre')
+
+    materias = Materia.objects.filter(
+        programa_de_posgrado_materia=programa_id,
+        semestre=semestre_id
+    ).values('codigo_materia', 'nombre_materia')  # Solo obtenemos datos necesarios
+
+    return JsonResponse(list(materias), safe=False)  # Retornamos JSON
+
+def filtrar_horarios(request):
+    materia_id = request.GET.get('materia')
+    horarios = Horario.objects.filter(materia_id=materia_id)
+    horarios_list = list(horarios.values('id_horario', 'fecha_inicio_horario', 'hora_inicio_horario', 'hora_final_horario'))
+    return JsonResponse(horarios_list, safe=False)
 
 def buscar_materia(request):
     if request.method == 'POST':
@@ -505,7 +524,7 @@ def programs_csv(request):
     ws = wb.active
 
     # Escribir el encabezado
-    headers = ['PROGRAMA', 'COD BANNER', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'TIPO DE CONTRATO', 'CIUDAD', 'EMAIL', 'TELEFONO', 'FECHA DE CLASE', 'HORARIO', 'ESTADO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
+    headers = ['PROGRAMA', 'COD BANNER', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'TIPO DE CONTRATO', 'CIUDAD', 'EMAIL', 'FECHA DE CLASE', 'TELEFONO', 'HORARIO', 'ESTADO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
     ws.append(headers)
 
     # Iterar sobre los programas y escribir los datos en el archivo Excel
@@ -665,20 +684,54 @@ def editar_espacio(request, espacio_codigo):
         form = EditarEspacio(instance=espacio)
     return render(request, 'Editar/editar_espacio.html', {'form': form})
 
+import uuid
+
+def generate_cod_banner():
+    return str(uuid.uuid4())[:20]  # Recorta el UUID a 20 caracteres
+
+from collections.abc import Iterable  # Importa Iterable desde collections.abc
+
 def crear_programacion_academica(request):
     if request.method == 'POST':
-        form = ProgramacionAcademicaForm(request.POST)  # Maneja datos del POST
+        form = ProgramacionAcademicaForm(request.POST)
         if form.is_valid():
-            programacion_academica = ProgramacionAcademicaForm(
-                programa_de_posgrado =form.cleaned_data['programa_de_posgrado'],
-                semestre =form.cleaned_data['semestre'],
-                departamento =form.cleaned_data['departamento'],
-                estado_programa = form.cleaned_data['estado_programa'],
-                materia =form.cleaned_data['materia'],
-                horario =form.cleaned_data['horario'],
-                grupo =form.cleaned_data['grupo'],
-                profesor = form.cleaned_data['profesor'])
+            programacion_academica = ProgramacionAcademica(
+                programa_de_posgrado=form.cleaned_data['programa_de_posgrado'],
+                cod_banner=generate_cod_banner(),
+                departamento=form.cleaned_data['departamento'],
+                horas=form.cleaned_data['horas'],
+                periodo=form.cleaned_data['periodo'],
+                num_creditos=form.cleaned_data['num_creditos'],
+                modalidad=form.cleaned_data['modalidad'],
+                grupo=form.cleaned_data['grupo'],
+                docente=form.cleaned_data['profesor'],
+                tipo_de_contrato=form.cleaned_data['tipo_de_contrato'],
+                ciudad=form.cleaned_data['ciudad'],
+                correo_electronico=form.cleaned_data['correo_electronico'],
+                telefono=form.cleaned_data['telefono'],
+                fecha_de_clase=form.cleaned_data['fecha_de_clase'],
+                estado_de_contrato=form.cleaned_data['estado_de_contrato'],
+                fecha_elab_contrato=form.cleaned_data['fecha_elab_contrato'],
+                num_contrato=form.cleaned_data['num_contrato'],
+                listas_mosaicos=form.cleaned_data['listas_mosaicos'],
+                entrega_notas=form.cleaned_data['entrega_notas'],
+                intu_canvas=form.cleaned_data['intu_canvas'],
+                tiquetes=form.cleaned_data['tiquetes'],
+                hotel=form.cleaned_data['hotel'],
+                viaticos=form.cleaned_data['viaticos'],
+                semestre=form.cleaned_data['semestre'],
+            )
             programacion_academica.save()
+
+            # Handle ManyToMany relationships
+            programacion_academica.materia.set([form.cleaned_data['materia']])  # Assuming it's a single selection
+
+            # Assuming form.cleaned_data['horario'] is a ManyToManyField
+            if isinstance(form.cleaned_data['horario'], Iterable):
+                programacion_academica.horario.set(form.cleaned_data['horario'])
+            else:
+                programacion_academica.horario.set([form.cleaned_data['horario']])
+
             return redirect('/index')  # Redirigir a alguna vista después de guardar el formulario
     else:
         form = ProgramacionAcademicaForm()
@@ -742,7 +795,7 @@ class InformeProgramacion(TemplateView):
         ws.title = 'Hoja1'
 
         # Escribir el encabezado
-        headers = ['PROGRAMA', 'COD BANNER', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'TIPO DE CONTRATO', 'CIUDAD', 'EMAIL', 'TELEFONO', 'FECHA DE CLASE', 'HORARIO', 'ESTADO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
+        headers = ['PROGRAMA', 'COD BANNER', 'SEMESTRE', 'DEPT', 'HORAS', 'NUM. CREDITOS', 'PERIODO', 'MATERIA', 'MODALIDAD', 'GRUPO', 'DOCENTE', 'C.C', 'CIUDAD', 'EMAIL', 'TELEFONO', 'FECHA DE CLASE', 'HORARIO', 'ESTADO DE CONTRATO', 'TIPO DE CONTRATO', 'FECHA ELAB. DE CONTRATO', 'No. CONTRATO', 'LISTAS - MOSAICOS', 'ENTREGA DE NOTAS', 'INTU/CANVAS', 'TIQUETES', 'HOTEL', 'VIATICOS']
         ws.append(headers)
 
         # Aplicar formato al encabezado
@@ -754,6 +807,7 @@ class InformeProgramacion(TemplateView):
             data_row = [
                 registro.programa_de_posgrado.nombre_programa,
                 registro.cod_banner,
+                registro.semestre.nombre_semestre,
                 registro.departamento.id_departamento,
                 registro.horas,
                 registro.num_creditos,
@@ -807,6 +861,71 @@ class InformeProgramacion(TemplateView):
         # Guardar el archivo xlsx y devolver la respuesta
         wb.save(response)
         return response
+    
+def editar_programacion_academica(request, id_programacion):
+    programacion = get_object_or_404(ProgramacionAcademica, id_programacionAcademica=id_programacion)
+    if request.method == 'POST':
+        form = ProgramacionAcademicaEditForm(request.POST, instance=programacion)
+        if form.is_valid():
+            form.save()
+            return redirect('/index/buscar_programaciones_academicas')  # Redirige a la página principal o donde desees después de la edición
+    else:
+        form = ProgramacionAcademicaEditForm(instance=programacion)
+    
+    return render(request, 'Editar/editar_programacion_academica.html', {'form': form})
+
+def buscar_programaciones_academicas(request):
+    # Obtener todas las programaciones académicas inicialmente
+    programaciones = ProgramacionAcademica.objects.prefetch_related('materia').all()
+
+    # Obtener parámetros de filtro del formulario si están presentes en la solicitud GET
+    programa_de_posgrado = request.GET.get('programa_de_posgrado')
+    cod_banner = request.GET.get('cod_banner')
+    departamento = request.GET.get('departamento')
+    periodo = request.GET.get('periodo')
+    materia = request.GET.get('materia')
+    modalidad = request.GET.get('modalidad')
+    grupo = request.GET.get('grupo')
+    docente = request.GET.get('docente')
+    fecha_de_clase = request.GET.get('fecha_de_clase')
+
+    # Aplicar filtros según los parámetros proporcionados en el formulario
+    if programa_de_posgrado:
+        programaciones = programaciones.filter(programa_de_posgrado=programa_de_posgrado)
+    if cod_banner:
+        programaciones = programaciones.filter(cod_banner=cod_banner)
+    if departamento:
+        programaciones = programaciones.filter(departamento=departamento)
+    if periodo:
+        programaciones = programaciones.filter(periodo=periodo)
+    if materia:
+        programaciones = programaciones.filter(materia__nombre_materia=materia)
+    if modalidad:
+        programaciones = programaciones.filter(modalidad=modalidad)
+    if grupo:
+        programaciones = programaciones.filter(grupo=grupo)
+    if docente:  # Filtrar por la cédula del docente
+        programaciones = programaciones.filter(docente__cedula_profesor=docente)
+    if fecha_de_clase:
+        programaciones = programaciones.filter(fecha_de_clase=fecha_de_clase)
+
+    # Obtener listas para los selectores del formulario
+    programas_de_posgrado = Programa_de_posgrado.objects.all()
+    departamentos = Departamento.objects.all()
+    periodos = Periodo.objects.all()
+    docentes = Profesor.objects.all()
+
+    # Pasar los datos filtrados y listas de opciones al contexto para mostrar en la plantilla
+    context = {
+        'programaciones': programaciones,
+        'programas_de_posgrado': programas_de_posgrado,
+        'departamentos': departamentos,
+        'periodos': periodos,
+        'docentes': docentes
+    }
+
+    return render(request, 'Buscar/buscar_programaciones_academicas.html', context)
+
 
 
 

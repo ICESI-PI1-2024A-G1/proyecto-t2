@@ -83,13 +83,10 @@ class Programa_de_posgrado(models.Model):
        
 class Semestre(models.Model):
     nombre_semestre = models.CharField(max_length=255, null=False, blank=False, primary_key= True)
-    estado_semestre = models.CharField(max_length= 8, null= False, blank= False,  default= 'Activo', choices= [('activo', 'Activo'), ('inactivo', 'Inactivo')])  # Cambiar a charfield
-    año = models.IntegerField(blank= False, null= False, default= "2024")
-    periodo = models.IntegerField(choices=[(1, '1'), (2, '2')], default= "1")
-    programa_semestre = models.ManyToManyField(Programa_de_posgrado, default = "")
+    estado_semestre = models.CharField(max_length= 8, null= False, blank= False,  default= 'Activo', choices= [('Activo', 'Activo'), ('Inactivo', 'Inactivo')])  # Cambiar a charfield
 
     def __str__(self):
-        return f"{self.año}-{self.periodo}"
+        return f"{self.nombre_semestre}-{self.estado_semestre}"
 
 class Departamento(models.Model):
      id_departamento = models.CharField(max_length= 3, null= False, default= "000", blank = False,primary_key=True)
@@ -105,6 +102,7 @@ class Materia(models.Model):
     syllabus = models.FileField(upload_to="syllabus/", blank=True, null=True)
     departamento = models.ForeignKey(Departamento, on_delete= models.CASCADE, default = '', null = False, blank = False)
     semestre = models.ForeignKey(Semestre, on_delete= models.CASCADE, default = '', null = False, blank = False)
+    programa_de_posgrado_materia = models.ForeignKey(Programa_de_posgrado, on_delete= models.CASCADE, default = '', null = False, blank = False)
 
     def  __str__(self):
         return f'{self.codigo_materia} - {self.nombre_materia}'
@@ -213,7 +211,6 @@ class ProgramacionAcademica(models.Model):
      num_creditos = models.IntegerField(null = False, blank= False, default= '')
      periodo = models.ForeignKey(Periodo, on_delete= models.CASCADE,  null= False, blank= False, default = '')
      materia = models.ManyToManyField(Materia)
-     horario = models.ManyToManyField(Horario)
      modalidad = models.CharField(max_length= 20, default = '', null = False, blank = False)
      grupo = models.CharField(max_length= 20, default = '', null = False, blank = False)
      docente = models.ForeignKey(Profesor, on_delete=models.CASCADE, default = '', null = False, blank = False)
