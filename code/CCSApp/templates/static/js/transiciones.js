@@ -404,10 +404,33 @@ function redirigirServiciosAsignaciondesdeAsignarHorario() {
                 document.getElementById("page-container").innerHTML = this.responseText;
                 
                 // Aplicar la animación de entrada a la página 2
-                document.getElementById(window.location.href = '/index/programacion').classList.add("fade-in");
+                document.getElementById(window.location.href = '/index/crear_programacion_academica').classList.add("fade-in");
             }
         };
-        xhttp.open("GET", window.location.href = '/index/programacion', true);
+        xhttp.open("GET", window.location.href = '/index/crear_programacion_academica', true);
+        xhttp.send();
+    }, 500);
+}
+
+function redirigirServiciosAsignaciondesdeCrearEspacio() {
+    document.getElementById("page1").classList.add("fade-out");
+    
+    setTimeout(function() {
+        // Ocultar la página 1
+        document.getElementById("page1").style.display = "none";
+        
+        // Cargar la página 2 usando AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Insertar el contenido de la página 2 en el DOM
+                document.getElementById("page-container").innerHTML = this.responseText;
+                
+                // Aplicar la animación de entrada a la página 2
+                document.getElementById(window.location.href = '/index/servicios_asignacion').classList.add("fade-in");
+            }
+        };
+        xhttp.open("GET", window.location.href = '/index/servicios_asignacion', true);
         xhttp.send();
     }, 500);
 }
